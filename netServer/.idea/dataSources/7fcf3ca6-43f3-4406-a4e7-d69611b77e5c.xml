@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="NP_uml@localhost:1521:">
+  <database-model serializer="dbm" rdbms="ORACLE" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="KSNA">
+      <ObjectId>92</ObjectId>
+      <IntrospectionTimestamp>2017-10-25.20:52:16</IntrospectionTimestamp>
+      <CreatedTimestamp>2017-10-09.11:40:32</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.20:52:15</ModifiedTimestamp>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="PUBLIC">
+      <ObjectId>1</ObjectId>
+    </schema>
+    <schema id="4" parent="1" name="SYS">
+      <ObjectId>0</ObjectId>
+    </schema>
+    <schema id="5" parent="1" name="SYSTEM">
+      <ObjectId>5</ObjectId>
+    </schema>
+    <schema id="6" parent="1" name="OUTLN">
+      <ObjectId>9</ObjectId>
+    </schema>
+    <schema id="7" parent="1" name="DIP">
+      <ObjectId>14</ObjectId>
+    </schema>
+    <schema id="8" parent="1" name="ORACLE_OCM">
+      <ObjectId>21</ObjectId>
+    </schema>
+    <schema id="9" parent="1" name="DBSNMP">
+      <ObjectId>30</ObjectId>
+    </schema>
+    <schema id="10" parent="1" name="APPQOSSYS">
+      <ObjectId>31</ObjectId>
+    </schema>
+    <schema id="11" parent="1" name="WMSYS">
+      <ObjectId>32</ObjectId>
+    </schema>
+    <schema id="12" parent="1" name="EXFSYS">
+      <ObjectId>42</ObjectId>
+    </schema>
+    <schema id="13" parent="1" name="CTXSYS">
+      <ObjectId>43</ObjectId>
+    </schema>
+    <schema id="14" parent="1" name="XDB">
+      <ObjectId>45</ObjectId>
+    </schema>
+    <schema id="15" parent="1" name="ANONYMOUS">
+      <ObjectId>46</ObjectId>
+    </schema>
+    <schema id="16" parent="1" name="ORDSYS">
+      <ObjectId>53</ObjectId>
+    </schema>
+    <schema id="17" parent="1" name="ORDDATA">
+      <ObjectId>54</ObjectId>
+    </schema>
+    <schema id="18" parent="1" name="ORDPLUGINS">
+      <ObjectId>55</ObjectId>
+    </schema>
+    <schema id="19" parent="1" name="SI_INFORMTN_SCHEMA">
+      <ObjectId>56</ObjectId>
+    </schema>
+    <schema id="20" parent="1" name="MDSYS">
+      <ObjectId>57</ObjectId>
+    </schema>
+    <schema id="21" parent="1" name="OLAPSYS">
+      <ObjectId>61</ObjectId>
+    </schema>
+    <schema id="22" parent="1" name="MDDATA">
+      <ObjectId>65</ObjectId>
+    </schema>
+    <schema id="23" parent="1" name="SPATIAL_WFS_ADMIN_USR">
+      <ObjectId>67</ObjectId>
+    </schema>
+    <schema id="24" parent="1" name="SPATIAL_CSW_ADMIN_USR">
+      <ObjectId>70</ObjectId>
+    </schema>
+    <schema id="25" parent="1" name="SYSMAN">
+      <ObjectId>72</ObjectId>
+    </schema>
+    <schema id="26" parent="1" name="MGMT_VIEW">
+      <ObjectId>74</ObjectId>
+    </schema>
+    <schema id="27" parent="1" name="FLOWS_FILES">
+      <ObjectId>75</ObjectId>
+    </schema>
+    <schema id="28" parent="1" name="APEX_PUBLIC_USER">
+      <ObjectId>76</ObjectId>
+    </schema>
+    <schema id="29" parent="1" name="APEX_030200">
+      <ObjectId>78</ObjectId>
+    </schema>
+    <schema id="30" parent="1" name="OWBSYS">
+      <ObjectId>79</ObjectId>
+    </schema>
+    <schema id="31" parent="1" name="OWBSYS_AUDIT">
+      <ObjectId>83</ObjectId>
+    </schema>
+    <schema id="32" parent="1" name="SCOTT">
+      <ObjectId>84</ObjectId>
+    </schema>
+    <schema id="33" parent="1" name="HR">
+      <ObjectId>85</ObjectId>
+    </schema>
+    <schema id="34" parent="1" name="OE">
+      <ObjectId>86</ObjectId>
+    </schema>
+    <schema id="35" parent="1" name="IX">
+      <ObjectId>87</ObjectId>
+    </schema>
+    <schema id="36" parent="1" name="SH">
+      <ObjectId>88</ObjectId>
+    </schema>
+    <schema id="37" parent="1" name="PM">
+      <ObjectId>89</ObjectId>
+    </schema>
+    <schema id="38" parent="1" name="BI">
+      <ObjectId>90</ObjectId>
+    </schema>
+    <schema id="39" parent="1" name="MADANG">
+      <ObjectId>91</ObjectId>
+    </schema>
+    <schema id="40" parent="1" name="XS$NULL">
+      <ObjectId>2147483638</ObjectId>
+    </schema>
+    <sequence id="41" parent="2" name="ATTNO">
+      <ObjectId>76571</ObjectId>
+      <CreatedTimestamp>2017-10-25.20:52:03</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.20:52:03</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="42" parent="2" name="CDNO">
+      <ObjectId>76569</ObjectId>
+      <CreatedTimestamp>2017-10-25.20:51:39</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.20:51:39</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="43" parent="2" name="CLNO">
+      <ObjectId>76570</ObjectId>
+      <CreatedTimestamp>2017-10-25.20:51:54</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.20:51:54</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="44" parent="2" name="MEMNO">
+      <ObjectId>75954</ObjectId>
+      <CreatedTimestamp>2017-10-09.11:42:11</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-09.11:42:11</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="45" parent="2" name="METNO">
+      <ObjectId>76572</ObjectId>
+      <CreatedTimestamp>2017-10-25.20:52:15</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.20:52:15</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <table id="46" parent="2" name="CD">
+      <ObjectId>76550</ObjectId>
+      <CreatedTimestamp>2017-10-25.16:32:16</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.16:32:16</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="47" parent="2" name="CDATT">
+      <ObjectId>76565</ObjectId>
+      <CreatedTimestamp>2017-10-25.20:38:12</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.20:38:12</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="48" parent="2" name="CDMET">
+      <ObjectId>76567</ObjectId>
+      <CreatedTimestamp>2017-10-25.20:38:14</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.20:38:14</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="49" parent="2" name="CLAZZ">
+      <ObjectId>76563</ObjectId>
+      <CreatedTimestamp>2017-10-25.20:38:09</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.20:38:09</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="50" parent="2" name="MEMBERS">
+      <ObjectId>75950</ObjectId>
+      <CreatedTimestamp>2017-10-09.11:40:32</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-09.11:40:32</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <column id="51" parent="46" name="CDNO">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="46" name="CDNAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="46" name="REG_DATE">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="54" parent="46" name="MEMBERNO">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="55" parent="46" name="SYS_C0012209">
+      <ObjectId>76551</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2017-10-25.16:32:16</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.16:32:16</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CDNO</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="56" parent="46" name="SYS_C0012209">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2017-10-25.16:32:16</ModifiedTimestamp>
+      <ColNames>CDNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C0012209</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="57" parent="46" name="FK_CD">
+      <ModifiedTimestamp>2017-10-25.16:32:16</ModifiedTimestamp>
+      <ColNames>MEMBERNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>MEMBERS</RefTableName>
+      <RefKeyName>PK_MEMBERS</RefKeyName>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="58" parent="47" name="ATTNO">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="47" name="ATTNAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="47" name="REG_DATE">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="61" parent="47" name="CLNO">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="62" parent="47" name="SYS_C0012224">
+      <ObjectId>76566</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2017-10-25.20:38:12</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.20:38:12</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>ATTNO</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="63" parent="47" name="SYS_C0012224">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2017-10-25.20:38:12</ModifiedTimestamp>
+      <ColNames>ATTNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C0012224</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="64" parent="47" name="FK_CDATT">
+      <ModifiedTimestamp>2017-10-25.20:38:12</ModifiedTimestamp>
+      <ColNames>CLNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>CLAZZ</RefTableName>
+      <RefKeyName>SYS_C0012221</RefKeyName>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="65" parent="48" name="METNO">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="48" name="METNAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="67" parent="48" name="REG_DATE">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="68" parent="48" name="CLNO">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="69" parent="48" name="SYS_C0012227">
+      <ObjectId>76568</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2017-10-25.20:38:14</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.20:38:14</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>METNO</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="70" parent="48" name="SYS_C0012227">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2017-10-25.20:38:14</ModifiedTimestamp>
+      <ColNames>METNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C0012227</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="71" parent="48" name="FK_CDMET">
+      <ModifiedTimestamp>2017-10-25.20:38:14</ModifiedTimestamp>
+      <ColNames>CLNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>CLAZZ</RefTableName>
+      <RefKeyName>SYS_C0012221</RefKeyName>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="72" parent="49" name="CLNO">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="73" parent="49" name="CLNAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="74" parent="49" name="REG_DATE">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="75" parent="49" name="CDNO">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="76" parent="49" name="SYS_C0012221">
+      <ObjectId>76564</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2017-10-25.20:38:09</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-25.20:38:09</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CLNO</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="77" parent="49" name="SYS_C0012221">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2017-10-25.20:38:09</ModifiedTimestamp>
+      <ColNames>CLNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C0012221</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="78" parent="49" name="FK_CLAZZ">
+      <ModifiedTimestamp>2017-10-25.20:38:09</ModifiedTimestamp>
+      <ColNames>CDNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>CD</RefTableName>
+      <RefKeyName>SYS_C0012209</RefKeyName>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="79" parent="50" name="MEMNO">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="80" parent="50" name="ID">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+    </column>
+    <column id="81" parent="50" name="PASSWORD">
+      <Position>3</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="82" parent="50" name="NAME">
+      <Position>4</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+    </column>
+    <column id="83" parent="50" name="EMAIL">
+      <Position>5</Position>
+      <DataType>VARCHAR2(30)|0</DataType>
+    </column>
+    <column id="84" parent="50" name="REG_DATE">
+      <Position>6</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <index id="85" parent="50" name="PK_MEMBERS">
+      <ObjectId>75951</ObjectId>
+      <CreatedTimestamp>2017-10-09.11:40:32</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-09.11:40:32</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>MEMNO</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="86" parent="50" name="PK_MEMBERS">
+      <ModifiedTimestamp>2017-10-09.11:40:32</ModifiedTimestamp>
+      <ColNames>MEMNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_MEMBERS</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
