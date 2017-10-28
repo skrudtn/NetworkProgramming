@@ -1,5 +1,7 @@
 package View.login;
 
+import Control.GUIController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +19,7 @@ public class SignUpPanel extends JPanel {
     private final static int YMARGIN = 80;
 
     private LoginFrame f;
+    private GUIController gc;
 
     private JButton okBtn;
     private JButton idOverlapBtn;
@@ -40,6 +43,7 @@ public class SignUpPanel extends JPanel {
 
     public SignUpPanel(LoginFrame f) {
         this.f = f;
+        gc = f.getController().getGUIController();
         initUI();
     }
 
@@ -203,7 +207,7 @@ public class SignUpPanel extends JPanel {
         if (!id.equals("") && !pw.equals("") && !pw2.equals("")
                 && !name.equals("") && !email.equals("") && pwFlag && idFlag) {
             f.getController().getLoginController().signup(id, pw, name, email);
-            f.getCardLayout().show(f.getContentPane(), "login");
+            gc.loginView();
         }
     }
 
@@ -228,7 +232,7 @@ public class SignUpPanel extends JPanel {
         pwTextField2.setText("");
         nameTextField.setText("");
         emailTextField.setText("");
-        f.getCardLayout().show(f.getContentPane(), "login");
+        gc.loginView();
     }
 
     public String getSHA256(String str) {

@@ -1,8 +1,6 @@
 package Control;
 
-import Model.CDModel;
-import Model.ClazzModel;
-import Model.LoginModel;
+import Model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -176,7 +174,7 @@ public class DBController {
         ArrayList<ClazzModel> clazzModels = cdm.getClazzModels();
 
         try {
-            String memNo="";
+            String memNo = "";
             sql = "SELECT MEMNO FROM MEMBERS WHERE MEMBERS.ID = ?";
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
@@ -185,7 +183,7 @@ public class DBController {
                 memNo = rs.getString("MEMNO");
             }
             sql = "INSERT INTO CD (CDNO, CDNAME, REG_DATE, MEMBERNO)" +
-                    "VALUES (CDNO.nextval, '"+ cdm.getCdName()+ "'," + "SYSDATE" +",'"+memNo+"')";
+                    "VALUES (CDNO.nextval, '" + cdm.getCdName() + "'," + "SYSDATE" + ",'" + memNo + "')";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
@@ -200,13 +198,13 @@ public class DBController {
                 }
 
                 sql = "INSERT INTO CLAZZ (CLNO, CLNAME, REG_DATE, CDNO)" +
-                        " VALUES (CLNO.nextval,'" + c.getClassName() + "'," + "SYSDATE" +",'"+cdNo+"')";
+                        " VALUES (CLNO.nextval,'" + c.getClassName() + "'," + "SYSDATE" + ",'" + cdNo + "')";
                 ps = con.prepareStatement(sql);
                 rs = ps.executeQuery();
 
-                String clNo="";
-                ArrayList<String> atts =c.getAttributeList();
-                for(String att : atts) {
+                String clNo = "";
+                ArrayList<String> atts = c.getAttributeList();
+                for (String att : atts) {
                     sql = "SELECT CLNO FROM CLAZZ WHERE CLAZZ.CLNAME= ?";
                     ps = con.prepareStatement(sql);
                     ps.setString(1, c.getClassName());
@@ -221,8 +219,8 @@ public class DBController {
                     rs = ps.executeQuery();
                 }
 
-                ArrayList<String> mets =c.getMethodList();
-                for(String met : mets) {
+                ArrayList<String> mets = c.getMethodList();
+                for (String met : mets) {
                     sql = "INSERT INTO CDMET(METNO, METNAME, REG_DATE, CLNO)" +
                             " VALUES (METNO.nextval,'" + met + "'," + "SYSDATE" + ",'" + clNo + "')";
                     ps = con.prepareStatement(sql);
@@ -246,5 +244,59 @@ public class DBController {
             }
         }
         return rt;
+    }
+
+    public ArrayList<SearchDataModel> search(SearchModel sm) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        ArrayList<SearchDataModel> sdms = new ArrayList<>();
+        String data = sm.getData();
+        String cate = sm.getCategory();
+
+        data = data.replace("!", "!!")
+                .replace("%", "!%")
+                .replace("_", "!_")
+                .replace("[", "![");
+        try {
+//            if (cate.equals("Title")) {
+            sql = "SELECT CDNAME,id,CD.reg_date\n" +
+                    "  FROM CD, MEMBERS\n" +
+                    "WHERE CD.memberNo = MEMBERS.memNO AND\n" +
+                    "  cdName LIKE ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + data + "%");
+            rs = ps.executeQuery();
+//            } else if (cate.equals("UserID")) {
+//                sql = "SELECT * FROM MEMBERS WHERE ID = ? ESCAPE '!'";
+//            } else if (cate.equals("Contents")) {
+//                sql = "SELECT * FROM CLAZZ WHERE CLNAME LIKE ? ESCAPE '!'";
+//            }
+            while (rs.next()) {
+                SearchDataModel sdm = new SearchDataModel(rs.getString(1),rs.getString(2),rs.getString(3));
+                sdms.add(sdm);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+            }
+            try {
+                ps.close();
+            } catch (Exception pse) {
+            }
+        }
+        return sdms;
+    }
+
+    public void closeCon() {
+        try {
+            con.close();
+        } catch (Exception con) {
+
+        }
     }
 }

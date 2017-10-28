@@ -1,6 +1,9 @@
 package Control;
 
 import Model.LoginModel;
+import Model.SearchDataModel;
+
+import java.util.ArrayList;
 
 /**
  * Created by skrud on 2017-10-02.
@@ -16,14 +19,18 @@ public class MainController {
     private JsonController jsonController = null;
     private LoginController loginController = null;
     private LoginModel myAccount;
+    private ArrayList<SearchDataModel> sdms=null;
+
 
     public MainController() {
         initController();
+        sdms = new ArrayList<>();
+
     }
 
-    private void initController() {
-        GUIController = new GUIController(this);
+    private void initController(){
         jsonController = new JsonController(this);
+        GUIController = new GUIController(this);
         networkController = new NetworkController(this);
         loginController = new LoginController(this);
         myAccount = null;
@@ -67,5 +74,12 @@ public class MainController {
 
     public void setMyAccount(LoginModel myAccount) {
         this.myAccount = myAccount;
+    }
+    public ArrayList<SearchDataModel> getSdms() {
+        return sdms;
+    }
+
+    public void setSdms(ArrayList<SearchDataModel> sdms) {
+        this.sdms = sdms;
     }
 }

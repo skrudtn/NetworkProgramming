@@ -180,7 +180,7 @@ public class PWChangePanel extends JPanel {
 
         if (!id.equals("") && !pw.equals("") && !pw2.equals("")&& pwFlag && idFlag) {
             f.getController().getLoginController().pwChange(id, pw);
-            f.getCardLayout().show(f.getContentPane(), "login");
+            f.getController().getGUIController().loginView();
         }
     }
 
@@ -203,7 +203,7 @@ public class PWChangePanel extends JPanel {
         idTextField.setText("");
         pwTextField.setText("");
         pwTextField2.setText("");
-        f.getCardLayout().show(f.getContentPane(), "login");
+        f.getController().getGUIController().loginView();
     }
 
     private String getSHA256(String str) {

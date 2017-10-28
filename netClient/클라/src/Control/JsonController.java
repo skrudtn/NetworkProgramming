@@ -2,6 +2,7 @@ package Control;
 
 import Model.ClazzModel;
 import Model.LoginModel;
+import Model.SearchDataModel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -77,7 +78,7 @@ public class JsonController {
         return jsonObject;
     }
 
-    public LoginModel loginString2loginModel(String jsonString) {
+    public LoginModel str2lm(String jsonString) {
         System.out.println(jsonString);
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
@@ -111,39 +112,39 @@ public class JsonController {
         return new LoginModel(id, pw, email, name);
     }
 
-    public String cd2str(ArrayList<ClazzModel> cmList, String cdName){
+    public String cms2str(ArrayList<ClazzModel> cms, String cdName) {
         JSONObject obj = new JSONObject();
         JSONArray jsonArray = new JSONArray();
-        String n="";
+        String n = "";
         ArrayList<String> a;
         ArrayList<String> m;
 
         obj.put("cdName", cdName);
-        for(ClazzModel c: cmList) {
+        for (ClazzModel c : cms) {
             JSONObject inObj = new JSONObject();
-            inObj.put("clazzName",c.getClassName());
-            inObj.put("x",Integer.toString(c.getX()));
-            inObj.put("y",Integer.toString(c.getY()));
-            inObj.put("w",Integer.toString(c.getW()));
-            inObj.put("h",Integer.toString(c.getH()));
+            inObj.put("clazzName", c.getClassName());
+            inObj.put("x", Integer.toString(c.getX()));
+            inObj.put("y", Integer.toString(c.getY()));
+            inObj.put("w", Integer.toString(c.getW()));
+            inObj.put("h", Integer.toString(c.getH()));
 
-            a=c.getAttributeList();
+            a = c.getAttributeList();
             JSONArray aList = new JSONArray();
-            for(String str: a) {
+            for (String str : a) {
                 aList.add(str);
             }
-            inObj.put("att",aList);
+            inObj.put("att", aList);
 
-            m=c.getMethodList();
+            m = c.getMethodList();
             JSONArray mList = new JSONArray();
-            for(String str: m){
+            for (String str : m) {
                 mList.add(str);
             }
-            inObj.put("met",mList);
+            inObj.put("met", mList);
             jsonArray.add(inObj);
         }
-        obj.put("classList",jsonArray);
-        obj.put("type","classDiagram");
+        obj.put("classList", jsonArray);
+        obj.put("type", "classDiagram");
 
         return obj.toJSONString();
     }
@@ -163,5 +164,66 @@ public class JsonController {
         obj.put("name", cdName);
 
         return obj.toJSONString();
+    }
+
+    public String getCloneStr(String id, String dir) {
+        JSONObject obj = new JSONObject();
+        obj.put("type", "clone");
+        obj.put("id", id);
+        obj.put("dir", dir);
+
+        return obj.toJSONString();
+    }
+
+    public String getSearchStr(String data, String cate) {
+        JSONObject obj = new JSONObject();
+        obj.put("type", "search");
+        obj.put("cate", cate);
+        obj.put("data", data);
+
+        return obj.toJSONString();
+    }
+
+    public ArrayList<SearchDataModel> str2smds(String str) {
+        ArrayList<SearchDataModel> sdms = new ArrayList<>();
+        Object obj = null;
+        JSONParser jsonParser = new JSONParser();
+        try {
+            obj = jsonParser.parse(str);
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        if (obj instanceof JSONObject) {
+            JSONObject jsonObject = (JSONObject) obj;
+            Set keySet = jsonObject.keySet();
+            for (Object key : keySet) {
+                Object value = jsonObject.get(key);
+                if(key.equals("arr")){
+                    JSONArray arr = (JSONArray) value;
+                    int size = arr.size();
+                    for(int i=0; i<size; i++){
+                        JSONObject inObj = (JSONObject) arr.get(i);
+                        Set inSet = inObj.keySet();
+                        String title = "";
+                        String id = "";
+                        String date="";
+                        for(Object inKey: inSet){
+                            Object inValue = inObj.get(inKey);
+                            if(inKey.equals("title")){
+                                title = (String) inValue;
+                            } else if (inKey.equals("id")) {
+                                id = (String) inValue;
+                            } else if (inKey.equals("date")) {
+                                date = (String) inValue;
+                            }
+                        }
+                        SearchDataModel sdm = new SearchDataModel(title,id,date);
+                        sdms.add(sdm);
+                    }
+                }
+            }
+        }
+        return sdms;
+
     }
 }

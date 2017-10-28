@@ -7,6 +7,7 @@ import View.ClassDiagram.Clazz;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.dnd.MouseDragGestureRecognizer;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -32,7 +33,6 @@ public class DrawPanel extends JPanel {
 
     private void initUI() {
         setBackground(new Color(255, 255, 225));
-        setBounds(100,0,500,500);
 //        setBorder(new EmptyBorder(5, 5, 5, 5));
         actionLisnter();
     }
@@ -51,6 +51,7 @@ public class DrawPanel extends JPanel {
             public void mousePressed(MouseEvent e) {
                 int x = e.getX();
                 int y = e.getY();
+                sP = e.getPoint();
                 int comboMode = gc.getComboMode();
                 switch (comboMode) {
 
@@ -58,8 +59,8 @@ public class DrawPanel extends JPanel {
                         createClassPanel(x, y);
                         break;
 //                    case 2: createIFPanel(x,y); break;
-//                    case 3:
-//                        createAssociation();
+                    case 3:
+                        createAssociation(sP,eP);
 //                    case 4: createDAssociation(x,y);
 //                    case 5: aggrregation;
 //                    case 6: composition
@@ -75,14 +76,14 @@ public class DrawPanel extends JPanel {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-//                if(gc.getComboMode() == 3) {
-//                    eP = e.getPoint();
-////                    createAssociation(sP, eP);
-////                    drawAssociation();
-//                    System.out.println("그리지");
-//                    gc.setComboMode(0);
-//                }
-//                System.out.println(e.getPoint());
+                if(gc.getComboMode() == 3) {
+                    eP = e.getPoint();
+                    createAssociation(sP, eP);
+                    drawAssociation();
+                    System.out.println("그리지");
+                    gc.setComboMode(0);
+                }
+                System.out.println(e.getPoint());
             }
 
             @Override
@@ -124,6 +125,7 @@ public class DrawPanel extends JPanel {
         Association ac = new Association(controller, sP, eP);
         acList.add(ac);
     }
+
     public void drawAssociation(){
         Graphics g= this.getGraphics();
 

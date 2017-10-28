@@ -18,6 +18,7 @@ public class LoginFrame extends JFrame {
     private PWChangePanel pwcp;
 
     public LoginFrame(MainController controller){
+        this.controller = controller;
         setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         setTitle("로그인");
@@ -31,7 +32,6 @@ public class LoginFrame extends JFrame {
         getContentPane().add("signup",sup);
         getContentPane().add("pwchange",pwcp);
         setVisible(true);
-        this.controller = controller;
     }
 
     public MainController getController() {

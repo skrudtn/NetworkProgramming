@@ -1,5 +1,7 @@
 package View.login;
 
+import Control.GUIController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,9 +28,10 @@ public class LoginPanel extends JPanel {
     private JButton pwChangeBtn;
     private JCheckBox jCheckBox;
     private LoginFrame f;
-
+    private GUIController gc;
     public LoginPanel(LoginFrame f) {
         this.f = f;
+        gc = f.getController().getGUIController();
         initLogin();
     }
 
@@ -94,6 +97,15 @@ public class LoginPanel extends JPanel {
     }
 
     private void buttonActionListen() {
+        pwTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    onPressedloginBtn();
+                }
+            }
+        });
         loginBtn.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -116,7 +128,7 @@ public class LoginPanel extends JPanel {
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    onPressedSingUpBtn();
+                    onPressedSignUpBtn();
                 }
             }
         });
@@ -124,7 +136,7 @@ public class LoginPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource() == signUpBtn){
-                    onPressedSingUpBtn();
+                    onPressedSignUpBtn();
                 }
             }
         });
@@ -152,19 +164,19 @@ public class LoginPanel extends JPanel {
         String pw = String.valueOf(pwTextField.getPassword());
         if (!id.equals("") && !pw.equals("")) {
             pw = getSHA256(pw);
-            f.getController().getLoginController().login(id, pw);
+            f.getController().getLoginController().login(id,pw);
         }
     }
-    private void onPressedSingUpBtn(){
+    private void onPressedSignUpBtn(){
         idTextField.setText("");
         pwTextField.setText("");
-        f.getCardLayout().show(f.getContentPane(), "signup");
+        gc.signUpView();
     }
 
     private void onPressedPwChangeBtn() {
         idTextField.setText("");
         pwTextField.setText("");
-        f.getCardLayout().show(f.getContentPane(), "pwchange");
+        gc.pwChangeView();
     }
 
     public String getSHA256(String str) {

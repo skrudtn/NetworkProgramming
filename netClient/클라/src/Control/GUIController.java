@@ -1,7 +1,8 @@
 package Control;
 
 import Model.LoginModel;
-import View.MainView.DrawFrame;
+import View.MainView.MainFrame;
+import View.MainView.SearchPanel;
 import View.login.LoginFrame;
 
 /**
@@ -9,15 +10,17 @@ import View.login.LoginFrame;
  */
 public class GUIController {
     private MainController controller = null;
+    private JsonController jc;
+
     private LoginFrame loginFrame = null;
-
-    public DrawFrame getDrawFrame() {
-        return drawFrame;
-    }
-
-    private DrawFrame drawFrame = null;
+    private MainFrame mainFrame = null;
+    private SearchPanel searchPanel =null;
 
     private int comboMode;
+    public MainFrame getMainFrame() {
+        return mainFrame;
+    }
+
     public int getComboMode() {
         return comboMode;
     }
@@ -28,24 +31,47 @@ public class GUIController {
 
     public GUIController(MainController controller) {
         this.controller = controller;
+        jc = controller.getJsonController();
         comboMode = 0;
     }
 
     public void newLoginView() {
         loginFrame = new LoginFrame(controller);
     }
-    public void login(){
+    public void loginView(){
         loginFrame.getCardLayout().show(loginFrame.getContentPane(), "login");
     }
-
-    public void mainView(LoginModel loginModel) {
-        loginFrame.dispose();
-        controller.setMyAccount(loginModel);
-        drawFrame = new DrawFrame(controller);
+    public void signUpView(){
+        loginFrame.getCardLayout().show(loginFrame.getContentPane(), "signup");
     }
+    public void pwChangeView(){
+        loginFrame.getCardLayout().show(loginFrame.getContentPane(), "pwchange");
+    }
+    public void newDisplayView(){
+        loginFrame.dispose();
+        mainFrame = new MainFrame(controller);
+        mainFrame.getCardLayout().show(mainFrame.getContentPane(),"display");
+    }
+    public void displayView(){
+        mainFrame.getCardLayout().show(mainFrame.getContentPane(),"display");
+    }
+    public void drawView(){
+        mainFrame.getCardLayout().show(mainFrame.getContentPane(),"draw");
+    }
+
     public void test() {
-        controller.setMyAccount(new LoginModel());
-        drawFrame = new DrawFrame(controller);
+        LoginModel l = new LoginModel();
+        l.setId("ksna");
+        controller.setMyAccount(l);
+        mainFrame = new MainFrame(controller);
+    }
+
+    public void drawViewTest(){
+        mainFrame = new MainFrame(controller);
+    }
+    public void searchTest(){
+        mainFrame = new MainFrame(controller);
+        SearchPanel sf = new SearchPanel(mainFrame);
     }
 
     public void setOverLapFlag(int i){
@@ -56,9 +82,28 @@ public class GUIController {
         }
     }
 
+
     public void push(){
+
         System.out.println("gc.push");
-//        drawFrame.getCardLayout().show();
+//        mainFrame.getCardLayout().show();
     }
 
+    public void clone(String id, String dir){
+        System.out.println("gc.clone");
+    }
+    public void search(){
+//        mainFrame.getCardLayout().show(mainFrame.getContentPane(), "search");
+        searchPanel = new SearchPanel(mainFrame);
+    }
+
+    public void displayViewTest() {
+        mainFrame = new MainFrame(controller);
+    }
+
+    public void displayUpdate() {
+        System.out.println("DisPlay Update");
+        mainFrame.getDisplayPanel().getNoticePanel().addResultPanel();
+        mainFrame.getDisplayPanel().repaint();
+    }
 }

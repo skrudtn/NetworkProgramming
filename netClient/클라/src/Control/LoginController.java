@@ -21,27 +21,27 @@ public class LoginController {
         LoginModel signUp = new LoginModel(id, pw, name, email);
         String signUpInfo = jc.signupString2JSONString(signUp);
         System.out.println(signUpInfo);
-        nc.sendLoginInfo(signUpInfo);
+        nc.sendStr(signUpInfo);
 
     }
 
     public void login(String id, String pw) {
         String loginInfo = jc.login2JSONString(id, pw);
-        nc.sendLoginInfo(loginInfo);
+        nc.sendStr(loginInfo);
     }
 
     public void suOverlap(String id){
         String idInfo = jc.su2JSONString(id);
-        nc.sendLoginInfo(idInfo);
+        nc.sendStr(idInfo);
     }
     public void pwcOverlap(String id){
         String idInfo = jc.pwc2JSONString(id);
-        nc.sendLoginInfo(idInfo);
+        nc.sendStr(idInfo);
     }
 
     public void pwChange(String id, String pw){
         String pwInfo = jc.pw2JSONString(id,pw);
-        nc.sendLoginInfo(pwInfo);
+        nc.sendStr(pwInfo);
     }
 
 }

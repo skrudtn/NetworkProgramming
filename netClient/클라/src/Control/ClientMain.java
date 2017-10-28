@@ -11,7 +11,11 @@ public class ClientMain {
 
     public static void main(String[] args) {
         MainController controller = new MainController();
-        controller.getGUIController().test();
+
+//                controller.getGUIController().drawViewTest();
+//            controller.getGUIController().drawView();
+//                controller.getGUIController().searchTest();
+        controller.getGUIController().displayViewTest();
 //        controller.getGUIController().newLoginView();
     }
 }

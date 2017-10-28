@@ -1,9 +1,6 @@
 package Control;
 
-import Model.Ack;
-import Model.CDModel;
-import Model.ClazzModel;
-import Model.LoginModel;
+import Model.*;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -43,13 +40,19 @@ public class MemberThread implements Runnable {
     @Override
     public void run() {
         System.out.format("%s 접속 \n", socket.getInetAddress());
-        while(socket.isConnected()) {
-            checkDataType();
+        while(checkDataType());
+        System.out.format("%s 접속 종료 \n", socket.getInetAddress());
+        try {
+            dc.closeCon();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
 
-    private void checkDataType() {
+    private boolean checkDataType(){
+        boolean rt = true;
         try {
             DataInputStream dis = new DataInputStream(socket.getInputStream());
             String data = dis.readUTF();
@@ -63,25 +66,43 @@ public class MemberThread implements Runnable {
                 suOverlap(data);
             } else if (type.equals("pwcId")) {
                 pwcOverlap(data);
-            } else if (type.equals("pw")) {
+            } else if (type.equals("pw")) {;
                 pwChange(data);
-            } else if (type.equals("classDiagram")){
+            } else if (type.equals("classDiagram")) {
                 cdControl(data);
-//            } else if (type.equals("cd")){
-//                cdName(data);
+            } else if (type.equals("clone")) {
+                pull(data);
+            } else if(type.equals("search")){
+                search(data);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            rt = false;
         }
+        return rt;
+    }
 
+    private void search(String data) {
+        int flag = 0;
+        SearchModel sm = jc.str2sm(data);
+        ArrayList<SearchDataModel> sdms= dc.search(sm);
+        if(!sdms.isEmpty()){
+            flag = Ack.searchAck;
+        } else{
+            flag = Ack.searchRej;
+        }
+        sendAck(flag);
+        if(flag == Ack.searchAck){
+            String str = jc.sdms2Str(sdms);
+            sendStr(str);
+        }
     }
 
     private void signup(String data) {
         int flag = 0;
         LoginModel dbdata = jc.str2lm(data);
         if (dc.signup(dbdata)) {
-            flag = Ack.sACK;
-        } else flag = Ack.sREJ;
+            flag = Ack.signUpACK;
+        } else flag = Ack.signUpREJ;
         sendAck(flag);
     }
 
@@ -138,7 +159,8 @@ public class MemberThread implements Runnable {
         sendAck(ack);
 
         if(ack == Ack.lAck){
-            sendLoginModel(dbLm);
+            String str = jc.lm2str(dbLm);
+            sendStr(str);
         }
     }
 
@@ -151,9 +173,8 @@ public class MemberThread implements Runnable {
         }
     }
 
-    private void sendLoginModel(LoginModel dbLm) {
-        String str = jc.loginModel2JSONString(dbLm);
-        this.id = dbLm.getId();
+    private void sendStr(String str) {
+        System.out.println(str);
         try {
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
             dos.writeUTF(str);
@@ -163,14 +184,18 @@ public class MemberThread implements Runnable {
     }
 
     private void cdControl(String data){
-        CDModel cdm = jc.str2cdModel(data);
+        CDModel cdm = jc.str2cdm(data);
         int ack=0;
 //        dc.insertCDData(cdm, id);
         if(dc.insertCDData(cdm, "ksna")){
-            ack = Ack.insertACK;
+            ack = Ack.pushACK;
         } else{
-            ack = Ack.insertREJ;
+            ack = Ack.pushREJ;
         }
         sendAck(ack);
+    }
+
+    private void pull(String data) {
+
     }
 }

@@ -1,8 +1,6 @@
 package Control;
 
-import Model.Ack;
-import Model.ClazzModel;
-import Model.LoginModel;
+import Model.*;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -18,17 +16,30 @@ import Model.Ack;
 public class NetworkController {
     final static String IP = "127.0.0.1";
     final static int PORT = 10001;
-
+    private MainController controller=null;
     private GUIController gc = null;
     private JsonController jc = null;
 
     private Socket socket;
 
     public NetworkController(MainController controller) {
+        this.controller = controller;
         jc = controller.getJsonController();
         gc = controller.getGUIController();
         socket = null;
         connect();
+
+//        Runtime.getRuntime().addShutdownHook(new Thread() {
+//            public void run() {
+//                try {
+//                    DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+//                    dos.writeUTF(jc.getShotDown());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                System.out.println("shutdown");
+//            }
+//        });
     }
 
     public void connect() {
@@ -40,38 +51,28 @@ public class NetworkController {
         }
     }
 
-    public void sendLoginInfo(String loginInfo) {
+    public void sendStr(String str) {
         try {
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-            dos.writeUTF(loginInfo);
-            recvAck();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void push(ArrayList<ClazzModel> cmList, String cdName) {
-        String jsonString = jc.cd2str(cmList, cdName);
-        System.out.println(jsonString);
-        try {
-            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-            System.out.println("쏜다");
-            dos.writeUTF(jsonString);
+            dos.writeUTF(str);
             recvAck();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+
     private void recvAck() {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             int ack = dataInputStream.readInt();
-            System.out.println(ack);
+//            System.out.println(ack);
             switch (ack) {
                 case Ack.error:
                     break; //에러
                 case Ack.lAck:
-                    gc.mainView(recvLoginModel());
+                    recvLoginModel();
+                    gc.newDisplayView();
                     break; //로그인 성공
                 case Ack.pREJ:
                     System.out.println("비밀번호 틀림");
@@ -86,11 +87,11 @@ public class NetworkController {
                 case Ack.oREJ:
                     System.out.println("아이디 중복");
                     break;
-                case Ack.sACK:
+                case Ack.signUpACK:
                     System.out.println("가입 완료");
-                    gc.login();
+                    gc.loginView();
                     break;
-                case Ack.sREJ:
+                case Ack.signUpREJ:
                     System.out.println("가입 실패");
                     break;
                 case Ack.pwOACK:
@@ -102,16 +103,29 @@ public class NetworkController {
                     break;
                 case Ack.pwCACK:
                     System.out.println("변경완료");
-                    gc.login();
+                    gc.loginView();
                     break;
                 case Ack.pwCREJ:
                     System.out.println("변경실패");
                     break;
-                case Ack.insertACK:
+                case Ack.pushACK:
                     System.out.println("push 성공");
                     break;
-                case Ack.insertREJ:
+                case Ack.pushREJ:
                     System.out.println("push 실패");
+                    break;
+                case Ack.cloneACK:
+                    System.out.println("push 성공");
+                    break;
+                case Ack.cloneREJ:
+                    System.out.println("push 실패");
+                    break;
+                case Ack.searchAck:
+                    System.out.println("Search 성공");
+                    recvSearchData();
+                    break;
+                case Ack.searchRej:
+                    System.out.println("Search실패");
                     break;
 
                 default: break;
@@ -125,15 +139,26 @@ public class NetworkController {
     }
 }
 
-    private LoginModel recvLoginModel() {
-        LoginModel myAccout=null;
+    private void recvSearchData() {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
-            myAccout = jc.loginString2loginModel(str);
+            System.out.println(str);
+            ArrayList<SearchDataModel> smds = jc.str2smds(str);
+            controller.setSdms(smds);
+            gc.displayUpdate();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return myAccout;
+    }
+
+    private void recvLoginModel() {
+        try {
+            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+            String str = dataInputStream.readUTF();
+            controller.setMyAccount(jc.str2lm(str));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,8 +1,6 @@
 package Control;
 
-import Model.CDModel;
-import Model.ClazzModel;
-import Model.LoginModel;
+import Model.*;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
@@ -83,20 +81,18 @@ public class JsonController {
         return jsonObject;
     }
 
-    public String loginModel2JSONString(LoginModel loginModel) {
+    public String lm2str(LoginModel loginModel) {
         JSONObject obj = new JSONObject();
-        String regString = "";
         obj.put("type", "loginInfo");
         obj.put("id", loginModel.getId());
         obj.put("pw", loginModel.getPw());
         obj.put("name", loginModel.getName());
         obj.put("email", loginModel.getEmail());
-        regString = obj.toJSONString();
-        return regString;
+        return obj.toJSONString();
     }
 
 
-    public CDModel str2cdModel(String str) {
+    public CDModel str2cdm(String str) {
         System.out.println(str);
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
@@ -155,5 +151,49 @@ public class JsonController {
         rt.setCdName(cdName);
 
         return rt;
+    }
+
+    public SearchModel str2sm(String jsonStr) {
+
+        Object obj = null;
+        JSONParser jsonParser = new JSONParser();
+        String cate = "";
+        String data = "";
+        try {
+            obj = jsonParser.parse(jsonStr);
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        if (obj instanceof JSONObject) {
+            JSONObject jsonObject = (JSONObject) obj;
+            Set keySet = jsonObject.keySet();
+            for (Object key : keySet) {
+                Object value = jsonObject.get(key);
+                if (key.equals("cate")) {
+                    cate = (String) value;
+                } else if (key.equals("data")) {
+                    data = (String) value;
+                }
+            }
+        }
+        return new SearchModel(data, cate);
+    }
+
+    public String sdms2Str(ArrayList<SearchDataModel> sdms) {
+        JSONObject obj = new JSONObject();
+        JSONArray arr = new JSONArray();
+
+        obj.put("type", "searchData");
+        for (SearchDataModel sdm : sdms) {
+            JSONObject inObj = new JSONObject();
+            inObj.put("id", sdm.getId());
+            inObj.put("title", sdm.getTitle());
+            inObj.put("date", sdm.getDate());
+
+            arr.add(inObj);
+        }
+        obj.put("arr", arr);
+
+        return obj.toJSONString();
     }
 }
