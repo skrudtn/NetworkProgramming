@@ -12,13 +12,14 @@ public class LoginFrame extends JFrame {
     private static final int FRAMEWIDTH = 400;
     private static final int FRAMEHEIGHT = 480;
     private MainController controller = null;
-    private CardLayout cards = new CardLayout();
+    private CardLayout cards;
     private LoginPanel lp;
     private SignUpPanel sup;
     private PWChangePanel pwcp;
 
     public LoginFrame(MainController controller){
         this.controller = controller;
+        cards =  new CardLayout();
         setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         setTitle("로그인");

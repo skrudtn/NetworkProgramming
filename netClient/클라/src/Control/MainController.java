@@ -1,5 +1,6 @@
 package Control;
 
+import Model.CDModel;
 import Model.LoginModel;
 import Model.SearchDataModel;
 
@@ -19,13 +20,24 @@ public class MainController {
     private JsonController jsonController = null;
     private LoginController loginController = null;
     private LoginModel myAccount;
+    private CDModel cdModel;
     private ArrayList<SearchDataModel> sdms=null;
+    private ArrayList<SearchDataModel> reposiData=null;
 
 
     public MainController() {
         initController();
         sdms = new ArrayList<>();
+        reposiData = new ArrayList<>();
 
+    }
+    public void clientStart(){
+//        GUIController.newLoginView(this);
+
+
+        GUIController.drawViewTest();
+
+        //        GUIController.displayViewTest();
     }
 
     private void initController(){
@@ -33,7 +45,8 @@ public class MainController {
         GUIController = new GUIController(this);
         networkController = new NetworkController(this);
         loginController = new LoginController(this);
-        myAccount = null;
+        myAccount = new LoginModel();
+        cdModel = new CDModel();
     }
 
     public GUIController getGUIController() {
@@ -75,6 +88,15 @@ public class MainController {
     public void setMyAccount(LoginModel myAccount) {
         this.myAccount = myAccount;
     }
+
+    public CDModel getCdModel() {
+        return cdModel;
+    }
+
+    public void setCdModel(CDModel cdModel) {
+        this.cdModel = cdModel;
+    }
+
     public ArrayList<SearchDataModel> getSdms() {
         return sdms;
     }
@@ -82,4 +104,13 @@ public class MainController {
     public void setSdms(ArrayList<SearchDataModel> sdms) {
         this.sdms = sdms;
     }
+
+    public ArrayList<SearchDataModel> getReposiData() {
+        return reposiData;
+    }
+
+    public void setReposiData(ArrayList<SearchDataModel> reposiData) {
+        this.reposiData = reposiData;
+    }
+
 }

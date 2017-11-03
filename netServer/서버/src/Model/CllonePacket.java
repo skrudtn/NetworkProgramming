@@ -1,12 +1,18 @@
 package Model;
 
 /**
- * Created by skrud on 2017-10-28.
+ * Created by skrud on 2017-10-30.
  */
-public class SearchDataModel {
+public class CllonePacket {
     private String title;
-    private String id;
-    private String date;
+
+    public String getCdNo() {
+        return cdNo;
+    }
+
+    public void setCdNo(String cdNo) {
+        this.cdNo = cdNo;
+    }
 
     public String getTitle() {
         return title;
@@ -32,16 +38,15 @@ public class SearchDataModel {
         this.date = date;
     }
 
-    public SearchDataModel(String title, String id, String date) {
+    private String id;
+    private String date;
+    private String cdNo;
+
+    public CllonePacket(String id, String title, String date, String cdNo) {
         this.title = title;
         this.id = id;
         this.date = date;
-
+        this.cdNo = cdNo;
     }
 
-    public SearchDataModel(){
-        this.title ="";
-        this.id = "";
-        this.date ="";
-    }
 }

@@ -34,73 +34,115 @@ public class ClazzModel {
     private String className;
     private ArrayList<String> attributeList;
     private ArrayList<String> methodList;
-    private String x;
-    private String  y;
-    private String  w;
-    private String  h;
-    public ClazzModel(){
+    private String clNo;
+    private int x;
+    private int y;
+    private int w;
+    private int h;
+    private String bounds;
+
+    public ClazzModel() {
         className = "";
         attributeList = new ArrayList<>(0);
         methodList = new ArrayList<>(0);
-        x="";
-        y="";
-        w="";
-        h="";
+        clNo = "";
+        x=0;
+        y=0;
+        w=0;
+        h=0;
+        bounds = "";
     }
-
-
-    public ClazzModel(String className, ArrayList<String> atts, ArrayList<String> mets, String x, String y, String w, String h){
-        this.className = className;
+    public ClazzModel(String name, ArrayList<String> atts, ArrayList<String> mets,String bounds){
+        this.className = name;
         this.attributeList = atts;
         this.methodList = mets;
-        this.x=x;
-        this.y=y;
-        this.w=w;
-        this.h=h;
+        this.bounds = bounds;
+        String arr[];
+        arr = bounds.split(",");
+        this.x = Integer.parseInt(arr[0]);
+        this.y = Integer.parseInt(arr[1]);
+        this.w = Integer.parseInt(arr[2]);
+        this.h = Integer.parseInt(arr[3]);
     }
 
-    public String getX() {
+    public int getX() {
         return x;
     }
 
-//    public void setX(String x) {
-//        this.x = x;
-//    }
+    public void setX(int x) {
+        this.x = x;
+    }
 
-    public String getY() {
+    public int getY() {
         return y;
     }
 
-    public void setY(String y) {
+    public void setY(int y) {
         this.y = y;
     }
 
-    public String getW() {
+    public int getW() {
         return w;
     }
 
-    public void setW(String w) {
+    public void setW(int w) {
         this.w = w;
     }
 
-    public String getH() {
+    public int getH() {
         return h;
     }
 
-    public void setH(String h) {
+    public void setH(int h) {
         this.h = h;
     }
 
     public void addAttList(String a){
-        attributeList.add(a);
+        boolean flag = true;
+        for(String str: attributeList){
+            if(a.equals(str)){
+                flag = false;
+            }
+        }
+        if(flag) attributeList.add(a);
     }
     public void rmAttList(String a){
         attributeList.remove(a);
     }
     public void addMethodList(String m){
-        methodList.add(m);
+        boolean flag = true;
+        for(String str: methodList) {
+            if (m.equals(str)) {
+                flag = false;
+            }
+        }
+        if(flag) methodList.add(m);
     }
     public void rmMethodList(String m){
         methodList.remove(m);
     }
+
+
+    public String getClNo() {
+        return clNo;
+    }
+
+    public String getBounds() {
+        return bounds;
+    }
+
+    public void setBounds(String bounds) {
+        this.bounds = bounds;
+        String []arr = bounds.split(",");
+        this.x = Integer.parseInt(arr[0]);
+        this.y = Integer.parseInt(arr[1]);
+        this.w = Integer.parseInt(arr[2]);
+        this.h = Integer.parseInt(arr[3]);
+    }
+
+    public void setClNo(String clNo) {
+        this.clNo = clNo;
+    }
+
+
 }

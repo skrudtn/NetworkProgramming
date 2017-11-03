@@ -16,7 +16,6 @@ public class MemberThread implements Runnable {
     private MainController controller;
     private Socket socket;
     private ArrayList<Socket> clientList;
-    private DataInputStream dataInputStream;
     private JsonController jc;
     private DBController dc;
     private String id;
@@ -43,7 +42,8 @@ public class MemberThread implements Runnable {
         while(checkDataType());
         System.out.format("%s 접속 종료 \n", socket.getInetAddress());
         try {
-            dc.closeCon();
+            dc.closeConnect();
+            clientList.remove(socket);
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -71,7 +71,7 @@ public class MemberThread implements Runnable {
             } else if (type.equals("classDiagram")) {
                 cdControl(data);
             } else if (type.equals("clone")) {
-                pull(data);
+                cllone(data);
             } else if(type.equals("search")){
                 search(data);
             }
@@ -80,19 +80,36 @@ public class MemberThread implements Runnable {
         }
         return rt;
     }
+    private void cllone(String data){
+        int flag = 0;
+
+        CllonePacket cp = jc.str2cp(data);
+        CDModel cd= dc.cllone(cp);
+
+        if(!cd.getClazzModels().isEmpty()){
+            flag = Ack.cloneACK;
+        } else{
+            flag = Ack.cloneREJ;
+        }
+        sendAck(flag);
+        if(flag == Ack.cloneACK) {
+            String str = jc.cdm2str(cd);
+            sendStr(str);
+        }
+    }
 
     private void search(String data) {
         int flag = 0;
-        SearchModel sm = jc.str2sm(data);
-        ArrayList<SearchDataModel> sdms= dc.search(sm);
-        if(!sdms.isEmpty()){
+        SearchPacket sp = jc.str2sp(data);
+        ArrayList<SearchModel> sms= dc.search(sp);
+        if(!sms.isEmpty()){
             flag = Ack.searchAck;
         } else{
             flag = Ack.searchRej;
         }
         sendAck(flag);
         if(flag == Ack.searchAck){
-            String str = jc.sdms2Str(sdms);
+            String str = jc.sms2str(sms);
             sendStr(str);
         }
     }
@@ -161,6 +178,8 @@ public class MemberThread implements Runnable {
         if(ack == Ack.lAck){
             String str = jc.lm2str(dbLm);
             sendStr(str);
+            str = jc.sms2str(dc.search(new SearchPacket(dbLm.getId(),"UserId")));
+            sendStr(str);
         }
     }
 
@@ -186,8 +205,7 @@ public class MemberThread implements Runnable {
     private void cdControl(String data){
         CDModel cdm = jc.str2cdm(data);
         int ack=0;
-//        dc.insertCDData(cdm, id);
-        if(dc.insertCDData(cdm, "ksna")){
+        if(dc.insertCDData(cdm)){
             ack = Ack.pushACK;
         } else{
             ack = Ack.pushREJ;

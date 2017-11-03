@@ -1,5 +1,9 @@
 package View.MainView;
 
+import Control.MainController;
+import Model.SearchDataModel;
+import sun.applet.Main;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -10,38 +14,44 @@ import java.sql.ResultSet;
 /**
  * Created by skrud on 2017-10-27.
  */
+
 public class ResultPanel extends JPanel {
-    public JLabel getTitleLabel() {
-        return titleLabel;
-    }
-
-    public JLabel getIdLabel() {
-        return idLabel;
-    }
-
-    public JLabel getDateLabel() {
-        return dateLabel;
-    }
-
+    private static final int RWIDTH = 600;
+    private static final int RHEIGHT = 120;
     private JLabel titleLabel;
     private JLabel idLabel;
     private JLabel dateLabel;
 
-    public ResultPanel(String title, String id, String date){
+    private MainController controller;
+    private String title;
+    private String id;
+    private String date;
+    private String cdNo;
+
+    public ResultPanel(MainController controller, SearchDataModel sdm){
+        this.controller = controller;
         titleLabel = new JLabel();
         idLabel = new JLabel();
         dateLabel = new JLabel();
 
-        setSize(getWidth(),getHeight());
+        this.title = sdm.getTitle();
+        this.id=sdm.getId();
+        this.date = sdm.getDate();
+        this.cdNo = sdm.getCdNo();
+
+
         setBorder(new LineBorder(Color.BLACK,1));
         setBackground(Color.WHITE);
-        titleLabel.setBounds(0,0,getWidth(),getHeight()/3);
-        idLabel.setBounds(0,titleLabel.getHeight(),getWidth(),getHeight()/3);
-        dateLabel.setBounds(0,idLabel.getY()+idLabel.getHeight(),getWidth(),getHeight()/3);
+        setLayout(new GridLayout(3,1));
 
-        titleLabel.setText(title);
+        titleLabel.setBounds(0,0,RWIDTH,RHEIGHT/3);
+        idLabel.setBounds(0,titleLabel.getHeight(),RWIDTH,RHEIGHT/3);
+        dateLabel.setBounds(0,idLabel.getY()+idLabel.getHeight(),RWIDTH,RHEIGHT/3);
+
+        titleLabel.setText(title+"  "+sdm.getCdNo());
         titleLabel.setFont(new Font("Serif", Font.BOLD, 18));
         idLabel.setText(id);
+        idLabel.setFont(new Font("Serif", Font.BOLD, 15));
         dateLabel.setText(date);
 
         add(titleLabel);
@@ -49,26 +59,15 @@ public class ResultPanel extends JPanel {
         add(dateLabel);
 
         action();
-        setLayout(new GridLayout(3,1));
-        setVisible(true);
     }
 
     private void action(){
-        titleLabel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if(e.getSource() == titleLabel){
-                    System.out.println("titleLabel");
-                }
-            }
-        });
         idLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if(e.getSource() == titleLabel){
-                    System.out.println("id");
+                if(e.getSource() == idLabel){
+                    cloneClick();
                 }
             }
         });
@@ -76,12 +75,25 @@ public class ResultPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if(e.getSource() == titleLabel){
-                    System.out.println("date");
+                if(e.getSource() == dateLabel){
+                    cloneClick();
                 }
             }
         });
-    }
+        titleLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(e.getSource() == titleLabel){
+                    cloneClick();
+                }
+            }
+        });
 
+    }
+    private void cloneClick(){
+        String str = controller.getJsonController().getCloneStr(id,title,date,cdNo);
+        controller.getNetworkController().sendStr(str);
+    }
 
 }

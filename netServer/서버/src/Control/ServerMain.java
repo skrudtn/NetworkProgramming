@@ -10,37 +10,42 @@ import java.util.ArrayList;
  */
 public class ServerMain {
     final static int PORT = 10001;
-    private Socket socket;
     private ServerSocket serverSocket;
 
     ArrayList<Socket> clientList;
 
-    public ServerMain(){
+    public ServerMain() {
         clientList = new ArrayList<Socket>(0);
         try {
             serverSocket = new ServerSocket(PORT);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-    public void listen(){
-        try {
-            while(true) {
-                System.out.format("서버 대기중\n");
-                socket = serverSocket.accept();
-                clientList.add(socket);
-                new MemberThread(socket, clientList).run();
-
-            }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void listen() {
+        while (true) {
+            System.out.format("서버 대기중\n");
+            Socket clnt = null;
+            try {
+                clnt = serverSocket.accept();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            clientList.add(clnt);
+            new Thread(
+                    new MemberThread(clnt, clientList)
+            ).start();
+            System.out.println("client List");
+            for (Socket s : clientList) {
+                System.out.println(s.getLocalAddress());
+            }
+        }
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new ServerMain().listen();
 
     }

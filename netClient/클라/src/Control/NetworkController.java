@@ -16,7 +16,7 @@ import Model.Ack;
 public class NetworkController {
     final static String IP = "127.0.0.1";
     final static int PORT = 10001;
-    private MainController controller=null;
+    private MainController controller = null;
     private GUIController gc = null;
     private JsonController jc = null;
 
@@ -28,18 +28,6 @@ public class NetworkController {
         gc = controller.getGUIController();
         socket = null;
         connect();
-
-//        Runtime.getRuntime().addShutdownHook(new Thread() {
-//            public void run() {
-//                try {
-//                    DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-//                    dos.writeUTF(jc.getShotDown());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                System.out.println("shutdown");
-//            }
-//        });
     }
 
     public void connect() {
@@ -49,10 +37,13 @@ public class NetworkController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
     public void sendStr(String str) {
         try {
+            System.out.println(str);
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
             dos.writeUTF(str);
             recvAck();
@@ -66,13 +57,13 @@ public class NetworkController {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             int ack = dataInputStream.readInt();
-//            System.out.println(ack);
             switch (ack) {
                 case Ack.error:
                     break; //에러
                 case Ack.lAck:
-                    recvLoginModel();
                     gc.newDisplayView();
+                    recvLoginModel();
+                    recvReposiData();
                     break; //로그인 성공
                 case Ack.pREJ:
                     System.out.println("비밀번호 틀림");
@@ -109,16 +100,19 @@ public class NetworkController {
                     System.out.println("변경실패");
                     break;
                 case Ack.pushACK:
+                    gc.push();
                     System.out.println("push 성공");
                     break;
                 case Ack.pushREJ:
                     System.out.println("push 실패");
                     break;
                 case Ack.cloneACK:
-                    System.out.println("push 성공");
+                    System.out.println("clone 성공");
+                    recvCloneData();
+                    gc.cllone();
                     break;
                 case Ack.cloneREJ:
-                    System.out.println("push 실패");
+                    System.out.println("clone 실패");
                     break;
                 case Ack.searchAck:
                     System.out.println("Search 성공");
@@ -128,25 +122,35 @@ public class NetworkController {
                     System.out.println("Search실패");
                     break;
 
-                default: break;
+                default:
+                    break;
 
             }
 
-    } catch(IOException e)
+        } catch (IOException e)
 
-    {
-        e.printStackTrace();
+        {
+            e.printStackTrace();
+        }
     }
-}
 
     private void recvSearchData() {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
-            System.out.println(str);
             ArrayList<SearchDataModel> smds = jc.str2smds(str);
             controller.setSdms(smds);
-            gc.displayUpdate();
+            gc.searchUpdate();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }    private void recvReposiData() {
+        try {
+            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+            String str = dataInputStream.readUTF();
+            ArrayList<SearchDataModel> smds = jc.str2smds(str);
+            controller.setReposiData(smds);
+            gc.repositoryUpdate();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -161,4 +165,16 @@ public class NetworkController {
             e.printStackTrace();
         }
     }
+
+    private void recvCloneData() {
+        try {
+            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+            String str = dataInputStream.readUTF();
+            controller.setCdModel(jc.str2cdm(str));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

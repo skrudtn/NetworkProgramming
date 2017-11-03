@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,7 +20,6 @@ import java.util.HashMap;
  */
 public class Clazz extends JPanel {
     final int TEXTHEIGHT = 30;
-    final int FONTSIZE = 14;
     private final int WIDTH = 180;
 
     private int x, y;
@@ -35,14 +35,36 @@ public class Clazz extends JPanel {
     private JTextField metTextField;
     private JButton attBtn;
     private JButton metBtn;
-    private ArrayList<JTextField > aList;
-    private ArrayList<JTextField> mList;
-    public Clazz(MainController controller, int mousex, int mousey) {
+    private ArrayList<JTextField > aList = new ArrayList<>(1);
+    private ArrayList<JTextField> mList= new ArrayList<>(1);
+    public Clazz(int mousex, int mousey) {
         this.x = mousex;
         this.y = mousey;
+        initUI(x, y);
+    }
+    public Clazz(String clName,int x, int y) {
+        this.x = x;
+        this.y = x;
         aList = new ArrayList<>(1);
         mList = new ArrayList<>(1);
         initUI(x, y);
+    }
+
+    public void ClloneClazz(String clName, ArrayList<String> a, ArrayList<String> m){
+        nameTextField.setText(clName);
+        for(int i =0; i<a.size()-1; i++){
+            reSizeClassPanel(2);
+        }
+        for(int i=0; i<m.size()-1;i++ ){
+            reSizeClassPanel(3);
+        }
+        for(int i=0; i<a.size(); i++){
+            aList.get(i).setText(a.get(i));
+        }
+        for(int i=0; i<m.size(); i++){
+            mList.get(i).setText(m.get(i));
+        }
+
     }
 
     private void initUI(int x, int y) {
@@ -54,10 +76,9 @@ public class Clazz extends JPanel {
         initTextField();
         initBtn();
     }
-
     private void initBtn() {
-        attBtn = new JButton(".");
-        metBtn = new JButton(".");
+        attBtn = new JButton("+");
+        metBtn = new JButton("+");
         attBtn.setBounds(WIDTH, TEXTHEIGHT, TEXTHEIGHT,TEXTHEIGHT);
         attBtn.setFont(new Font("Serif", Font.BOLD,18));
         metBtn.setBounds(WIDTH, 2*TEXTHEIGHT, TEXTHEIGHT,TEXTHEIGHT);
@@ -86,6 +107,7 @@ public class Clazz extends JPanel {
         add(attLabel);
         add(metLabel);
     }
+
 
     private void initTextField() {
         nameTextField = new JTextField(){
@@ -145,11 +167,6 @@ public class Clazz extends JPanel {
             attLabel.add(newT);
             attLabel.setBounds(attLabel.getX(), attLabel.getY(), attLabel.getWidth(), attLabel.getHeight()+TEXTHEIGHT);
 
-//            int i=2;
-//            for(JTextField jTextField : mList){
-//                jTextField.setBounds(1, attY+1+i*TEXTHEIGHT, WIDTH-2, TEXTHEIGHT-2);
-//                i++;
-//            }
             metLabel.setBounds(0,attY+TEXTHEIGHT,WIDTH,metLabel.getHeight());
             metBtn.setBounds(WIDTH,attY+TEXTHEIGHT,TEXTHEIGHT,TEXTHEIGHT);
             repaint();
@@ -184,5 +201,25 @@ public class Clazz extends JPanel {
             rt.add(m.getText());
         }
         return rt;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+        repaint();
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+        repaint();
     }
 }

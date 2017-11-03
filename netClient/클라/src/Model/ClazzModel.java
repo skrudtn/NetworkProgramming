@@ -94,6 +94,7 @@ public class ClazzModel {
         this.h = h;
     }
 
+
     public void addAttList(String a){
         attributeList.add(a);
     }

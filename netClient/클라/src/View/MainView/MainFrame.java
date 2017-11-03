@@ -4,7 +4,9 @@ import Control.GUIController;
 import Control.JsonController;
 import Control.MainController;
 import Control.NetworkController;
+import Model.CDModel;
 import Model.ClazzModel;
+import Model.Association;
 import View.ClassDiagram.Clazz;
 
 import java.awt.*;
@@ -55,9 +57,17 @@ public class MainFrame extends JFrame {
         displayPanel = new DisplayContentPanel(this);
         getContentPane().add("display", displayPanel);
         getContentPane().add("draw", drawContentPanel);
-//        initMenuBar();
+
+        initMenuBar();
         setVisible(true);
 
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                System.out.println("Frame Key Listener");
+            }
+        });
     }
 
     public CardLayout getCardLayout() {
@@ -151,15 +161,14 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ArrayList<Clazz> czList = drawContentPanel.getDrawPanel().getCZList();
-                String cdName = drawContentPanel.getDrawPanel().getCDName()+"UML Manage Tool";
+                ArrayList<Association> acList = drawContentPanel.getDrawPanel().getACList();
                 ArrayList<ClazzModel> cmList= new ArrayList<>();
                 for(Clazz c: czList) {
-                    cmList.add(new ClazzModel(c.getClazzName(), c.getAtt(), c.getMet(),c.getX(),c.getY(), c.getWidth(), c.getHeight()));
+                    cmList.add(new ClazzModel(c.getClazzName(),c.getAtt(), c.getMet(),c.getX(),c.getY(), c.getWidth(), c.getHeight()));
                 }
-                String jsonString = jc.cms2str(cmList, cdName);
+                CDModel cd = new CDModel(controller.getMyAccount().getId(), controller.getCdModel().getCdName(), cmList,acList);
+                String jsonString = jc.cdm2str(cd);
                 nc.sendStr(jsonString);
-
-                gc.push();
             }
         });
         remoteMenu.add(push);

@@ -14,13 +14,14 @@ import java.awt.event.*;
 /**
  * Created by skrud on 2017-10-03.
  */
-public class DrawContentPanel extends JPanel {
+public class DrawContentPanel extends JPanel{
 
     private final int SIDEBARWIDTH = 200;
     private final int MENUBARWIDTH = 200;
     private final int TOOLBOXWIDTH = 200;
     private final int TOOLBOXHEIGHT = 400;
     private final int MENUBARHEIGHT= 30;
+    private final int DRAWPANELSIZE= 3000;
     private MainFrame f;
     private JScrollPane jScrollPane;
     private JPanel menuPanel;
@@ -31,7 +32,7 @@ public class DrawContentPanel extends JPanel {
     private JComboBox<String> classComboBox;
     private MainController controller;
     private GUIController gc;
-
+    private JPanel coordPanel;
     private JButton btn;
 
     public DrawContentPanel(MainFrame f) {
@@ -50,47 +51,20 @@ public class DrawContentPanel extends JPanel {
         initMenuPanel();
         initToolBoxPanel();
         initBtn();
-        componentListener();
+        action();
     }
 
-    private void componentListener() {
-        addComponentListener(new ComponentListener() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                drawPanel.setBounds(SIDEBARWIDTH, 0, f.getWidth() - (SIDEBARWIDTH + TOOLBOXWIDTH), f.getHeight());
-                toolBoxPanel.setBounds(0, f.getHeight() - TOOLBOXHEIGHT, TOOLBOXWIDTH, TOOLBOXHEIGHT);
-                sideBarPanel.setBounds(0, 0, SIDEBARWIDTH, f.getHeight());
-                menuPanel.setBounds(f.getWidth() - MENUBARWIDTH, 0, SIDEBARWIDTH,f.getHeight());
-
-            }
-
-            @Override
-            public void componentMoved(ComponentEvent e) {
-
-            }
-
-            @Override
-            public void componentShown(ComponentEvent e) {
-
-            }
-
-            @Override
-            public void componentHidden(ComponentEvent e) {
-
-            }
-        });
-    }
 
     private void initDrawPanel(){
         drawPanel = new DrawPanel(controller);
-//        jScrollPane = new JScrollPane(drawPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         drawPanel.setLayout(null);
         drawPanel.setBackground(new Color(254, 248, 203));
-        drawPanel.setBounds(0,0,3000,3000);
-//        drawPanel.setBounds(SIDEBARWIDTH, 30, 3000, f.getHeight());
-//        jScrollPane.setBounds(SIDEBARWIDTH, 30, f.getWidth() - (SIDEBARWIDTH + TOOLBOXWIDTH), f.getHeight());
-//        add(jScrollPane);
-        add(drawPanel);
+        drawPanel.setPreferredSize(new Dimension(DRAWPANELSIZE,DRAWPANELSIZE));
+        jScrollPane = new JScrollPane(drawPanel);
+        jScrollPane.setBounds(SIDEBARWIDTH, 0, f.getWidth() - (SIDEBARWIDTH + TOOLBOXWIDTH), f.getHeight()-45);
+        jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        add(jScrollPane);
     }
 
     private void initMenuPanel() {
@@ -120,7 +94,6 @@ public class DrawContentPanel extends JPanel {
         String classString[] = {"Class", "Interface", "Association", "Directed Association", "Aggregation", "Composition"};
         classComboBox = new JComboBox<String>(classString);
         classComboBox.setAlignmentX(1);
-//        classComboBox.setBounds(0, 0, TOOLBOXWIDTH, 100);
         classComboBox.addPopupMenuListener(new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
@@ -154,7 +127,6 @@ public class DrawContentPanel extends JPanel {
         sideBarPanel = new JPanel();
         sideBarPanel.setBackground(new Color(255, 255, 240));
         sideBarPanel.setBounds(0, 0, SIDEBARWIDTH, f.getHeight());
-        System.out.println();
         sideBarPanel.setBorder(new BevelBorder(BevelBorder.RAISED));
         sideBarPanel.setLayout(null);
         add(sideBarPanel);
@@ -173,9 +145,54 @@ public class DrawContentPanel extends JPanel {
         });
     }
 
+    public void action(){
+        addComponentListener(new ComponentListener() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                jScrollPane.setBounds(SIDEBARWIDTH, 0, f.getWidth() - (SIDEBARWIDTH + TOOLBOXWIDTH), f.getHeight()-70);
+                toolBoxPanel.setBounds(0, f.getHeight() - TOOLBOXHEIGHT, TOOLBOXWIDTH, TOOLBOXHEIGHT);
+                sideBarPanel.setBounds(0, 0, SIDEBARWIDTH, f.getHeight());
+                menuPanel.setBounds(f.getWidth() - MENUBARWIDTH, 0, SIDEBARWIDTH,f.getHeight());
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent e) {
+
+            }
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+
+            }
+
+            @Override
+            public void componentHidden(ComponentEvent e) {
+
+            }
+        });
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                System.out.println("ContentsPanel Key Listener");
+            }
+        });
+
+        jScrollPane.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                System.out.println("scroll Key Listener");
+            }
+        });
+    }
 
     public DrawPanel getDrawPanel() {
         return drawPanel;
     }
 
+    public void setDrawPanel(DrawPanel drawPanel) {
+        this.drawPanel = drawPanel;
+        repaint();
+    }
 }

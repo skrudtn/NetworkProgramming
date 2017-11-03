@@ -102,7 +102,7 @@ public class LoginPanel extends JPanel {
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    onPressedloginBtn();
+                    onPressedLoginBtn();
                 }
             }
         });
@@ -111,7 +111,7 @@ public class LoginPanel extends JPanel {
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    onPressedloginBtn();
+                    onPressedLoginBtn();
                 }
             }
         });
@@ -119,7 +119,7 @@ public class LoginPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource() == loginBtn){
-                    onPressedloginBtn();
+                    onPressedLoginBtn();
                 }
             }
         });
@@ -159,7 +159,7 @@ public class LoginPanel extends JPanel {
         });
     }
 
-    private void onPressedloginBtn(){
+    private void onPressedLoginBtn(){
         String id = idTextField.getText();
         String pw = String.valueOf(pwTextField.getPassword());
         if (!id.equals("") && !pw.equals("")) {

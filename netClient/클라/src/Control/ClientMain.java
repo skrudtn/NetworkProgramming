@@ -10,12 +10,6 @@ import Model.LoginModel;
 public class ClientMain {
 
     public static void main(String[] args) {
-        MainController controller = new MainController();
-
-//                controller.getGUIController().drawViewTest();
-//            controller.getGUIController().drawView();
-//                controller.getGUIController().searchTest();
-        controller.getGUIController().displayViewTest();
-//        controller.getGUIController().newLoginView();
+        new MainController().clientStart();
     }
 }

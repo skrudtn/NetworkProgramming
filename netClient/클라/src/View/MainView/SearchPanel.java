@@ -20,24 +20,9 @@ public class SearchPanel extends JPanel {
     public SearchPanel(MainFrame df) {
         this.df = df;
 
-        setLayout(new FlowLayout(100));
         initComboBox();
         initTextField();
-//        initBtn();
         setVisible(true);
-    }
-
-    private void initBtn() {
-        btn = new JButton("ok");
-        btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == btn) {
-                    onPressOk();
-                }
-            }
-        });
-        add(btn);
     }
 
     private void initTextField() {
@@ -68,6 +53,7 @@ public class SearchPanel extends JPanel {
                 "Title", "Contents", "UserID"
         };
         searchCombo = new JComboBox<>(category);
+        searchCombo.setBounds(20,20,100,getHeight()-40);
         searchCombo.setAlignmentX(1);
         add(searchCombo);
     }
