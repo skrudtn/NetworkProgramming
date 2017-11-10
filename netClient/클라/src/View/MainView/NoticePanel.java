@@ -25,12 +25,14 @@ public class NoticePanel extends JPanel{
 
 
     public void addResultPanel(ArrayList<SearchDataModel> sdms){
-        for(SearchDataModel sdm: sdms){
-            ResultPanel rp = new ResultPanel(mc,sdm);
-            rp.setBounds(0,y,RWIDTH,RHEIGHT);
-            resultPanels.add(rp);
-            y+=RHEIGHT;
-            add(rp);
+        if(sdms !=null) {
+            for (SearchDataModel sdm : sdms) {
+                ResultPanel rp = new ResultPanel(mc, sdm);
+                rp.setBounds(0, y, RWIDTH, RHEIGHT);
+                resultPanels.add(rp);
+                y += RHEIGHT;
+                add(rp);
+            }
         }
         setPreferredSize(new Dimension(getWidth(),y));
         repaint();

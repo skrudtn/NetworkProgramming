@@ -81,6 +81,13 @@ public class Association {
         this.eY = eY;
     }
 
-    public Association() {
+    public Association(String point){
+        String arr[];
+        arr = point.split(",");
+        sX = arr[0];
+        sY = arr[1];
+        eX = arr[2];
+        eY = arr[3];
+        Point = point;
     }
 }

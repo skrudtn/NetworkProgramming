@@ -1,6 +1,7 @@
 package Test;
 
 import Model.Association;
+import org.json.simple.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -76,6 +77,14 @@ public class AssociTest extends JFrame {
     }
 
     public static void main(String[] args) {
+        JSONObject jsonObject = new JSONObject();
+        ArrayList<String> str = new ArrayList<>();
+        str.add("11");
+        str.add("22");
+        str.add("3");
+        jsonObject.put("tt", str);
+
+        System.out.println(jsonObject.toJSONString());
         new AssociTest();
     }
 }

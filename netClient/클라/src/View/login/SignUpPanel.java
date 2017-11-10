@@ -1,6 +1,7 @@
 package View.login;
 
 import Control.GUIController;
+import Model.Pallate;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +32,7 @@ public class SignUpPanel extends JPanel {
     private JLabel pwLabel2;
     private JLabel emailLabel;
     private JLabel nameLabel;
+    private JLabel stateLabel;
 
     private JTextField idTextField;
     private JTextField nameTextField;
@@ -49,7 +51,7 @@ public class SignUpPanel extends JPanel {
 
     public void initUI() {
         setLayout(null);
-        setBackground(new Color(255, 255, 236));
+        setBackground(Pallate.b);
         setVisible(true);
         initLabel();
         initTextField();
@@ -63,6 +65,7 @@ public class SignUpPanel extends JPanel {
         pwLabel2 = new JLabel("재입력\t: ");
         nameLabel = new JLabel("이름\t: ");
         emailLabel = new JLabel("이메일\t: ");
+        stateLabel = new JLabel();
 
         idLabel.setBounds(XMARGIN, YMARGIN, 80, 40);
         idLabel.setFont(new Font("Serif", Font.BOLD, 15));
@@ -74,12 +77,15 @@ public class SignUpPanel extends JPanel {
         nameLabel.setFont(new Font("Serif", Font.BOLD, 15));
         emailLabel.setBounds(XMARGIN, YMARGIN + 200, 80, 40);
         emailLabel.setFont(new Font("Serif", Font.BOLD, 15));
+        stateLabel.setBounds(XMARGIN*2,YMARGIN/2, 120,20);
+        stateLabel.setFont(new Font("Serif", Font.BOLD, 14));
 
         add(idLabel);
         add(pwLabel);
         add(pwLabel2);
         add(nameLabel);
         add(emailLabel);
+        add(stateLabel);
     }
 
     private void initTextField() {
@@ -107,16 +113,24 @@ public class SignUpPanel extends JPanel {
         add(emailTextField);
     }
 
-    public void initButton() {
+    private void initButton() {
         okBtn = new JButton("가입하기");
         idOverlapBtn = new JButton("중복확인");
         pwCheckBtn = new JButton("비번확인");
         backBtn = new JButton("뒤로");
 
         okBtn.setBounds(XMARGIN + 140, emailLabel.getY()+emailLabel.getHeight()+20, 140, 60);
+        okBtn.setBackground(Pallate.e);
+        okBtn.setForeground(Pallate.a);
         idOverlapBtn.setBounds(idTextField.getX() + idTextField.getWidth() + 10, idTextField.getY(), 90, 30);
+        idOverlapBtn.setBackground(Pallate.e);
+        idOverlapBtn.setForeground(Pallate.a);
         pwCheckBtn.setBounds(idOverlapBtn.getX(), pwTextField2.getY(), 90, 30);
+        pwCheckBtn.setBackground(Pallate.e);
+        pwCheckBtn.setForeground(Pallate.a);
         backBtn.setBounds(15, 15, 60, 40);
+        backBtn.setBackground(Pallate.e);
+        backBtn.setForeground(Pallate.a);
 
         add(okBtn);
         add(idOverlapBtn);
@@ -224,6 +238,7 @@ public class SignUpPanel extends JPanel {
         String pw2 = String.valueOf(pwTextField2.getPassword());
         if (pw.equals(pw2)) {
             pwFlag = true;
+            stateLabel.setText("Same PW");
         }
     }
     private void onPressedBackBtn(){
@@ -232,6 +247,7 @@ public class SignUpPanel extends JPanel {
         pwTextField2.setText("");
         nameTextField.setText("");
         emailTextField.setText("");
+        stateLabel.setText("");
         gc.loginView();
     }
 
@@ -268,5 +284,13 @@ public class SignUpPanel extends JPanel {
 
     public void setIdFlag(boolean idFlag) {
         this.idFlag = idFlag;
+    }
+
+    public JLabel getStateLabel() {
+        return stateLabel;
+    }
+
+    public void setStateLabel(JLabel stateLabel) {
+        this.stateLabel = stateLabel;
     }
 }

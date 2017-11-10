@@ -42,42 +42,62 @@ public class MainFrame extends JFrame {
         initFrame();
     }
 
-    private void initFrame() {
+    public void resize() {
+
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
         int width = (int) (screen.getWidth() - insets.left - insets.right);
         int height = (int) (screen.getHeight() - insets.top - insets.bottom);
 
-        setBounds(0, 0,width,height);
+        setBounds(0, 0, width, height);
+    }
 
+    private void initFrame() {
+        setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+        resize();
         getContentPane().setLayout(cards);
-
+        setResizable(false);
         drawContentPanel = new DrawContentPanel(this);
         displayPanel = new DisplayContentPanel(this);
         getContentPane().add("display", displayPanel);
         getContentPane().add("draw", drawContentPanel);
 
         initMenuBar();
+        addAction();
         setVisible(true);
+    }
 
-        this.addKeyListener(new KeyAdapter() {
+    private void addAction() {
+        addComponentListener(new ComponentAdapter() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                System.out.println("Frame Key Listener");
+            public void componentResized(ComponentEvent e) {
+                super.componentResized(e);
+                drawContentPanel.resizePanel();
             }
         });
+        addWindowStateListener(new WindowStateListener() {
+            @Override
+            public void windowStateChanged(WindowEvent e) {
+                resizeFrame(e);
+            }
+        });
+    }
+
+    private void resizeFrame(WindowEvent e) {
+        if ((e.getNewState() & this.MAXIMIZED_BOTH) == this.MAXIMIZED_BOTH) {
+            drawContentPanel.resizePanel();
+        }
     }
 
     public CardLayout getCardLayout() {
         return cards;
     }
+
     public MainController getController() {
         return controller;
     }
 
-    public void initMenuBar() {
+    private void initMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("파일");
         JMenu remoteMenu = new JMenu("관리");
@@ -139,14 +159,6 @@ public class MainFrame extends JFrame {
         });
         remoteMenu.add(add);
 
-        JMenuItem commit = new JMenuItem("commit");
-        commit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        remoteMenu.add(commit);
         JMenuItem search = new JMenuItem("search");
         search.addActionListener(new ActionListener() {
             @Override
@@ -162,11 +174,12 @@ public class MainFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ArrayList<Clazz> czList = drawContentPanel.getDrawPanel().getCZList();
                 ArrayList<Association> acList = drawContentPanel.getDrawPanel().getACList();
-                ArrayList<ClazzModel> cmList= new ArrayList<>();
-                for(Clazz c: czList) {
-                    cmList.add(new ClazzModel(c.getClazzName(),c.getAtt(), c.getMet(),c.getX(),c.getY(), c.getWidth(), c.getHeight()));
+                ArrayList<ClazzModel> cmList = new ArrayList<>();
+                for (Clazz c : czList) {
+                    cmList.add(new ClazzModel(c.getClazzName(), c.getAtt(), c.getMet(),
+                            c.getX(), c.getY(), c.getWidth(), c.getHeight(), c.getAcList(), c.getPointInClazzes()));
                 }
-                CDModel cd = new CDModel(controller.getMyAccount().getId(), controller.getCdModel().getCdName(), cmList,acList);
+                CDModel cd = new CDModel(controller.getMyAccount().getId(), controller.getCdModel().getCdName(), cmList, acList);
                 String jsonString = jc.cdm2str(cd);
                 nc.sendStr(jsonString);
             }
@@ -177,31 +190,28 @@ public class MainFrame extends JFrame {
         menuBar.add(fileMenu);
         menuBar.add(remoteMenu);
         menuBar.setBackground(new Color(216, 215, 217));
-        menuBar.setBounds(0,0,getWidth(),30);
+        menuBar.setBounds(0, 0, getWidth(), 30);
         this.setJMenuBar(menuBar);
     }
 
-    private void setKeyStroke(JMenu fileMenu, JMenu remoteMenu){
+    private void setKeyStroke(JMenu fileMenu, JMenu remoteMenu) {
         fileMenu.getItem(0).setAccelerator(
                 KeyStroke.getKeyStroke('N', InputEvent.CTRL_MASK));
         fileMenu.getItem(1).setAccelerator(
                 KeyStroke.getKeyStroke('O', InputEvent.CTRL_MASK));
         fileMenu.getItem(2).setAccelerator(
-                KeyStroke.getKeyStroke('S', InputEvent.CTRL_MASK ));
+                KeyStroke.getKeyStroke('S', InputEvent.CTRL_MASK));
         fileMenu.getItem(3).setAccelerator(
-                KeyStroke.getKeyStroke('E', InputEvent.CTRL_MASK ));
+                KeyStroke.getKeyStroke('E', InputEvent.CTRL_MASK));
 
         remoteMenu.getItem(0).setAccelerator(
                 KeyStroke.getKeyStroke('C', InputEvent.CTRL_MASK ^ InputEvent.ALT_MASK));
 
         remoteMenu.getItem(1).setAccelerator(
                 KeyStroke.getKeyStroke('A', InputEvent.CTRL_MASK ^ InputEvent.ALT_MASK));
-//
-//        remoteMenu.getItem(2).setAccelerator(
-//                KeyStroke.getKeyStroke('C', InputEvent.CTRL_MASK ^ InputEvent.ALT_MASK));
-        remoteMenu.getItem(3).setAccelerator(
+        remoteMenu.getItem(2).setAccelerator(
                 KeyStroke.getKeyStroke('S', InputEvent.CTRL_MASK ^ InputEvent.ALT_MASK));
-        remoteMenu.getItem(4).setAccelerator(
+        remoteMenu.getItem(3).setAccelerator(
                 KeyStroke.getKeyStroke('P', InputEvent.CTRL_MASK ^ InputEvent.ALT_MASK));
 
     }

@@ -1,6 +1,7 @@
 package Control;
 
 import Model.*;
+import sun.rmi.runtime.Log;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -18,7 +19,9 @@ public class MemberThread implements Runnable {
     private ArrayList<Socket> clientList;
     private JsonController jc;
     private DBController dc;
-    private String id;
+    private LoginController lc;
+    private UMLContorller uc;
+    private AccountController ac;
 
     public MemberThread(Socket socket, ArrayList<Socket> clientList) {
         this.socket = socket;
@@ -30,190 +33,108 @@ public class MemberThread implements Runnable {
         controller = new MainController();
         jc = controller.getJsonController();
         dc = controller.getDBController();
-    }
-
-    public MainController getController() {
-        return controller;
+        lc = controller.getLoginController();
+        uc = controller.getUmlContorller();
+        ac = controller.getAccountController();
     }
 
     @Override
     public void run() {
-        System.out.format("%s 접속 \n", socket.getInetAddress());
         while(checkDataType());
-        System.out.format("%s 접속 종료 \n", socket.getInetAddress());
+        logout();
+    }
+
+    private void logout() {
         try {
+            System.out.format("%s : %s 접속 종료 \n", socket.getInetAddress(), lc.getId());
             dc.closeConnect();
             clientList.remove(socket);
+            LoginInfo.getInstance().rmConnectId(lc.getMyLoginModel().getId());
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-    private boolean checkDataType(){
+    public boolean checkDataType(){
         boolean rt = true;
         try {
             DataInputStream dis = new DataInputStream(socket.getInputStream());
             String data = dis.readUTF();
-            System.out.println(data);
+            System.out.format("%s\n",data);
             String type = jc.getJsonType(jc.string2JSONObject(data));
-            if (type.equals("login")) {
-                login(data);
-            } else if (type.equals("signup")) {
-                signup(data);
-            } else if (type.equals("suId")) {
-                suOverlap(data);
-            } else if (type.equals("pwcId")) {
-                pwcOverlap(data);
-            } else if (type.equals("pw")) {;
-                pwChange(data);
-            } else if (type.equals("classDiagram")) {
-                cdControl(data);
-            } else if (type.equals("clone")) {
-                cllone(data);
-            } else if(type.equals("search")){
-                search(data);
+            int ack =0;
+            switch (type) {
+                case "login":
+                    ack = lc.login(data);
+                    sendAck(ack);
+                    if(ack == Ack.lAck){
+                        sendStr(lc.getLoginModel());
+                        sendStr(lc.getSearchModel());
+                    }
+                    break;
+                case "logout":
+                    sendAck(Ack.logoutAck);
+                    logout();
+                    break;
+                case "signup":
+                    sendAck(lc.signup(data));
+                    break;
+                case "suId":
+                    sendAck(lc.suOverlap(data));
+                    break;
+                case "pwcId":
+                    sendAck(lc.pwcOverlap(data));
+                    break;
+                case "pw":
+                    sendAck(lc.pwChange(data));
+                    break;
+                case "classDiagram":
+                    sendAck(uc.pushCD(data));
+                    break;
+                case "clone":
+                    ack = uc.cllone(data);
+                    sendAck(ack);
+                    if(ack == Ack.cloneACK){
+                        sendStr(uc.getCloneModel());
+                    }
+                    break;
+                case "search":
+                    ack = uc.search(data);
+                    sendAck(ack);
+                    if(ack == Ack.searchAck){
+                        sendStr(uc.getSearchModels());
+                    }
+                    break;
+                case "addFriend":
+                    sendAck(ac.addFriend(data));
+                    break;
+                case "searchId":
+                    sendAck(ac.searchId(data));
+                    break;
             }
         } catch (IOException e) {
             rt = false;
         }
         return rt;
     }
-    private void cllone(String data){
-        int flag = 0;
 
-        CllonePacket cp = jc.str2cp(data);
-        CDModel cd= dc.cllone(cp);
-
-        if(!cd.getClazzModels().isEmpty()){
-            flag = Ack.cloneACK;
-        } else{
-            flag = Ack.cloneREJ;
-        }
-        sendAck(flag);
-        if(flag == Ack.cloneACK) {
-            String str = jc.cdm2str(cd);
-            sendStr(str);
-        }
-    }
-
-    private void search(String data) {
-        int flag = 0;
-        SearchPacket sp = jc.str2sp(data);
-        ArrayList<SearchModel> sms= dc.search(sp);
-        if(!sms.isEmpty()){
-            flag = Ack.searchAck;
-        } else{
-            flag = Ack.searchRej;
-        }
-        sendAck(flag);
-        if(flag == Ack.searchAck){
-            String str = jc.sms2str(sms);
-            sendStr(str);
-        }
-    }
-
-    private void signup(String data) {
-        int flag = 0;
-        LoginModel dbdata = jc.str2lm(data);
-        if (dc.signup(dbdata)) {
-            flag = Ack.signUpACK;
-        } else flag = Ack.signUpREJ;
-        sendAck(flag);
-    }
-
-    private void suOverlap(String id) {
-        LoginModel dbdata = jc.str2lm(id);
-        int flag = 0;
-        // DB에서 아이디 중복확인
-        if (dc.overLapDB(dbdata.getId())) {
-            flag = Ack.oREJ;// 중복
-        } else {
-            flag = Ack.oACK; //중복아님
-        }
-        sendAck(flag);
-    }
-
-    private void pwcOverlap(String id) {
-        LoginModel dbdata = jc.str2lm(id);
-        int flag = 0;
-        // DB에서 아이디 중복확인
-        if (dc.overLapDB(dbdata.getId())) {
-            flag = Ack.pwOACK; //아이디 존재
-        } else {
-            flag = Ack.pwOREJ; //존재 안함
-        }
-        sendAck(flag);
-    }
-
-    private void pwChange(String pw) {
-        LoginModel dbdata = jc.str2lm(pw);
-        int flag = 0;
-        // DB에서 pw change
-        if (dc.pwDB(dbdata)) {
-            flag = Ack.pwCACK;// 중복
-        } else {
-            flag = Ack.pwCREJ; //중복아님
-        }
-        sendAck(flag);
-    }
-
-    private void login(String data) {
-        LoginModel loginModel = jc.str2lm(data);
-        LoginModel dbLm = dc.loginDB(loginModel);
-        String dbpw = dbLm.getPw();
-        int ack = 0;
-        if (!(dbpw.equals(""))) {
-            if (dbpw.equals(loginModel.getPw())) {
-                ack = Ack.lAck;
-            } else {
-                ack = Ack.pREJ;
-            }
-        } else {
-            ack = Ack.iREJ;
-        }
-        sendAck(ack);
-
-        if(ack == Ack.lAck){
-            String str = jc.lm2str(dbLm);
-            sendStr(str);
-            str = jc.sms2str(dc.search(new SearchPacket(dbLm.getId(),"UserId")));
-            sendStr(str);
-        }
-    }
-
-    private void sendAck(int flag) {
+    private void sendAck(int ack) {
         try {
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-            dos.writeInt(flag);
+            dos.writeInt(ack);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void sendStr(String str) {
-        System.out.println(str);
+        System.out.format("%s",str);
         try {
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
             dos.writeUTF(str);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void cdControl(String data){
-        CDModel cdm = jc.str2cdm(data);
-        int ack=0;
-        if(dc.insertCDData(cdm)){
-            ack = Ack.pushACK;
-        } else{
-            ack = Ack.pushREJ;
-        }
-        sendAck(ack);
-    }
-
-    private void pull(String data) {
-
     }
 }

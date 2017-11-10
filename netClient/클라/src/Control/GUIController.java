@@ -10,6 +10,7 @@ import View.login.LoginFrame;
 public class GUIController {
     private MainController controller = null;
     private LoginFrame loginFrame = null;
+    private ProfileFrame profileFrame = null;
 
     public MainFrame getMainFrame() {
         return mainFrame;
@@ -28,8 +29,9 @@ public class GUIController {
     public void newLoginView(MainController controller) {
         this.controller = controller;
         loginFrame = new LoginFrame(controller);
+
     }
-    public void loginView(){
+    public void loginView() {
         loginFrame.getCardLayout().show(loginFrame.getContentPane(), "login");
     }
     public void signUpView(){
@@ -42,6 +44,10 @@ public class GUIController {
     public void newDisplayView(){
         loginFrame.dispose();
         mainFrame = new MainFrame(controller);
+        mainFrame.setResizable(false);
+    }
+    public void newProfileView(){
+        profileFrame = new ProfileFrame(controller);
     }
 
     public void displayView(){
@@ -70,37 +76,27 @@ public class GUIController {
     public void push(){
         mainFrame.setTitle(controller.getCdModel().getCdName());
         mainFrame.getCardLayout().show(mainFrame.getContentPane(),"draw");
-
-        System.out.println("gc.push");
     }
 
     public void cllone(){
         mainFrame.setTitle(controller.getCdModel().getCdName());
         mainFrame.getCardLayout().show(mainFrame.getContentPane(),"draw");
         mainFrame.getDrawContentPanel().getDrawPanel().cllone();
-        System.out.println("gc.clone");
     }
     public void search(){
 //        mainFrame.getCardLayout().show(mainFrame.getContentPane(), "search");
         searchPanel = new SearchPanel(mainFrame);
     }
-
-    public void displayViewTest() {
-        mainFrame = new MainFrame(controller);
-    }
-
     public void searchUpdate() {
-        System.out.println("Search Update");
         mainFrame.getDisplayPanel().getNoticePanel().initResultPanel();
         mainFrame.getDisplayPanel().getNoticePanel().addResultPanel(controller.getSdms());
         mainFrame.getDisplayPanel().getNoticeScrollPanel().setViewportView(mainFrame.getDisplayPanel().getNoticePanel());
         mainFrame.getDisplayPanel().repaint();
     }
     public void repositoryUpdate() {
-        System.out.println("repository Update");
-        mainFrame.getDisplayPanel().getReposiPanel().initResultPanel();
-        mainFrame.getDisplayPanel().getReposiPanel().addResultPanel(controller.getReposiData());
-        mainFrame.getDisplayPanel().getRepoScrollPanel().setViewportView(mainFrame.getDisplayPanel().getReposiPanel());
+        mainFrame.getDisplayPanel().getRepoPanel().initResultPanel();
+        mainFrame.getDisplayPanel().getRepoPanel().addResultPanel(controller.getReposiData());
+        mainFrame.getDisplayPanel().getRepoScrollPanel().setViewportView(mainFrame.getDisplayPanel().getRepoPanel());
         mainFrame.getDisplayPanel().repaint();
     }
     public void signOut() {
@@ -137,5 +133,15 @@ public class GUIController {
         }
         this.comboMode = comboMode;
     }
+    public void loginStateUpdate(String s){
+        loginFrame.getLp().getStateLabel().setText(s);
+    }
 
+    public void signupStateUpdate(String s) {
+        loginFrame.getSup().getStateLabel().setText(s);
+    }
+
+    public void pwChangeStateUpdate(String s) {
+        loginFrame.getPwcp().getStateLabel().setText(s);
+    }
 }

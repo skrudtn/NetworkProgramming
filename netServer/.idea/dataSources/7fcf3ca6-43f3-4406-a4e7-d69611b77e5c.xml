@@ -4,9 +4,9 @@
     <root id="1"/>
     <schema id="2" parent="1" name="KSNA">
       <ObjectId>92</ObjectId>
-      <IntrospectionTimestamp>2017-11-01.22:12:25</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2017-11-09.20:16:29</IntrospectionTimestamp>
       <CreatedTimestamp>2017-10-09.11:40:32</CreatedTimestamp>
-      <ModifiedTimestamp>2017-11-01.22:12:25</ModifiedTimestamp>
+      <ModifiedTimestamp>2017-11-09.20:16:29</ModifiedTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -125,69 +125,69 @@
       <ObjectId>2147483638</ObjectId>
     </schema>
     <sequence id="41" parent="2" name="ACNO">
-      <ObjectId>76798</ObjectId>
-      <CreatedTimestamp>2017-11-01.22:11:27</CreatedTimestamp>
-      <ModifiedTimestamp>2017-11-01.22:11:27</ModifiedTimestamp>
+      <ObjectId>77124</ObjectId>
+      <CreatedTimestamp>2017-11-09.18:57:47</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-09.18:57:47</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="42" parent="2" name="ATTNO">
-      <ObjectId>76571</ObjectId>
-      <CreatedTimestamp>2017-10-25.20:52:03</CreatedTimestamp>
-      <ModifiedTimestamp>2017-10-25.20:52:03</ModifiedTimestamp>
+    <sequence id="42" parent="2" name="AICNO">
+      <ObjectId>77119</ObjectId>
+      <CreatedTimestamp>2017-11-09.18:57:04</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-09.18:57:04</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="43" parent="2" name="CDNO">
-      <ObjectId>76569</ObjectId>
-      <CreatedTimestamp>2017-10-25.20:51:39</CreatedTimestamp>
-      <ModifiedTimestamp>2017-10-25.20:51:39</ModifiedTimestamp>
+    <sequence id="43" parent="2" name="ATTNO">
+      <ObjectId>77122</ObjectId>
+      <CreatedTimestamp>2017-11-09.18:57:39</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-09.18:57:39</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="44" parent="2" name="CLNO">
-      <ObjectId>76570</ObjectId>
-      <CreatedTimestamp>2017-10-25.20:51:54</CreatedTimestamp>
-      <ModifiedTimestamp>2017-10-25.20:51:54</ModifiedTimestamp>
+    <sequence id="44" parent="2" name="CDNO">
+      <ObjectId>77127</ObjectId>
+      <CreatedTimestamp>2017-11-09.20:16:29</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-09.20:16:29</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="45" parent="2" name="MEMNO">
+    <sequence id="45" parent="2" name="CLNO">
+      <ObjectId>77121</ObjectId>
+      <CreatedTimestamp>2017-11-09.18:57:35</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-09.18:57:35</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="46" parent="2" name="FRNO">
+      <ObjectId>77023</ObjectId>
+      <CreatedTimestamp>2017-11-08.09:40:56</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-08.09:40:56</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="47" parent="2" name="MEMNO">
       <ObjectId>75954</ObjectId>
       <CreatedTimestamp>2017-10-09.11:42:11</CreatedTimestamp>
       <ModifiedTimestamp>2017-10-09.11:42:11</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="46" parent="2" name="METNO">
-      <ObjectId>76572</ObjectId>
-      <CreatedTimestamp>2017-10-25.20:52:15</CreatedTimestamp>
-      <ModifiedTimestamp>2017-10-25.20:52:15</ModifiedTimestamp>
+    <sequence id="48" parent="2" name="METNO">
+      <ObjectId>77123</ObjectId>
+      <CreatedTimestamp>2017-11-09.18:57:43</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-09.18:57:43</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <table id="47" parent="2" name="CD">
-      <ObjectId>76550</ObjectId>
-      <CreatedTimestamp>2017-10-25.16:32:16</CreatedTimestamp>
-      <ModifiedTimestamp>2017-10-25.16:32:16</ModifiedTimestamp>
+    <sequence id="49" parent="2" name="PICNO">
+      <ObjectId>77118</ObjectId>
+      <CreatedTimestamp>2017-11-09.18:57:00</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-09.18:57:00</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <table id="50" parent="2" name="CD">
+      <ObjectId>77125</ObjectId>
+      <CreatedTimestamp>2017-11-09.20:14:11</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-09.20:14:11</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="48" parent="2" name="CDASSOCI">
-      <ObjectId>76799</ObjectId>
-      <CreatedTimestamp>2017-11-01.22:12:10</CreatedTimestamp>
-      <ModifiedTimestamp>2017-11-01.22:12:10</ModifiedTimestamp>
-      <TemporaryPreserve>1</TemporaryPreserve>
-    </table>
-    <table id="49" parent="2" name="CDATT">
-      <ObjectId>76565</ObjectId>
-      <CreatedTimestamp>2017-10-25.20:38:12</CreatedTimestamp>
-      <ModifiedTimestamp>2017-11-01.20:58:33</ModifiedTimestamp>
-      <TemporaryPreserve>1</TemporaryPreserve>
-    </table>
-    <table id="50" parent="2" name="CDMET">
-      <ObjectId>76567</ObjectId>
-      <CreatedTimestamp>2017-10-25.20:38:14</CreatedTimestamp>
-      <ModifiedTimestamp>2017-11-01.22:12:25</ModifiedTimestamp>
-      <TemporaryPreserve>1</TemporaryPreserve>
-    </table>
-    <table id="51" parent="2" name="CLAZZ">
-      <ObjectId>76563</ObjectId>
-      <CreatedTimestamp>2017-10-25.20:38:09</CreatedTimestamp>
-      <ModifiedTimestamp>2017-10-30.13:46:41</ModifiedTimestamp>
+    <table id="51" parent="2" name="FRIENDS">
+      <ObjectId>77024</ObjectId>
+      <CreatedTimestamp>2017-11-08.09:42:58</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-08.09:42:58</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="52" parent="2" name="MEMBERS">
@@ -196,255 +196,120 @@
       <ModifiedTimestamp>2017-10-09.11:40:32</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <view id="53" parent="2" name="VW_CLAZZNO">
-      <ObjectId>76681</ObjectId>
-      <CreatedTimestamp>2017-10-30.13:37:28</CreatedTimestamp>
-      <ModifiedTimestamp>2017-10-31.16:11:02</ModifiedTimestamp>
-      <Modifiable>1</Modifiable>
-    </view>
-    <column id="54" parent="47" name="CDNO">
+    <column id="53" parent="50" name="CDNO">
       <Position>1</Position>
       <DataType>NUMBER(*)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="55" parent="47" name="CDNAME">
+    <column id="54" parent="50" name="CDNAME">
       <Position>2</Position>
       <DataType>VARCHAR2(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="56" parent="47" name="REG_DATE">
+    <column id="55" parent="50" name="JSON">
       <Position>3</Position>
+      <DataType>VARCHAR2(4000)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="56" parent="50" name="REG_DATE">
+      <Position>4</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="57" parent="47" name="MEMBERNO">
-      <Position>4</Position>
+    <column id="57" parent="50" name="MEMBERNO">
+      <Position>5</Position>
       <DataType>NUMBER(*)|0</DataType>
     </column>
-    <index id="58" parent="47" name="SYS_C0012209">
-      <ObjectId>76551</ObjectId>
+    <index id="58" parent="50" name="SYS_C0012598">
+      <ObjectId>77126</ObjectId>
       <NameSurrogate>1</NameSurrogate>
-      <CreatedTimestamp>2017-10-25.16:32:16</CreatedTimestamp>
-      <ModifiedTimestamp>2017-10-25.16:32:16</ModifiedTimestamp>
+      <CreatedTimestamp>2017-11-09.20:14:11</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-09.20:14:11</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>CDNO</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="59" parent="47" name="SYS_C0012209">
+    <key id="59" parent="50" name="SYS_C0012598">
       <NameSurrogate>1</NameSurrogate>
-      <ModifiedTimestamp>2017-10-25.16:32:16</ModifiedTimestamp>
+      <ModifiedTimestamp>2017-11-09.20:14:11</ModifiedTimestamp>
       <ColNames>CDNO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
-      <UnderlyingIndexName>SYS_C0012209</UnderlyingIndexName>
+      <UnderlyingIndexName>SYS_C0012598</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="60" parent="47" name="FK_CD">
-      <ModifiedTimestamp>2017-10-25.16:32:16</ModifiedTimestamp>
+    <foreign-key id="60" parent="50" name="FK_CD">
+      <ModifiedTimestamp>2017-11-09.20:14:11</ModifiedTimestamp>
       <ColNames>MEMBERNO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefTableName>MEMBERS</RefTableName>
       <RefKeyName>PK_MEMBERS</RefKeyName>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="61" parent="48" name="ACNO">
+    <column id="61" parent="51" name="FRNO">
       <Position>1</Position>
       <DataType>NUMBER(*)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="62" parent="48" name="POINT">
+    <column id="62" parent="51" name="ID">
       <Position>2</Position>
       <DataType>VARCHAR2(20)|0</DataType>
     </column>
-    <column id="63" parent="48" name="REG_DATE">
+    <column id="63" parent="51" name="REG_DATE">
       <Position>3</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="64" parent="48" name="CDNO">
+    <column id="64" parent="51" name="MEMNO">
       <Position>4</Position>
       <DataType>NUMBER(*)|0</DataType>
     </column>
-    <index id="65" parent="48" name="PK_CDAASOCI">
-      <ObjectId>76800</ObjectId>
-      <CreatedTimestamp>2017-11-01.22:12:10</CreatedTimestamp>
-      <ModifiedTimestamp>2017-11-01.22:12:10</ModifiedTimestamp>
+    <index id="65" parent="51" name="PK_FRIENDS">
+      <ObjectId>77025</ObjectId>
+      <CreatedTimestamp>2017-11-08.09:42:58</CreatedTimestamp>
+      <ModifiedTimestamp>2017-11-08.09:42:58</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
-      <ColNames>ACNO</ColNames>
+      <ColNames>FRNO</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="66" parent="48" name="PK_CDAASOCI">
-      <ModifiedTimestamp>2017-11-01.22:12:10</ModifiedTimestamp>
-      <ColNames>ACNO</ColNames>
+    <key id="66" parent="51" name="PK_FRIENDS">
+      <ModifiedTimestamp>2017-11-08.09:42:58</ModifiedTimestamp>
+      <ColNames>FRNO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
-      <UnderlyingIndexName>PK_CDAASOCI</UnderlyingIndexName>
+      <UnderlyingIndexName>PK_FRIENDS</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="67" parent="48" name="FK_CDASSOCI">
-      <ModifiedTimestamp>2017-11-01.22:12:10</ModifiedTimestamp>
-      <ColNames>CDNO</ColNames>
+    <foreign-key id="67" parent="51" name="FK_FRIENDS">
+      <ModifiedTimestamp>2017-11-08.09:42:58</ModifiedTimestamp>
+      <ColNames>MEMNO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
-      <RefTableName>CD</RefTableName>
-      <RefKeyName>SYS_C0012209</RefKeyName>
+      <RefTableName>MEMBERS</RefTableName>
+      <RefKeyName>PK_MEMBERS</RefKeyName>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="68" parent="49" name="ATTNO">
+    <column id="68" parent="52" name="MEMNO">
       <Position>1</Position>
       <DataType>NUMBER(*)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="49" name="ATTNAME">
-      <Position>2</Position>
-      <DataType>VARCHAR2(20)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos; &apos;</DefaultExpression>
-    </column>
-    <column id="70" parent="49" name="REG_DATE">
-      <Position>3</Position>
-      <DataType>DATE|0</DataType>
-    </column>
-    <column id="71" parent="49" name="CLNO">
-      <Position>4</Position>
-      <DataType>NUMBER(*)|0</DataType>
-    </column>
-    <index id="72" parent="49" name="SYS_C0012224">
-      <ObjectId>76566</ObjectId>
-      <NameSurrogate>1</NameSurrogate>
-      <CreatedTimestamp>2017-10-25.20:38:12</CreatedTimestamp>
-      <ModifiedTimestamp>2017-10-25.20:38:12</ModifiedTimestamp>
-      <TablespaceName>USERS</TablespaceName>
-      <ColNames>ATTNO</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="73" parent="49" name="SYS_C0012224">
-      <NameSurrogate>1</NameSurrogate>
-      <ModifiedTimestamp>2017-10-25.20:38:12</ModifiedTimestamp>
-      <ColNames>ATTNO</ColNames>
-      <InitiallyDeferred>1</InitiallyDeferred>
-      <UnderlyingIndexName>SYS_C0012224</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="74" parent="49" name="FK_CDATT">
-      <ModifiedTimestamp>2017-10-25.20:38:12</ModifiedTimestamp>
-      <ColNames>CLNO</ColNames>
-      <InitiallyDeferred>1</InitiallyDeferred>
-      <RefTableName>CLAZZ</RefTableName>
-      <RefKeyName>SYS_C0012221</RefKeyName>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <column id="75" parent="50" name="METNO">
-      <Position>1</Position>
-      <DataType>NUMBER(*)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="76" parent="50" name="METNAME">
-      <Position>2</Position>
-      <DataType>VARCHAR2(20)|0</DataType>
-      <DefaultExpression>&apos; &apos;</DefaultExpression>
-    </column>
-    <column id="77" parent="50" name="REG_DATE">
-      <Position>3</Position>
-      <DataType>DATE|0</DataType>
-    </column>
-    <column id="78" parent="50" name="CLNO">
-      <Position>4</Position>
-      <DataType>NUMBER(*)|0</DataType>
-    </column>
-    <index id="79" parent="50" name="SYS_C0012227">
-      <ObjectId>76568</ObjectId>
-      <NameSurrogate>1</NameSurrogate>
-      <CreatedTimestamp>2017-10-25.20:38:14</CreatedTimestamp>
-      <ModifiedTimestamp>2017-10-25.20:38:14</ModifiedTimestamp>
-      <TablespaceName>USERS</TablespaceName>
-      <ColNames>METNO</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="80" parent="50" name="SYS_C0012227">
-      <NameSurrogate>1</NameSurrogate>
-      <ModifiedTimestamp>2017-10-25.20:38:14</ModifiedTimestamp>
-      <ColNames>METNO</ColNames>
-      <InitiallyDeferred>1</InitiallyDeferred>
-      <UnderlyingIndexName>SYS_C0012227</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="81" parent="50" name="FK_CDMET">
-      <ModifiedTimestamp>2017-10-25.20:38:14</ModifiedTimestamp>
-      <ColNames>CLNO</ColNames>
-      <InitiallyDeferred>1</InitiallyDeferred>
-      <RefTableName>CLAZZ</RefTableName>
-      <RefKeyName>SYS_C0012221</RefKeyName>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <column id="82" parent="51" name="CLNO">
-      <Position>1</Position>
-      <DataType>NUMBER(*)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="83" parent="51" name="CLNAME">
-      <Position>2</Position>
-      <DataType>VARCHAR2(20)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="84" parent="51" name="REG_DATE">
-      <Position>3</Position>
-      <DataType>DATE|0</DataType>
-    </column>
-    <column id="85" parent="51" name="CDNO">
-      <Position>4</Position>
-      <DataType>NUMBER(*)|0</DataType>
-    </column>
-    <column id="86" parent="51" name="BOUNDS">
-      <Position>5</Position>
-      <DataType>VARCHAR2(20)|0</DataType>
-    </column>
-    <index id="87" parent="51" name="SYS_C0012221">
-      <ObjectId>76564</ObjectId>
-      <NameSurrogate>1</NameSurrogate>
-      <CreatedTimestamp>2017-10-25.20:38:09</CreatedTimestamp>
-      <ModifiedTimestamp>2017-10-25.20:38:09</ModifiedTimestamp>
-      <TablespaceName>USERS</TablespaceName>
-      <ColNames>CLNO</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="88" parent="51" name="SYS_C0012221">
-      <NameSurrogate>1</NameSurrogate>
-      <ModifiedTimestamp>2017-10-25.20:38:09</ModifiedTimestamp>
-      <ColNames>CLNO</ColNames>
-      <InitiallyDeferred>1</InitiallyDeferred>
-      <UnderlyingIndexName>SYS_C0012221</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="89" parent="51" name="FK_CLAZZ">
-      <ModifiedTimestamp>2017-10-25.20:38:09</ModifiedTimestamp>
-      <ColNames>CDNO</ColNames>
-      <InitiallyDeferred>1</InitiallyDeferred>
-      <RefTableName>CD</RefTableName>
-      <RefKeyName>SYS_C0012209</RefKeyName>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <column id="90" parent="52" name="MEMNO">
-      <Position>1</Position>
-      <DataType>NUMBER(*)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="91" parent="52" name="ID">
+    <column id="69" parent="52" name="ID">
       <Position>2</Position>
       <DataType>VARCHAR2(20)|0</DataType>
     </column>
-    <column id="92" parent="52" name="PASSWORD">
+    <column id="70" parent="52" name="PASSWORD">
       <Position>3</Position>
       <DataType>VARCHAR2(64)|0</DataType>
     </column>
-    <column id="93" parent="52" name="NAME">
+    <column id="71" parent="52" name="NAME">
       <Position>4</Position>
       <DataType>VARCHAR2(20)|0</DataType>
     </column>
-    <column id="94" parent="52" name="EMAIL">
+    <column id="72" parent="52" name="EMAIL">
       <Position>5</Position>
       <DataType>VARCHAR2(30)|0</DataType>
     </column>
-    <column id="95" parent="52" name="REG_DATE">
+    <column id="73" parent="52" name="REG_DATE">
       <Position>6</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <index id="96" parent="52" name="PK_MEMBERS">
+    <index id="74" parent="52" name="PK_MEMBERS">
       <ObjectId>75951</ObjectId>
       <CreatedTimestamp>2017-10-09.11:40:32</CreatedTimestamp>
       <ModifiedTimestamp>2017-10-09.11:40:32</ModifiedTimestamp>
@@ -452,22 +317,12 @@
       <ColNames>MEMNO</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="97" parent="52" name="PK_MEMBERS">
+    <key id="75" parent="52" name="PK_MEMBERS">
       <ModifiedTimestamp>2017-10-09.11:40:32</ModifiedTimestamp>
       <ColNames>MEMNO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>PK_MEMBERS</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="98" parent="53" name="VW_CLNO">
-      <Position>1</Position>
-      <DataType>NUMBER(*)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="99" parent="53" name="VW_CLNAME">
-      <Position>2</Position>
-      <DataType>VARCHAR2(20)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
   </database-model>
 </dataSource>

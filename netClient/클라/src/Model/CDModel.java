@@ -5,8 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by skrud on 2017-10-25.
  */
-public class CDModel
-{
+public class CDModel {
     private String id;
     private String cdName;
     private ArrayList<ClazzModel> clazzModels;
@@ -17,6 +16,13 @@ public class CDModel
         cdName = "";
         clazzModels = new ArrayList<>();
         acList = new ArrayList<>();
+    }
+
+    public CDModel(String id, String cdName, ArrayList<ClazzModel> clazzModels, ArrayList<Association> acList){
+        this.cdName = cdName;
+        this.clazzModels = clazzModels;
+        this.id = id;
+        this.acList = acList;
     }
 
     public String getCdName() {
@@ -41,12 +47,6 @@ public class CDModel
         this.clazzModels = clazzModels;
     }
 
-    public CDModel(String id, String cdName, ArrayList<ClazzModel> clazzModels, ArrayList<Association> acList){
-        this.cdName = cdName;
-        this.clazzModels = clazzModels;
-        this.id = id;
-        this.acList = acList;
-    }
     public String getId() {
         return id;
     }

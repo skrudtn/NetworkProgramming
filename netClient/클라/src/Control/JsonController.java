@@ -16,12 +16,6 @@ import java.util.Set;
  * Created by skrud on 2017-09-27.
  */
 public class JsonController {
-    MainController controller = null;
-
-
-    public JsonController(MainController controller) {
-        this.controller = controller;
-    }
 
     public String login2JSONString(String id, String pw) {
         JSONObject obj = new JSONObject();
@@ -81,7 +75,6 @@ public class JsonController {
     }
 
     public LoginModel str2lm(String jsonString) {
-        System.out.println(jsonString);
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
         String id = "";
@@ -108,7 +101,6 @@ public class JsonController {
                 } else if (key.equals("name")) {
                     name = (String) value;
                 }
-                System.out.println(key + ":" + value);
             }
         }
         return new LoginModel(id, pw, email, name);
@@ -130,20 +122,19 @@ public class JsonController {
                     +","+Integer.toString(c.getW())+","+Integer.toString(c.getH());
             inObj.put("clazzName", c.getClassName());
             inObj.put("bounds", bounds);
-
-            a = c.getAttributeList();
-            JSONArray aList = new JSONArray();
-            for (String str : a) {
-                aList.add(str);
+            ArrayList<String> arr = new ArrayList<>();
+            for(Association association: c.getAcList()){
+                arr.add(association.getPoint());
             }
-            inObj.put("att", aList);
+            inObj.put("clazzAcList",arr);
 
-            m = c.getMethodList();
-            JSONArray mList = new JSONArray();
-            for (String str : m) {
-                mList.add(str);
+            arr = new ArrayList<>();
+            for(Integer integer : c.getPointInClazz()){
+                arr.add(String.valueOf(integer));
             }
-            inObj.put("met", mList);
+            inObj.put("pointInClazz",arr);
+            inObj.put("att", c.getAttributeList());
+            inObj.put("met", c.getMethodList());
             jsonArray.add(inObj);
         }
         obj.put("classList", jsonArray);
@@ -158,7 +149,6 @@ public class JsonController {
     }
 
     public CDModel str2cdm(String str) {
-        System.out.println(str);
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
         CDModel rt=new CDModel();
@@ -185,7 +175,10 @@ public class JsonController {
                     for(int i=0; i<size;i++) {
                         ArrayList<String> atts = new ArrayList<>();
                         ArrayList<String> mets = new ArrayList<>();
-                        String name = new String();
+                        ArrayList<Association> inAcList = new ArrayList<>();
+                        ArrayList<Integer> pointInClazz = new ArrayList<>();
+
+                        String name = "";
                         String bounds = "";
                         JSONObject inObj = (JSONObject) jsonArray.get(i);
                         Set inSet = inObj.keySet();
@@ -199,12 +192,24 @@ public class JsonController {
                                 atts=(ArrayList<String>) inValue;
                             } else if (inKey.equals("met")) {
                                 mets=(ArrayList<String>) inValue;
+                            } else if( inKey.equals("clazzAcList")){
+                                ArrayList<String> strAcList = (ArrayList<String>) inValue;
+                                for(String point : strAcList) {
+                                    Association ac = new Association();
+                                    ac.setPoint(point);
+                                    inAcList.add(ac);
+                                }
+                            } else if(inKey.equals("pointInClazz")){
+                                ArrayList<String> strPIC = (ArrayList<String>) inValue;
+                                for(String point : strPIC) {
+                                    pointInClazz.add(Integer.parseInt(point));
+                                }
                             }
                         }
                         String arr[];
                         arr = bounds.split(",");
                         rt.addClazzModel(new ClazzModel(name,atts,mets,
-                                Integer.parseInt(arr[0]),Integer.parseInt(arr[1]),Integer.parseInt(arr[2]),Integer.parseInt(arr[3])));
+                                Integer.parseInt(arr[0]),Integer.parseInt(arr[1]),Integer.parseInt(arr[2]),Integer.parseInt(arr[3]),inAcList,pointInClazz));
                     }
 
                 } else if(key.equals("points")){
@@ -297,5 +302,13 @@ public class JsonController {
         }
         return sdms;
 
+    }
+
+    public String getLogoutStr(String id) {
+        JSONObject obj = new JSONObject();
+        obj.put("type", "logout");
+        obj.put("id", id);
+
+        return obj.toJSONString();
     }
 }

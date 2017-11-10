@@ -1,6 +1,7 @@
 package View.login;
 
 import Control.GUIController;
+import Model.Pallate;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,32 +19,29 @@ public class LoginPanel extends JPanel {
     private static final int XMARGIN = 60;
     private static final int YMARGIN = 120;
 
-    private JLabel idLabel;
-    private JLabel pwLabel;
-    private JLabel rememberIDLabel;
+    private JLabel stateLabel;
     private JTextField idTextField;
     private JPasswordField pwTextField;
     private JButton loginBtn;
     private JButton signUpBtn;
     private JButton pwChangeBtn;
-    private JCheckBox jCheckBox;
     private LoginFrame f;
     private GUIController gc;
-    public LoginPanel(LoginFrame f) {
+    LoginPanel(LoginFrame f) {
         this.f = f;
         gc = f.getController().getGUIController();
         initLogin();
     }
 
 
-    public void initLogin() {
+    private void initLogin() {
         initUI();
     }
 
 
-    public void initUI() {
+    private void initUI() {
         setLayout(null);
-        setBackground(new Color(255, 255, 236));
+        setBackground(Pallate.b);
         initLabel();
         initTextField();
         initButton();
@@ -52,19 +50,23 @@ public class LoginPanel extends JPanel {
     }
 
     private void initLabel() {
-        idLabel = new JLabel("아이디");
-        pwLabel = new JLabel("비밀번호");
-        rememberIDLabel = new JLabel("아이디저장");
+        JLabel idLabel = new JLabel("아이디");
+        JLabel pwLabel = new JLabel("비밀번호");
+        JLabel rememberIDLabel = new JLabel("아이디저장");
+        stateLabel = new JLabel();
 
         idLabel.setBounds(XMARGIN, YMARGIN, 60, 30);
         idLabel.setFont(new Font("Serif", Font.BOLD, 15));
         pwLabel.setBounds(XMARGIN, YMARGIN + 65, 60, 30);
         pwLabel.setFont(new Font("Serif", Font.BOLD, 15));
         rememberIDLabel.setBounds(XMARGIN + 30, YMARGIN + 130, 100, 30);
+        stateLabel.setBounds(XMARGIN+30,YMARGIN/2, 120,20);
+        stateLabel.setFont(new Font("Serif", Font.BOLD, 14));
 
         add(idLabel);
         add(pwLabel);
         add(rememberIDLabel);
+        add(stateLabel);
     }
 
     private void initTextField() {
@@ -82,12 +84,20 @@ public class LoginPanel extends JPanel {
         loginBtn = new JButton("로그인");
         signUpBtn = new JButton("회원가입");
         pwChangeBtn = new JButton("비밀번호찾기");
-        jCheckBox = new JCheckBox();
+        JCheckBox jCheckBox = new JCheckBox();
 
         jCheckBox.setBounds(XMARGIN, YMARGIN + 130, 25, 30);
         loginBtn.setBounds(295, YMARGIN + 20, 80, 95);
+        loginBtn.setBackground(Pallate.e);
+        loginBtn.setForeground(Pallate.a);
         signUpBtn.setBounds(XMARGIN + 10, 330, 120, 50);
+        signUpBtn.setBounds(XMARGIN + 10, 330, 120, 50);
+        signUpBtn.setBackground(Pallate.e);
+        signUpBtn.setForeground(Pallate.a);
         pwChangeBtn.setBounds(XMARGIN + 150, 330, 120, 50);
+        pwChangeBtn.setBounds(XMARGIN + 150, 330, 120, 50);
+        pwChangeBtn.setBackground(Pallate.e);
+        pwChangeBtn.setForeground(Pallate.a);
 
         add(jCheckBox);
         add(loginBtn);
@@ -170,16 +180,18 @@ public class LoginPanel extends JPanel {
     private void onPressedSignUpBtn(){
         idTextField.setText("");
         pwTextField.setText("");
+        stateLabel.setText("");
         gc.signUpView();
     }
 
     private void onPressedPwChangeBtn() {
         idTextField.setText("");
         pwTextField.setText("");
+        stateLabel.setText("");
         gc.pwChangeView();
     }
 
-    public String getSHA256(String str) {
+    private String getSHA256(String str) {
         String SHA = "";
         try {
             MessageDigest sh = MessageDigest.getInstance("SHA-256");
@@ -187,8 +199,8 @@ public class LoginPanel extends JPanel {
             byte byteData[] = sh.digest();
             int byteLength = byteData.length;
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < byteLength; i++) {
-                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+            for (byte aByteData : byteData) {
+                sb.append(Integer.toString((aByteData & 0xff) + 0x100, 16).substring(1));
             }
             SHA = sb.toString();
         } catch (NoSuchAlgorithmException e) {
@@ -196,5 +208,9 @@ public class LoginPanel extends JPanel {
             SHA = null;
         }
         return SHA;
+    }
+
+    public JLabel getStateLabel() {
+        return stateLabel;
     }
 }

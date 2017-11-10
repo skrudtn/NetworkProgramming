@@ -17,9 +17,11 @@ public class DBController {
     private final String PW = "ksna";
 
     private Connection con = null;
+    private int memNo;
 
-    public DBController(MainController controller) {
+    public DBController() {
         con = getConn();
+        memNo = 0;
     }
 
     private Connection getConn() {
@@ -43,8 +45,12 @@ public class DBController {
         boolean rt = true;
         try {
             sql = "INSERT INTO MEMBERS (MEMNO, id, password, name, email, reg_date)" +
-                    "VALUES (MEMNO.nextval, '" + dbdata.getId() + "', '" + dbdata.getPw() + "', '" + dbdata.getName() + "', '" + dbdata.getEmail() + "', SYSDATE)";
+                    "VALUES (MEMNO.nextval,?, ?, ?, ?, SYSDATE)";
             ps = con.prepareStatement(sql);
+            ps.setString(1,dbdata.getId());
+            ps.setString(2,dbdata.getPw());
+            ps.setString(3,dbdata.getName());
+            ps.setString(4,dbdata.getEmail());
             rs = ps.executeQuery();
         } catch (SQLException e) {
             rt = false;
@@ -76,8 +82,8 @@ public class DBController {
 
 
             if (rs.next()) {
-                if (!(rs.getString("id").equals(""))) {
-                    //아이디가 같으면
+                if (!(rs.getString("id").equals(""))) { //아이디가 같으면
+                    memNo = rs.getInt(1);
                     rt.setId(rs.getString("id"));
                     rt.setPw(rs.getString("password"));
                     rt.setEmail(rs.getString("email"));
@@ -164,83 +170,20 @@ public class DBController {
         return rt;
     }
 
-    public boolean insertCDData(CDModel cdm) {
+    public boolean push(CDModel cdm) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "";
         Boolean rt = true;
-        ArrayList<ClazzModel> clazzModels = cdm.getClazzModels();
 
         try {
-            String memNo = "";
-            sql = "SELECT MEMNO FROM MEMBERS WHERE MEMBERS.ID = ?";
+            String sql = "INSERT INTO CD (CDNO, CDNAME,JSON,MEMBERNO, REG_DATE)" + // 권한추가 필요.
+                    "VALUES (CDNO.nextval, ?,?,?,SYSDATE)";
             ps = con.prepareStatement(sql);
-            ps.setString(1, cdm.getId());
+            ps.setString(1, cdm.getCdName());
+            ps.setString(2, cdm.getJson());
+            ps.setInt(3, memNo);
+
             rs = ps.executeQuery();
-            if (rs.next()) {
-                memNo = rs.getString("MEMNO");
-            }
-            sql = "INSERT INTO CD (CDNO, CDNAME, REG_DATE, MEMBERNO)" +
-                    "VALUES (CDNO.nextval, '" + cdm.getCdName() + "'," + "SYSDATE" + ",'" + memNo + "')";
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            sql = "SELECT CDNO.currval FROM CD";
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            String cdNO = "";
-            if (rs.next()) {
-                cdNO = rs.getString(1);
-            }
-
-            ArrayList<Association> acList = cdm.getAcList();
-            for (Association ac : acList) {
-                sql = "INSERT INTO CDASSOCI(ACNO, POINT, REG_DATE, CDNO)" +
-                        " VALUES (ACNO.nextval, ?," + "SYSDATE" + ",?)";
-                ps = con.prepareStatement(sql);
-                ps.setString(1, ac.getPoint());
-                ps.setString(2, cdNO);
-                rs = ps.executeQuery();
-            }
-
-
-            for (ClazzModel c : clazzModels) {
-
-                sql = "INSERT INTO CLAZZ (CLNO, CLNAME, REG_DATE, CDNO, BOUNDS)" +
-                        " VALUES (CLNO.nextval, ?," + "SYSDATE" + ",?,?)";
-                ps = con.prepareStatement(sql);
-                ps.setString(1, c.getClassName());
-                ps.setString(2, cdNO);
-                ps.setString(3, c.getBounds());
-                rs = ps.executeQuery();
-
-                sql = "SELECT CLNO.currval FROM CLAZZ";
-                ps = con.prepareStatement(sql);
-                rs = ps.executeQuery();
-                String clNO = "";
-                if (rs.next()) {
-                    clNO = rs.getString(1);
-                }
-                ArrayList<String> atts = c.getAttributeList();
-                for (String att : atts) {
-                    sql = "INSERT INTO CDATT(ATTNO, ATTNAME, REG_DATE, CLNO)" +
-                            " VALUES (ATTNO.nextval,?," + "SYSDATE" + ",?)";
-                    ps = con.prepareStatement(sql);
-                    ps.setString(1, att);
-                    ps.setString(2, clNO);
-                    rs = ps.executeQuery();
-                }
-
-                ArrayList<String> mets = c.getMethodList();
-                for (String met : mets) {
-                    sql = "INSERT INTO CDMET(METNO, METNAME, REG_DATE, CLNO)" +
-                            " VALUES (METNO.nextval,?," + "SYSDATE" + ",?)";
-                    ps = con.prepareStatement(sql);
-                    ps.setString(1, met);
-                    ps.setString(2, clNO);
-                    rs = ps.executeQuery();
-                }
-            }
         } catch (SQLException e) {
             rt = false;
             e.printStackTrace();
@@ -252,7 +195,9 @@ public class DBController {
             } catch (Exception rse) {
             }
             try {
-                ps.close();
+                if (ps != null) {
+                    ps.close();
+                }
             } catch (Exception pse) {
             }
         }
@@ -269,18 +214,18 @@ public class DBController {
         String cate = sm.getCategory();
 
         try {
+            data = data.replace("!", "!!")
+                    .replace("%", "!%")
+                    .replace("_", "!_")
+                    .replace("[", "![");
             if (cate.equals("Title")) {
-                data = data.replace("!", "!!")
-                        .replace("%", "!%")
-                        .replace("_", "!_")
-                        .replace("[", "![");
                 sql = "SELECT CDNAME,id,TO_CHAR(CD.reg_date,'yyyy-mm-dd hh24:mi:ss') r_date, cd.CDNO\n" +
                         "FROM CD, MEMBERS\n" +
                         "WHERE CD.memberNo = MEMBERS.memNO AND\n" +
                         "  cdName LIKE ? ESCAPE '!'";
                 ps = con.prepareStatement(sql);
                 ps.setString(1, "%" + data + "%");
-            } else if (cate.equals("UserId")) {
+            } else if (cate.equals("UserID")) {
                 sql = "SELECT CDNAME,id,TO_CHAR(CD.reg_date,'yyyy-mm-dd hh24:mi:ss') r_date, cd.CDNO\n" +
                         "FROM CD, MEMBERS\n" +
                         "WHERE CD.memberNo = MEMBERS.memNO AND\n" +
@@ -310,48 +255,22 @@ public class DBController {
         return sdms;
     }
 
-    public CDModel cllone(CllonePacket cp) {
+    public String cllone(CllonePacket cp) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "";
         int cdNo = Integer.parseInt(cp.getCdNo());
-        CDModel cdm = new CDModel(cp.getId(), cp.getTitle());
+        String rt = "";
 
         try {
-            sql = "SELECT cl.clName, att.attName, met.metName, cl.CLNO, cl.BOUNDS\n" +
-                    "  FROM CD cd, CLAZZ cl, CDATT att, CDMET met\n" +
-                    "WHERE cd.cdNO = cl.cdNO and cl.clNO = att.clNO and cl.clNO = met.clNo \n" +
-                    "and cd.cdNO = ?";
+            String sql = "SELECT cd.json\n" +
+                    "FROM CD cd\n" +
+                    "WHERE cd.cdNO = ?";
             ps = con.prepareStatement(sql);
             ps.setInt(1, cdNo);
             rs = ps.executeQuery();
-            ClazzModel cm = new ClazzModel();
-            int clNo = 0;
-            while (rs.next()) {
-                if (rs.getInt(4) != clNo) {
-                    cm = new ClazzModel();
-                    cdm.addClazzModel(cm);
-                }
-                cm.setClassName(rs.getString(1));
-                cm.addAttList(rs.getString(2));
-                cm.addMethodList(rs.getString(3));
-                clNo = rs.getInt(4);
-                cm.setBounds(rs.getString(5));
+            if (rs.next()) {
+                rt = rs.getString(1);
             }
-            sql = "SELECT CDASSOCI.POINT\n" +
-                    "FROM CDASSOCI, CD\n" +
-                    "WHERE CD.CDNO = CDASSOCI.CDNO\n" +
-                    "AND CD.cdNO = ?";
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, cdNo);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                Association ac = new Association();
-                ac.setPoint(rs.getString(1));
-                System.out.println(rs.getString(1));
-                cdm.addAcList(ac);
-            }
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -364,7 +283,65 @@ public class DBController {
             } catch (Exception pse) {
             }
         }
-        return cdm;
+        return rt;
+    }
+
+    public boolean searchId(String id) {
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        String sql = "";
+        boolean rt = true;
+        try {
+            sql = "SELECT id\n" +
+                    "FROM MEMBERS\n" +
+                    "WHERE id = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (!rs.next()) rt = false;
+        } catch (SQLException e) {
+            rt = false;
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+            }
+            try {
+                ps.close();
+            } catch (Exception pse) {
+            }
+        }
+        return rt;
+    }
+
+    public boolean insertFriend(String id) {
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        String sql = "";
+        boolean rt = true;
+        try {
+            sql = "INSERT INTO Friends (frNo, id, REG_DATE, memNo)\n" +
+                    "VALUES (frNo.nextval,?, SYSDATE, ?);";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.setInt(2, memNo);
+            rs = ps.executeQuery();
+        } catch (SQLException e) {
+            rt = false;
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+            }
+            try {
+                ps.close();
+            } catch (Exception pse) {
+            }
+        }
+        return rt;
+
     }
 
 
@@ -375,4 +352,5 @@ public class DBController {
 
         }
     }
+
 }

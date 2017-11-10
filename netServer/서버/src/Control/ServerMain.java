@@ -4,17 +4,20 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by skrud on 2017-09-27.
  */
 public class ServerMain {
-    final static int PORT = 10001;
+    private final static int PORT = 10001;
+    private ExecutorService executorService;
     private ServerSocket serverSocket;
+    private ArrayList<Socket> clientList;
 
-    ArrayList<Socket> clientList;
-
-    public ServerMain() {
+    private ServerMain() {
+        executorService = Executors.newFixedThreadPool(3); // create thread pool
         clientList = new ArrayList<Socket>(0);
         try {
             serverSocket = new ServerSocket(PORT);
@@ -23,8 +26,8 @@ public class ServerMain {
         }
     }
 
-    public void listen() {
-        while (true) {
+    private void listen() {
+        for(;;){
             System.out.format("서버 대기중\n");
             Socket clnt = null;
             try {
@@ -34,12 +37,12 @@ public class ServerMain {
             }
 
             clientList.add(clnt);
-            new Thread(
-                    new MemberThread(clnt, clientList)
-            ).start();
-            System.out.println("client List");
+            executorService.execute(new MemberThread(clnt,clientList));
+            System.out.format("client List\n");
+            int index = 0;
             for (Socket s : clientList) {
-                System.out.println(s.getLocalAddress());
+                System.out.format("%d : %s\n",index,s.getLocalAddress());
+                index++;
             }
         }
     }
@@ -47,6 +50,5 @@ public class ServerMain {
 
     public static void main(String[] args) {
         new ServerMain().listen();
-
     }
 }

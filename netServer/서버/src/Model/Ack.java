@@ -26,5 +26,10 @@ public class Ack {
     public final static int cloneREJ = 15; // clone reject
     public final static int searchAck = 16; // search ack
     public final static int searchRej = 17; // search reject
-
+    public final static int loginDupliAck = 18; // 중복 로그인 ack
+    public final static int logoutAck= 19; // log out ack
+    public final static int searchIdAck = 20; // id search ack
+    public final static int searchIdRej= 21; // id search rej
+    public final static int addFriendAck = 22; // add friend ack
+    public final static int addFriendRej= 23; // add friend rej
 }

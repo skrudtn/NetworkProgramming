@@ -1,5 +1,7 @@
 package Model;
 
+import View.ClassDiagram.Clazz;
+
 import java.awt.*;
 
 /**
@@ -10,12 +12,12 @@ public class Association {
     private String sY;
     private String eX;
     private String eY;
-    private String Point;
+    private String point;
 
 
     public String getPoint() {
-        Point= sX+","+sY+","+eX+","+eY;
-        return Point;
+        point= sX+","+sY+","+eX+","+eY;
+        return point;
     }
 
     public void setPoint(String point) {
@@ -25,7 +27,7 @@ public class Association {
         sY = arr[1];
         eX = arr[2];
         eY = arr[3];
-        Point = point;
+        this.point = point;
     }
     public int getsX() {
         return Integer.parseInt(sX);

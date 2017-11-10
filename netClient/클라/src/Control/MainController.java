@@ -32,16 +32,13 @@ public class MainController {
 
     }
     public void clientStart(){
-//        GUIController.newLoginView(this);
-
-
-        GUIController.drawViewTest();
-
-        //        GUIController.displayViewTest();
+        GUIController.newLoginView(this);
+//        GUIController.drawViewTest();
+//        GUIController.displayViewTest();
     }
 
     private void initController(){
-        jsonController = new JsonController(this);
+        jsonController = new JsonController();
         GUIController = new GUIController(this);
         networkController = new NetworkController(this);
         loginController = new LoginController(this);

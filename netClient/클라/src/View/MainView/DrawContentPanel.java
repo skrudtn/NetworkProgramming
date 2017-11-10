@@ -3,6 +3,7 @@ package View.MainView;
 import Control.GUIController;
 import Control.MainController;
 import Control.NetworkController;
+import Model.Pallate;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -15,12 +16,10 @@ import java.awt.event.*;
  * Created by skrud on 2017-10-03.
  */
 public class DrawContentPanel extends JPanel{
-
     private final int SIDEBARWIDTH = 200;
     private final int MENUBARWIDTH = 200;
     private final int TOOLBOXWIDTH = 200;
     private final int TOOLBOXHEIGHT = 400;
-    private final int MENUBARHEIGHT= 30;
     private final int DRAWPANELSIZE= 3000;
     private MainFrame f;
     private JScrollPane jScrollPane;
@@ -58,10 +57,10 @@ public class DrawContentPanel extends JPanel{
     private void initDrawPanel(){
         drawPanel = new DrawPanel(controller);
         drawPanel.setLayout(null);
-        drawPanel.setBackground(new Color(254, 248, 203));
+        drawPanel.setBackground(Pallate.a);
         drawPanel.setPreferredSize(new Dimension(DRAWPANELSIZE,DRAWPANELSIZE));
         jScrollPane = new JScrollPane(drawPanel);
-        jScrollPane.setBounds(SIDEBARWIDTH, 0, f.getWidth() - (SIDEBARWIDTH + TOOLBOXWIDTH), f.getHeight()-45);
+        jScrollPane.setBounds(SIDEBARWIDTH, 0, f.getWidth() - (SIDEBARWIDTH + TOOLBOXWIDTH), f.getHeight());
         jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         add(jScrollPane);
@@ -69,7 +68,7 @@ public class DrawContentPanel extends JPanel{
 
     private void initMenuPanel() {
         menuPanel = new JPanel();
-        menuPanel.setBackground(new Color(255, 255, 240));
+        menuPanel.setBackground(Pallate.c);
         menuPanel.setBounds(f.getWidth() - MENUBARWIDTH, 0, SIDEBARWIDTH,f.getHeight());
         menuPanel.setLayout(null);
         add(menuPanel);
@@ -77,7 +76,7 @@ public class DrawContentPanel extends JPanel{
 
     private void initToolBoxPanel() {
         toolBoxPanel = new JPanel();
-        toolBoxPanel.setBackground(new Color(255, 239, 200));
+        toolBoxPanel.setBackground(Pallate.d);
         toolBoxPanel.setBorder((new BevelBorder(BevelBorder.RAISED)));
         toolBoxPanel.setBounds(0, f.getHeight() - TOOLBOXHEIGHT, TOOLBOXWIDTH, TOOLBOXHEIGHT);
         sideBarPanel.add(toolBoxPanel);
@@ -125,7 +124,7 @@ public class DrawContentPanel extends JPanel{
 
     private void initSideBarPanel() {
         sideBarPanel = new JPanel();
-        sideBarPanel.setBackground(new Color(255, 255, 240));
+        sideBarPanel.setBackground(Pallate.c);
         sideBarPanel.setBounds(0, 0, SIDEBARWIDTH, f.getHeight());
         sideBarPanel.setBorder(new BevelBorder(BevelBorder.RAISED));
         sideBarPanel.setLayout(null);
@@ -145,46 +144,7 @@ public class DrawContentPanel extends JPanel{
         });
     }
 
-    public void action(){
-        addComponentListener(new ComponentListener() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                jScrollPane.setBounds(SIDEBARWIDTH, 0, f.getWidth() - (SIDEBARWIDTH + TOOLBOXWIDTH), f.getHeight()-70);
-                toolBoxPanel.setBounds(0, f.getHeight() - TOOLBOXHEIGHT, TOOLBOXWIDTH, TOOLBOXHEIGHT);
-                sideBarPanel.setBounds(0, 0, SIDEBARWIDTH, f.getHeight());
-                menuPanel.setBounds(f.getWidth() - MENUBARWIDTH, 0, SIDEBARWIDTH,f.getHeight());
-            }
-
-            @Override
-            public void componentMoved(ComponentEvent e) {
-
-            }
-
-            @Override
-            public void componentShown(ComponentEvent e) {
-
-            }
-
-            @Override
-            public void componentHidden(ComponentEvent e) {
-
-            }
-        });
-        this.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                System.out.println("ContentsPanel Key Listener");
-            }
-        });
-
-        jScrollPane.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                System.out.println("scroll Key Listener");
-            }
-        });
+    private void action(){
     }
 
     public DrawPanel getDrawPanel() {
@@ -194,5 +154,11 @@ public class DrawContentPanel extends JPanel{
     public void setDrawPanel(DrawPanel drawPanel) {
         this.drawPanel = drawPanel;
         repaint();
+    }
+    public void resizePanel(){
+        jScrollPane.setBounds(SIDEBARWIDTH, 0, f.getWidth() - (SIDEBARWIDTH + TOOLBOXWIDTH), f.getHeight()-70);
+        toolBoxPanel.setBounds(0, f.getHeight() - TOOLBOXHEIGHT, TOOLBOXWIDTH, TOOLBOXHEIGHT);
+        sideBarPanel.setBounds(0, 0, SIDEBARWIDTH, f.getHeight());
+        menuPanel.setBounds(f.getWidth() - MENUBARWIDTH, 0, SIDEBARWIDTH,f.getHeight());
     }
 }

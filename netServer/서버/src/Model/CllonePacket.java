@@ -5,6 +5,16 @@ package Model;
  */
 public class CllonePacket {
     private String title;
+    private String id;
+    private String date;
+    private String cdNo;
+
+    public CllonePacket(String id, String title, String date, String cdNo) {
+        this.title = title;
+        this.id = id;
+        this.date = date;
+        this.cdNo = cdNo;
+    }
 
     public String getCdNo() {
         return cdNo;
@@ -38,15 +48,5 @@ public class CllonePacket {
         this.date = date;
     }
 
-    private String id;
-    private String date;
-    private String cdNo;
-
-    public CllonePacket(String id, String title, String date, String cdNo) {
-        this.title = title;
-        this.id = id;
-        this.date = date;
-        this.cdNo = cdNo;
-    }
 
 }

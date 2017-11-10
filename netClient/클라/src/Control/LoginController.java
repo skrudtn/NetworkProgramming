@@ -19,9 +19,8 @@ public class LoginController {
 
     public void signup(String id, String pw, String name, String email) {
         LoginModel signUp = new LoginModel(id, pw, name, email);
-        String signUpInfo = jc.signupString2JSONString(signUp);
-        System.out.println(signUpInfo);
-        nc.sendStr(signUpInfo);
+        String str = jc.signupString2JSONString(signUp);
+        nc.sendStr(str);
 
     }
 

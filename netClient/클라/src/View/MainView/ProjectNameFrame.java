@@ -32,7 +32,7 @@ public class ProjectNameFrame extends JFrame{
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
-                if(e.getKeyCode() == KeyEvent.VK_ENTER)action();
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) action();
             }
         });
         conPanel.add(textField);

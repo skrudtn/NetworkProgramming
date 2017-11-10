@@ -1,6 +1,10 @@
 package View.ClassDiagram;
 
 import Control.MainController;
+import Model.Association;
+import Model.ClazzModel;
+import Model.Pallate;
+import View.MainView.DrawPanel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -14,12 +18,13 @@ import java.awt.event.KeyEvent;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Created by skrud on 2017-09-13.
  */
 public class Clazz extends JPanel {
-    final int TEXTHEIGHT = 30;
+    private final int TEXTHEIGHT = 30;
     private final int WIDTH = 180;
 
     private int x, y;
@@ -31,27 +36,29 @@ public class Clazz extends JPanel {
     private JLabel metLabel;
 
     private JTextField nameTextField;
-    private JTextField attTextField;
-    private JTextField metTextField;
     private JButton attBtn;
     private JButton metBtn;
-    private ArrayList<JTextField > aList = new ArrayList<>(1);
-    private ArrayList<JTextField> mList= new ArrayList<>(1);
-    public Clazz(int mousex, int mousey) {
+    private ArrayList<JTextField > aList;
+    private ArrayList<JTextField> mList;
+    private ArrayList<Association> acList;
+    private ArrayList<Integer> pointInClazzes;
+    private DrawPanel dp;
+    public Clazz(DrawPanel dp,int mousex, int mousey) {
+        this.dp = dp;
         this.x = mousex;
         this.y = mousey;
-        initUI(x, y);
-    }
-    public Clazz(String clName,int x, int y) {
-        this.x = x;
-        this.y = x;
-        aList = new ArrayList<>(1);
+        acList = new ArrayList<>();
+        this.acList = new ArrayList<>();
         mList = new ArrayList<>(1);
-        initUI(x, y);
+        aList = new ArrayList<>(1);
+        pointInClazzes = new ArrayList<>();
+        initUI();
     }
 
-    public void ClloneClazz(String clName, ArrayList<String> a, ArrayList<String> m){
+    public void ClloneClazz(String clName, ArrayList<String> a, ArrayList<String> m, ArrayList<Association> acList, ArrayList<Integer> pointInClazzes){
         nameTextField.setText(clName);
+        this.acList = acList;
+        this.pointInClazzes = pointInClazzes;
         for(int i =0; i<a.size()-1; i++){
             reSizeClassPanel(2);
         }
@@ -67,14 +74,15 @@ public class Clazz extends JPanel {
 
     }
 
-    private void initUI(int x, int y) {
+    private void initUI() {
         this.setBounds(x, y, WIDTH+TEXTHEIGHT, 3*TEXTHEIGHT);
         this.setOpaque(true);
-        this.setBackground(new Color(255, 255, 225));
+        this.setBackground(Pallate.a);
         this.setLayout(null);
         initLabel();
         initTextField();
         initBtn();
+        addAction();
     }
     private void initBtn() {
         attBtn = new JButton("+");
@@ -85,7 +93,6 @@ public class Clazz extends JPanel {
         metBtn.setFont(new Font("Serif", Font.BOLD,18));
         add(attBtn);
         add(metBtn);
-        addAction();
     }
 
     private void initLabel(){
@@ -113,11 +120,13 @@ public class Clazz extends JPanel {
         nameTextField = new JTextField(){
             public void setBorder(Border border){}
         };
-        attTextField = new JTextField(){
-            public void setBorder(Border border){}
+        JTextField attTextField = new JTextField() {
+            public void setBorder(Border border) {
+            }
         };
-        metTextField = new JTextField(){
-            public void setBorder(Border border){}
+        JTextField metTextField = new JTextField() {
+            public void setBorder(Border border) {
+            }
         };
 
         nameTextField.setEnabled(true);
@@ -152,8 +161,21 @@ public class Clazz extends JPanel {
                 }
             }
         });
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(e.getKeyCode() == KeyEvent.VK_DELETE){
+                    System.out.println(this.getClass().getName());
+                    System.out.println("delete");
+                    delete();
+                }
+            }
+        });
     }
-
+    private void delete(){
+        dp.removeClassPanel(this);
+    }
     private void reSizeClassPanel(int flag) {
         if (flag == 2) {
             this.setBounds(x, y, WIDTH+TEXTHEIGHT, this.getHeight() + TEXTHEIGHT);
@@ -221,5 +243,33 @@ public class Clazz extends JPanel {
     public void setY(int y) {
         this.y = y;
         repaint();
+    }
+
+    public ArrayList<Association> getAcList() {
+        return acList;
+    }
+
+    public void setAcList(ArrayList<Association> acList) {
+        this.acList = acList;
+    }
+    public void addAcList(Association ac){
+        this.acList.add(ac);
+    }
+    public void rmAcList(Association ac){
+        acList.remove(ac);
+    }
+
+    public ArrayList<Integer> getPointInClazzes() {
+        return pointInClazzes;
+    }
+
+    public void setPointInClazzes(ArrayList<Integer> acPointInClazzList) {
+        this.pointInClazzes= acPointInClazzList;
+    }
+    public void addPointInClazzes(int i){
+        this.pointInClazzes.add(i);
+    }
+    public void rmPointInClazzes(int i){
+        this.pointInClazzes.remove(i);
     }
 }

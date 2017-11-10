@@ -5,6 +5,7 @@ import Control.MainController;
 import Model.CDModel;
 import Model.ClazzModel;
 import Model.Association;
+import Model.Pallate;
 import View.ClassDiagram.Clazz;
 
 import javax.swing.*;
@@ -25,22 +26,20 @@ public class DrawPanel extends JPanel {
     private GUIController gc;
     private ArrayList<Clazz> czList;
     private ArrayList<Association> acList;
-    private String cdName;
     private String authority;
     private JPanel coordPanel;
 
-    public DrawPanel(MainController controller) {
+    DrawPanel(MainController controller) {
         this.controller = controller;
         gc = controller.getGUIController();
         czList = new ArrayList<>(0);
         acList = new ArrayList<>(0);
-        cdName = controller.getCdModel().getCdName();
         authority = "";
         initUI();
     }
 
     private void initUI() {
-        setBackground(new Color(255, 255, 225));
+        setBackground(Pallate.a);
 
         coordPanel = new JPanel();
         coordPanel.setBounds(0, 0, DRAWPANELSIZE, DRAWPANELSIZE);
@@ -77,8 +76,7 @@ public class DrawPanel extends JPanel {
                     if (isCollide(cz, e.getX(), e.getY())) {
                         isClicked[0] = true;
                         pressClazz[0] = cz;
-                        System.out.println(isClicked[0]);
-                        System.out.println(pressClazz[0]);
+                        pressClazz[0].requestFocus();
                     }
                 }
                 isClicked[0] = false;
@@ -88,6 +86,7 @@ public class DrawPanel extends JPanel {
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 sP[0] = e.getPoint();
+
                 switch (gc.getComboMode()) {
 
                     case 1:
@@ -102,18 +101,22 @@ public class DrawPanel extends JPanel {
                             if (isCollide(cz, (int) sP[0].getX(), (int) sP[0].getY())) {
                                 isDragged[0] = true;
                                 pressClazz[0] = cz;
+                                pressClazz[0].requestFocus();
                                 mP[0] = e.getPoint();
                             }
                         }
                         break;
-                }
+                } gc.setComboMode(0);
             }
 
             @Override
             public void mouseReleased(MouseEvent e){
                 super.mouseReleased(e);
                 isDragged[0] = false;
-                pressClazz[0] = null;
+                if(pressClazz[0] != null) {
+                    pressClazz[0].requestFocus(false);
+                    pressClazz[0] = null;
+                }
             }
         });
 
@@ -138,7 +141,6 @@ public class DrawPanel extends JPanel {
                 super.mousePressed(e);
                 if (e.getSource() == coordPanel) {
                     sP = e.getPoint();
-                    System.out.println("sP " + sP);
                 }
             }
 
@@ -147,7 +149,6 @@ public class DrawPanel extends JPanel {
                 super.mouseReleased(e);
                 if (e.getSource() == coordPanel) {
                     eP = e.getPoint();
-                    System.out.println("eP " + eP);
                 }
                 createAssociation(sP, eP);
                 rmCoordPanel();
@@ -170,20 +171,6 @@ public class DrawPanel extends JPanel {
 
     }
 
-    public void removeClassPanel(Clazz cz) {
-        czList.remove(cz);
-        remove(cz);
-        repaint();
-    }
-
-    public void removeAllClassPanel() {
-        for (Clazz cz : czList) {
-            remove(cz);
-        }
-        czList.clear();
-        repaint();
-    }
-
     private void createClassPanel(Point p) {
         boolean createFlag = true;
         if (!czList.isEmpty()) {
@@ -197,11 +184,29 @@ public class DrawPanel extends JPanel {
             }
         }
         if (createFlag) {
-            Clazz newCz = new Clazz((int) p.getX(), (int) p.getY());
+            Clazz newCz = new Clazz(this,(int) p.getX(), (int) p.getY());
             czList.add(newCz);
             add(newCz);
             repaint();
         }
+    }
+
+    public void removeClassPanel(Clazz cz) {
+        for(Association ac: cz.getAcList()){
+            acList.remove(ac);
+        }
+        cz.getAcList().clear();
+
+        czList.remove(cz);
+        remove(cz);
+        repaint();
+    }
+    private void removeAllClassPanel() {
+        for (Clazz cz : czList) {
+            remove(cz);
+        }
+        czList.clear();
+        repaint();
     }
 
     private void drawClassPanel() {
@@ -216,32 +221,35 @@ public class DrawPanel extends JPanel {
         int c = 0;
         Clazz[] clazzes = new Clazz[2];
         for (Clazz cz : czList) {
-            if (isCollide(cz, (int) sP.getX(), (int) sP.getY()) ||
-                    (isCollide(cz, (int) eP.getX(), (int) eP.getY()))) {
-                System.out.println(sP+" "+eP);
-                clazzes[c] = cz;
+            if (isCollide(cz, (int) sP.getX(), (int) sP.getY())){
+                clazzes[0] = cz;
+                c++;
+            }
+            else if(isCollide(cz, (int) eP.getX(), (int) eP.getY())) {
+                clazzes[1] = cz;
                 c++;
             }
         }
         if (c == 2) {
             Point shortCut[] = getShortCut(clazzes[0], clazzes[1]);
-            Association ac = new Association(sP, eP);
+            Association ac = new Association(shortCut[0], shortCut[1]);
+            clazzes[0].addAcList(ac);
+            clazzes[0].addPointInClazzes(0);
+            clazzes[1].addAcList(ac);
+            clazzes[1].addPointInClazzes(1);
             acList.add(ac);
-            drawAssociation();
+            repaint();
+        } else{
+            clazzes = null;
         }
+
     }
-
     private Point[] getShortCut(Clazz c1, Clazz c2) {
-        Point points[] = null;
-        c1.getX();
-        c1.getY();
-        c1.getWidth();
-        c1.getHeight();
-        c2.getX();
-        c2.getY();
-        c2.getWidth();
-        c2.getHeight();
-
+        Point points[] = new Point[2];
+        Point s = new Point(c1.getX()+(c1.getWidth()/2),c1.getY()+(c1.getHeight()/2));
+        Point e = new Point(c2.getX()+(c2.getWidth()/2),c2.getY()+(c2.getHeight()/2));
+        points[0] = s;
+        points[1] = e;
         return points;
     }
 
@@ -250,22 +258,11 @@ public class DrawPanel extends JPanel {
         int y = cz.getY();
         int w = cz.getWidth();
         int h = cz.getHeight();
-        if (x <= sX && x + w >= sX && y <= sY && y + h >= sY) {
-            return true;
-        }
-        return false;
+        return x <= sX && x + w >= sX && y <= sY && y + h >= sY;
     }
 
-    public void drawAssociation() {
-        Graphics g = this.getGraphics();
 
-        for (Association ac : acList) {
-            g.drawLine(ac.getsX(), ac.getsY(), ac.geteX(), ac.geteY());
-        }
-        repaint();
-    }
-
-    public ArrayList<Clazz> getCZList() {
+    ArrayList<Clazz> getCZList() {
         return czList;
     }
 
@@ -294,31 +291,45 @@ public class DrawPanel extends JPanel {
         repaint();
     }
 
-    public void cmd2ClassPanel(CDModel cdm) {
+    private void cmd2ClassPanel(CDModel cdm) {
         authority = cdm.getId();
-        cdName = cdm.getCdName();
         ArrayList<ClazzModel> cms = cdm.getClazzModels();
         for (ClazzModel cm : cms) {
-            Clazz c = new Clazz(cm.getX(), cm.getY());
-            c.ClloneClazz(cm.getClassName(), cm.getAttributeList(), cm.getMethodList());
+            Clazz c = new Clazz(this,cm.getX(), cm.getY());
+            c.ClloneClazz(cm.getClassName(), cm.getAttributeList(), cm.getMethodList(),cm.getAcList(),cm.getPointInClazz());
             czList.add(c);
         }
     }
 
     private void cmd2Assci(CDModel cdModel) {
-        acList = cdModel.getAcList();
+        for(Association ac: cdModel.getAcList()){
+            createAssociation(new Point(ac.getsX(),ac.getsY()),new Point(ac.geteX(),ac.geteY()));
+        }
     }
 
-    public ArrayList<Association> getACList() {
+    ArrayList<Association> getACList() {
         return acList;
     }
 
-    public void moveClassPanel(Clazz c, Point mP, Point eP) {
+    private void moveClassPanel(Clazz c, Point mP, Point eP) {
         int dx = (int) eP.getX() - (int) mP.getX();
         int dy = (int) eP.getY() - (int) mP.getY();
-        c.setX(c.getX() + dx);
-        c.setY(c.getY() + dy);
-        c.setLocation(c.getX() + dx, c.getY() + dy);
+        c.setX(dx+c.getX());
+        c.setY(dy+c.getY());
+        c.setLocation(dx+c.getX(),dy+c.getY());
+
+        int i=0;
+        for(Association ac: c.getAcList()){
+            if(c.getPointInClazzes().get(i) ==0){
+                ac.setsX(String.valueOf(dx+ac.getsX()));
+                ac.setsY(String.valueOf(dy+ac.getsY()));
+            } else{
+                ac.seteX(String.valueOf(dx+ac.geteX()));
+                ac.seteY(String.valueOf(dy+ac.geteY()));
+            }
+            i++;
+        }
+        repaint();
     }
 }
 

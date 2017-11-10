@@ -7,20 +7,15 @@ import java.util.ArrayList;
  */
 public class CDModel
 {
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    private int memNo;
     private String id;
     private String cdName;
+    private String json;
     private ArrayList<ClazzModel> clazzModels;
     private ArrayList<Association> acList;
 
     public CDModel(){
+        memNo = 0;
         id="";
         cdName = "";
         clazzModels = new ArrayList<>();
@@ -72,4 +67,28 @@ public class CDModel
     public void addAcList(Association ac) {
         acList.add(ac);
     }
+
+    public String getJson() {
+        return json;
+    }
+
+    public void setJson(String json) {
+        this.json = json;
+    }
+
+    public int getMemNo() {
+        return memNo;
+    }
+    public void setMemNo(int memNo) {
+        this.memNo = memNo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 }
