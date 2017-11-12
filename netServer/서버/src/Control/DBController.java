@@ -1,9 +1,11 @@
 package Control;
 
 import Model.*;
+import Model.ClassDiagramModel.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+
 
 /**
  * Created by skrud on 2017-10-01.
@@ -137,11 +139,11 @@ public class DBController {
         return rt;
     }
 
-    public Boolean overLapDB(String id) {
+    public boolean overLapDB(String id) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = "";
-        Boolean rt = true;
+        boolean rt = true;
         try {
             sql = "SELECT id FROM MEMBERS WHERE id = ?";
             ps = con.prepareStatement(sql);
@@ -353,4 +355,36 @@ public class DBController {
         }
     }
 
+    public ArrayList<String> getFriends() {
+        ArrayList<String> friends = new ArrayList<>();
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        String sql = "";
+        boolean rt = true;
+        try {
+            sql = "SELECT *\n" +
+                    "FROM FRIENDS\n" +
+                    "WHERE MEMNO = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, memNo);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                friends.add(rs.getString("id"));
+            }
+        } catch (SQLException e) {
+            rt = false;
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+            }
+            try {
+                ps.close();
+            } catch (Exception pse) {
+            }
+        }
+        return friends;
+
+    }
 }

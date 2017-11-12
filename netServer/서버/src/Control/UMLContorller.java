@@ -1,6 +1,7 @@
 package Control;
 
 import Model.*;
+import Model.ClassDiagramModel.*;
 
 import java.util.ArrayList;
 
@@ -14,23 +15,26 @@ public class UMLContorller {
     private String cloneStr;
 
     private ArrayList<SearchModel> mySms;
-    public UMLContorller(MainController controller){
+    UMLContorller(MainController controller){
         this.controller = controller;
         jc = controller.getJsonController();
         dc = controller.getDBController();
     }
 
-    public int pushCD(String data){
+    int push(String data){
         int ack= Ack.pushREJ;
-        CDModel cdm = jc.str2cdm(data);
-        cdm.setJson(data);
-        if(dc.push(cdm)){
-            ack = Ack.pushACK;
+        String type = jc.getPushType(jc.string2JSONObject(data));
+        switch (type) {
+            case "cd":
+                CDModel cdm = jc.str2cdm(data);
+                cdm.setJson(data);
+                if(dc.push(cdm)) ack = Ack.pushACK;
+                break;
         }
         return ack;
     }
 
-    public int cllone(String data){
+    int cllone(String data){
         int ack =  Ack.cloneREJ;
         CllonePacket cp = jc.str2cp(data);
         cloneStr= dc.cllone(cp);
@@ -41,11 +45,11 @@ public class UMLContorller {
         return ack;
     }
 
-    public String getCloneModel(){
+    String getCloneModel(){
         return cloneStr;
     }
 
-    public int search(String data) {
+    int search(String data) {
         int ack = Ack.searchRej;
         SearchPacket sp = jc.str2sp(data);
         ArrayList<SearchModel> sms = dc.search(sp);
@@ -55,7 +59,7 @@ public class UMLContorller {
         }
         return ack;
     }
-    public String getSearchModels(){
+    String getSearchModels(){
         return jc.sms2str(mySms);
     }
 

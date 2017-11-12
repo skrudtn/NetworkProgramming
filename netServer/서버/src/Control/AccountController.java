@@ -46,4 +46,11 @@ class AccountController {
         return ack;
     }
 
+    public String getFriends() {
+        return jc.firends2str(dc.getFriends());
+    }
+
+    public void setFriends(ArrayList<String> friends) {
+        this.friends = friends;
+    }
 }

@@ -1,6 +1,7 @@
 package Control;
 
 import Model.*;
+import Model.ClassDiagramModel.*;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
@@ -24,6 +25,7 @@ class JsonController {
         }
         return type;
     }
+
     JSONObject string2JSONObject(String string) {
         Object obj = null;
         JSONObject jsonObject = null;
@@ -70,6 +72,7 @@ class JsonController {
         }
         return new LoginModel(id, pw, email, name);
     }
+
     String lm2str(LoginModel loginModel) {
         JSONObject obj = new JSONObject();
         obj.put("type", "loginInfo");
@@ -80,11 +83,12 @@ class JsonController {
         return obj.toJSONString();
     }
 
-    String cdm2str(CDModel cd) {
+
+    public String cdm2str(CDModel cd) {
         JSONObject obj = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         ArrayList<ClazzModel> cms = cd.getClazzModels();
-        ArrayList<Association> acList = cd.getAcList();
+        ArrayList<Association> lcList = cd.getLcList();
         ArrayList<String> a;
         ArrayList<String> m;
 
@@ -96,13 +100,39 @@ class JsonController {
                     + "," + Integer.toString(c.getW()) + "," + Integer.toString(c.getH());
             inObj.put("clazzName", c.getClassName());
             inObj.put("bounds", bounds);
-            ArrayList<String> arr = new ArrayList<>();
-            for (Association association : c.getAcList()) {
-                arr.add(association.getPoint());
+            ArrayList<String> acList = new ArrayList<>();
+            ArrayList<String> dacList = new ArrayList<>();
+            ArrayList<String> rzList = new ArrayList<>();
+            ArrayList<String> gzList = new ArrayList<>();
+            ArrayList<String> agList = new ArrayList<>();
+            ArrayList<String> dpList = new ArrayList<>();
+            for (Association lc : c.getLcList()) {
+                if (lc instanceof DirectAssociation) {
+                    dacList.add(lc.getPoint());
+                } else if (lc instanceof Realization) {
+                    Realization rz = (Realization) lc;
+                    rzList.add(rz.getPoint());
+                } else if (lc instanceof Generalization) {
+                    Generalization gz = (Generalization) lc;
+                    gzList.add(gz.getPoint());
+                } else if (lc instanceof Aggregation) {
+                    Aggregation ag = (Aggregation) lc;
+                    agList.add(ag.getPoint());
+                }else if (lc instanceof Dependency) {
+                    Dependency dp = (Dependency) lc;
+                    dpList.add(dp.getPoint());
+                } else {
+                    acList.add(lc.getPoint());
+                }
             }
-            inObj.put("clazzAcList", arr);
+            inObj.put("clazzAcList", acList);
+            inObj.put("clazzAgList", agList);
+            inObj.put("clazzDacList", dacList);
+            inObj.put("clazzGzList", gzList);
+            inObj.put("clazzRzList", rzList);
+            inObj.put("clazzDpList", dpList);
 
-            arr = new ArrayList<>();
+            ArrayList<String> arr = new ArrayList<>();
             for (Integer integer : c.getPointInClazz()) {
                 arr.add(String.valueOf(integer));
             }
@@ -112,16 +142,40 @@ class JsonController {
             jsonArray.add(inObj);
         }
         obj.put("classList", jsonArray);
-        ArrayList<String> points = new ArrayList<>();
-        for (Association ac : acList) {
-            points.add(ac.getPoint());
+        ArrayList<String> acPoints = new ArrayList<>();
+        ArrayList<String> agPoints = new ArrayList<>();
+        ArrayList<String> dacPoints = new ArrayList<>();
+        ArrayList<String> gzPoints = new ArrayList<>();
+        ArrayList<String> rzPoints = new ArrayList<>();
+        ArrayList<String> dpPoints = new ArrayList<>();
+        for (Association ac : lcList) {
+            if(ac instanceof Aggregation){
+                agPoints.add(ac.getPoint());
+            } else if(ac instanceof DirectAssociation) {
+                dacPoints.add(ac.getPoint());
+            }else if(ac instanceof Generalization) {
+                gzPoints.add(ac.getPoint());
+            }else if(ac instanceof Realization) {
+                rzPoints.add(ac.getPoint());
+            }else if(ac instanceof Dependency) {
+                dpPoints.add(ac.getPoint());
+            }else {
+                acPoints.add(ac.getPoint());
+            }
         }
-        obj.put("points", points);
-        obj.put("type", "classDiagram");
+        obj.put("acPoints", acPoints);
+        obj.put("dacPoints", dacPoints);
+        obj.put("agPoints", agPoints);
+        obj.put("gzPoints", gzPoints);
+        obj.put("rzPoints", rzPoints);
+        obj.put("dpPoints", dpPoints);
+        obj.put("type", "push");
+        obj.put("pushType", "cd");
 
         return obj.toJSONString();
     }
-    CDModel str2cdm(String str) {
+
+    public CDModel str2cdm(String str) {
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
         CDModel rt = new CDModel();
@@ -145,11 +199,11 @@ class JsonController {
                 } else if (key.equals("classList")) {
                     JSONArray jsonArray = (JSONArray) value;
                     int size = jsonArray.size();
-                    int i = 0;
-                    while (i < size) {
+                    for (int i = 0; i < size; i++) {
                         ArrayList<String> atts = new ArrayList<>();
                         ArrayList<String> mets = new ArrayList<>();
                         ArrayList<Association> inAcList = new ArrayList<>();
+
                         ArrayList<Integer> pointInClazz = new ArrayList<>();
 
                         String name = "";
@@ -169,7 +223,43 @@ class JsonController {
                             } else if (inKey.equals("clazzAcList")) {
                                 ArrayList<String> strAcList = (ArrayList<String>) inValue;
                                 for (String point : strAcList) {
-                                    Association ac = new Association(point);
+                                    Association ac = new Association();
+                                    ac.setPoint(point);
+                                    inAcList.add(ac);
+                                }
+                            } else if (inKey.equals("clazzAgList")) {
+                                ArrayList<String> strAgList = (ArrayList<String>) inValue;
+                                for (String point : strAgList) {
+                                    Association ac = new Aggregation();
+                                    ac.setPoint(point);
+                                    inAcList.add(ac);
+                                }
+                            } else if (inKey.equals("clazzDacList")) {
+                                ArrayList<String> strDacList = (ArrayList<String>) inValue;
+                                for (String point : strDacList) {
+                                    Association ac = new DirectAssociation();
+                                    ac.setPoint(point);
+                                    inAcList.add(ac);
+                                }
+                            } else if (inKey.equals("clazzGzList")) {
+                                ArrayList<String> strGzList = (ArrayList<String>) inValue;
+                                for (String point : strGzList) {
+                                    Association ac = new Generalization();
+                                    ac.setPoint(point);
+                                    inAcList.add(ac);
+                                }
+                            } else if (inKey.equals("clazzRzList")) {
+                                ArrayList<String> strRzList = (ArrayList<String>) inValue;
+                                for (String point : strRzList) {
+                                    Association ac = new Realization();
+                                    ac.setPoint(point);
+                                    inAcList.add(ac);
+                                }
+                            } else if (inKey.equals("clazzDpList")) {
+                                ArrayList<String> strRzList = (ArrayList<String>) inValue;
+                                for (String point : strRzList) {
+                                    Association ac = new Dependency();
+                                    ac.setPoint(point);
                                     inAcList.add(ac);
                                 }
                             } else if (inKey.equals("pointInClazz")) {
@@ -183,16 +273,56 @@ class JsonController {
                         arr = bounds.split(",");
                         rt.addClazzModel(new ClazzModel(name, atts, mets,
                                 Integer.parseInt(arr[0]), Integer.parseInt(arr[1]), Integer.parseInt(arr[2]), Integer.parseInt(arr[3]), inAcList, pointInClazz));
-                        i++;
                     }
 
-                } else if (key.equals("points")) {
+                } else if (key.equals("acPoints")) {
                     ArrayList<String> points = (ArrayList<String>) value;
                     for (String point : points) {
-                        Association ac = new Association(point);
+                        Association ac = new Association();
+                        ac.setPoint(point);
                         acList.add(ac);
                     }
-                    rt.setAcList(acList);
+                    rt.setLcList(acList);
+                }else if (key.equals("agPoints")) {
+                    ArrayList<String> points = (ArrayList<String>) value;
+                    for (String point : points) {
+                        Association ac = new Aggregation();
+                        ac.setPoint(point);
+                        acList.add(ac);
+                    }
+                    rt.setLcList(acList);
+                }else if (key.equals("dpPoints")) {
+                    ArrayList<String> points = (ArrayList<String>) value;
+                    for (String point : points) {
+                        Association ac = new Dependency();
+                        ac.setPoint(point);
+                        acList.add(ac);
+                    }
+                    rt.setLcList(acList);
+                }else if (key.equals("dacPoints")) {
+                    ArrayList<String> points = (ArrayList<String>) value;
+                    for (String point : points) {
+                        Association ac = new DirectAssociation();
+                        ac.setPoint(point);
+                        acList.add(ac);
+                    }
+                    rt.setLcList(acList);
+                }else if (key.equals("gzPoints")) {
+                    ArrayList<String> points = (ArrayList<String>) value;
+                    for (String point : points) {
+                        Association ac = new Generalization();
+                        ac.setPoint(point);
+                        acList.add(ac);
+                    }
+                    rt.setLcList(acList);
+                }else if (key.equals("rzPoints")) {
+                    ArrayList<String> points = (ArrayList<String>) value;
+                    for (String point : points) {
+                        Association ac = new Realization();
+                        ac.setPoint(point);
+                        acList.add(ac);
+                    }
+                    rt.setLcList(acList);
                 }
             }
         }
@@ -200,7 +330,6 @@ class JsonController {
         rt.setId(id);
         return rt;
     }
-
     SearchPacket str2sp(String str) {
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
@@ -298,11 +427,33 @@ class JsonController {
         return id;
     }
 
-    String si2str(String id){
+    String si2str(String id) {
         JSONObject obj = new JSONObject();
         obj.put("type", "searchId");
         obj.put("id", id);
         return obj.toJSONString();
     }
 
+    String firends2str(ArrayList<String> friends) {
+        JSONObject obj = new JSONObject();
+        JSONArray arr = new JSONArray();
+
+        obj.put("type", "friends");
+        obj.put("friends", friends);
+
+        return obj.toJSONString();
+
+    }
+
+    public String getPushType(JSONObject obj) {
+        Set keySet = obj.keySet();
+        String type = "";
+        for (Object key : keySet) {
+            Object value = obj.get(key);
+            if (key.equals("pushType")) {
+                type = (String) value;
+            }
+        }
+        return type;
+    }
 }

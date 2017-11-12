@@ -47,9 +47,9 @@ public class MemberThread implements Runnable {
     private void logout() {
         try {
             System.out.format("%s : %s 접속 종료 \n", socket.getInetAddress(), lc.getId());
+            LoginInfo.getInstance().rmConnectId(lc.getMyLoginModel().getId());
             dc.closeConnect();
             clientList.remove(socket);
-            LoginInfo.getInstance().rmConnectId(lc.getMyLoginModel().getId());
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -71,6 +71,7 @@ public class MemberThread implements Runnable {
                     if(ack == Ack.lAck){
                         sendStr(lc.getLoginModel());
                         sendStr(lc.getSearchModel());
+                        sendStr(ac.getFriends());
                     }
                     break;
                 case "logout":
@@ -89,8 +90,12 @@ public class MemberThread implements Runnable {
                 case "pw":
                     sendAck(lc.pwChange(data));
                     break;
-                case "classDiagram":
-                    sendAck(uc.pushCD(data));
+                case "push":
+                    ack = uc.push(data);
+                    sendAck(ack);
+                    if(ack == Ack.pushACK) {
+                        sendStr(lc.getSearchModel());
+                    }
                     break;
                 case "clone":
                     ack = uc.cllone(data);
