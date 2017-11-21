@@ -3,6 +3,7 @@ package View.login;
 import Control.GUIController;
 import Model.StaticModel.MyFont;
 import Model.StaticModel.Pallate;
+import Model.StaticModel.Size;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,10 +17,6 @@ import java.security.NoSuchAlgorithmException;
  * Created by skrud on 2017-09-29.
  */
 public class LoginPanel extends JPanel {
-    private static final int XMARGIN = 60;
-    private static final int YMARGIN = 120;
-
-    private JLabel stateLabel;
     private JTextField idTextField;
     private JPasswordField pwTextField;
     private JButton loginBtn;
@@ -41,11 +38,12 @@ public class LoginPanel extends JPanel {
 
     private void initUI() {
         setLayout(null);
-        setBackground(Pallate.b);
+        setBackground(Pallate.a);
         initLabel();
         initTextField();
         initButton();
 
+        autoLogin();
         this.setVisible(true);
     }
 
@@ -53,28 +51,24 @@ public class LoginPanel extends JPanel {
         JLabel idLabel = new JLabel("아이디");
         JLabel pwLabel = new JLabel("비밀번호");
         JLabel rememberIDLabel = new JLabel("아이디저장");
-        stateLabel = new JLabel();
 
-        idLabel.setBounds(XMARGIN, YMARGIN, 60, 30);
+        idLabel.setBounds(Size.LABELXMARGIN, Size.LABELYMARGIN, 60, 30);
         idLabel.setFont(MyFont.serif);
-        pwLabel.setBounds(XMARGIN, YMARGIN + 65, 60, 30);
+        pwLabel.setBounds(Size.LABELXMARGIN, Size.LABELYMARGIN+ 65, 60, 30);
         pwLabel.setFont(MyFont.serif);
-        rememberIDLabel.setBounds(XMARGIN + 30, YMARGIN + 130, 100, 30);
-        stateLabel.setBounds(XMARGIN+30,YMARGIN/2, 120,20);
-        stateLabel.setFont(MyFont.serif);
+        rememberIDLabel.setBounds(Size.LABELXMARGIN+ 30, Size.LABELYMARGIN+ 130, 100, 30);
 
         add(idLabel);
         add(pwLabel);
-        add(rememberIDLabel);
-        add(stateLabel);
+//        add(rememberIDLabel);
     }
 
     private void initTextField() {
         idTextField = new JTextField();
         pwTextField = new JPasswordField();
 
-        idTextField.setBounds(XMARGIN, YMARGIN + 30, 220, 30);
-        pwTextField.setBounds(XMARGIN, YMARGIN + 95, 220, 30);
+        idTextField.setBounds(Size.LABELXMARGIN, Size.LABELYMARGIN + 30, 220, 30);
+        pwTextField.setBounds(Size.LABELXMARGIN, Size.LABELYMARGIN + 95, 220, 30);
 
         add(idTextField);
         add(pwTextField);
@@ -86,23 +80,23 @@ public class LoginPanel extends JPanel {
         pwChangeBtn = new JButton("비밀번호찾기");
         JCheckBox jCheckBox = new JCheckBox();
 
-        jCheckBox.setBounds(XMARGIN, YMARGIN + 130, 25, 30);
-        loginBtn.setBounds(295, YMARGIN + 20, 80, 95);
+        jCheckBox.setBounds(Size.LABELXMARGIN, Size.LABELYMARGIN + 130, 25, 30);
+        loginBtn.setBounds(295, Size.LABELYMARGIN + 20, 80, 95);
         loginBtn.setBackground(Pallate.e);
         loginBtn.setForeground(Pallate.a);
-        signUpBtn.setBounds(XMARGIN + 10, 330, 120, 50);
-        signUpBtn.setBounds(XMARGIN + 10, 330, 120, 50);
+        signUpBtn.setBounds(Size.LABELXMARGIN + 10, 330, 120, 50);
+        signUpBtn.setBounds(Size.LABELXMARGIN + 10, 330, 120, 50);
         signUpBtn.setBackground(Pallate.e);
         signUpBtn.setForeground(Pallate.a);
-        pwChangeBtn.setBounds(XMARGIN + 150, 330, 120, 50);
-        pwChangeBtn.setBounds(XMARGIN + 150, 330, 120, 50);
+        pwChangeBtn.setBounds(Size.LABELXMARGIN + 150, 330, 120, 50);
+        pwChangeBtn.setBounds(Size.LABELXMARGIN + 150, 330, 120, 50);
         pwChangeBtn.setBackground(Pallate.e);
         pwChangeBtn.setForeground(Pallate.a);
 
-        add(jCheckBox);
+//        add(jCheckBox);
         add(loginBtn);
         add(signUpBtn);
-        add(pwChangeBtn);
+//        add(pwChangeBtn);
         buttonActionListen();
     }
 
@@ -167,6 +161,24 @@ public class LoginPanel extends JPanel {
                 }
             }
         });
+        idTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                    onPressedLoginBtn();
+                }
+            }
+        });
+        pwTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                    onPressedLoginBtn();
+                }
+            }
+        });
     }
 
     private void onPressedLoginBtn(){
@@ -180,15 +192,16 @@ public class LoginPanel extends JPanel {
     private void onPressedSignUpBtn(){
         idTextField.setText("");
         pwTextField.setText("");
-        stateLabel.setText("");
         gc.signUpView();
     }
 
     private void onPressedPwChangeBtn() {
         idTextField.setText("");
         pwTextField.setText("");
-        stateLabel.setText("");
         gc.pwChangeView();
+    }
+    public void showOption(String text, int option){
+        JOptionPane.showMessageDialog(this,text,text,option);
     }
 
     private String getSHA256(String str) {
@@ -209,8 +222,9 @@ public class LoginPanel extends JPanel {
         }
         return SHA;
     }
-
-    public JLabel getStateLabel() {
-        return stateLabel;
+    private void autoLogin(){
+        idTextField.setText("ksna");
+        pwTextField.setText("1");
+//        onPressedLoginBtn();
     }
 }

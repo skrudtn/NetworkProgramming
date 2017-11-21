@@ -4,18 +4,48 @@ import Model.ClassDiagramModel.CDModel;
 import Model.ClassDiagramModel.ClazzModel;
 import Model.ClassDiagramModel.*;
 import Model.LoginModel;
-import Model.SearchDataModel;
+import Model.RepoModel;
+import Model.SearchRepoModel;
+import Model.VersionModel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by skrud on 2017-09-27.
  */
 public class JsonController {
+    String getJsonType(JSONObject obj) {
+        Set keySet = obj.keySet();
+        String type = "";
+        for (Object key : keySet) {
+            Object value = obj.get(key);
+            if (key.equals("type")) {
+                type = (String) value;
+            }
+        }
+        return type;
+    }
+
+    JSONObject str2JSONObject(String string) {
+        Object obj = null;
+        JSONObject jsonObject = null;
+        JSONParser jsonParser = new JSONParser();
+        try {
+            obj = jsonParser.parse(string);
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        if (obj instanceof JSONObject) {
+            jsonObject = (JSONObject) obj;
+        }
+
+        return jsonObject;
+    }
 
     String login2JSONString(String id, String pw) {
         JSONObject obj = new JSONObject();
@@ -107,7 +137,7 @@ public class JsonController {
         return new LoginModel(id, pw, email, name);
     }
 
-    public String cdm2str(CDModel cd) {
+    public String cdm2str(CDModel cd,int repoNo) {
         JSONObject obj = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         ArrayList<ClazzModel> cms = cd.getClazzModels();
@@ -115,7 +145,9 @@ public class JsonController {
         ArrayList<String> a;
         ArrayList<String> m;
 
-        obj.put("cdName", cd.getCdName());
+        obj.put("repo", cd.getCdName());
+        obj.put("repoNo", String.valueOf(repoNo));
+//        obj.put("cdName", cd.getCdName());
         obj.put("id", cd.getId());
         for (ClazzModel c : cms) {
             JSONObject inObj = new JSONObject();
@@ -142,10 +174,10 @@ public class JsonController {
                 } else if (lc instanceof Aggregation) {
                     Aggregation ag = (Aggregation) lc;
                     agList.add(ag.getPoint());
-                }else if (lc instanceof Composition) {
+                } else if (lc instanceof Composition) {
                     Composition cp = (Composition) lc;
                     cpList.add(cp.getPoint());
-                }else if (lc instanceof Dependency) {
+                } else if (lc instanceof Dependency) {
                     Dependency dp = (Dependency) lc;
                     dpList.add(dp.getPoint());
                 } else {
@@ -178,19 +210,19 @@ public class JsonController {
         ArrayList<String> dpPoints = new ArrayList<>();
         ArrayList<String> cpPoints = new ArrayList<>();
         for (Association ac : lcList) {
-            if(ac instanceof Aggregation){
+            if (ac instanceof Aggregation) {
                 agPoints.add(ac.getPoint());
-            } else if(ac instanceof Composition) {
+            } else if (ac instanceof Composition) {
                 cpPoints.add(ac.getPoint());
-            } else if(ac instanceof DirectAssociation) {
+            } else if (ac instanceof DirectAssociation) {
                 dacPoints.add(ac.getPoint());
-            }else if(ac instanceof Generalization) {
+            } else if (ac instanceof Generalization) {
                 gzPoints.add(ac.getPoint());
-            }else if(ac instanceof Realization) {
+            } else if (ac instanceof Realization) {
                 rzPoints.add(ac.getPoint());
-            }else if(ac instanceof Dependency) {
+            } else if (ac instanceof Dependency) {
                 dpPoints.add(ac.getPoint());
-            }else {
+            } else {
                 acPoints.add(ac.getPoint());
             }
         }
@@ -208,11 +240,13 @@ public class JsonController {
     }
 
     public CDModel str2cdm(String str) {
+        System.out.println(str);
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
         CDModel rt = new CDModel();
         ArrayList<Association> acList = new ArrayList<>();
         String cdName = "";
+        String repoNo= "";
         String id = "";
         try {
             obj = jsonParser.parse(str);
@@ -224,8 +258,10 @@ public class JsonController {
             Set keySet = jsonObject.keySet();
             for (Object key : keySet) {
                 Object value = jsonObject.get(key);
-                if (key.equals("cdName")) {
+                if (key.equals("repo")) {
                     cdName = (String) value;
+                } else if (key.equals("repoNo")) {
+                    repoNo = (String) value;
                 } else if (key.equals("id")) {
                     id = (String) value;
                 } else if (key.equals("classList")) {
@@ -259,7 +295,7 @@ public class JsonController {
                                     ac.setPoint(point);
                                     inAcList.add(ac);
                                 }
-                            }else if (inKey.equals("clazzCpList")) {
+                            } else if (inKey.equals("clazzCpList")) {
                                 ArrayList<String> strAcList = (ArrayList<String>) inValue;
                                 for (String point : strAcList) {
                                     Association ac = new Composition();
@@ -273,7 +309,7 @@ public class JsonController {
                                     ac.setPoint(point);
                                     inAcList.add(ac);
                                 }
-                            }else if (inKey.equals("clazzAgList")) {
+                            } else if (inKey.equals("clazzAgList")) {
                                 ArrayList<String> strAgList = (ArrayList<String>) inValue;
                                 for (String point : strAgList) {
                                     Association ac = new Aggregation();
@@ -329,7 +365,7 @@ public class JsonController {
                         acList.add(ac);
                     }
                     rt.setAcList(acList);
-                }else if (key.equals("agPoints")) {
+                } else if (key.equals("agPoints")) {
                     ArrayList<String> points = (ArrayList<String>) value;
                     for (String point : points) {
                         Association ac = new Aggregation();
@@ -337,7 +373,7 @@ public class JsonController {
                         acList.add(ac);
                     }
                     rt.setAcList(acList);
-                }else if (key.equals("cpPoints")) {
+                } else if (key.equals("cpPoints")) {
                     ArrayList<String> points = (ArrayList<String>) value;
                     for (String point : points) {
                         Association ac = new Composition();
@@ -345,7 +381,7 @@ public class JsonController {
                         acList.add(ac);
                     }
                     rt.setAcList(acList);
-                }else if (key.equals("dpPoints")) {
+                } else if (key.equals("dpPoints")) {
                     ArrayList<String> points = (ArrayList<String>) value;
                     for (String point : points) {
                         Association ac = new Dependency();
@@ -353,7 +389,7 @@ public class JsonController {
                         acList.add(ac);
                     }
                     rt.setAcList(acList);
-                }else if (key.equals("dacPoints")) {
+                } else if (key.equals("dacPoints")) {
                     ArrayList<String> points = (ArrayList<String>) value;
                     for (String point : points) {
                         Association ac = new DirectAssociation();
@@ -361,7 +397,7 @@ public class JsonController {
                         acList.add(ac);
                     }
                     rt.setAcList(acList);
-                }else if (key.equals("gzPoints")) {
+                } else if (key.equals("gzPoints")) {
                     ArrayList<String> points = (ArrayList<String>) value;
                     for (String point : points) {
                         Association ac = new Generalization();
@@ -369,7 +405,7 @@ public class JsonController {
                         acList.add(ac);
                     }
                     rt.setAcList(acList);
-                }else if (key.equals("rzPoints")) {
+                } else if (key.equals("rzPoints")) {
                     ArrayList<String> points = (ArrayList<String>) value;
                     for (String point : points) {
                         Association ac = new Realization();
@@ -381,6 +417,7 @@ public class JsonController {
             }
         }
         rt.setCdName(cdName);
+        rt.setRepoNo(Integer.parseInt(repoNo));
         rt.setId(id);
         return rt;
     }
@@ -393,14 +430,10 @@ public class JsonController {
 
         return obj.toJSONString();
     }
-
-    public String getCloneStr(String id, String title, String date, String cdNo) {
+    public String getCloneStr(String name) {
         JSONObject obj = new JSONObject();
         obj.put("type", "clone");
-        obj.put("id", id);
-        obj.put("title", title);
-        obj.put("date", date);
-        obj.put("cdNo", cdNo);
+        obj.put("name", name);
 
         return obj.toJSONString();
     }
@@ -414,8 +447,28 @@ public class JsonController {
         return obj.toJSONString();
     }
 
-    public ArrayList<SearchDataModel> str2smds(String str) {
-        ArrayList<SearchDataModel> sdms = new ArrayList<>();
+    public String getSearchRepoStr(String name, String id, ArrayList<String> authorities) {
+        JSONObject obj = new JSONObject();
+        obj.put("type", "repoPacket");
+        obj.put("name", name);
+        obj.put("id", id);
+        obj.put("authorities", authorities);
+
+        return obj.toJSONString();
+    }
+
+    public String getRepoDataStr(String s,String id, String repoNo) {
+        JSONObject obj = new JSONObject();
+        obj.put("type", "repoModel");
+        obj.put("name", s);
+        obj.put("id", id);
+        obj.put("repoNo", repoNo);
+
+        return obj.toJSONString();
+    }
+
+    public ArrayList<SearchRepoModel> str2smds(String str) {
+        ArrayList<SearchRepoModel> sdms = new ArrayList<>();
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
         try {
@@ -437,8 +490,7 @@ public class JsonController {
                         String title = "";
                         String id = "";
                         String date = "";
-                        String cdNo = "";
-
+                        String repoNo ="";
                         for (Object inKey : inSet) {
                             Object inValue = inObj.get(inKey);
                             if (inKey.equals("title")) {
@@ -447,11 +499,11 @@ public class JsonController {
                                 id = (String) inValue;
                             } else if (inKey.equals("date")) {
                                 date = (String) inValue;
-                            } else if (inKey.equals("cdNo")) {
-                                cdNo = (String) inValue;
+                            } else if (inKey.equals("repoNo")){
+                                repoNo = (String) inValue;
                             }
                         }
-                        SearchDataModel sdm = new SearchDataModel(title, id, date, cdNo);
+                        SearchRepoModel sdm = new SearchRepoModel(title, id, date, repoNo);
                         sdms.add(sdm);
                     }
                 }
@@ -489,5 +541,72 @@ public class JsonController {
             }
         }
         return friends;
+    }
+
+    public RepoModel str2repo(String str) {
+
+        RepoModel repoModel = new RepoModel();
+        ArrayList<VersionModel> versions = new ArrayList<>();
+        Object obj = null;
+        JSONParser jsonParser = new JSONParser();
+
+        try {
+            obj = jsonParser.parse(str);
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        if (obj instanceof JSONObject) {
+            JSONObject jsonObject = (JSONObject) obj;
+            Set keySet = jsonObject.keySet();
+            for (Object key : keySet) {
+                Object value = jsonObject.get(key);
+                if (key.equals("id")) {
+                    repoModel.setCreateBy((String) value);
+                } else if (key.equals("name")) {
+                    repoModel.setRepoName((String) value);
+                } else if (key.equals("repoNo")) {
+                    String temp = (String) value;
+                    repoModel.setRepoNo(Integer.parseInt(temp));
+                } else if (key.equals("autho")) {
+                    String temp = (String) value;
+                    if(temp.equals("true")){
+                        repoModel.setAutho(true);
+                    } else{
+                        repoModel.setAutho(false);
+                    }
+                } else if (key.equals("versions")) {
+                    JSONArray arr = (JSONArray) value;
+                    int size = arr.size();
+                    for (int i = 0; i < size; i++) {
+                        JSONObject inObj = (JSONObject) arr.get(i);
+                        Set inSet = inObj.keySet();
+                        String verName = "";
+                        String date = "";
+                        String modi = "";
+                        String diagram = "";
+                        String verNo = "";
+
+                        for (Object inKey : inSet) {
+                            Object inValue = inObj.get(inKey);
+                            if (inKey.equals("verName")) {
+                                verName = (String) inValue;
+                            } else if (inKey.equals("date")) {
+                                date = (String) inValue;
+                            } else if (inKey.equals("modi")) {
+                                modi = (String) inValue;
+                            } else if (inKey.equals("diagram")) {
+                                diagram = (String) inValue;
+                            } else if (inKey.equals("verNo")) {
+                                verNo = (String) inValue;
+                            }
+                        }
+                        VersionModel vm = new VersionModel(verName, diagram, date, modi, Integer.parseInt(verNo));
+                        versions.add(vm);
+                    }
+                    repoModel.setVersions(versions);
+                }
+            }
+        }
+        return repoModel;
     }
 }

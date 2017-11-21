@@ -1,7 +1,7 @@
 package View.MainView;
 
 import Control.MainController;
-import Model.SearchDataModel;
+import Model.SearchRepoModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class NoticePanel extends JPanel{
     private static final int RWIDTH = 600;
     private static final int RHEIGHT = 120;
     private MainController mc;
-    private ArrayList<ResultPanel> resultPanels;
+    private ArrayList<SearchRepoPanel> resultPanels;
     private int y;
     public NoticePanel(MainController mc){
         this.mc = mc;
@@ -24,10 +24,10 @@ public class NoticePanel extends JPanel{
     }
 
 
-    public void addResultPanel(ArrayList<SearchDataModel> sdms){
+    public void addResultPanel(ArrayList<SearchRepoModel> sdms){
         if(sdms !=null) {
-            for (SearchDataModel sdm : sdms) {
-                ResultPanel rp = new ResultPanel(mc, sdm);
+            for (SearchRepoModel sdm : sdms) {
+                SearchRepoPanel rp = new SearchRepoPanel(mc, sdm);
                 rp.setBounds(0, y, RWIDTH, RHEIGHT);
                 resultPanels.add(rp);
                 y += RHEIGHT;

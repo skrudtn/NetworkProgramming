@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class Clazz extends JPanel {
     protected final int TEXTHEIGHT = 30;
-    protected final int WIDTH = 180;
+    protected final int WIDTH = 140;
 
     protected int x, y;
     protected int attY=TEXTHEIGHT;

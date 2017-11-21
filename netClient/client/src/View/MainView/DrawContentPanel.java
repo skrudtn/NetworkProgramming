@@ -5,7 +5,9 @@ import Control.MainController;
 import Model.ClassDiagramModel.Association;
 import Model.ClassDiagramModel.CDModel;
 import Model.ClassDiagramModel.ClazzModel;
+import Model.RepoModel;
 import Model.StaticModel.Pallate;
+import Model.StaticModel.Size;
 import View.ClassDiagram.Clazz;
 
 import javax.swing.*;
@@ -22,28 +24,17 @@ import java.util.Set;
  * Created by skrud on 2017-10-03.
  */
 public class DrawContentPanel extends JPanel {
-    private final int SIDEBARWIDTH = 200;
-    private final int MENUBARWIDTH = 200;
-    private final int TOOLBOXWIDTH = 200;
-    private final int TOOLBOXHEIGHT = 400;
-    private final int PUSHBTNWIDTH = 140;
-    private final int PUSHBTNHEIGHT = 100;
-    private final int BACKBTNWIDTH = 80;
-    private final int BACKBTNHEIGHT = 60;
-    private final int DRAWPANELSIZE = 3000;
     private MainFrame f;
     private JScrollPane jScrollPane;
     private JPanel menuPanel;
     private JPanel sideBarPanel;
     private JPanel toolBoxPanel;
-
     private DrawPanel drawPanel;
     private JComboBox<String> classComboBox;
     private MainController controller;
     private GUIController gc;
     private JButton backBtn;
     private JButton pushBtn;
-
     public DrawContentPanel(MainFrame f) {
         this.f = f;
         this.controller = f.getController();
@@ -65,12 +56,12 @@ public class DrawContentPanel extends JPanel {
 
 
     private void initDrawPanel() {
-        drawPanel = new DrawPanel(controller);
+        drawPanel = new DrawPanel(controller , this);
         drawPanel.setLayout(null);
         drawPanel.setBackground(Color.WHITE);
-        drawPanel.setPreferredSize(new Dimension(DRAWPANELSIZE, DRAWPANELSIZE));
+        drawPanel.setPreferredSize(new Dimension(Size.DRAWPANELSIZE, Size.DRAWPANELSIZE));
         jScrollPane = new JScrollPane(drawPanel);
-        jScrollPane.setBounds(SIDEBARWIDTH, 0, f.getWidth() - (SIDEBARWIDTH + TOOLBOXWIDTH), f.getHeight());
+        jScrollPane.setBounds(Size.MENUBARWIDTH, 0, f.getWidth() - (Size.MENUBARWIDTH+ Size.TOOLBOXWIDTH), f.getHeight());
         jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         add(jScrollPane);
@@ -79,7 +70,7 @@ public class DrawContentPanel extends JPanel {
     private void initMenuPanel() {
         menuPanel = new JPanel();
         menuPanel.setBackground(Pallate.c);
-        menuPanel.setBounds(f.getWidth() - MENUBARWIDTH, 0, SIDEBARWIDTH, f.getHeight());
+        menuPanel.setBounds(f.getWidth() - Size.MENUBARWIDTH, 0, Size.MENUBARWIDTH, f.getHeight());
         menuPanel.setLayout(null);
         add(menuPanel);
     }
@@ -88,7 +79,7 @@ public class DrawContentPanel extends JPanel {
         toolBoxPanel = new JPanel();
         toolBoxPanel.setBackground(Pallate.d);
         toolBoxPanel.setBorder((new BevelBorder(BevelBorder.RAISED)));
-        toolBoxPanel.setBounds(0, f.getHeight() - TOOLBOXHEIGHT, TOOLBOXWIDTH, TOOLBOXHEIGHT);
+        toolBoxPanel.setBounds(0, f.getHeight() - Size.TOOLBOXHEIGHT, Size.TOOLBOXWIDTH, Size.TOOLBOXHEIGHT);
         sideBarPanel.add(toolBoxPanel);
 
         sideBarPanel.add(toolBoxPanel);
@@ -107,21 +98,21 @@ public class DrawContentPanel extends JPanel {
     private void initSideBarPanel() {
         sideBarPanel = new JPanel();
         sideBarPanel.setBackground(Pallate.c);
-        sideBarPanel.setBounds(0, 0, SIDEBARWIDTH, f.getHeight());
+        sideBarPanel.setBounds(0, 0, Size.MENUBARWIDTH, f.getHeight());
         sideBarPanel.setBorder(new BevelBorder(BevelBorder.RAISED));
         sideBarPanel.setLayout(null);
         add(sideBarPanel);
     }
 
     private void initBtn() {
-        backBtn = new JButton(getImage("client\\Image\\backBtn.png", BACKBTNWIDTH, BACKBTNHEIGHT));
-        pushBtn = new JButton(getImage("client\\Image\\pushBtn.png", PUSHBTNWIDTH, PUSHBTNHEIGHT));
+        backBtn = new JButton(getImage("client\\Image\\backBtn.png", Size.BACKBTNWIDTH, Size.BACKBTNHEIGHT));
+        pushBtn = new JButton(getImage("client\\Image\\pushBtn.png", Size.PUSHBTNWIDTH, Size.PUSHBTNHEIGHT));
 
-        backBtn.setBounds(10, 10, BACKBTNWIDTH, BACKBTNHEIGHT);
+        backBtn.setBounds(10, 10, Size.BACKBTNWIDTH, Size.BACKBTNHEIGHT);
         backBtn.setBorderPainted(false);
         backBtn.setFocusPainted(false);
         backBtn.setContentAreaFilled(false);
-        pushBtn.setBounds(10, 10, PUSHBTNWIDTH, PUSHBTNHEIGHT);
+        pushBtn.setBounds(10, 10, Size.PUSHBTNWIDTH, Size.PUSHBTNHEIGHT);
         pushBtn.setBorderPainted(false);
         pushBtn.setFocusPainted(false);
         pushBtn.setContentAreaFilled(false);
@@ -151,15 +142,6 @@ public class DrawContentPanel extends JPanel {
                 }
             }
         });
-//        addKeyListener(new KeyAdapter() {
-//            @Override
-//            public synchronized void keyPressed(KeyEvent e) {
-//                super.keyPressed(e);
-//                if ((e.getKeyCode()==KeyEvent.VK_P) && ((e.getModifiers()&KeyEvent.CTRL_DOWN_MASK) !=0)){
-//                    pushAction();
-//                }
-//            }
-//        });
         pushBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -210,18 +192,24 @@ public class DrawContentPanel extends JPanel {
             cmList.add(new ClazzModel(c.getClazzName(), c.getAtt(), c.getMet(),
                     c.getX(), c.getY(), c.getWidth(), c.getHeight(), c.getAcList(), c.getPointInClazzes()));
         }
-        CDModel cd = new CDModel(controller.getMyAccount().getId(), controller.getCdModel().getCdName(), cmList, acList);
-        String jsonString = controller.getJsonController().cdm2str(cd);
-        controller.getNetworkController().sendStr(jsonString);
+        CDModel cd = new CDModel(controller.getLoginController().getMyAccount().getId(), controller.getUmlController().getRepoModel().getRepoName(), cmList, acList);
+        String str= controller.getJsonController().cdm2str(cd,controller.getUmlController().getRepoModel().getRepoNo());
+        controller.getNetworkController().sendStr(str);
     }
 
 
     void resizePanel() {
-        jScrollPane.setBounds(SIDEBARWIDTH, 0, f.getWidth() - (SIDEBARWIDTH + TOOLBOXWIDTH), f.getHeight()-34);
-        toolBoxPanel.setBounds(0, f.getHeight() - TOOLBOXHEIGHT, TOOLBOXWIDTH, TOOLBOXHEIGHT);
-        sideBarPanel.setBounds(0, 0, SIDEBARWIDTH, f.getHeight());
-        menuPanel.setBounds(f.getWidth() - MENUBARWIDTH, 0, SIDEBARWIDTH, f.getHeight());
+        jScrollPane.setBounds(Size.MENUBARWIDTH, 0, f.getWidth() - (Size.MENUBARWIDTH + Size.TOOLBOXWIDTH), f.getHeight()-34);
+        toolBoxPanel.setBounds(0, f.getHeight() - Size.TOOLBOXHEIGHT, Size.TOOLBOXWIDTH, Size.TOOLBOXHEIGHT);
+        sideBarPanel.setBounds(0, 0, Size.MENUBARWIDTH, f.getHeight());
+        menuPanel.setBounds(f.getWidth() - Size.MENUBARWIDTH, 0, Size.MENUBARWIDTH, f.getHeight());
     }
 
+    public JComboBox<String> getClassComboBox() {
+        return classComboBox;
+    }
 
+    public JButton getPushBtn() {
+        return pushBtn;
+    }
 }

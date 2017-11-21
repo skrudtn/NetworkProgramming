@@ -54,7 +54,7 @@ public class SearchPanel extends JPanel {
 
     private void initComboBox() {
         category = new String[]{
-                "Title", "Contents", "UserID"
+                "Title", "UserID"
         };
         searchCombo = new JComboBox<>(category);
         searchCombo.setBounds(20,20,100,getHeight()-40);

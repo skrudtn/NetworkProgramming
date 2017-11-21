@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import Model.ClassDiagramModel.CDModel;
 import Model.StaticModel.Ack;
 
 /**
@@ -30,7 +31,7 @@ public class NetworkController {
         connect();
     }
 
-    public void connect() {
+    private void connect() {
         try {
             socket = new Socket(IP, PORT);
 
@@ -57,72 +58,65 @@ public class NetworkController {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             int ack = dataInputStream.readInt();
-            System.out.println("ack " +ack);
+            System.out.println("ack " + ack);
             switch (ack) {
                 case Ack.error:
                     break; //에러
                 case Ack.lAck:
                     gc.newDisplayView();
                     recvLoginModel();
-                    recvReposiData();
+                    recvSearchData(true);
                     recvFriends();
                     break; //로그인 성공
                 case Ack.pREJ:
-                    gc.loginStateUpdate("Invalid PW");
+                    gc.loginStateUpdate("Invalid PW", false);
                     break;// 비밀번호 틀림
                 case Ack.iREJ:
-                    gc.loginStateUpdate("Invalid ID");
+                    gc.loginStateUpdate("Invalid ID", false);
                     break;
                 case Ack.oACK:
-                    gc.signupStateUpdate("Available ID");
+                    gc.signupStateUpdate("Available ID", true);
                     gc.setOverLapFlag(0);
                     break;
                 case Ack.oREJ:
-                    gc.signupStateUpdate("Existing id");
+                    gc.signupStateUpdate("Existing id", false);
                     break;
                 case Ack.signUpACK:
                     gc.loginView();
                     break;
                 case Ack.signUpREJ:
-                    gc.signupStateUpdate("Failed Sign Up");
-                    break;
-                case Ack.pwOACK:
-                    gc.pwChangeStateUpdate("Existing id");
-                    gc.setOverLapFlag(1);
-                    break;
-                case Ack.pwOREJ:
-                    gc.pwChangeStateUpdate("Nonexistent ID");
+                    gc.signupStateUpdate("Failed Sign Up", false);
                     break;
                 case Ack.pwCACK:
                     gc.loginView();
                     break;
                 case Ack.pwCREJ:
-                    gc.pwChangeStateUpdate("Password Change Failed");
+                    gc.pwChangeStateUpdate("Password Change Failed", 0);
                     break;
                 case Ack.pushACK:
-                    recvReposiData();
-                    gc.setPushText("Push Completed");
+                    recvSearchData(true);
+                    gc.showMainMessage("Push Completed", -1);
                     gc.push();
                     break;
                 case Ack.pushREJ:
-                    gc.setPushText("Push Failed");
+                    gc.showMainMessage("Push Failed", 0);
                     break;
                 case Ack.cloneACK:
                     recvCloneData();
                     gc.cllone();
                     break;
                 case Ack.cloneREJ:
-                    System.out.println("clone 실패");
+                    gc.showMainMessage("Clone Failed", 0);
                     break;
                 case Ack.searchAck:
-                    recvSearchData();
+                    recvSearchData(false);
                     break;
                 case Ack.searchRej:
                     controller.setSdms(null);
                     gc.searchUpdate();
                     break;
-                case Ack.loginDupliAck :
-                    gc.loginStateUpdate("Duplicate login");
+                case Ack.loginDupliAck:
+                    gc.loginStateUpdate("Duplicate login", false);
                     break;
                 case Ack.logoutAck:
                     gc.signOut();
@@ -139,13 +133,36 @@ public class NetworkController {
                 case Ack.addFriendRej:
 
                     break;
+                case Ack.overlapRepoACK: // repo 생성가능
+                    recvRepoData();
+                    recvSearchData(true);
+                    break;
+                case Ack.overlapRepoREJ: // repo 중복
+                    gc.showRepoMessage(0);
+                    break;
+                case Ack.repoACK: // version 선택
+                    recvRepoData();
+                    break;
+                case Ack.repoREJ: // version 선택불가능
+                    break;
                 default:
                     break;
             }
 
-        } catch (IOException e)
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-        {
+    private void recvRepoData() {
+        try {
+            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+            String str = dataInputStream.readUTF();
+            System.out.println(str);
+            RepoModel rm = jc.str2repo(str);
+            controller.getUmlController().setRepoModel(rm);
+            gc.versionView();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -164,35 +181,30 @@ public class NetworkController {
 
     }
 
-    private void recvSearchData() {
+    private void recvSearchData(boolean isMysmds) {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
-            ArrayList<SearchDataModel> smds = jc.str2smds(str);
-            controller.setSdms(smds);
-            gc.searchUpdate();
+            ArrayList<SearchRepoModel> smds = jc.str2smds(str);
+            if (isMysmds) {
+                controller.setMySdms(smds);
+                gc.myRepoUpdate();
+            } else {
+                controller.setSdms(smds);
+                gc.searchUpdate();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    private void recvReposiData() {
-        try {
-            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-            String str = dataInputStream.readUTF();
-            ArrayList<SearchDataModel> smds = jc.str2smds(str);
-            controller.setReposiData(smds);
-            gc.repositoryUpdate();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     private void recvLoginModel() {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
             System.out.println(str);
-            controller.setMyAccount(jc.str2lm(str));
+            controller.getLoginController().setMyAccount(jc.str2lm(str));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -202,11 +214,10 @@ public class NetworkController {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
-            controller.setCdModel(jc.str2cdm(str));
-
+            CDModel cdModel = jc.str2cdm(str);
+            controller.getUmlController().setCdModel(cdModel);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }

@@ -4,6 +4,7 @@ import Control.GUIController;
 import Control.MainController;
 import Model.ClassDiagramModel.*;
 import Model.StaticModel.Pallate;
+import Model.StaticModel.Size;
 import View.ClassDiagram.Clazz;
 import View.ClassDiagram.Interface;
 
@@ -18,23 +19,22 @@ import java.util.ArrayList;
  * Created by skrud on 2017-10-03.
  */
 public class DrawPanel extends JPanel {
-    private final int DRAWPANELSIZE = 3000;
-    private final int CLAZZWIDTH = 180;
-    private final int CLAZZHEIGHT = 90;
 
     private MainController controller;
     private GUIController gc;
+    private DrawContentPanel drawContentPanel;
     private ArrayList<Clazz> czList;
     private ArrayList<Association> acList;
-    private String authority;
+    private AuthorityPanel authorityPanel;
     private JPanel coordPanel;
 
-    DrawPanel(MainController controller) {
+    DrawPanel(MainController controller, DrawContentPanel drawContentPanel) {
         this.controller = controller;
         gc = controller.getGUIController();
+        this.drawContentPanel = drawContentPanel;
         czList = new ArrayList<>(0);
         acList = new ArrayList<>();
-        authority = "";
+        authorityPanel = new AuthorityPanel();
         initUI();
     }
 
@@ -42,9 +42,9 @@ public class DrawPanel extends JPanel {
         setBackground(Pallate.a);
 
         coordPanel = new JPanel();
-        coordPanel.setBounds(0, 0, DRAWPANELSIZE, DRAWPANELSIZE);
+        coordPanel.setBounds(0, 0, Size.DRAWPANELSIZE, Size.DRAWPANELSIZE);
         coordPanel.setBackground(new Color(0, 0, 0, 0));
-        actionLisenter();
+        actionListener();
     }
 
     @Override
@@ -125,7 +125,7 @@ public class DrawPanel extends JPanel {
         }
     }
 
-    private void actionLisenter() {
+    private void actionListener() {
         final Point[] sP = {null};
         final Point[] mP = {null};
         final Point[] eP = {null};
@@ -218,7 +218,6 @@ public class DrawPanel extends JPanel {
             }
         });
 
-
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -239,9 +238,9 @@ public class DrawPanel extends JPanel {
         if (!czList.isEmpty()) {
             for (Clazz cz : czList) {
                 if (isCollide(cz, (int) p.getX(), (int) p.getY()) ||
-                        isCollide(cz, (int) p.getX() + CLAZZWIDTH, (int) p.getY()) ||
-                        isCollide(cz, (int) p.getX(), (int) p.getY() + CLAZZHEIGHT) ||
-                        isCollide(cz, (int) p.getX() + CLAZZWIDTH, (int) p.getY() + CLAZZHEIGHT)) {
+                        isCollide(cz, (int) p.getX() + Size.CLAZZWIDTH, (int) p.getY()) ||
+                        isCollide(cz, (int) p.getX(), (int) p.getY() + Size.CLAZZHEIGHT) ||
+                        isCollide(cz, (int) p.getX() + Size.CLAZZWIDTH, (int) p.getY() + Size.CLAZZHEIGHT)) {
                     createFlag = false;
                 }
             }
@@ -255,8 +254,6 @@ public class DrawPanel extends JPanel {
             }
             czList.add(newCz);
             add(newCz);
-
-            repaint();
         }
     }
 
@@ -285,7 +282,6 @@ public class DrawPanel extends JPanel {
             c.repaint();
         }
     }
-
 
     private void createAssociation(Point sP, Point eP) {
         int c = 0;
@@ -341,7 +337,6 @@ public class DrawPanel extends JPanel {
         return x <= sX && x + w >= sX && y <= sY && y + h >= sY;
     }
 
-
     ArrayList<Clazz> getCZList() {
         return czList;
     }
@@ -350,6 +345,20 @@ public class DrawPanel extends JPanel {
         add(coordPanel);
         this.setComponentZOrder(coordPanel, 0);
         coordPanel.setOpaque(false);
+        repaint();
+    }
+    public void noPermission() {
+        drawContentPanel.getClassComboBox().setVisible(false);
+        drawContentPanel.getPushBtn().setVisible(false);
+        add(authorityPanel);
+        this.setComponentZOrder(authorityPanel, 0);
+        authorityPanel.setOpaque(false);
+        repaint();
+    }
+    public void permission(){
+        drawContentPanel.getClassComboBox().setVisible(true);
+        drawContentPanel.getPushBtn().setVisible(true);
+        remove(authorityPanel);
         repaint();
     }
 
@@ -366,13 +375,12 @@ public class DrawPanel extends JPanel {
 
     public void cllone() {
         init();
-        cmd2ClassPanel(controller.getCdModel());
-        cmd2LineClass(controller.getCdModel());
+        cmd2ClassPanel(controller.getUmlController().getCdModel());
+        cmd2LineClass(controller.getUmlController().getCdModel());
         repaint();
     }
 
     private void cmd2ClassPanel(CDModel cdm) {
-        authority = cdm.getId();
         ArrayList<ClazzModel> cms = cdm.getClazzModels();
         for (ClazzModel cm : cms) {
             Clazz c = new Clazz(this, cm.getX(), cm.getY());
@@ -383,10 +391,17 @@ public class DrawPanel extends JPanel {
 
     private void cmd2LineClass(CDModel cdm) {
         for(Association ac: cdm.getAcList()){
-            createAssociation(new Point(ac.getsX(),ac.getsY()),new Point(ac.geteX(),ac.geteY()));
+            if (ac instanceof DirectAssociation) gc.setComboMode(4);
+            else if (ac instanceof Generalization) gc.setComboMode(5);
+            else if (ac instanceof Realization) gc.setComboMode(6);
+            else if (ac instanceof Dependency) gc.setComboMode(7);
+            else if (ac instanceof Aggregation) gc.setComboMode(8);
+            else if (ac instanceof Composition) gc.setComboMode(9);
+            else gc.setComboMode(3);
+
+                createAssociation(new Point(ac.getsX(),ac.getsY()),new Point(ac.geteX(),ac.geteY()));
         }
     }
-
 
     private void moveClassPanel(Clazz c, Point mP, Point eP) {
         int dx = (int) eP.getX() - (int) mP.getX();
@@ -411,16 +426,11 @@ public class DrawPanel extends JPanel {
 
     private Point[] calcShortCut(int cX1, int cY1, int cW1, int cH1, int cX2, int cY2, int cW2, int cH2) {
         Point[] points = new Point[2];
-        System.out.println("cX1, cY1 : " + cX1 + ", " + cY1);
-        System.out.println("cX2, cY2 : " + cX2 + ", " + cY2);
-
         double x1 = cX1 + cW1 / 2;
         double y1 = cY1 + cH1 / 2;
         double x2 = cX2 + cW2 / 2;
         double y2 = cY2 + cH2 / 2;
 
-        System.out.println("x1, y1 : " + x1 + ", " + y1);
-        System.out.println("x2, y2 : " + x2 + ", " + y2);
         double dx = x2 - x1;
         double dy = y2 - y1;
         double shortCutX1 = 0;
@@ -441,10 +451,9 @@ public class DrawPanel extends JPanel {
             if (x1 <= x2 && y1 >= y2) flag = 2;
             if (x1 >= x2 && y1 <= y2) flag = 3;
             if (x1 >= x2 && y1 >= y2) flag = 4;
-            System.out.println(flag);
             switch (flag) {
                 case 1:
-                    if (dy / dx > 1.0) { // 두 사각형의 위와 아래직선
+                    if (dy/dx> 1.0) { // 두 사각형의 위와 아래직선
                         shortCutY1 = cY1 + cH1;
                         shortCutX1 = getLinearX(shortCutY1, dx, dy, x1, y1);
                         shortCutY2 = cY2;

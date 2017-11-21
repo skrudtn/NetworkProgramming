@@ -12,9 +12,11 @@ public class LoginController {
     private JsonController jc;
     private NetworkController nc;
 
+    private LoginModel myAccount;
     public LoginController(MainController controller) {
         jc= controller.getJsonController();
         nc = controller.getNetworkController();
+        myAccount = new LoginModel();
     }
 
     public void signup(String id, String pw, String name, String email) {
@@ -41,6 +43,14 @@ public class LoginController {
     public void pwChange(String id, String pw){
         String pwInfo = jc.pw2JSONString(id,pw);
         nc.sendStr(pwInfo);
+    }
+
+    public LoginModel getMyAccount() {
+        return myAccount;
+    }
+
+    public void setMyAccount(LoginModel myAccount) {
+        this.myAccount = myAccount;
     }
 
 }

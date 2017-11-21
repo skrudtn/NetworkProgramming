@@ -18,8 +18,8 @@ public class Ack {
     public final static int signUpREJ = 7; // 가입 실패 rej
     public final static int pwOACK = 8; // 아이디 생성 가능 ack
     public final static int pwOREJ = 9; // 아이디 중복 rej
-    public final static int pwCACK = 10; // 아이디 생성 가능 ack
-    public final static int pwCREJ = 11; // 아이디 중복 rej
+    public final static int pwCACK = 10; // 비번 변경 가능 ack
+    public final static int pwCREJ = 11; // 비번 변경 불가 rej
     public final static int pushACK = 12; // db 저장 성공 ack
     public final static int pushREJ = 13; // db 저장 실패 rej
     public final static int cloneACK = 14; // clone ack
@@ -32,4 +32,10 @@ public class Ack {
     public final static int searchIdRej= 21; // id search rej
     public final static int addFriendAck = 22; // add friend ack
     public final static int addFriendRej= 23; // add friend rej
+    public final static int overlapRepoACK = 24; // repo 생성 가능 ack
+    public final static int overlapRepoREJ = 25; // repo 생성 실패 rej
+    public final static int repoACK = 26; // repo 전송 가능 ack
+    public final static int repoREJ = 27; // repo 전송 불가 rej
+    public final static int versionACK = 28; // version 선택 가능 ack
+    public final static int versionREJ = 29; // version 선택 실패 rej
 }

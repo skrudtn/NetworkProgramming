@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://D:/netClient/client/src/Control/NetworkController.java" description="gc.cllone();" line="111" />
+    <bookmark url="file://D:/netClient/client/src/Control/NetworkController.java" description="gc.cllone();" line="105" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69a2142-d7f5-4bc5-a5a1-172feb027484" name="Default" comment="" />
@@ -84,57 +84,78 @@
         <entry file="file://$PROJECT_DIR$/서버/src/Control/DBController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="172">
-              <caret line="184" column="35" lean-forward="false" selection-start-line="184" selection-start-column="35" selection-end-line="184" selection-end-column="35" />
+              <caret line="420" column="24" lean-forward="false" selection-start-line="420" selection-start-column="24" selection-end-line="420" selection-end-column="24" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#DBController#0;class#DBController#0" expanded="false" />
                 <element signature="method#getConn#0;class#DBController#0" expanded="false" />
-                <element signature="method#pwDB#0;class#DBController#0" expanded="false" />
                 <element signature="method#closeConnect#0;class#DBController#0" expanded="false" />
-                <marker date="1510465186673" expanded="true" signature="1137:1248" ph="INSERT INTO MEMBERS... " />
-                <marker date="1510465186673" expanded="true" signature="1137:1268" ph="INSERT INTO MEMBERS... " />
-                <marker date="1510465186673" expanded="true" signature="2094:2128" ph="SELECT * FRO... MEMBERS" />
-                <marker date="1510465186673" expanded="true" signature="3195:3239" ph="UPDATE MEMBE... " />
-                <marker date="1510465186673" expanded="true" signature="3949:3984" ph="SELECT id FR... MEMBERS" />
-                <marker date="1510465186673" expanded="true" signature="4711:4822" ph="INSERT INTO CD... " />
-                <marker date="1510465186673" expanded="true" signature="4711:4823" ph="INSERT INTO CD... " />
-                <marker date="1510465186673" expanded="true" signature="4711:4828" ph="INSERT INTO CD... " />
-                <marker date="1510465186673" expanded="true" signature="4711:4837" ph="INSERT INTO CD... " />
-                <marker date="1510465186673" expanded="true" signature="4711:4838" ph="INSERT INTO CD... " />
-                <marker date="1510465186673" expanded="true" signature="5980:5994" ph="SELECT CDNAM... CD" />
-                <marker date="1510465186673" expanded="true" signature="5980:6177" ph="SELECT CDNAM... CD" />
-                <marker date="1510465186673" expanded="true" signature="5980:6228" ph="SELECT CDNAM... CD" />
-                <marker date="1510465186673" expanded="true" signature="5980:6229" ph="SELECT CDNAM... CD" />
-                <marker date="1510465186673" expanded="true" signature="6402:6638" ph="SELECT CDNAM... CD" />
-                <marker date="1510465186673" expanded="true" signature="6402:6639" ph="SELECT CDNAM... CD" />
-                <marker date="1510465186673" expanded="true" signature="7545:7640" ph="SELECT cd.js... CD" />
-                <marker date="1510465186673" expanded="true" signature="8348:8435" ph="SELECT id\nF... MEMBERS" />
-                <marker date="1510465186673" expanded="true" signature="9131:9240" ph="INSERT INTO Friends... " />
-                <marker date="1510465186673" expanded="true" signature="9131:9241" ph="UPDATE MEMBE... " />
-                <marker date="1510465186673" expanded="true" signature="10110:10157" ph="SELECT *FROM... FRIENDS" />
-                <marker date="1510465186673" expanded="true" signature="10110:10161" ph="SELECT *FROM... FRIENDS" />
-                <marker date="1510465186673" expanded="true" signature="10110:10188" ph="SELECT *FROM... FRIENDSWHER" />
-                <marker date="1510465186673" expanded="true" signature="10110:10189" ph="SELECT *FROM... FRIENDS" />
-                <marker date="1510465186673" expanded="true" signature="10110:10197" ph="SELECT *\nFR... FRIENDS" />
-                <marker date="1510465186673" expanded="true" signature="10110:10199" ph="SELECT *\nFR... FRIENDS" />
+                <element signature="method#signup#0;class#DBController#0" expanded="false" />
+                <element signature="method#loginDB#0;class#DBController#0" expanded="false" />
+                <element signature="method#pwDB#0;class#DBController#0" expanded="false" />
+                <element signature="method#overLapDB#0;class#DBController#0" expanded="false" />
+                <element signature="method#selectId#0;class#DBController#0" expanded="false" />
+                <element signature="method#insertFriend#0;class#DBController#0" expanded="false" />
+                <element signature="method#getFriends#0;class#DBController#0" expanded="false" />
+                <element signature="method#insertRepo#0;class#DBController#0" expanded="false" />
+                <element signature="method#insertVersion#0;class#DBController#0" expanded="false" />
+                <marker date="1511179560275" expanded="true" signature="1261:1372" ph="INSERT INTO MEMBERS... " />
+                <marker date="1511179560275" expanded="true" signature="1261:1392" ph="INSERT INTO MEMBERS... " />
+                <marker date="1511179560275" expanded="true" signature="2222:2256" ph="SELECT * FRO... MEMBERS" />
+                <marker date="1511179560275" expanded="true" signature="3323:3367" ph="UPDATE MEMBE... " />
+                <marker date="1511179560275" expanded="true" signature="4077:4112" ph="SELECT id FR... MEMBERS" />
+                <marker date="1511179560275" expanded="true" signature="4853:4897" ph="INSERT INTO CD... " />
+                <marker date="1511179560275" expanded="true" signature="4853:4958" ph="INSERT INTO CD... " />
+                <marker date="1511179560275" expanded="true" signature="6046:6063" ph="SELECT CDNAM... CD" />
+                <marker date="1511179560275" expanded="true" signature="6046:6248" ph="SELECT CDNAM... CD" />
+                <marker date="1511179560275" expanded="true" signature="6046:6302" ph="SELECT CDNAM... CD" />
+                <marker date="1511179560275" expanded="true" signature="6046:6303" ph="SELECT CDNAM... CD" />
+                <marker date="1511179560275" expanded="true" signature="6476:6483" ph="SELECT REPO.... " />
+                <marker date="1511179560275" expanded="true" signature="6476:6717" ph="SELECT CDNAM... CD" />
+                <marker date="1511179560275" expanded="true" signature="6476:6718" ph="SELECT CDNAM... CD" />
+                <marker date="1511179560275" expanded="true" signature="7609:7763" ph="SELECT cd.js... CD" />
+                <marker date="1511179560275" expanded="true" signature="7609:7764" ph="SELECT cd.js... CD" />
+                <marker date="1511179560275" expanded="true" signature="8475:8562" ph="SELECT id\nF... MEMBERS" />
+                <marker date="1511179560275" expanded="true" signature="9258:9367" ph="INSERT INTO Friends... " />
+                <marker date="1511179560275" expanded="true" signature="9258:9368" ph="UPDATE MEMBE... " />
+                <marker date="1511179560275" expanded="true" signature="10105:10152" ph="SELECT *FROM... FRIENDS" />
+                <marker date="1511179560275" expanded="true" signature="10105:10156" ph="SELECT *FROM... FRIENDS" />
+                <marker date="1511179560275" expanded="true" signature="10105:10183" ph="SELECT *FROM... FRIENDSWHER" />
+                <marker date="1511179560275" expanded="true" signature="10105:10184" ph="SELECT *FROM... FRIENDS" />
+                <marker date="1511179560275" expanded="true" signature="10105:10192" ph="SELECT *\nFR... FRIENDS" />
+                <marker date="1511179560275" expanded="true" signature="10105:10194" ph="SELECT *\nFR... FRIENDS" />
+                <marker date="1511179560275" expanded="true" signature="10945:11040" ph="SELECT FOLDE... FOLDERS" />
+                <marker date="1511179560275" expanded="true" signature="11861:11942" ph="SELECT v.ver... " />
+                <marker date="1511179560275" expanded="true" signature="11861:11956" ph="SELECT v.ver... " />
+                <marker date="1511179560275" expanded="true" signature="11861:11960" ph="SELECT v.ver... " />
+                <marker date="1511179560275" expanded="true" signature="11861:12100" ph="SELECT NAME\... VERSIONS" />
+                <marker date="1511179560275" expanded="true" signature="11861:12101" ph="SELECT v.ver... REPO" />
+                <marker date="1511179560275" expanded="true" signature="12798:12975" ph="SELECT m.id\... AUTHO" />
+                <marker date="1511179560275" expanded="true" signature="12798:13011" ph="SELECT m.id\... AUTHO" />
+                <marker date="1511179560275" expanded="true" signature="13763:13878" ph="INSERT INTO REPO... " />
+                <marker date="1511179560275" expanded="true" signature="14098:14129" ph="SELECT REPON... dual" />
+                <marker date="1511179560275" expanded="true" signature="14364:14470" ph="SELECT MEMNO... MEMBERS" />
+                <marker date="1511179560275" expanded="true" signature="14727:14834" ph="INSERT INTO AUTHO... " />
+                <marker date="1511179560275" expanded="true" signature="15714:15722" ph="INSERT INTO VERSIONS... " />
+                <marker date="1511179560275" expanded="true" signature="15714:15818" ph="SELECT MAX(v... VERSIONS" />
+                <marker date="1511179560275" expanded="true" signature="15714:15819" ph="SELECT Max(v... VERSIONS" />
+                <marker date="1511179560275" expanded="true" signature="16166:16301" ph="INSERT INTO VERSIONS... " />
+                <marker date="1511179560275" expanded="true" signature="16561:16591" ph="INSERT INTO VERSIONS... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JsonController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JsonController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/서버/src/Control/JsonController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4470">
-              <caret line="320" column="59" lean-forward="true" selection-start-line="320" selection-start-column="59" selection-end-line="320" selection-end-column="59" />
+            <state relative-caret-position="320">
+              <caret line="491" column="9" lean-forward="false" selection-start-line="491" selection-start-column="9" selection-end-line="491" selection-end-column="9" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="imports" expanded="false" />
                 <element signature="method#getJsonType#0;class#JsonController#0" expanded="false" />
-                <element signature="method#string2JSONObject#0;class#JsonController#0" expanded="false" />
+                <element signature="method#str2JSONObject#0;class#JsonController#0" expanded="false" />
                 <element signature="method#str2lm#0;class#JsonController#0" expanded="false" />
-                <element signature="method#lm2str#0;class#JsonController#0" expanded="false" />
                 <element signature="method#str2sp#0;class#JsonController#0" expanded="false" />
-                <element signature="method#sms2str#0;class#JsonController#0" expanded="false" />
-                <element signature="method#str2cp#0;class#JsonController#0" expanded="false" />
                 <element signature="method#str2si#0;class#JsonController#0" expanded="false" />
                 <element signature="method#si2str#0;class#JsonController#0" expanded="false" />
                 <element signature="method#firends2str#0;class#JsonController#0" expanded="false" />
@@ -143,50 +164,89 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/서버/src/Control/LoginController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="91" column="18" lean-forward="false" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+      <file leaf-file-name="KSNA.MEMBERS" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.MEMBERS">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/서버/src/Control/MainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-              <folding>
-                <element signature="e#942#943#0" expanded="true" />
-                <element signature="e#980#981#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Dependency.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/서버/src/Model/Dependency.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/서버/src/Control/AccountController.java">
+      <file leaf-file-name="KSNA.REPO" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.REPO">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MemberThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/서버/src/Control/MemberThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="48" column="23" lean-forward="true" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+            <state relative-caret-position="340">
+              <caret line="132" column="41" lean-forward="false" selection-start-line="132" selection-start-column="41" selection-end-line="132" selection-end-column="41" />
               <folding>
-                <element signature="e#1124#1125#0" expanded="true" />
-                <element signature="e#1178#1179#0" expanded="true" />
+                <element signature="imports" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KSNA.VERSIONS" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.VERSIONS">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KSNA.AUTHO" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.AUTHO">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KSNA.FRIENDS" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.FRIENDS">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -194,102 +254,27 @@
       <file leaf-file-name="UMLContorller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/서버/src/Control/UMLContorller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="30" column="51" lean-forward="true" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
+            <state relative-caret-position="349">
+              <caret line="102" column="22" lean-forward="false" selection-start-line="102" selection-start-column="22" selection-end-line="102" selection-end-column="22" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1731#1732#0" expanded="false" />
+                <element signature="e#1769#1770#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KSNA.FOLDERS" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.FOLDERS">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
+      <file leaf-file-name="KSNA.CD" pinned="false" current-in-tab="true">
+        <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClazzModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/ClazzModel.java">
-          <provider selected="true" editor-type-id="text-editor">
+          <provider editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#1818#1819#0" expanded="false" />
-                <element signature="e#1850#1851#0" expanded="false" />
-                <element signature="e#1900#1901#0" expanded="false" />
-                <element signature="e#1942#1943#0" expanded="false" />
-                <element signature="e#1993#1994#0" expanded="false" />
-                <element signature="e#2029#2030#0" expanded="false" />
-                <element signature="e#2098#2099#0" expanded="false" />
-                <element signature="e#2148#2149#0" expanded="false" />
-                <element signature="e#2196#2197#0" expanded="false" />
-                <element signature="e#2229#2230#0" expanded="false" />
-                <element signature="e#2292#2293#0" expanded="false" />
-                <element signature="e#2336#2337#0" expanded="false" />
-                <element signature="e#2361#2362#0" expanded="false" />
-                <element signature="e#2385#2386#0" expanded="false" />
-                <element signature="e#2416#2417#0" expanded="false" />
-                <element signature="e#2442#2443#0" expanded="false" />
-                <element signature="e#2467#2468#0" expanded="false" />
-                <element signature="e#2491#2492#0" expanded="false" />
-                <element signature="e#2522#2523#0" expanded="false" />
-                <element signature="e#2548#2549#0" expanded="false" />
-                <element signature="e#2573#2574#0" expanded="false" />
-                <element signature="e#2597#2598#0" expanded="false" />
-                <element signature="e#2628#2629#0" expanded="false" />
-                <element signature="e#2654#2655#0" expanded="false" />
-                <element signature="e#2679#2680#0" expanded="false" />
-                <element signature="e#2703#2704#0" expanded="false" />
-                <element signature="e#2734#2735#0" expanded="false" />
-                <element signature="e#2760#2761#0" expanded="false" />
-                <element signature="e#2800#2801#0" expanded="false" />
-                <element signature="e#2836#2837#0" expanded="false" />
-                <element signature="e#2873#2874#0" expanded="false" />
-                <element signature="e#2912#2913#0" expanded="false" />
-                <element signature="e#2953#2954#0" expanded="false" />
-                <element signature="e#2986#2987#0" expanded="false" />
-                <element signature="e#3026#3027#0" expanded="false" />
-                <element signature="e#3062#3063#0" expanded="false" />
-                <element signature="e#3111#3112#0" expanded="false" />
-                <element signature="e#3140#3141#0" expanded="false" />
-                <element signature="e#3200#3201#0" expanded="false" />
-                <element signature="e#3236#3237#0" expanded="false" />
-                <element signature="e#3279#3280#0" expanded="false" />
-                <element signature="e#3314#3315#0" expanded="false" />
-                <element signature="e#3365#3366#0" expanded="false" />
-                <element signature="e#3400#3401#0" expanded="false" />
-                <element signature="e#3468#3469#0" expanded="false" />
-                <element signature="e#3516#3517#0" expanded="false" />
-                <element signature="e#3549#3550#0" expanded="false" />
-                <element signature="e#3578#3579#0" expanded="false" />
-                <element signature="e#3622#3623#0" expanded="false" />
-                <element signature="e#3658#3659#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CDModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/CDModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="62" column="5" lean-forward="true" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
-              <folding>
-                <element signature="e#1697#1698#0" expanded="true" />
-                <element signature="e#1724#1725#0" expanded="true" />
-                <element signature="e#1764#1765#0" expanded="true" />
-                <element signature="e#1796#1797#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -305,36 +290,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>inser</find>
-      <find>System</find>
-      <find>clNo</find>
-      <find>!!!!!!</find>
-      <find>setB</find>
-      <find>str2cdm</find>
-      <find>cdCon</find>
-      <find>cllone</find>
-      <find>Thread</find>
-      <find>CDASS</find>
-      <find>cllon</find>
-      <find>clon</find>
-      <find>sear</find>
-      <find>bounds</find>
-      <find>split</find>
-      <find>insert</find>
-      <find>insertCD</find>
-      <find>point_in_cl</find>
-      <find>INSERT</find>
-      <find>flag</find>
-      <find>searchD</find>
-      <find>SEQUENCE</find>
-      <find>clone</find>
-      <find>CDNO</find>
-      <find>search</find>
-      <find>push</find>
+      <find>select</find>
+      <find>curltval</find>
+      <find>curr</find>
+      <find>memNo</find>
+      <find>MEMNO</find>
+      <find>overlapRep</find>
       <find>login</find>
-      <find>memberNo</find>
-      <find>FOL</find>
-      <find>class</find>
+      <find>search</find>
+      <find>ALTER</find>
+      <find>comm</find>
+      <find>TO_CH</find>
+      <find>delete</find>
+      <find>ALT</find>
+      <find>cdName</find>
+      <find>push</find>
+      <find>cur</find>
+      <find>AUTHO</find>
+      <find>insertV</find>
+      <find>repo</find>
+      <find>str2repo</find>
+      <find>isExi</find>
+      <find>repoNo</find>
+      <find>overlap</find>
+      <find>repoAck</find>
+      <find>acList</find>
+      <find>clone</find>
+      <find>cllone</find>
+      <find>version</find>
+      <find>Insertversion</find>
+      <find>repoData</find>
     </findStrings>
     <replaceStrings>
       <replace>sendAck</replace>
@@ -342,6 +327,7 @@
       <replace>sp</replace>
       <replace>cdNo</replace>
       <replace>ack</replace>
+      <replace>REPO</replace>
     </replaceStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -362,32 +348,43 @@
         <option value="$PROJECT_DIR$/서버/src/Model/SearchDataModel.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/ClonePacket.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/ClloneModel.java" />
-        <option value="$PROJECT_DIR$/서버/src/Model/SearchModel.java" />
         <option value="$PROJECT_DIR$/서버/src/DB/booklist.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/LoginInfo.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/Association.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/ClazzModel.java" />
         <option value="$PROJECT_DIR$/서버/src/Control/ServerMain.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/SearchIdPacket.java" />
-        <option value="$PROJECT_DIR$/서버/src/Model/Ack.java" />
         <option value="$PROJECT_DIR$/서버/src/Control/NetworkController.java" />
         <option value="$PROJECT_DIR$/서버/src/Control/NetworkController1.java" />
         <option value="$PROJECT_DIR$/서버/src/Control/MainController.java" />
         <option value="dbsequence:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.AICNO" />
         <option value="$PROJECT_DIR$/서버/src/Model/CDModel.java" />
-        <option value="$PROJECT_DIR$/서버/src/Control/LoginController.java" />
-        <option value="$PROJECT_DIR$/서버/src/Model/LoginModel.java" />
-        <option value="$PROJECT_DIR$/서버/src/Model/CllonePacket.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/console.sql" />
-        <option value="$PROJECT_DIR$/서버/src/Control/AccountController.java" />
-        <option value="$PROJECT_DIR$/서버/src/Control/MemberThread.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/DrawModel/Generalization.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/Generalization.java" />
-        <option value="$PROJECT_DIR$/서버/src/Control/DBController.java" />
-        <option value="$PROJECT_DIR$/서버/src/Control/UMLContorller.java" />
-        <option value="$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/CDModel.java" />
-        <option value="$PROJECT_DIR$/서버/src/Control/JsonController.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/Dependency.java" />
+        <option value="dbsequence:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CDNO" />
+        <option value="dbsequence:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.MEMNO" />
+        <option value="dbsequence:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.FRNO" />
+        <option value="dbsequence:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.REPONO" />
+        <option value="$PROJECT_DIR$/서버/src/Model/SearchModel.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/Version.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/Ack.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/LoginController.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/AccountController.java" />
+        <option value="dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.REPO" />
+        <option value="$PROJECT_DIR$/서버/src/Model/LoginModel.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/VersionComparator.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/CllonePacket.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/ClazzModel.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/CDModel.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/RepoPacket.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/VersionModel.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/RepoModel.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/console.sql" />
+        <option value="$PROJECT_DIR$/서버/src/Control/DBController.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/MemberThread.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/JsonController.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/UMLContorller.java" />
       </list>
     </option>
   </component>
@@ -444,8 +441,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -508,43 +503,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="DB" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="서버" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Control" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/netClient" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15546875" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Oracle" />
     <property name="settings.editor.selected.configurable" value="database.main" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="AIDL" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/SQL Dialects" value="GenericSQL" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/SQL Dialects" value="Oracle&#10;GenericSQL" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.VERSIONS" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1073,11 +1053,16 @@
       <workItem from="1509939271686" duration="9740000" />
       <workItem from="1510101233128" duration="28923000" />
       <workItem from="1510377044223" duration="10636000" />
+      <workItem from="1510542869589" duration="18000" />
+      <workItem from="1510544893331" duration="5618000" />
+      <workItem from="1510633060038" duration="11000" />
+      <workItem from="1510634576405" duration="27681000" />
+      <workItem from="1511080031276" duration="34031000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212948000" />
+    <option name="totallyTimeSpent" value="280307000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1090,30 +1075,31 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33143508" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33029613" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39179954" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2927107" sideWeight="0.60833335" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2949886" sideWeight="0.60833335" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39179954" sideWeight="0.49791667" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39066058" sideWeight="0.49791667" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1515625" sideWeight="0.49403748" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.043229166" sideWeight="0.47020933" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15260416" sideWeight="0.49403748" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22395833" sideWeight="0.47020933" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39863327" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39749432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.111979164" sideWeight="0.50596255" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1132,7 +1118,23 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="163" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/서버/src/Control/UMLContorller.java</url>
+          <line>81</line>
+          <properties />
+          <option name="timeStamp" value="199" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/서버/src/Control/UMLContorller.java</url>
+          <line>80</line>
+          <properties class="Control.UMLContorller" method="createRepo">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="200" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="208" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1148,73 +1150,40 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="49" lean-forward="true" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/Generalization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#194#195#0" expanded="false" />
+            <element signature="e#223#224#0" expanded="false" />
+            <element signature="e#254#255#0" expanded="false" />
+            <element signature="e#277#278#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/DirectAssociation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="10" column="45" lean-forward="false" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Model/PullModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/io/DataInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="724">
-          <caret line="563" column="0" lean-forward="false" selection-start-line="563" selection-start-column="0" selection-end-line="563" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/console_2.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="105" column="13" lean-forward="false" selection-start-line="105" selection-start-column="13" selection-end-line="105" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/net/Socket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="53" column="6" lean-forward="false" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="211" column="28" lean-forward="false" selection-start-line="211" selection-start-column="28" selection-end-line="211" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Oracle/12.1.0.2/ojdbc6-12.1.0.2.jar!/oracle/jdbc/driver/InsensitiveScrollableResultSet.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Oracle/12.1.0.2/ojdbc6-12.1.0.2.jar!/oracle/jdbc/driver/OraclePreparedStatementWrapper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="765" column="0" lean-forward="true" selection-start-line="765" selection-start-column="0" selection-end-line="765" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="109" column="0" lean-forward="true" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/SearchModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+        <state relative-caret-position="140">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1222,474 +1191,590 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/JsonTypeModel" />
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/Ack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/ext/nashorn.jar!/jdk/nashorn/internal/runtime/Version.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Model/LoginInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="21" column="12" lean-forward="false" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/Association.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1904">
-          <caret line="84" column="21" lean-forward="false" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/ClazzModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4228">
-          <caret line="198" column="13" lean-forward="false" selection-start-line="198" selection-start-column="13" selection-end-line="198" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="747" column="0" lean-forward="false" selection-start-line="747" selection-start-column="0" selection-end-line="747" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/SearchIdPacket.java" />
-    <entry file="file://$PROJECT_DIR$/서버/src/DB/booklist.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+        <state relative-caret-position="224">
+          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
           <folding>
-            <marker date="1509695876481" expanded="true" signature="895:913" ph="SELECT * FRO... BOOK" />
-            <marker date="1509695876481" expanded="true" signature="1568:1590" ph="SELECT * FRO... CUSTOMER" />
-            <marker date="1509695876481" expanded="true" signature="2138:2158" ph="SELECT * FRO... ORDERS" />
+            <element signature="e#241#242#0" expanded="false" />
+            <element signature="e#288#289#0" expanded="false" />
+            <element signature="e#605#606#0" expanded="false" />
+            <element signature="e#640#641#0" expanded="false" />
+            <element signature="e#680#681#0" expanded="false" />
+            <element signature="e#718#719#0" expanded="false" />
+            <element signature="e#767#768#0" expanded="false" />
+            <element signature="e#801#802#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/Ack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/MemberThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/ServerMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="43" column="73" lean-forward="true" selection-start-line="43" selection-start-column="73" selection-end-line="43" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbsequence:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.AICNO">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.POINT_IN_CL">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CDATT">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CDMET">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.ASSOCI_IN_CD">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CLAZZ">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CDASSOCI">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Model/LoginModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="75" column="5" lean-forward="false" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/VersionComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/AccountController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/Dependency.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Model/CllonePacket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.MEMBERS">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/SearchPacket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="215" column="16" lean-forward="false" selection-start-line="215" selection-start-column="16" selection-end-line="215" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/MemberThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="93" column="32" lean-forward="true" selection-start-line="93" selection-start-column="32" selection-end-line="93" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.FRIENDS">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+        <state relative-caret-position="336">
+          <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+          <folding>
+            <element signature="e#150#151#0" expanded="true" />
+            <element signature="e#182#183#0" expanded="true" />
+            <element signature="e#240#241#0" expanded="true" />
+            <element signature="e#280#281#0" expanded="true" />
+            <element signature="e#312#313#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/DirectAssociation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/Aggregation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/Association.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/Realization.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/Generalization.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/CDModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.FOLDERS">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/ClazzModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1818#1819#0" expanded="false" />
-            <element signature="e#1850#1851#0" expanded="false" />
-            <element signature="e#1900#1901#0" expanded="false" />
-            <element signature="e#1942#1943#0" expanded="false" />
-            <element signature="e#1993#1994#0" expanded="false" />
-            <element signature="e#2029#2030#0" expanded="false" />
-            <element signature="e#2098#2099#0" expanded="false" />
-            <element signature="e#2148#2149#0" expanded="false" />
-            <element signature="e#2196#2197#0" expanded="false" />
-            <element signature="e#2229#2230#0" expanded="false" />
-            <element signature="e#2292#2293#0" expanded="false" />
-            <element signature="e#2336#2337#0" expanded="false" />
-            <element signature="e#2361#2362#0" expanded="false" />
-            <element signature="e#2385#2386#0" expanded="false" />
-            <element signature="e#2416#2417#0" expanded="false" />
-            <element signature="e#2442#2443#0" expanded="false" />
-            <element signature="e#2467#2468#0" expanded="false" />
-            <element signature="e#2491#2492#0" expanded="false" />
-            <element signature="e#2522#2523#0" expanded="false" />
-            <element signature="e#2548#2549#0" expanded="false" />
-            <element signature="e#2573#2574#0" expanded="false" />
-            <element signature="e#2597#2598#0" expanded="false" />
-            <element signature="e#2628#2629#0" expanded="false" />
-            <element signature="e#2654#2655#0" expanded="false" />
-            <element signature="e#2679#2680#0" expanded="false" />
-            <element signature="e#2703#2704#0" expanded="false" />
-            <element signature="e#2734#2735#0" expanded="false" />
-            <element signature="e#2760#2761#0" expanded="false" />
-            <element signature="e#2800#2801#0" expanded="false" />
-            <element signature="e#2836#2837#0" expanded="false" />
-            <element signature="e#2873#2874#0" expanded="false" />
-            <element signature="e#2912#2913#0" expanded="false" />
-            <element signature="e#2953#2954#0" expanded="false" />
-            <element signature="e#2986#2987#0" expanded="false" />
-            <element signature="e#3026#3027#0" expanded="false" />
-            <element signature="e#3062#3063#0" expanded="false" />
-            <element signature="e#3111#3112#0" expanded="false" />
-            <element signature="e#3140#3141#0" expanded="false" />
-            <element signature="e#3200#3201#0" expanded="false" />
-            <element signature="e#3236#3237#0" expanded="false" />
-            <element signature="e#3279#3280#0" expanded="false" />
-            <element signature="e#3314#3315#0" expanded="false" />
-            <element signature="e#3365#3366#0" expanded="false" />
-            <element signature="e#3400#3401#0" expanded="false" />
-            <element signature="e#3468#3469#0" expanded="false" />
-            <element signature="e#3516#3517#0" expanded="false" />
-            <element signature="e#3549#3550#0" expanded="false" />
-            <element signature="e#3578#3579#0" expanded="false" />
-            <element signature="e#3622#3623#0" expanded="false" />
-            <element signature="e#3658#3659#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="28">
+          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/SearchModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="35" column="38" lean-forward="false" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/CDModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="62" column="5" lean-forward="true" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+        <state relative-caret-position="306">
+          <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding>
-            <element signature="e#1697#1698#0" expanded="true" />
-            <element signature="e#1724#1725#0" expanded="true" />
-            <element signature="e#1764#1765#0" expanded="true" />
-            <element signature="e#1796#1797#0" expanded="true" />
+            <element signature="e#733#734#0" expanded="true" />
+            <element signature="e#762#763#0" expanded="true" />
+            <element signature="e#806#807#0" expanded="true" />
+            <element signature="e#842#843#0" expanded="true" />
+            <element signature="e#1850#1851#0" expanded="true" />
+            <element signature="e#1879#1880#0" expanded="true" />
+            <element signature="e#1920#1921#0" expanded="true" />
+            <element signature="e#1956#1957#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/Dependency.java">
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/RepoPacket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/AccountController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="48" column="23" lean-forward="true" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+        <state relative-caret-position="122">
+          <caret line="7" column="14" lean-forward="false" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
           <folding>
-            <element signature="e#1124#1125#0" expanded="true" />
-            <element signature="e#1178#1179#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/DBController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="184" column="35" lean-forward="false" selection-start-line="184" selection-start-column="35" selection-end-line="184" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getConn#0;class#DBController#0" expanded="false" />
-            <element signature="method#pwDB#0;class#DBController#0" expanded="false" />
-            <element signature="method#closeConnect#0;class#DBController#0" expanded="false" />
-            <marker date="1510465186673" expanded="true" signature="1137:1248" ph="INSERT INTO MEMBERS... " />
-            <marker date="1510465186673" expanded="true" signature="1137:1268" ph="INSERT INTO MEMBERS... " />
-            <marker date="1510465186673" expanded="true" signature="2094:2128" ph="SELECT * FRO... MEMBERS" />
-            <marker date="1510465186673" expanded="true" signature="3195:3239" ph="UPDATE MEMBE... " />
-            <marker date="1510465186673" expanded="true" signature="3949:3984" ph="SELECT id FR... MEMBERS" />
-            <marker date="1510465186673" expanded="true" signature="4711:4822" ph="INSERT INTO CD... " />
-            <marker date="1510465186673" expanded="true" signature="4711:4823" ph="INSERT INTO CD... " />
-            <marker date="1510465186673" expanded="true" signature="4711:4828" ph="INSERT INTO CD... " />
-            <marker date="1510465186673" expanded="true" signature="4711:4837" ph="INSERT INTO CD... " />
-            <marker date="1510465186673" expanded="true" signature="4711:4838" ph="INSERT INTO CD... " />
-            <marker date="1510465186673" expanded="true" signature="5980:5994" ph="SELECT CDNAM... CD" />
-            <marker date="1510465186673" expanded="true" signature="5980:6177" ph="SELECT CDNAM... CD" />
-            <marker date="1510465186673" expanded="true" signature="5980:6228" ph="SELECT CDNAM... CD" />
-            <marker date="1510465186673" expanded="true" signature="5980:6229" ph="SELECT CDNAM... CD" />
-            <marker date="1510465186673" expanded="true" signature="6402:6638" ph="SELECT CDNAM... CD" />
-            <marker date="1510465186673" expanded="true" signature="6402:6639" ph="SELECT CDNAM... CD" />
-            <marker date="1510465186673" expanded="true" signature="7545:7640" ph="SELECT cd.js... CD" />
-            <marker date="1510465186673" expanded="true" signature="8348:8435" ph="SELECT id\nF... MEMBERS" />
-            <marker date="1510465186673" expanded="true" signature="9131:9240" ph="INSERT INTO Friends... " />
-            <marker date="1510465186673" expanded="true" signature="9131:9241" ph="UPDATE MEMBE... " />
-            <marker date="1510465186673" expanded="true" signature="10110:10157" ph="SELECT *FROM... FRIENDS" />
-            <marker date="1510465186673" expanded="true" signature="10110:10161" ph="SELECT *FROM... FRIENDS" />
-            <marker date="1510465186673" expanded="true" signature="10110:10188" ph="SELECT *FROM... FRIENDSWHER" />
-            <marker date="1510465186673" expanded="true" signature="10110:10189" ph="SELECT *FROM... FRIENDS" />
-            <marker date="1510465186673" expanded="true" signature="10110:10197" ph="SELECT *\nFR... FRIENDS" />
-            <marker date="1510465186673" expanded="true" signature="10110:10199" ph="SELECT *\nFR... FRIENDS" />
+            <element signature="e#407#408#0" expanded="true" />
+            <element signature="e#434#435#0" expanded="true" />
+            <element signature="e#474#475#0" expanded="true" />
+            <element signature="e#506#507#0" expanded="true" />
+            <element signature="e#535#536#0" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#624#625#0" expanded="true" />
+            <element signature="e#673#674#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+            <element signature="e#772#773#0" expanded="true" />
+            <element signature="e#818#819#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Control/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="91" column="18" lean-forward="false" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
+        <state relative-caret-position="210">
+          <caret line="92" column="43" lean-forward="false" selection-start-line="92" selection-start-column="43" selection-end-line="92" selection-end-column="43" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2529#2530#0" expanded="false" />
+            <element signature="e#2622#2623#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/MainController.java">
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/SearchPacket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+        <state relative-caret-position="278">
+          <caret line="29" column="11" lean-forward="false" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/VersionModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="80" column="33" lean-forward="false" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="33" />
           <folding>
-            <element signature="e#942#943#0" expanded="true" />
-            <element signature="e#980#981#0" expanded="true" />
+            <element signature="e#1479#1480#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/RepoModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-436">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/ServerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="39" column="49" lean-forward="false" selection-start-line="39" selection-start-column="49" selection-end-line="39" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/sql/PreparedStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="60" column="17" lean-forward="false" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="203" column="7" lean-forward="true" selection-start-line="203" selection-start-column="7" selection-end-line="203" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.REPO">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.MEMBERS">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.FRIENDS">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.VERSIONS">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.AUTHO">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/DBController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="420" column="24" lean-forward="false" selection-start-line="420" selection-start-column="24" selection-end-line="420" selection-end-column="24" />
+          <folding>
+            <element signature="method#DBController#0;class#DBController#0" expanded="false" />
+            <element signature="method#getConn#0;class#DBController#0" expanded="false" />
+            <element signature="method#closeConnect#0;class#DBController#0" expanded="false" />
+            <element signature="method#signup#0;class#DBController#0" expanded="false" />
+            <element signature="method#loginDB#0;class#DBController#0" expanded="false" />
+            <element signature="method#pwDB#0;class#DBController#0" expanded="false" />
+            <element signature="method#overLapDB#0;class#DBController#0" expanded="false" />
+            <element signature="method#selectId#0;class#DBController#0" expanded="false" />
+            <element signature="method#insertFriend#0;class#DBController#0" expanded="false" />
+            <element signature="method#getFriends#0;class#DBController#0" expanded="false" />
+            <element signature="method#insertRepo#0;class#DBController#0" expanded="false" />
+            <element signature="method#insertVersion#0;class#DBController#0" expanded="false" />
+            <marker date="1511179560275" expanded="true" signature="1261:1372" ph="INSERT INTO MEMBERS... " />
+            <marker date="1511179560275" expanded="true" signature="1261:1392" ph="INSERT INTO MEMBERS... " />
+            <marker date="1511179560275" expanded="true" signature="2222:2256" ph="SELECT * FRO... MEMBERS" />
+            <marker date="1511179560275" expanded="true" signature="3323:3367" ph="UPDATE MEMBE... " />
+            <marker date="1511179560275" expanded="true" signature="4077:4112" ph="SELECT id FR... MEMBERS" />
+            <marker date="1511179560275" expanded="true" signature="4853:4897" ph="INSERT INTO CD... " />
+            <marker date="1511179560275" expanded="true" signature="4853:4958" ph="INSERT INTO CD... " />
+            <marker date="1511179560275" expanded="true" signature="6046:6063" ph="SELECT CDNAM... CD" />
+            <marker date="1511179560275" expanded="true" signature="6046:6248" ph="SELECT CDNAM... CD" />
+            <marker date="1511179560275" expanded="true" signature="6046:6302" ph="SELECT CDNAM... CD" />
+            <marker date="1511179560275" expanded="true" signature="6046:6303" ph="SELECT CDNAM... CD" />
+            <marker date="1511179560275" expanded="true" signature="6476:6483" ph="SELECT REPO.... " />
+            <marker date="1511179560275" expanded="true" signature="6476:6717" ph="SELECT CDNAM... CD" />
+            <marker date="1511179560275" expanded="true" signature="6476:6718" ph="SELECT CDNAM... CD" />
+            <marker date="1511179560275" expanded="true" signature="7609:7763" ph="SELECT cd.js... CD" />
+            <marker date="1511179560275" expanded="true" signature="7609:7764" ph="SELECT cd.js... CD" />
+            <marker date="1511179560275" expanded="true" signature="8475:8562" ph="SELECT id\nF... MEMBERS" />
+            <marker date="1511179560275" expanded="true" signature="9258:9367" ph="INSERT INTO Friends... " />
+            <marker date="1511179560275" expanded="true" signature="9258:9368" ph="UPDATE MEMBE... " />
+            <marker date="1511179560275" expanded="true" signature="10105:10152" ph="SELECT *FROM... FRIENDS" />
+            <marker date="1511179560275" expanded="true" signature="10105:10156" ph="SELECT *FROM... FRIENDS" />
+            <marker date="1511179560275" expanded="true" signature="10105:10183" ph="SELECT *FROM... FRIENDSWHER" />
+            <marker date="1511179560275" expanded="true" signature="10105:10184" ph="SELECT *FROM... FRIENDS" />
+            <marker date="1511179560275" expanded="true" signature="10105:10192" ph="SELECT *\nFR... FRIENDS" />
+            <marker date="1511179560275" expanded="true" signature="10105:10194" ph="SELECT *\nFR... FRIENDS" />
+            <marker date="1511179560275" expanded="true" signature="10945:11040" ph="SELECT FOLDE... FOLDERS" />
+            <marker date="1511179560275" expanded="true" signature="11861:11942" ph="SELECT v.ver... " />
+            <marker date="1511179560275" expanded="true" signature="11861:11956" ph="SELECT v.ver... " />
+            <marker date="1511179560275" expanded="true" signature="11861:11960" ph="SELECT v.ver... " />
+            <marker date="1511179560275" expanded="true" signature="11861:12100" ph="SELECT NAME\... VERSIONS" />
+            <marker date="1511179560275" expanded="true" signature="11861:12101" ph="SELECT v.ver... REPO" />
+            <marker date="1511179560275" expanded="true" signature="12798:12975" ph="SELECT m.id\... AUTHO" />
+            <marker date="1511179560275" expanded="true" signature="12798:13011" ph="SELECT m.id\... AUTHO" />
+            <marker date="1511179560275" expanded="true" signature="13763:13878" ph="INSERT INTO REPO... " />
+            <marker date="1511179560275" expanded="true" signature="14098:14129" ph="SELECT REPON... dual" />
+            <marker date="1511179560275" expanded="true" signature="14364:14470" ph="SELECT MEMNO... MEMBERS" />
+            <marker date="1511179560275" expanded="true" signature="14727:14834" ph="INSERT INTO AUTHO... " />
+            <marker date="1511179560275" expanded="true" signature="15714:15722" ph="INSERT INTO VERSIONS... " />
+            <marker date="1511179560275" expanded="true" signature="15714:15818" ph="SELECT MAX(v... VERSIONS" />
+            <marker date="1511179560275" expanded="true" signature="15714:15819" ph="SELECT Max(v... VERSIONS" />
+            <marker date="1511179560275" expanded="true" signature="16166:16301" ph="INSERT INTO VERSIONS... " />
+            <marker date="1511179560275" expanded="true" signature="16561:16591" ph="INSERT INTO VERSIONS... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/MemberThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="132" column="41" lean-forward="false" selection-start-line="132" selection-start-column="41" selection-end-line="132" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Control/UMLContorller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="30" column="51" lean-forward="true" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
+        <state relative-caret-position="349">
+          <caret line="102" column="22" lean-forward="false" selection-start-line="102" selection-start-column="22" selection-end-line="102" selection-end-column="22" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1731#1732#0" expanded="false" />
+            <element signature="e#1769#1770#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Control/JsonController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4470">
-          <caret line="320" column="59" lean-forward="true" selection-start-line="320" selection-start-column="59" selection-end-line="320" selection-end-column="59" />
+        <state relative-caret-position="320">
+          <caret line="491" column="9" lean-forward="false" selection-start-line="491" selection-start-column="9" selection-end-line="491" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#getJsonType#0;class#JsonController#0" expanded="false" />
-            <element signature="method#string2JSONObject#0;class#JsonController#0" expanded="false" />
+            <element signature="method#str2JSONObject#0;class#JsonController#0" expanded="false" />
             <element signature="method#str2lm#0;class#JsonController#0" expanded="false" />
-            <element signature="method#lm2str#0;class#JsonController#0" expanded="false" />
             <element signature="method#str2sp#0;class#JsonController#0" expanded="false" />
-            <element signature="method#sms2str#0;class#JsonController#0" expanded="false" />
-            <element signature="method#str2cp#0;class#JsonController#0" expanded="false" />
             <element signature="method#str2si#0;class#JsonController#0" expanded="false" />
             <element signature="method#si2str#0;class#JsonController#0" expanded="false" />
             <element signature="method#firends2str#0;class#JsonController#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

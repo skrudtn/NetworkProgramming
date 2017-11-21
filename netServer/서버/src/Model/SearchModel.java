@@ -7,7 +7,7 @@ public class SearchModel {
     private String title;
     private String id;
     private String date;
-    private int cdNo;
+    private int repoNo;
 
     public String getTitle() {
         return title;
@@ -33,26 +33,26 @@ public class SearchModel {
         this.date = date;
     }
 
-    public SearchModel(String title, String id, String date, int cdNo) {
+    public SearchModel(String title, String id, String date, int repoNo) {
         this.title = title;
         this.id = id;
         this.date = date;
-        this.cdNo = cdNo;
+        this.repoNo = repoNo;
     }
 
     public SearchModel(){
         this.title ="";
         this.id = "";
         this.date ="";
-        this.cdNo = 0;
+        this.repoNo = 0;
     }
 
 
     public int getCdNo() {
-        return cdNo;
+        return repoNo;
     }
-    public void setCdNo(int cdNo) {
-        this.cdNo = cdNo;
+    public void setRepoNo(int cdNo) {
+        this.repoNo = cdNo;
     }
 
 }

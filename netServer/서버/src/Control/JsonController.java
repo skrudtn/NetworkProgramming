@@ -6,8 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by skrud on 2017-09-27.
@@ -25,8 +24,7 @@ class JsonController {
         }
         return type;
     }
-
-    JSONObject string2JSONObject(String string) {
+    JSONObject str2JSONObject(String string) {
         Object obj = null;
         JSONObject jsonObject = null;
         JSONParser jsonParser = new JSONParser();
@@ -83,7 +81,6 @@ class JsonController {
         return obj.toJSONString();
     }
 
-
     public String cdm2str(CDModel cd) {
         JSONObject obj = new JSONObject();
         JSONArray jsonArray = new JSONArray();
@@ -92,7 +89,7 @@ class JsonController {
         ArrayList<String> a;
         ArrayList<String> m;
 
-        obj.put("cdName", cd.getCdName());
+        obj.put("repo", cd.getCdName());
         obj.put("id", cd.getId());
         for (ClazzModel c : cms) {
             JSONObject inObj = new JSONObject();
@@ -169,8 +166,8 @@ class JsonController {
         obj.put("gzPoints", gzPoints);
         obj.put("rzPoints", rzPoints);
         obj.put("dpPoints", dpPoints);
-        obj.put("type", "push");
-        obj.put("pushType", "cd");
+        obj.put("type", "clone");
+        obj.put("cloneType", "cd");
 
         return obj.toJSONString();
     }
@@ -180,8 +177,9 @@ class JsonController {
         JSONParser jsonParser = new JSONParser();
         CDModel rt = new CDModel();
         ArrayList<Association> acList = new ArrayList<>();
-        String cdName = "";
         String id = "";
+        String repo="";
+        String repoNo="";
         try {
             obj = jsonParser.parse(str);
         } catch (org.json.simple.parser.ParseException e) {
@@ -192,8 +190,10 @@ class JsonController {
             Set keySet = jsonObject.keySet();
             for (Object key : keySet) {
                 Object value = jsonObject.get(key);
-                if (key.equals("cdName")) {
-                    cdName = (String) value;
+                if (key.equals("repo")) {
+                    repo = (String) value;
+                } else if (key.equals("repoNo")) {
+                    repoNo = (String) value;
                 } else if (key.equals("id")) {
                     id = (String) value;
                 } else if (key.equals("classList")) {
@@ -326,7 +326,8 @@ class JsonController {
                 }
             }
         }
-        rt.setCdName(cdName);
+        rt.setRepoNo(Integer.parseInt(repoNo));
+        rt.setCdName(repo);
         rt.setId(id);
         return rt;
     }
@@ -365,7 +366,7 @@ class JsonController {
             inObj.put("id", sm.getId());
             inObj.put("title", sm.getTitle());
             inObj.put("date", sm.getDate());
-            inObj.put("cdNo", String.valueOf(sm.getCdNo()));
+            inObj.put("repoNo", String.valueOf(sm.getCdNo()));
 
             arr.add(inObj);
         }
@@ -377,10 +378,8 @@ class JsonController {
     CllonePacket str2cp(String str) {
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
-        String id = "";
-        String title = "";
-        String date = "";
-        String cdNo = "";
+        String name= "";
+
         try {
             obj = jsonParser.parse(str);
         } catch (org.json.simple.parser.ParseException e) {
@@ -391,18 +390,12 @@ class JsonController {
             Set keySet = jsonObject.keySet();
             for (Object key : keySet) {
                 Object value = jsonObject.get(key);
-                if (key.equals("id")) {
-                    id = (String) value;
-                } else if (key.equals("title")) {
-                    title = (String) value;
-                } else if (key.equals("date")) {
-                    date = (String) value;
-                } else if (key.equals("cdNo")) {
-                    cdNo = (String) value;
+                if (key.equals("name")) {
+                    name = (String) value;
                 }
             }
         }
-        return new CllonePacket(id, title, date, cdNo);
+        return new CllonePacket(name);
     }
 
     String str2si(String data) {
@@ -436,7 +429,6 @@ class JsonController {
 
     String firends2str(ArrayList<String> friends) {
         JSONObject obj = new JSONObject();
-        JSONArray arr = new JSONArray();
 
         obj.put("type", "friends");
         obj.put("friends", friends);
@@ -445,7 +437,7 @@ class JsonController {
 
     }
 
-    public String getPushType(JSONObject obj) {
+    String getPushType(JSONObject obj) {
         Set keySet = obj.keySet();
         String type = "";
         for (Object key : keySet) {
@@ -456,4 +448,104 @@ class JsonController {
         }
         return type;
     }
+
+    RepoPacket str2repoPacket(String data) {
+        Object obj = null;
+        JSONParser jsonParser = new JSONParser();
+        String name  = "";
+        String id  = "";
+        ArrayList<String> authorities =null;
+        try {
+            obj = jsonParser.parse(data);
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        if (obj instanceof JSONObject) {
+            JSONObject jsonObject = (JSONObject) obj;
+            Set keySet = jsonObject.keySet();
+            for (Object key : keySet) {
+                Object value = jsonObject.get(key);
+                if (key.equals("name")) {
+                    name = (String) value;
+                } else if(key.equals("id")) {
+                    id = (String) value;
+                } else if(key.equals("authorities")) {
+                    authorities = (ArrayList<String>) value;
+                }
+            }
+        }
+        if(authorities == null) authorities = new ArrayList<>();
+        return new RepoPacket(name,id,authorities);
+    }
+
+    public String rm2str(RepoModel rm,String id) {
+        JSONObject obj = new JSONObject();
+        boolean isAutho = false;
+        obj.put("type", "repoData");
+        obj.put("id", rm.getId());
+        obj.put("name", rm.getName());
+        obj.put("repoNo", String.valueOf(rm.getRepoNo()));
+        for(String str: rm.getAuthorizations()){
+            if(str.equals(rm.getId())){
+                isAutho = true;
+            }
+        }
+        if(rm.getId().equals(id)){
+            isAutho = true;
+        }
+        if(isAutho) {
+            obj.put("autho", "true");
+        } else{
+            obj.put("autho", "false");
+        }
+        VersionComparator comp = new VersionComparator();
+        Collections.sort(rm.getVersions(), comp);
+        JSONArray jsonArray = new JSONArray();
+        for(VersionModel vm: rm.getVersions()){
+            JSONObject inObj = new JSONObject();
+            inObj.put("verName", vm.getName());
+            inObj.put("date",vm.getReg_date());
+            inObj.put("modi",vm.getModifiedBY());
+            inObj.put("diagram",vm.getDiagram());
+            inObj.put("verNo",String.valueOf(vm.getVerNo()));
+            jsonArray.add(inObj);
+        }
+
+        obj.put("versions", jsonArray);
+        return obj.toJSONString();
+    }
+
+    public RepoModel str2repoData(String data) {
+        Object obj = null;
+        JSONParser jsonParser = new JSONParser();
+        String name  = "";
+        String id  = "";
+        String repoNo= "";
+        ArrayList<String> authorities =null;
+        try {
+            obj = jsonParser.parse(data);
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        if (obj instanceof JSONObject) {
+            JSONObject jsonObject = (JSONObject) obj;
+            Set keySet = jsonObject.keySet();
+            for (Object key : keySet) {
+                Object value = jsonObject.get(key);
+                if (key.equals("name")) {
+                    name = (String) value;
+                } else if(key.equals("id")) {
+                    id = (String) value;
+                } else if(key.equals("repoNo")){
+                    repoNo = (String) value;
+                }
+            }
+        }
+        System.out.println("JSON Contorller");
+        System.out.println(name);
+        System.out.println(id);
+        System.out.println(repoNo);
+        return new RepoModel(name,id,Integer.parseInt(repoNo));
+    }
+
 }

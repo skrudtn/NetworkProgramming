@@ -6,6 +6,8 @@ import java.util.ArrayList;
  * Created by skrud on 2017-10-25.
  */
 public class CDModel {
+    private int repoNo;
+    private String repo;
     private String id;
     private String cdName;
     private ArrayList<ClazzModel> clazzModels;
@@ -65,7 +67,24 @@ public class CDModel {
         this.acList.remove(ac);
     }
 
+    public int getRepoNo() {
+        return repoNo;
+    }
+
+    public void setRepoNo(int repoNo) {
+        this.repoNo = repoNo;
+    }
+
+    public String getRepo() {
+        return repo;
+    }
+
+    public void setRepo(String repo) {
+        this.repo = repo;
+    }
+
     public void setId(String id) {
         this.id = id;
+
     }
 }

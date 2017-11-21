@@ -40,6 +40,14 @@ public class DBController {
         return con;
     }
 
+    public void closeConnect() {
+        try {
+            con.close();
+        } catch (Exception con) {
+
+        }
+    }
+
     public boolean signup(LoginModel dbdata) {
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -49,10 +57,10 @@ public class DBController {
             sql = "INSERT INTO MEMBERS (MEMNO, id, password, name, email, reg_date)" +
                     "VALUES (MEMNO.nextval,?, ?, ?, ?, SYSDATE)";
             ps = con.prepareStatement(sql);
-            ps.setString(1,dbdata.getId());
-            ps.setString(2,dbdata.getPw());
-            ps.setString(3,dbdata.getName());
-            ps.setString(4,dbdata.getEmail());
+            ps.setString(1, dbdata.getId());
+            ps.setString(2, dbdata.getPw());
+            ps.setString(3, dbdata.getName());
+            ps.setString(4, dbdata.getEmail());
             rs = ps.executeQuery();
         } catch (SQLException e) {
             rt = false;
@@ -172,26 +180,24 @@ public class DBController {
         return rt;
     }
 
-    public boolean push(CDModel cdm) {
+    public boolean pushCD(CDModel cdm, int verNo) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Boolean rt = true;
 
         try {
-            String sql = "INSERT INTO CD (CDNO, CDNAME,JSON,MEMBERNO, REG_DATE)" + // 권한추가 필요.
-                    "VALUES (CDNO.nextval, ?,?,?,SYSDATE)";
+
+            String sql = "INSERT INTO CD (CDNO, JSON, VERNO, REG_DATE)" +
+                    "VALUES (CDNO.nextval, ?, ?, SYSDATE)";
             ps = con.prepareStatement(sql);
-            ps.setString(1, cdm.getCdName());
-            ps.setString(2, cdm.getJson());
-            ps.setInt(3, memNo);
+            ps.setString(1, cdm.getJson());
+            ps.setInt(2, verNo);
 
             rs = ps.executeQuery();
         } catch (SQLException e) {
             rt = false;
             e.printStackTrace();
-        } finally
-
-        {
+        } finally {
             try {
                 rs.close();
             } catch (Exception rse) {
@@ -221,16 +227,16 @@ public class DBController {
                     .replace("_", "!_")
                     .replace("[", "![");
             if (cate.equals("Title")) {
-                sql = "SELECT CDNAME,id,TO_CHAR(CD.reg_date,'yyyy-mm-dd hh24:mi:ss') r_date, cd.CDNO\n" +
-                        "FROM CD, MEMBERS\n" +
-                        "WHERE CD.memberNo = MEMBERS.memNO AND\n" +
-                        "  cdName LIKE ? ESCAPE '!'";
+                sql = "SELECT REPO.NAME,ID,TO_CHAR(REPO.reg_date,'yyyy-mm-dd hh24:mi:ss') r_date, REPONO\n" +
+                        "FROM REPO, MEMBERS\n" +
+                        "WHERE REPO.MEMNO = MEMBERS.memNO AND\n" +
+                        "  REPO.NAME LIKE ? ESCAPE '!'";
                 ps = con.prepareStatement(sql);
                 ps.setString(1, "%" + data + "%");
             } else if (cate.equals("UserID")) {
-                sql = "SELECT CDNAME,id,TO_CHAR(CD.reg_date,'yyyy-mm-dd hh24:mi:ss') r_date, cd.CDNO\n" +
-                        "FROM CD, MEMBERS\n" +
-                        "WHERE CD.memberNo = MEMBERS.memNO AND\n" +
+                sql = "SELECT REPO.NAME,ID,TO_CHAR(REPO.reg_date,'yyyy-mm-dd hh24:mi:ss') r_date, REPONO\n" +
+                        "FROM REPO, MEMBERS\n" +
+                        "WHERE REPO.MEMNO = MEMBERS.memNO AND\n" +
                         "MEMBERS.ID = ?";
                 ps = con.prepareStatement(sql);
                 ps.setString(1, data);
@@ -260,15 +266,16 @@ public class DBController {
     public String cllone(CllonePacket cp) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        int cdNo = Integer.parseInt(cp.getCdNo());
+        String name = cp.getName();
         String rt = "";
 
         try {
             String sql = "SELECT cd.json\n" +
-                    "FROM CD cd\n" +
-                    "WHERE cd.cdNO = ?";
+                    "FROM CD cd, VERSIONS v\n" +
+                    "WHERE cd.verNo = v.verNO\n" +
+                    "AND v.name = ?";
             ps = con.prepareStatement(sql);
-            ps.setInt(1, cdNo);
+            ps.setString(1, name);
             rs = ps.executeQuery();
             if (rs.next()) {
                 rt = rs.getString(1);
@@ -288,7 +295,7 @@ public class DBController {
         return rt;
     }
 
-    public boolean searchId(String id) {
+    public boolean selectId(String id) {
         ResultSet rs = null;
         PreparedStatement ps = null;
         String sql = "";
@@ -346,16 +353,7 @@ public class DBController {
 
     }
 
-
-    public void closeConnect() {
-        try {
-            con.close();
-        } catch (Exception con) {
-
-        }
-    }
-
-    public ArrayList<String> getFriends() {
+    ArrayList<String> getFriends() {
         ArrayList<String> friends = new ArrayList<>();
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -368,7 +366,7 @@ public class DBController {
             ps = con.prepareStatement(sql);
             ps.setInt(1, memNo);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 friends.add(rs.getString("id"));
             }
         } catch (SQLException e) {
@@ -385,6 +383,208 @@ public class DBController {
             }
         }
         return friends;
+    }
 
+    boolean isExistRepo(String repo) {
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        String sql = "";
+        boolean rt = false;
+        try {
+            sql = "SELECT REPONO\n" +
+                    "FROM REPO\n" +
+                    "WHERE REPO.NAME = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, repo);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                rt = true;
+            }
+
+        } catch (SQLException e) {
+            rt = false;
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+            }
+            try {
+                ps.close();
+            } catch (Exception pse) {
+            }
+        }
+        return rt;
+    }
+
+    public RepoModel selectRepoData(RepoModel repo) {
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        String sql = "";
+        RepoModel repoModel = new RepoModel();
+        ArrayList<VersionModel> versions = new ArrayList<>();
+        try {
+            sql = "SELECT v.verNO, v.name, v.MODIFIEDBY, TO_CHAR(v.reg_date,'yyyy-mm-dd hh24:mi:ss'), r.CREATEBY\n" +
+                    "FROM REPO r, VERSIONS v\n" +
+                    "WHERE r.repoNo = v.repoNo\n" +
+                    "  and r.REPONO = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, repo.getRepoNo());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                VersionModel v = new VersionModel();
+                v.setVerNo(rs.getInt(1));
+                v.setName(rs.getString(2));
+                v.setModifiedBY(rs.getString(3));
+                v.setReg_date(rs.getString(4));
+                v.setCreateBy(rs.getString(5));
+                versions.add(v);
+            }
+            repoModel.setRepoNo(repo.getRepoNo());
+            repoModel.setName(repo.getName());
+            repoModel.setId(repo.getId());
+            repoModel.setVersions(versions);
+
+            sql = "SELECT m.id\n" +
+                    "  FROM AUTHO a, REPO r, MEMBERS m\n" +
+                    "WHERE a.repoNo = r.repoNo\n" +
+                    "AND m.memNO = a.memNo\n" +
+                    "AND r.REPONO= ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, repo.getRepoNo());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                repoModel.addAuthorization(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+            }
+            try {
+                ps.close();
+            } catch (Exception pse) {
+            }
+        }
+        return repoModel;
+    }
+
+    public int insertRepo(RepoPacket rp) {
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        String sql = "";
+        int repoNo = 0;
+        try {
+            sql = "INSERT INTO REPO(REPONO,NAME,MEMNO,CREATEBY,REG_DATE)" +
+                    "VALUES (REPONO.nextval,?,?,?,SYSDATE)";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, rp.getName());
+            ps.setInt(2, memNo);
+            ps.setString(3, rp.getId());
+            rs = ps.executeQuery();
+
+            sql = "SELECT REPONO.currval FROM dual";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                repoNo = rs.getInt(1);
+                for (String str : rp.getAuthorities()) {
+                    sql = "SELECT MEMNO\n" +
+                            "FROM MEMBERS\n" +
+                            "WHERE ID = ?";
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, str);
+                    rs = ps.executeQuery();
+                    if (rs.next()) {
+                        int mNo = rs.getInt(1);
+                        sql = "INSERT INTO AUTHO(AUTHONO, MEMNO, REPONO)" +
+                                "VALUES (AUTHONO.nextval, ?,?)";
+                        ps = con.prepareStatement(sql);
+                        ps.setInt(1, mNo);
+                        ps.setInt(2, repoNo);
+                        rs = ps.executeQuery();
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                assert rs != null;
+                rs.close();
+            } catch (Exception rse) {
+            }
+            try {
+                assert ps != null;
+                ps.close();
+            } catch (Exception pse) {
+            }
+        }
+        return repoNo;
+    }
+
+    public int insertVersion(String repo, String id, int repoNo) {
+
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        String sql = "";
+        int verNo=0;
+        try {
+            int ver=0;
+            sql = "SELECT Max(v.ver)\n" +
+                    "  FROM VERSIONS v\n" +
+                    "WHERE v.repoNo =?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, repoNo);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                ver = rs.getInt(1);
+                if(rs.getInt(1)==0){
+                    ver=1;
+                } else{
+                    ver++;
+                }
+            }
+
+            sql = "INSERT INTO VERSIONS(VERNO, NAME, MODIFIEDBY, VER, REPONO, REG_DATE) " +
+                    "VALUES (VERNO.nextval,?,?, ?, ?, SYSDATE)";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, repo+"_ver"+String.valueOf(ver));
+            ps.setString(2,id);
+            ps.setInt(3,ver);
+            ps.setInt(4,repoNo);
+            rs = ps.executeQuery();
+
+            sql = "SELECT VERNO.currval FROM dual";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            verNo = 0;
+            if(rs.next()){
+                verNo = rs.getInt(1);
+            }
+
+        } catch (
+                SQLException e)
+
+        {
+            e.printStackTrace();
+        } finally
+
+        {
+            try {
+                assert rs != null;
+                rs.close();
+            } catch (Exception rse) {
+            }
+            try {
+                assert ps != null;
+                ps.close();
+            } catch (Exception pse) {
+            }
+        }
+        return verNo;
     }
 }

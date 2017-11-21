@@ -91,7 +91,6 @@ public class LoginController {
     }
     public String getSearchModel(){
         return jc.sms2str(dc.search(new SearchPacket(myLoginModel.getId(),"UserID")));
-
     }
 
     public boolean isDupliLogin(String id){

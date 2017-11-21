@@ -1,8 +1,6 @@
 package Control;
 
-import Model.ClassDiagramModel.CDModel;
-import Model.LoginModel;
-import Model.SearchDataModel;
+import Model.SearchRepoModel;
 
 import java.util.ArrayList;
 
@@ -19,31 +17,29 @@ public class MainController {
     private NetworkController networkController = null;
     private JsonController jsonController = null;
     private LoginController loginController = null;
-    private LoginModel myAccount;
-    private CDModel cdModel;
-    private ArrayList<SearchDataModel> sdms=null;
-    private ArrayList<SearchDataModel> reposiData=null;
+    private UMLController umlController = null;
+    private ArrayList<SearchRepoModel> sdms=null;
+    private ArrayList<SearchRepoModel> mySdms=null;
     private ArrayList<String> friends;
 
     public MainController() {
         initController();
         sdms = new ArrayList<>();
-        reposiData = new ArrayList<>();
+        mySdms = new ArrayList<>();
 
     }
     public void clientStart(){
-//        GUIController.newLoginView(this);
-        GUIController.drawViewTest();
+        GUIController.newLoginView(this);
+//        GUIController.drawViewTest();
 //        GUIController.displayViewTest();
     }
 
     private void initController(){
         jsonController = new JsonController();
+        umlController = new UMLController();
         GUIController = new GUIController(this);
         networkController = new NetworkController(this);
         loginController = new LoginController(this);
-        myAccount = new LoginModel();
-        cdModel = new CDModel();
         friends = new ArrayList<>();
     }
 
@@ -79,36 +75,20 @@ public class MainController {
         this.loginController = loginController;
     }
 
-    public LoginModel getMyAccount() {
-        return myAccount;
-    }
-
-    public void setMyAccount(LoginModel myAccount) {
-        this.myAccount = myAccount;
-    }
-
-    public CDModel getCdModel() {
-        return cdModel;
-    }
-
-    public void setCdModel(CDModel cdModel) {
-        this.cdModel = cdModel;
-    }
-
-    public ArrayList<SearchDataModel> getSdms() {
+    public ArrayList<SearchRepoModel> getSdms() {
         return sdms;
     }
 
-    public void setSdms(ArrayList<SearchDataModel> sdms) {
+    public void setSdms(ArrayList<SearchRepoModel> sdms) {
         this.sdms = sdms;
     }
 
-    public ArrayList<SearchDataModel> getReposiData() {
-        return reposiData;
+    public ArrayList<SearchRepoModel> getMySdms() {
+        return mySdms;
     }
 
-    public void setReposiData(ArrayList<SearchDataModel> reposiData) {
-        this.reposiData = reposiData;
+    public void setMySdms(ArrayList<SearchRepoModel> mySdms) {
+        this.mySdms = mySdms;
     }
 
     public ArrayList<String> getFriends() {
@@ -117,5 +97,13 @@ public class MainController {
 
     public void setFriends(ArrayList<String> friends) {
         this.friends = friends;
+    }
+
+    public UMLController getUmlController() {
+        return umlController;
+    }
+
+    public void setUmlController(UMLController umlController) {
+        this.umlController = umlController;
     }
 }

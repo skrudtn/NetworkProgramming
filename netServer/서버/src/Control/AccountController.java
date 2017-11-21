@@ -31,7 +31,7 @@ class AccountController {
     public int searchId(String data) {
         int ack = Ack.searchIdRej;
         String id = jc.si2str(data);
-        if(dc.searchId(id)){
+        if(dc.selectId(id)){
             searchId = id;
             ack = Ack.searchIdAck;
         }

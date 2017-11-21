@@ -56,13 +56,13 @@ public class MemberThread implements Runnable {
         }
     }
 
-    public boolean checkDataType(){
+    private boolean checkDataType(){
         boolean rt = true;
         try {
             DataInputStream dis = new DataInputStream(socket.getInputStream());
             String data = dis.readUTF();
             System.out.format("%s\n",data);
-            String type = jc.getJsonType(jc.string2JSONObject(data));
+            String type = jc.getJsonType(jc.str2JSONObject(data));
             int ack =0;
             switch (type) {
                 case "login":
@@ -116,6 +116,22 @@ public class MemberThread implements Runnable {
                     break;
                 case "searchId":
                     sendAck(ac.searchId(data));
+                    break;
+                case "repoPacket":
+                    ack = uc.isExistRepo(data);
+                    sendAck(ack);
+                    if(ack == Ack.overlapRepoACK){
+                        RepoModel repoModel = uc.createRepo(data);
+                        sendStr(jc.rm2str(repoModel,lc.getId()));
+                        sendStr(lc.getSearchModel());
+                    }
+                    break;
+                case "repoModel":
+                    ack = uc.isExistRepoData(data);
+                    sendAck(ack);
+                    if(ack == Ack.repoACK){
+                        sendStr(uc.getRepoStr(data));
+                    }
                     break;
             }
         } catch (IOException e) {
