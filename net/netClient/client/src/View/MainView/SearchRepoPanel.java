@@ -2,8 +2,12 @@ package View.MainView;
 
 import Control.MainController;
 import Model.SearchRepoModel;
+import Model.StaticModel.MyFont;
+import Model.StaticModel.MyImage;
+import Model.StaticModel.Size;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -14,8 +18,7 @@ import java.awt.event.MouseEvent;
  */
 
 public class SearchRepoPanel extends JPanel {
-    private static final int RWIDTH = 600;
-    private static final int RHEIGHT = 120;
+    private JLabel imageLabel;
     private JLabel titleLabel;
     private JLabel idLabel;
     private JLabel dateLabel;
@@ -28,36 +31,55 @@ public class SearchRepoPanel extends JPanel {
 
     SearchRepoPanel(MainController controller, SearchRepoModel sdm){
         this.controller = controller;
+        imageLabel = new JLabel(MyImage.btn_repository);
         titleLabel = new JLabel();
         idLabel = new JLabel();
         dateLabel = new JLabel();
+        titleLabel.setForeground(Color.WHITE);
+        idLabel.setForeground(Color.WHITE);
+        dateLabel.setForeground(Color.WHITE);
 
         this.title = sdm.getTitle();
         this.id=sdm.getId();
         this.date = sdm.getDate();
+        date =date.substring(0,16);
         repoNo = sdm.getRepoNo();
-        setBorder(new LineBorder(Color.BLACK,1));
+        setBorder(new EmptyBorder(0,0,0,0));
         setBackground(Color.WHITE);
-        setLayout(new GridLayout(3,1));
+        setLayout(null);
 
-        titleLabel.setBounds(0,0,RWIDTH,RHEIGHT/3);
-        idLabel.setBounds(0,titleLabel.getHeight(),RWIDTH,RHEIGHT/3);
-        dateLabel.setBounds(0,idLabel.getY()+idLabel.getHeight(),RWIDTH,RHEIGHT/3);
+        imageLabel.setBounds(50,10,Size.BTN_REPO_W,Size.BTN_REPO_H);
+        titleLabel.setBounds(Size.RHEIGHT+80,0,Size.RWIDTH-Size.RHEIGHT,Size.RHEIGHT/2);
+        idLabel.setBounds(titleLabel.getX(),titleLabel.getHeight(),Size.RWIDTH-Size.RHEIGHT,Size.RHEIGHT/2);
 
         titleLabel.setText(title+"  ");
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 18));
-        idLabel.setText(id);
-        idLabel.setFont(new Font("Serif", Font.BOLD, 15));
-        dateLabel.setText(date);
+        titleLabel.setFont(MyFont.serif30);
+        idLabel.setText(id+"  |  "+date);
+        idLabel.setFont(MyFont.serif23);
 
+        add(imageLabel);
         add(titleLabel);
         add(idLabel);
-        add(dateLabel);
+//        add(dateLabel);
 
         action();
     }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(MyImage.searchRepoBgImage.getImage(), 0, 0, null);
+    }
     private void action(){
+        imageLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(e.getSource()==imageLabel){
+                    repoAction();
+                }
+            }
+        });
         idLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

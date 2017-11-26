@@ -21,15 +21,8 @@ public class Event {
         this.des = des;
         this.type = type;
         this.date = date;
+        this.data= "";
     }
-
-    public Event(String src, String des, String type, String data) {
-        this.src = src;
-        this.des = des;
-        this.type = type;
-        this.data = data;
-    }
-
     public String getSrc() {
         return src;
     }

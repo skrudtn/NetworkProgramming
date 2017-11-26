@@ -1,5 +1,7 @@
 package Model.RepoModel;
 
+import Model.VersionModel;
+
 import java.util.ArrayList;
 
 /**
@@ -8,7 +10,6 @@ import java.util.ArrayList;
 public class RepoModel {
     private int repoNo;
     private String name;
-    private String verName;
     private String id;
     private ArrayList<VersionModel> versions;
     private ArrayList<String> authorizations;
@@ -77,9 +78,6 @@ public class RepoModel {
         this.id = id;
     }
 
-    public String getVerName() {
-        return verName;
-    }
     public void addAuthorization(String a){
         this.authorizations.add(a);
     }

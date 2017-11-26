@@ -1,6 +1,7 @@
 package Control;
 
-import Model.RepoModel.VersionModel;
+
+import Model.VersionModel;
 
 import java.util.Comparator;
 

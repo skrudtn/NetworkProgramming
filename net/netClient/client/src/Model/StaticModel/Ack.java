@@ -35,6 +35,8 @@ public class Ack {
     public final static int overlapRepoREJ = 25; // repo 생성 실패 rej
     public final static int repoACK = 26; // repo 전송 가능 ack
     public final static int repoREJ = 27; // repo 전송 불가 rej
-//    public final static int reqFriendAck= 28; // 친구 추가 요청 ack
-//    public final static int reqFriendRej= 29; // 친구 추가 요청 rej
+    public final static int acceptFriend= 28; // 친구요청 승낙
+    public final static int rejectFriend= 29; // 친구요청 거절
+    public final static int updateAuthoAck = 30;
+    public final static int updateAuthoRej = 31;
 }

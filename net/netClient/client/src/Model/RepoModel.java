@@ -14,19 +14,21 @@ public class RepoModel {
     private int repoNo;
     private String repoName;
     private ArrayList<VersionModel> versions;
-//    private ArrayList<String> authorizations;
+    private ArrayList<String> members;
     private String reg_date;
-    private boolean isAutho;
+    private boolean isCreator;
+    private boolean isMember;
     private String createBy;
 
     public RepoModel(){
-        isAutho = false;
+        isCreator = false;
+        isMember = false;
         repoNo = 0;
         repoName = "";
         reg_date="";
         versions = new ArrayList<>();
         createBy = "";
-//        authorizations = new ArrayList<>();
+        members = new ArrayList<>();
     }
 
 
@@ -51,20 +53,17 @@ public class RepoModel {
     }
 
     public void setVersions(ArrayList<VersionModel> versions) {
-
-        VersionComparator comp = new VersionComparator();
-        Collections.sort(versions, comp);
         this.versions = versions;
     }
 
-//    public ArrayList<String> getAuthorizations() {
-//        return authorizations;
-//    }
+    public ArrayList<String> getMembers() {
+        return members;
+    }
 
-//    public void setAuthorizations(ArrayList<String> authorizations) {
-//        this.authorizations = authorizations;
-//    }
-//
+    public void setMembers(ArrayList<String> members) {
+        this.members = members;
+    }
+
     public String getReg_date() {
         return reg_date;
     }
@@ -79,8 +78,8 @@ public class RepoModel {
         versions.remove(v);
     }
 
-    public boolean isAutho() {
-        return isAutho;
+    public boolean isCreator() {
+        return isCreator;
     }
 
     public String getCreateBy() {
@@ -91,7 +90,15 @@ public class RepoModel {
         this.createBy = createBy;
     }
 
-    public void setAutho(boolean autho) {
-        isAutho = autho;
+    public void setCreator(boolean creator) {
+        isCreator = creator;
+    }
+
+    public boolean isMember() {
+        return isMember;
+    }
+
+    public void setMember(boolean member) {
+        isMember = member;
     }
 }

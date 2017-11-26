@@ -2,6 +2,7 @@ package View.MainView;
 
 import Control.MainController;
 import Control.UMLController;
+import Control.VersionComparator;
 import Model.RepoModel;
 import Model.StaticModel.MyFont;
 import Model.StaticModel.Pallate;
@@ -39,7 +40,7 @@ public class VersionFrame extends JFrame {
         this.repoModel = controller.getUmlController().getRepoModel();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(Size.VERFRAMEWIDTH, Size.VERFRAMEHEIGHT);
-        setTitle(controller.getLoginController().getMyAccount().getId()+"/"+repoModel.getRepoName());
+        setTitle(repoModel.getCreateBy()+"/"+repoModel.getRepoName());
         setResizable(false);
         setLocationRelativeTo(null);
         initUI();
@@ -59,8 +60,8 @@ public class VersionFrame extends JFrame {
     private void initBtn() {
         newBtn = new JButton("New");
         addBtn = new JButton("Member Manage");
-        newBtn.setBounds(Size.VERFRAMEWIDTH-Size.BACKBTNWIDTH-5,5,Size.BACKBTNWIDTH-10,Size.SUXMARGIN-10);
-        addBtn.setBounds(5,5,Size.CLAZZWIDTH,Size.SUXMARGIN-10);
+        newBtn.setBounds(Size.VERFRAMEWIDTH-Size.BACKBTNWIDTH-5,5,Size.BACKBTNWIDTH-10,Size.SIGNUP_XMARGIN-10);
+        addBtn.setBounds(5,5,Size.CLAZZWIDTH,Size.SIGNUP_XMARGIN-10);
         conPanel.add(newBtn);
         conPanel.add(addBtn);
     }
@@ -76,15 +77,22 @@ public class VersionFrame extends JFrame {
             private static final long serialVersionUID = 1L;
             public boolean isCellEditable(int row, int column) {return false;};
         };
+
+        for(VersionModel vm: repoModel.getVersions()) {
+            System.out.println(vm.getVer());
+        }
+        VersionComparator comp = new VersionComparator();
+        repoModel.getVersions().sort(comp);
         for(VersionModel vm: repoModel.getVersions()){
-            rows = new Vector<String>();
+            System.out.println(vm.getVer());
+            rows = new Vector<>();
             rows.addElement(vm.getName());
             rows.addElement(vm.getReg_date());
             rows.addElement(vm.getModifiedBy());
             model.addRow(rows);
         }
         verScrollPanel= new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        verScrollPanel.setBounds(0,Size.SUXMARGIN,Size.VERFRAMEWIDTH-5, Size.VERFRAMEHEIGHT-(Size.SUXMARGIN+32));
+        verScrollPanel.setBounds(0,Size.SIGNUP_XMARGIN,Size.VERFRAMEWIDTH-5, Size.VERFRAMEHEIGHT-(Size.SIGNUP_XMARGIN+32));
         conPanel.add(verScrollPanel);
 
     }
@@ -104,8 +112,7 @@ public class VersionFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource()==newBtn){
-                    System.out.println(controller.getUmlController().getRepoModel().getRepoName());
-                    controller.getGUIController().drawView();
+                    controller.getGUIController().drawView(getTitle());
                 }
             }
         });
@@ -113,7 +120,7 @@ public class VersionFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource()==addBtn){
-                    System.out.println("멤버관리");
+                    controller.getGUIController().newMemberManageFrame();
                 }
             }
         });
@@ -127,7 +134,7 @@ public class VersionFrame extends JFrame {
     public void permission(){
         newBtn.setVisible(true);
         addBtn.setVisible(true);
-        verScrollPanel.setBounds(0,Size.SUXMARGIN,Size.VERFRAMEWIDTH-5, Size.VERFRAMEHEIGHT-(Size.SUXMARGIN+32));
+        verScrollPanel.setBounds(0,Size.SIGNUP_XMARGIN,Size.VERFRAMEWIDTH-5, Size.VERFRAMEHEIGHT-(Size.SIGNUP_XMARGIN+32));
     }
     private void addRow(VersionModel versionModel){
         rows = new Vector<String>();

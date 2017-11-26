@@ -71,6 +71,7 @@ public class LoginController {
                         ack = Ack.lAck;
                         LoginInfo.getInstance().addConnectId(loginModel.getId());
                         this.id = dbLm.getId();
+                        controller.getAccountController().setId(id);
                         this.myLoginModel = dbLm;
                     } else {
                         ack = Ack.loginDupliAck;
@@ -94,7 +95,7 @@ public class LoginController {
 
     public boolean isDupliLogin(String id){
         System.out.println("접속 리스트");
-        for(String s: LoginInfo.getInstance().getConnectedId()){
+        for(String s: LoginInfo.getInstance().getconnectedIds()){
             System.out.println(s);
             if(s.equals(id)){
                 return true; // duplicate login

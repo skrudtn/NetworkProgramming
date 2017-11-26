@@ -20,8 +20,8 @@ public class LoginFrame extends JFrame {
         this.controller = controller;
         cards =  new CardLayout();
         setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-        setSize(Size.FRAMEWIDTH, Size.FRAMEHEIGHT);
-        setTitle("로그인");
+        setSize(Size.LOGIN_FRAME_W, Size.LOGIN_FRAME_H);
+        setTitle("Sign In");
         setResizable(false);
         setLocationRelativeTo(null);
         getContentPane().setLayout(cards);

@@ -2,6 +2,7 @@ package View.MainView;
 
 import Control.MainController;
 import Model.StaticModel.MyFont;
+import Model.StaticModel.MyImage;
 import Model.StaticModel.Pallate;
 import Model.StaticModel.Size;
 
@@ -28,9 +29,10 @@ public class NewRepoFrame extends JFrame{
     private JPanel conPanel;
     private JTextField textField;
     private JList friendJList;
+    private JButton btn;
     public NewRepoFrame(MainController controller){
         this.controller = controller;
-        setSize(Size.FRAMEWIDTH, Size.FRAMEHEIGHT);
+        setSize(Size.LOGIN_FRAME_W, Size.LOGIN_FRAME_H);
         setTitle("Create New Repository");
         setResizable(false);
         setLocationRelativeTo(null);
@@ -46,7 +48,12 @@ public class NewRepoFrame extends JFrame{
 
 
     private void initBtn() {
-        JButton btn = getImageBtn();
+        btn = new JButton(MyImage.btn_ok);
+        btn.setBounds(textField.getX()+textField.getWidth()+20,textField.getY(),BTNWIDTH,TEXTHEIGHT);
+        btn.setBackground(Pallate.a);
+        btn.setBorderPainted(false);
+        btn.setFocusPainted(false);
+        btn.setContentAreaFilled(false);
         conPanel.add(btn);
         btn.addActionListener(new ActionListener() {
             @Override
@@ -83,7 +90,6 @@ public class NewRepoFrame extends JFrame{
         }
 
         friendJList = new JList(vector);
-//        friendJList.setSelectedIndex();
         JScrollPane jScrollPane = new JScrollPane(friendJList);
         jScrollPane.setBounds(XMARGIN, authoLabel.getY()+TEXTHEIGHT+10,Size.CLAZZWIDTH,TEXTHEIGHT*3);
         conPanel.add(textField);
@@ -92,6 +98,7 @@ public class NewRepoFrame extends JFrame{
         conPanel.add(authoLabel);
     }
 
+
     private void action(){
         String repoName = textField.getText();
         if(!repoName.equals("")){
@@ -99,7 +106,6 @@ public class NewRepoFrame extends JFrame{
             if(!friendJList.isSelectionEmpty()) {
                 authorities = (ArrayList<String>) friendJList.getSelectedValuesList();
             }
-//            controller.getUmlController().setRepoName(repoName);
             controller.getNetworkController().sendStr(controller.getJsonController().getSearchRepoStr(repoName,controller.getLoginController().getMyAccount().getId(),authorities));
 
         }else {
@@ -107,16 +113,4 @@ public class NewRepoFrame extends JFrame{
         }
     }
 
-    private JButton getImageBtn(){
-        ImageIcon icon = new ImageIcon("client\\Image\\okBtn.png");
-        Image image = icon.getImage();
-        Image changeImage = image.getScaledInstance(BTNWIDTH,TEXTHEIGHT+10,Image.SCALE_SMOOTH);
-        JButton btn = new JButton(new ImageIcon(changeImage));
-        btn.setBounds(textField.getX()+textField.getWidth()+20,textField.getY(),BTNWIDTH,TEXTHEIGHT+10);
-        btn.setBackground(Pallate.a);
-        btn.setBorderPainted(false);
-        btn.setFocusPainted(false);
-        btn.setContentAreaFilled(false);
-        return btn;
-    }
 }

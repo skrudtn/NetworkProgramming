@@ -6,6 +6,7 @@ import Model.ClassDiagramModel.Association;
 import Model.ClassDiagramModel.CDModel;
 import Model.ClassDiagramModel.ClazzModel;
 import Model.RepoModel;
+import Model.StaticModel.MyImage;
 import Model.StaticModel.Pallate;
 import Model.StaticModel.Size;
 import View.ClassDiagram.Clazz;
@@ -87,8 +88,8 @@ public class DrawContentPanel extends JPanel {
         String classString[] = {"Class", "Interface", "Association", "Directed Association", "Generalization",
                 "Realization", "Dependency", "Aggregation", "Composition"};
 
-        classComboBox = new JComboBox<String>(classString);
-
+        classComboBox = new JComboBox<>(classString);
+//        classComboBox.setUI();
         classComboBox.setAlignmentX(1);
 
 
@@ -105,8 +106,8 @@ public class DrawContentPanel extends JPanel {
     }
 
     private void initBtn() {
-        backBtn = new JButton(getImage("client\\Image\\backBtn.png", Size.BACKBTNWIDTH, Size.BACKBTNHEIGHT));
-        pushBtn = new JButton(getImage("client\\Image\\pushBtn.png", Size.PUSHBTNWIDTH, Size.PUSHBTNHEIGHT));
+        backBtn = new JButton(MyImage.btn_back);
+        pushBtn = new JButton(MyImage.btn_push);
 
         backBtn.setBounds(10, 10, Size.BACKBTNWIDTH, Size.BACKBTNHEIGHT);
         backBtn.setBorderPainted(false);
@@ -119,13 +120,6 @@ public class DrawContentPanel extends JPanel {
 
         sideBarPanel.add(backBtn);
         menuPanel.add(pushBtn);
-    }
-
-    private ImageIcon getImage(String path, int w, int h) {
-        ImageIcon icon = new ImageIcon(path);
-        Image image = icon.getImage();
-        Image changeImage = image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
-        return new ImageIcon(changeImage);
     }
 
     public DrawPanel getDrawPanel() {

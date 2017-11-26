@@ -14,30 +14,27 @@ public class ProfileFrame extends JFrame {
     private PWChangePanel pwcp;
     private ProfilePanel pp;
     private AddFriendPanel afp;
-    private SettingPanel sp;
     private MainController controller;
     public ProfileFrame(MainController controller){
         this.controller = controller;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setSize(Size.FRAMEWIDTH, Size.FRAMEHEIGHT);
+        setSize(Size.LOGIN_FRAME_W, Size.LOGIN_FRAME_H);
         setResizable(false);
         setLocationRelativeTo(null);
 
         cards =  new CardLayout();
         getContentPane().setLayout(cards);
 
-        setSize(Size.FRAMEWIDTH, Size.FRAMEHEIGHT);
+        setSize(Size.LOGIN_FRAME_W, Size.LOGIN_FRAME_H);
         setLocationRelativeTo(null);
 
         pwcp = new PWChangePanel(this);
         pp = new ProfilePanel(this);
         afp = new AddFriendPanel(this);
-        sp = new SettingPanel(this);
 
         getContentPane().add("pp",pp);
         getContentPane().add("pwcp",pwcp);
         getContentPane().add("afp", afp);
-        getContentPane().add("sp",sp);
         setVisible(true);
     }
 
@@ -59,10 +56,6 @@ public class ProfileFrame extends JFrame {
 
     public AddFriendPanel getAfp() {
         return afp;
-    }
-
-    public SettingPanel getSp() {
-        return sp;
     }
 
 }

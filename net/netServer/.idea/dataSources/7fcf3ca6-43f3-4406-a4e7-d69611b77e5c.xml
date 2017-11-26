@@ -4,7 +4,7 @@
     <root id="1"/>
     <schema id="2" parent="1" name="KSNA">
       <ObjectId>92</ObjectId>
-      <IntrospectionTimestamp>2017-11-20.02:40:05</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2017-11-24.14:46:16</IntrospectionTimestamp>
       <CreatedTimestamp>2017-10-09.11:40:32</CreatedTimestamp>
       <ModifiedTimestamp>2017-11-20.02:40:05</ModifiedTimestamp>
       <Current>1</Current>

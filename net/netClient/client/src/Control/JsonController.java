@@ -11,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
+import java.util.Vector;
 
 /**
  * Created by skrud on 2017-09-27.
@@ -129,7 +130,7 @@ public class JsonController {
                 }
             }
         }
-        return new LoginModel(id, pw, email, name);
+        return new LoginModel(id, pw, name,email);
     }
 
     public String cdm2str(CDModel cd,int repoNo) {
@@ -543,10 +544,10 @@ public class JsonController {
         return friends;
     }
 
-    public RepoModel str2repo(String str) {
-
+    public RepoModel str2rm(String str) {
         RepoModel repoModel = new RepoModel();
         ArrayList<VersionModel> versions = new ArrayList<>();
+        ArrayList<String> members = new ArrayList<>();
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
 
@@ -567,13 +568,23 @@ public class JsonController {
                 } else if (key.equals("repoNo")) {
                     String temp = (String) value;
                     repoModel.setRepoNo(Integer.parseInt(temp));
-                } else if (key.equals("autho")) {
+                } else if (key.equals("isMember")) {
                     String temp = (String) value;
                     if(temp.equals("true")){
-                        repoModel.setAutho(true);
+                        repoModel.setMember(true);
                     } else{
-                        repoModel.setAutho(false);
+                        repoModel.setMember(false);
                     }
+                } else if (key.equals("isCreator")) {
+                    String temp = (String) value;
+                    if(temp.equals("true")){
+                        repoModel.setCreator(true);
+                    } else{
+                        repoModel.setCreator(false);
+                    }
+                } else if(key.equals("members")){
+                    members = (ArrayList<String>) value;
+                    repoModel.setMembers(members);
                 } else if (key.equals("versions")) {
                     JSONArray arr = (JSONArray) value;
                     int size = arr.size();
@@ -638,7 +649,6 @@ public class JsonController {
     public ArrayList<Event> str2Events(String str) {
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
-        ArrayList<String> temp=null;
         ArrayList<Event> events = new ArrayList<>();
         try {
             obj = jsonParser.parse(str);
@@ -650,14 +660,33 @@ public class JsonController {
             Set keySet = jsonObject.keySet();
             for (Object key : keySet) {
                 Object value = jsonObject.get(key);
-                if (key.equals("reqFriends")) {
-                    JSONObject inObj = (JSONObject) obj;
-//                    Set keySet = jsonObject.keySet();
-                    temp = (ArrayList<String>) value;
-//                    events.addAll(temp);
-                } else if(key.equals("reqMembers")){
-                    temp = (ArrayList<String>) value;
-//                    events.addAll(temp);
+                if (key.equals("events")) {
+                    JSONArray jsonArray = (JSONArray) value;
+                    int size = jsonArray.size();
+                    for (int i = 0; i < size; i++) {
+                        String src = "";
+                        String des = "";
+                        String date = "";
+                        String data = "";
+                        String type = "";
+                        JSONObject inObj = (JSONObject) jsonArray.get(i);
+                        Set inSet = inObj.keySet();
+                        for (Object inKey : inSet) {
+                            Object inValue = inObj.get(inKey);
+                            if (inKey.equals("src")) {
+                                src = (String) inValue;
+                            } else if (inKey.equals("des")) {
+                                des = (String) inValue;
+                            } else if (inKey.equals("date")) {
+                                date = (String) inValue;
+                            } else if (inKey.equals("data")) {
+                                data = (String) inValue;
+                            } else if (inKey.equals("eventType")) {
+                                type = (String) inValue;
+                            }
+                        }
+                        events.add(new Event(src, des, type, data, date));
+                    }
                 }
             }
         }
@@ -693,5 +722,22 @@ public class JsonController {
             }
         }
         return new Event(src,des,"friend",data,date);
+    }
+
+    public String getResFriendStr(String des, String isOk) {
+        JSONObject obj = new JSONObject();
+        obj.put("type", "friendRes");
+        obj.put("des", des);
+        obj.put("ok",isOk);
+
+        return obj.toJSONString();
+    }
+
+    public String getMemManageStr(Vector<String> selectList,String repoNo) {
+        JSONObject obj = new JSONObject();
+        obj.put("type", "memberManage");
+        obj.put("members",selectList);
+        obj.put("repoNo",repoNo);
+        return obj.toJSONString();
     }
 }

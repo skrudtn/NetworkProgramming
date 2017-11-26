@@ -1,6 +1,4 @@
-package Model.RepoModel;
-
-import java.util.ArrayList;
+package Model;
 
 /**
  * Created by skrud on 2017-11-16.
@@ -23,6 +21,15 @@ public class VersionModel {
         modifiedBy="";
         reg_date = "";
 
+    }
+
+    public VersionModel(String verName, String diagram, String date, String modi, int verNo, int ver) {
+        this.name= verName;
+        this.diagram = diagram;
+        this.reg_date = date;
+        this.modifiedBy = modi;
+        this.verNo = verNo;
+        this.ver = ver;
     }
 
     public int getVerNo() {

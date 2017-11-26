@@ -10,21 +10,24 @@ import java.awt.event.KeyEvent;
  */
 public class SearchPanel extends JPanel {
     private MainFrame df;
-    private TextField searchField;
+    private JTextField searchField;
     private JComboBox<String> searchCombo;
     private String category[];
 
     public SearchPanel(MainFrame df) {
         this.df = df;
-
+//        this.setLayout(null);
+        this.setOpaque(false);
         initComboBox();
         initTextField();
         setVisible(true);
     }
 
     private void initTextField() {
-        searchField = new TextField(30);
+        searchField = new JTextField(30);
         searchField.setFont(new Font("Serif", Font.BOLD, 15));
+        searchField.setOpaque(false);
+        searchField.setBounds(searchCombo.getX()+searchField.getWidth()+20,searchCombo.getY(),120,searchCombo.getHeight());
         searchField.addKeyListener(new KeyAdapter() {
 
             @Override
@@ -54,7 +57,7 @@ public class SearchPanel extends JPanel {
                 "Title", "UserID"
         };
         searchCombo = new JComboBox<>(category);
-        searchCombo.setBounds(20,20,100,getHeight()-40);
+//        searchCombo.setBounds(0,0,120,getHeight()-40);
         searchCombo.setAlignmentX(1);
         add(searchCombo);
     }

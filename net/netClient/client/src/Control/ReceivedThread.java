@@ -1,6 +1,7 @@
 package Control;
 
 import Model.ClassDiagramModel.CDModel;
+import Model.Event;
 import Model.RepoModel;
 import Model.SearchRepoModel;
 import Model.StaticModel.Ack;
@@ -44,7 +45,7 @@ public class ReceivedThread implements Runnable {
                     recvLoginModel();
                     recvSearchData(true);
                     recvFriends();
-//                    recvEvent();
+                    recvEvent();
                     break; //로그인 성공
                 case Ack.pREJ:
                     gc.loginStateUpdate("Invalid PW", false);
@@ -57,13 +58,13 @@ public class ReceivedThread implements Runnable {
                     gc.setOverLapFlag(0);
                     break;
                 case Ack.oREJ:
-                    gc.signupStateUpdate("Existing id", false);
+                    gc.signupStateUpdate("ID already in use", false);
                     break;
                 case Ack.signUpACK:
                     gc.loginView();
                     break;
                 case Ack.signUpREJ:
-                    gc.signupStateUpdate("Failed Sign Up", false);
+                    gc.signupStateUpdate("Sign Up Failed", false);
                     break;
                 case Ack.pwCACK:
                     gc.loginView();
@@ -93,13 +94,13 @@ public class ReceivedThread implements Runnable {
                     gc.searchUpdate();
                     break;
                 case Ack.loginDupliAck:
-                    gc.loginStateUpdate("Duplicate login", false);
+                    gc.loginStateUpdate("Failed due to duplicate login", false);
                     break;
                 case Ack.logoutAck:
                     gc.signOut();
                     break;
                 case Ack.searchIdAck:
-                    gc.searchIdStateUpdate("Send Friend Request",1);
+                    gc.searchIdStateUpdate("Sent Friend Request",1);
                     break;
                 case Ack.searchIdRej:
                     gc.searchIdStateUpdate("Check the Id",0);
@@ -122,6 +123,18 @@ public class ReceivedThread implements Runnable {
                     break;
                 case Ack.repoREJ: // version 선택불가능
                     break;
+                case Ack.acceptFriend: // 친구 승낙
+                    recvFriends();
+                    break;
+                case Ack.rejectFriend: // 친구 거절
+                    break;
+                case Ack.updateAuthoAck: // 멤버 교환
+                    gc.memberManageUpdate("Complete Save",1);
+                    break;
+                case Ack.updateAuthoRej: // 친구 거절
+
+                    gc.memberManageUpdate("Failed Save",0);
+                    break;
 
                 default:
                     break;
@@ -138,7 +151,7 @@ public class ReceivedThread implements Runnable {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
             System.out.println(str);
-            controller.getEventsController().getEvents().add(jc.str2friendEvents(str));
+            controller.getEventsController().addEvent(jc.str2friendEvents(str));
             gc.resEvents();
         } catch (IOException e) {
             e.printStackTrace();
@@ -150,7 +163,8 @@ public class ReceivedThread implements Runnable {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
             System.out.println(str);
-//            controller.getEventsController().getEvents().addAll((jc.str2Events(str)));
+            controller.getEventsController().getEvents().addAll((jc.str2Events(str)));
+            controller.getEventsController().display();
             gc.resEvents();
         } catch (IOException e) {
             e.printStackTrace();
@@ -162,7 +176,7 @@ public class ReceivedThread implements Runnable {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
             System.out.println(str);
-            RepoModel rm = jc.str2repo(str);
+            RepoModel rm = jc.str2rm(str);
             controller.getUmlController().setRepoModel(rm);
             gc.versionView();
         } catch (IOException e) {
@@ -174,9 +188,9 @@ public class ReceivedThread implements Runnable {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
+            System.out.println(str);
             ArrayList<String> friends = jc.str2friends(str);
             controller.setFriends(friends);
-            gc.searchUpdate();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -203,8 +217,8 @@ public class ReceivedThread implements Runnable {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
-            System.out.println(str);
             controller.getLoginController().setMyAccount(jc.str2lm(str));
+            gc.setMainFrameTitle(controller.getLoginController().getMyAccount().getId());
         } catch (IOException e) {
             e.printStackTrace();
         }

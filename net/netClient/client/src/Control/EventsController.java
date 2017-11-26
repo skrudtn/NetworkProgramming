@@ -22,5 +22,16 @@ public class EventsController {
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
     }
-
+    public void addEvent(Event e){
+        events.add(e);
+        display();
+    }
+    public void removeEvent(Event e){
+        events.remove(e);
+    }
+    public void display(){
+        for(Event e: events){
+            System.out.println(e.getSrc()+" -> "+e.getDes());
+        }
+    }
 }

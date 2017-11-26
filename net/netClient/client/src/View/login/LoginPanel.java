@@ -2,10 +2,12 @@ package View.login;
 
 import Control.GUIController;
 import Model.StaticModel.MyFont;
+import Model.StaticModel.MyImage;
 import Model.StaticModel.Pallate;
 import Model.StaticModel.Size;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -22,6 +24,10 @@ public class LoginPanel extends JPanel {
     private JButton loginBtn;
     private JButton signUpBtn;
     private JButton pwChangeBtn;
+
+    private JLabel logoLabel;
+    private JLabel idLabel;
+    private JLabel pwLabel ;
     private LoginFrame f;
     private GUIController gc;
     LoginPanel(LoginFrame f) {
@@ -48,56 +54,65 @@ public class LoginPanel extends JPanel {
     }
 
     private void initLabel() {
-        JLabel idLabel = new JLabel("아이디");
-        JLabel pwLabel = new JLabel("비밀번호");
-        JLabel rememberIDLabel = new JLabel("아이디저장");
+        logoLabel = new JLabel(MyImage.logo);
+        idLabel = new JLabel("ID");
+        pwLabel = new JLabel("PW");
 
-        idLabel.setBounds(Size.LABELXMARGIN, Size.LABELYMARGIN, 60, 30);
-        idLabel.setFont(MyFont.serif);
-//        idLabel.setFont(new MyFont().getNBG());
-        pwLabel.setBounds(Size.LABELXMARGIN, Size.LABELYMARGIN+ 65, 60, 30);
-        pwLabel.setFont(MyFont.serif);
-        rememberIDLabel.setBounds(Size.LABELXMARGIN+ 30, Size.LABELYMARGIN+ 130, 100, 30);
+        idLabel.setBounds(Size.SIGNIN_XMARGIN, Size.SIGNIN_YMARGIN, Size.SIGNIN_ID_W, Size.SIGNIN_ID_H);
+        idLabel.setFont(MyFont.serif20);
+        idLabel.setForeground(Color.WHITE);
+        pwLabel.setBounds(Size.SIGNIN_XMARGIN,idLabel.getY()+idLabel.getHeight()+10, Size.SIGNIN_ID_W, Size.SIGNIN_ID_H);
+        pwLabel.setFont(MyFont.serif20);
+        pwLabel.setForeground(Color.WHITE);
+        logoLabel.setBounds(Size.LOGO_X,Size.LOGO_Y,Size.LOGO_W,Size.LOGO_H);
+
+//        rememberIDLabel.setBounds(Size.LABELXMARGIN+ 30, Size.LABELYMARGIN+ 130, 100, 30);
 
         add(idLabel);
         add(pwLabel);
+        add(logoLabel);
 //        add(rememberIDLabel);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(MyImage.loginBgImage.getImage(), 0, 0, null);
     }
 
     private void initTextField() {
         idTextField = new JTextField();
         pwTextField = new JPasswordField();
 
-        idTextField.setBounds(Size.LABELXMARGIN, Size.LABELYMARGIN + 30, 220, 30);
-        pwTextField.setBounds(Size.LABELXMARGIN, Size.LABELYMARGIN + 95, 220, 30);
+        idTextField.setBounds(idLabel.getX()+idLabel.getWidth()+20, Size.SIGNIN_YMARGIN, Size.SIGNIN_TEXT_W, idLabel.getHeight());
+        pwTextField.setBounds(idTextField.getX(), idTextField.getY()+idTextField.getHeight()+10, Size.SIGNIN_TEXT_W, pwLabel.getHeight());
+        idTextField.setOpaque(false);
+        pwTextField.setOpaque(false);
+        idTextField.setForeground(Color.WHITE);
+        pwTextField.setForeground(Color.WHITE);
+        idTextField.setFont(MyFont.serif20);
+        pwTextField.setFont(MyFont.serif20);
 
         add(idTextField);
         add(pwTextField);
     }
 
     private void initButton() {
-        loginBtn = new JButton("로그인");
-        signUpBtn = new JButton("회원가입");
-        pwChangeBtn = new JButton("비밀번호찾기");
-        JCheckBox jCheckBox = new JCheckBox();
+        loginBtn = new JButton(MyImage.btn_signin_lg);
+        signUpBtn = new JButton(MyImage.btn_signup_lg);
 
-        jCheckBox.setBounds(Size.LABELXMARGIN, Size.LABELYMARGIN + 130, 25, 30);
-        loginBtn.setBounds(295, Size.LABELYMARGIN + 20, 80, 95);
-        loginBtn.setBackground(Pallate.e);
-        loginBtn.setForeground(Pallate.a);
-        signUpBtn.setBounds(Size.LABELXMARGIN + 10, 330, 120, 50);
-        signUpBtn.setBounds(Size.LABELXMARGIN + 10, 330, 120, 50);
-        signUpBtn.setBackground(Pallate.e);
-        signUpBtn.setForeground(Pallate.a);
-        pwChangeBtn.setBounds(Size.LABELXMARGIN + 150, 330, 120, 50);
-        pwChangeBtn.setBounds(Size.LABELXMARGIN + 150, 330, 120, 50);
-        pwChangeBtn.setBackground(Pallate.e);
-        pwChangeBtn.setForeground(Pallate.a);
-
-//        add(jCheckBox);
+        loginBtn.setBounds(Size.SIGNIN_XMARGIN, pwLabel.getY()+pwLabel.getHeight()+40, Size.SIGNIN_BTN_W, Size.SIGNIN_BTN_H);
+        signUpBtn.setBounds(Size.SIGNIN_XMARGIN, loginBtn.getY()+loginBtn.getHeight()+20, Size.SIGNIN_BTN_W, Size.SIGNIN_BTN_H);
         add(loginBtn);
         add(signUpBtn);
-//        add(pwChangeBtn);
+
+        loginBtn.setContentAreaFilled(false);
+        loginBtn.setFocusPainted(false);
+        loginBtn.setBorderPainted(false);
+        signUpBtn.setBorderPainted(false);
+        signUpBtn.setFocusPainted(false);
+        signUpBtn.setContentAreaFilled(false);
+
         buttonActionListen();
     }
 
@@ -145,23 +160,23 @@ public class LoginPanel extends JPanel {
                 }
             }
         });
-        pwChangeBtn.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    onPressedPwChangeBtn();
-                }
-            }
-        });
-        pwChangeBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(e.getSource() == pwChangeBtn){
-                    onPressedPwChangeBtn();
-                }
-            }
-        });
+//        pwChangeBtn.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(KeyEvent e) {
+//                super.keyPressed(e);
+//                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+//                    onPressedPwChangeBtn();
+//                }
+//            }
+//        });
+//        pwChangeBtn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if(e.getSource() == pwChangeBtn){
+//                    onPressedPwChangeBtn();
+//                }
+//            }
+//        });
         idTextField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {

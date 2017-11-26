@@ -17,6 +17,7 @@ public class GUIController {
     private ProfileFrame profileFrame = null;
     private VersionFrame versionFrame = null;
     private StatusFrame statusFrame = null;
+    private MemberManageFrame memberManageFrame= null;
     private UMLController uc=null;
 
     private int comboMode;
@@ -33,9 +34,11 @@ public class GUIController {
 
     }
     public void loginView() {
+        loginFrame.setTitle("Sign In");
         loginFrame.getCardLayout().show(loginFrame.getContentPane(), "login");
     }
     public void signUpView(){
+        loginFrame.setTitle("Sign Up");
         loginFrame.getCardLayout().show(loginFrame.getContentPane(), "signup");
     }
     public void pwChangeView(){
@@ -46,24 +49,27 @@ public class GUIController {
         loginFrame.dispose();
         mainFrame = new MainFrame(controller);
     }
+    void setMainFrameTitle(String id){
+        mainFrame.setTitle(id);
+    }
     public void newProfileView(){
         profileFrame = new ProfileFrame(controller);
     }
 
     public void displayView(){
         mainFrame.getCardLayout().show(mainFrame.getContentPane(),"display");
-        mainFrame.setTitle("");
+        mainFrame.setTitle(controller.getLoginController().getMyAccount().getId());
         mainFrame.getDrawContentPanel().getDrawPanel().init();
     }
-    public void drawView(){
+    public void drawView(String str){
         versionFrame.dispose();
-        mainFrame.setTitle(controller.getUmlController().getRepoModel().getRepoName());
+        mainFrame.setTitle(str);
         mainFrame.getCardLayout().show(mainFrame.getContentPane(),"draw");
     }
     public void versionView(){
         if(newRepoFrame !=null) newRepoFrame.dispose();
         versionFrame = new VersionFrame(controller);
-        if (controller.getUmlController().getRepoModel().isAutho()){
+        if (controller.getUmlController().getRepoModel().isCreator()){
             versionFrame.permission();
         } else{
             versionFrame.noPermission();
@@ -98,10 +104,11 @@ public class GUIController {
 
     public void cllone(){
         versionFrame.dispose();
-        mainFrame.setTitle(uc.getCdModel().getCdName());
         mainFrame.getCardLayout().show(mainFrame.getContentPane(),"draw");
+        mainFrame.setTitle(controller.getUmlController().getRepoModel().getCreateBy()+"/"
+                +controller.getUmlController().getRepoModel().getRepoName());
         mainFrame.getDrawContentPanel().getDrawPanel().cllone();
-        if (controller.getUmlController().getRepoModel().isAutho()){
+        if (controller.getUmlController().getRepoModel().isMember()){
             mainFrame.getDrawContentPanel().getDrawPanel().permission();
         } else{
             mainFrame.getDrawContentPanel().getDrawPanel().noPermission();
@@ -114,6 +121,7 @@ public class GUIController {
         mainFrame.getDisplayPanel().getNoticeScrollPanel().setViewportView(mainFrame.getDisplayPanel().getNoticePanel());
         mainFrame.getDisplayPanel().repaint();
     }
+
     void myRepoUpdate() {
         mainFrame.getDisplayPanel().getRepoPanel().initResultPanel();
         mainFrame.getDisplayPanel().getRepoPanel().addResultPanel(controller.getMySdms());
@@ -172,11 +180,23 @@ public class GUIController {
     }
 
     public void resEvents() {
-        mainFrame.getDisplayPanel().statusChange(false);
+        if(controller.getEventsController().getEvents().isEmpty()) {
+            mainFrame.getDisplayPanel().statusChange(true);
+        } else{
+            mainFrame.getDisplayPanel().statusChange(false);
+        }
     }
 
     public void displayStatusView() {
         statusFrame = new StatusFrame(controller);
         statusFrame.setStateFrame();
+    }
+
+    public void newMemberManageFrame() {
+        memberManageFrame = new MemberManageFrame(controller);
+    }
+
+    public void memberManageUpdate(String s, int i) {
+        JOptionPane.showMessageDialog(memberManageFrame,s,s,i);
     }
 }

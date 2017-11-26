@@ -1,6 +1,8 @@
 package View.login;
 
 import Control.GUIController;
+import Model.StaticModel.MyFont;
+import Model.StaticModel.MyImage;
 import Model.StaticModel.Pallate;
 import Model.StaticModel.Size;
 
@@ -25,7 +27,10 @@ public class SignUpPanel extends JPanel {
     private JButton pwCheckBtn;
     private JButton backBtn;
 
+    private JLabel idLabel;
     private JLabel pwLabel;
+    private JLabel pwLabel2;
+    private JLabel nameLabel;
     private JLabel emailLabel;
 
     private JTextField idTextField;
@@ -52,24 +57,35 @@ public class SignUpPanel extends JPanel {
         initButton();
         initActionListener();
     }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(MyImage.loginBgImage.getImage(), 0, 0, null);
+    }
 
     private void initLabel() {
-        JLabel idLabel = new JLabel("아이디\t: ");
-        pwLabel = new JLabel("비밀번호\t: ");
-        JLabel pwLabel2 = new JLabel("재입력\t: ");
-        JLabel nameLabel = new JLabel("이름\t: ");
-        emailLabel = new JLabel("이메일\t: ");
+        idLabel = new JLabel("ID ");
+        pwLabel = new JLabel("PW ");
+        pwLabel2 = new JLabel("PW2 ");
+        nameLabel = new JLabel("Name ");
+        emailLabel = new JLabel("E-mail ");
 
-        idLabel.setBounds(Size.SUXMARGIN, Size.SUYMARGIN, 80, 40);
-        idLabel.setFont(new Font("Serif", Font.BOLD, 15));
-        pwLabel.setBounds(Size.SUXMARGIN, Size.SUYMARGIN + 50, 80, 40);
-        pwLabel.setFont(new Font("Serif", Font.BOLD, 15));
-        pwLabel2.setBounds(Size.SUXMARGIN, Size.SUYMARGIN + 100, 80, 40);
-        pwLabel2.setFont(new Font("Serif", Font.BOLD, 15));
-        nameLabel.setBounds(Size.SUXMARGIN, Size.SUYMARGIN + 150, 80, 40);
-        nameLabel.setFont(new Font("Serif", Font.BOLD, 15));
-        emailLabel.setBounds(Size.SUXMARGIN, Size.SUYMARGIN + 200, 80, 40);
-        emailLabel.setFont(new Font("Serif", Font.BOLD, 15));
+        idLabel.setBounds(Size.SIGNUP_XMARGIN, Size.SIGNUP_YMARGIN, Size.SIGNUP_LABEL_W, Size.SIGNUP_LABEL_H);
+        idLabel.setFont(MyFont.serif20);
+        pwLabel.setBounds(idLabel.getX(), idLabel.getY()+idLabel.getHeight()+10, Size.SIGNUP_LABEL_W, Size.SIGNUP_LABEL_H);
+        pwLabel.setFont(MyFont.serif20);
+        pwLabel2.setBounds(pwLabel.getX(), pwLabel.getY()+pwLabel.getHeight()+10, Size.SIGNUP_LABEL_W, Size.SIGNUP_LABEL_H);
+        pwLabel2.setFont(MyFont.serif20);
+        nameLabel.setBounds(pwLabel2.getX(), pwLabel2.getY()+pwLabel2.getHeight()+10, Size.SIGNUP_LABEL_W, Size.SIGNUP_LABEL_H);
+        nameLabel.setFont(MyFont.serif20);
+        emailLabel.setBounds(nameLabel.getX(), nameLabel.getY()+nameLabel.getHeight()+10, Size.SIGNUP_LABEL_W, Size.SIGNUP_LABEL_H);
+        emailLabel.setFont(MyFont.serif20);
+
+        idLabel.setForeground(Color.WHITE);
+        pwLabel.setForeground(Color.WHITE);
+        pwLabel2.setForeground(Color.WHITE);
+        nameLabel.setForeground(Color.WHITE);
+        emailLabel.setForeground(Color.WHITE);
 
         add(idLabel);
         add(pwLabel);
@@ -85,17 +101,26 @@ public class SignUpPanel extends JPanel {
         nameTextField = new JTextField();
         emailTextField = new JTextField();
 
-        idTextField.setBounds(Size.SUXMARGIN + pwLabel.getWidth() + 10, Size.SUYMARGIN, 140, 40);
-        idTextField.setFont(new Font("Serif", Font.BOLD, 15));
-        pwTextField.setBounds(Size.SUXMARGIN + pwLabel.getWidth() + 10, Size.SUYMARGIN + 50, 140, 40);
-        pwTextField.setFont(new Font("Serif", Font.BOLD, 15));
-        pwTextField2.setBounds(Size.SUXMARGIN + pwLabel.getWidth() + 10, Size.SUYMARGIN + 100, 140, 40);
-        pwTextField2.setFont(new Font("Serif", Font.BOLD, 15));
-        nameTextField.setBounds(Size.SUXMARGIN + pwLabel.getWidth() + 10, Size.SUYMARGIN + 150, 140, 40);
-        nameTextField.setFont(new Font("Serif", Font.BOLD, 15));
-        emailTextField.setBounds(Size.SUXMARGIN + pwLabel.getWidth() + 10, Size.SUYMARGIN + 200, 140, 40);
-        emailTextField.setFont(new Font("Serif", Font.BOLD, 15));
-
+        idTextField.setBounds(pwLabel.getX()+ pwLabel.getWidth() + 10,idLabel.getY(), Size.SIGNUP_TEXT_W, idLabel.getHeight());
+        idTextField.setFont(MyFont.serif18);
+        idTextField.setOpaque(false);
+        idTextField.setForeground(Color.WHITE);
+        pwTextField.setBounds(idTextField.getX(), pwLabel.getY(), idTextField.getWidth(), idLabel.getHeight());
+        pwTextField.setFont(MyFont.serif18);
+        pwTextField.setOpaque(false);
+        pwTextField.setForeground(Color.WHITE);
+        pwTextField2.setBounds(idTextField.getX(), pwLabel2.getY(), idTextField.getWidth(), idLabel.getHeight());
+        pwTextField2.setFont(MyFont.serif18);
+        pwTextField2.setOpaque(false);
+        pwTextField2.setForeground(Color.WHITE);
+        nameTextField.setBounds(idTextField.getX(), nameLabel.getY(), idTextField.getWidth(), idLabel.getHeight());
+        nameTextField.setFont(MyFont.serif18);
+        nameTextField.setOpaque(false);
+        nameTextField.setForeground(Color.WHITE);
+        emailTextField.setBounds(idTextField.getX(), emailLabel.getY(), idTextField.getWidth(), idLabel.getHeight());
+        emailTextField.setFont(MyFont.serif18);
+        emailTextField.setOpaque(false);
+        emailTextField.setForeground(Color.WHITE);
         add(idTextField);
         add(pwTextField);
         add(pwTextField2);
@@ -104,23 +129,28 @@ public class SignUpPanel extends JPanel {
     }
 
     private void initButton() {
-        okBtn = new JButton("가입하기");
-        idOverlapBtn = new JButton("중복확인");
-        pwCheckBtn = new JButton("비번확인");
-        backBtn = new JButton("뒤로");
+        okBtn = new JButton(MyImage.btn_signup_sm);
+        idOverlapBtn = new JButton(MyImage.btn_check);
+        pwCheckBtn = new JButton(MyImage.btn_check);
+        backBtn = new JButton(MyImage.btn_cancel_sm);
 
-        okBtn.setBounds(Size.SUXMARGIN + 140, emailLabel.getY() + emailLabel.getHeight() + 20, 140, 60);
-        okBtn.setBackground(Pallate.e);
-        okBtn.setForeground(Pallate.a);
-        idOverlapBtn.setBounds(idTextField.getX() + idTextField.getWidth() + 10, idTextField.getY(), 90, 30);
-        idOverlapBtn.setBackground(Pallate.e);
-        idOverlapBtn.setForeground(Pallate.a);
-        pwCheckBtn.setBounds(idOverlapBtn.getX(), pwTextField2.getY(), 90, 30);
-        pwCheckBtn.setBackground(Pallate.e);
-        pwCheckBtn.setForeground(Pallate.a);
-        backBtn.setBounds(15, 15, 60, 40);
-        backBtn.setBackground(Pallate.e);
-        backBtn.setForeground(Pallate.a);
+        okBtn.setBounds(emailLabel.getX(), emailLabel.getY() + emailLabel.getHeight() + 40, Size.SIGNUP_SBTN_W, Size.SIGNUP_SBTN_H);
+        idOverlapBtn.setBounds(idTextField.getX() + idTextField.getWidth() + 20, idTextField.getY(), Size.CHECK_BTN, Size.CHECK_BTN);
+        pwCheckBtn.setBounds(idOverlapBtn.getX(), pwTextField2.getY(), Size.CHECK_BTN, Size.CHECK_BTN);
+        backBtn.setBounds(okBtn.getX()+okBtn.getWidth()+30, okBtn.getY(), okBtn.getWidth(), okBtn.getHeight());
+
+        okBtn.setBorderPainted(false);
+        okBtn.setFocusPainted(false);
+        okBtn.setContentAreaFilled(false);
+        backBtn.setBorderPainted(false);
+        backBtn.setFocusPainted(false);
+        backBtn.setContentAreaFilled(false);
+        idOverlapBtn.setBorderPainted(false);
+        idOverlapBtn.setFocusPainted(false);
+        idOverlapBtn.setContentAreaFilled(false);
+        pwCheckBtn.setBorderPainted(false);
+        pwCheckBtn.setFocusPainted(false);
+        pwCheckBtn.setContentAreaFilled(false);
 
         add(okBtn);
         add(idOverlapBtn);
@@ -230,7 +260,7 @@ public class SignUpPanel extends JPanel {
             pwFlag = true;
             showOption("Same PW", -1);
         } else {
-            showOption("Check the PW", 0);
+            showOption("PWs must match", 0);
         }
     }
 

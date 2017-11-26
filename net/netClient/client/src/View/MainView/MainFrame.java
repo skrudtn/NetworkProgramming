@@ -7,6 +7,7 @@ import Control.NetworkController;
 import Model.ClassDiagramModel.CDModel;
 import Model.ClassDiagramModel.ClazzModel;
 import Model.ClassDiagramModel.Association;
+import Model.StaticModel.MyImage;
 import View.ClassDiagram.Clazz;
 
 import java.awt.*;
@@ -28,27 +29,21 @@ public class MainFrame extends JFrame {
     private DrawContentPanel drawContentPanel;
     private DisplayContentPanel displayPanel;
     private MainController controller;
-    private GUIController gc;
-    private JsonController jc;
-    private NetworkController nc;
     private CardLayout cards;
 
     public MainFrame(MainController controller) {
         this.controller = controller;
-        gc = controller.getGUIController();
-        jc = controller.getJsonController();
-        nc = controller.getNetworkController();
         cards = new CardLayout();
+        this.setTitle(controller.getLoginController().getMyAccount().getId());
         initFrame();
     }
 
     public void resize() {
-
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
         int width = (int) (screen.getWidth() - insets.left - insets.right);
         int height = (int) (screen.getHeight() - insets.top - insets.bottom);
-
+        MyImage.loadBgImage(width,height);
         setBounds(0, 0, width, height);
     }
 
@@ -96,25 +91,4 @@ public class MainFrame extends JFrame {
         return controller;
     }
 
-    private void setKeyStroke(JMenu fileMenu, JMenu remoteMenu) {
-        fileMenu.getItem(0).setAccelerator(
-                KeyStroke.getKeyStroke('N', InputEvent.CTRL_MASK));
-        fileMenu.getItem(1).setAccelerator(
-                KeyStroke.getKeyStroke('O', InputEvent.CTRL_MASK));
-        fileMenu.getItem(2).setAccelerator(
-                KeyStroke.getKeyStroke('S', InputEvent.CTRL_MASK));
-        fileMenu.getItem(3).setAccelerator(
-                KeyStroke.getKeyStroke('E', InputEvent.CTRL_MASK));
-
-        remoteMenu.getItem(0).setAccelerator(
-                KeyStroke.getKeyStroke('C', InputEvent.CTRL_MASK ^ InputEvent.ALT_MASK));
-
-        remoteMenu.getItem(1).setAccelerator(
-                KeyStroke.getKeyStroke('A', InputEvent.CTRL_MASK ^ InputEvent.ALT_MASK));
-        remoteMenu.getItem(2).setAccelerator(
-                KeyStroke.getKeyStroke('S', InputEvent.CTRL_MASK ^ InputEvent.ALT_MASK));
-        remoteMenu.getItem(3).setAccelerator(
-                KeyStroke.getKeyStroke('P', InputEvent.CTRL_MASK ^ InputEvent.ALT_MASK));
-
-    }
 }

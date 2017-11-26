@@ -2,6 +2,7 @@ package View.ClassDiagram;
 
 import Model.ClassDiagramModel.Association;
 import Model.StaticModel.MyFont;
+import Model.StaticModel.MyImage;
 import Model.StaticModel.Pallate;
 import View.MainView.DrawPanel;
 
@@ -244,11 +245,7 @@ public class Clazz extends JPanel {
     }
 
     protected JButton getImageBtn(){
-        ImageIcon icon = new ImageIcon("client\\Image\\plusBtn.png");
-        Image image = icon.getImage();
-        Image changeImage = image.getScaledInstance(TEXTHEIGHT,TEXTHEIGHT,Image.SCALE_SMOOTH);
-        JButton btn = new JButton(new ImageIcon(changeImage));
-        btn.setBackground(Pallate.a);
+        JButton btn = new JButton(MyImage.btn_plus);
         btn.setBorderPainted(false);
         btn.setFocusPainted(false);
         btn.setContentAreaFilled(false);

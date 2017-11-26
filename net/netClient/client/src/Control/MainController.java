@@ -1,6 +1,7 @@
 package Control;
 
 import Model.SearchRepoModel;
+import Model.StaticModel.MyImage;
 
 import java.util.ArrayList;
 
@@ -27,8 +28,10 @@ public class MainController {
         initController();
         sdms = new ArrayList<>();
         mySdms = new ArrayList<>();
-
+        MyImage.loadLoginImage();
+        new Thread(new ImageLoadThread()).start();
     }
+
     public void clientStart(){
         GUIController.newLoginView(this);
 //        GUIController.drawViewTest();

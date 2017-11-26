@@ -16,11 +16,6 @@ public class MemberThread implements Runnable {
     private ClientModel client;
     private Socket socket;
     private ArrayList<ClientModel> clientList;
-    private JsonController jc;
-    private DBController dc;
-    private LoginController lc;
-    private UMLController uc;
-    private AccountController ac;
 
     public MemberThread(ClientModel clientModel, ArrayList<ClientModel> clientList) {
         this.client = clientModel;
@@ -31,11 +26,6 @@ public class MemberThread implements Runnable {
 
     private void memberInit() {
         controller = new MainController();
-        jc = controller.getJsonController();
-        dc = controller.getDBController();
-        lc = controller.getLoginController();
-        uc = controller.getUmlController();
-        ac = controller.getAccountController();
         controller.setClientModel(clientList);
     }
 
@@ -54,6 +44,7 @@ public class MemberThread implements Runnable {
 
     void sendAck(int ack) {
         try {
+            System.out.println(ack);
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
             dos.writeInt(ack);
         } catch (IOException e) {
@@ -73,5 +64,9 @@ public class MemberThread implements Runnable {
 
     public ClientModel getClient() {
         return client;
+    }
+
+    public ArrayList<ClientModel> getClientList() {
+        return clientList;
     }
 }

@@ -48,22 +48,28 @@ public class ReceivedThread implements Runnable {
     private void quit() {
         try {
             System.out.format("%s : %s 접속 종료 \n", socket.getInetAddress(), lc.getId());
-            System.out.println(lc.getMyLoginModel().getId());
-            System.out.println("지우기 직전 id ----------- "+ lc.getMyLoginModel().getId());
-            LoginInfo.getInstance().rmConnectId(lc.getMyLoginModel().getId());
-            controller.getClientModels().remove(memberThread.getClient());
+            initMember();
             dc.closeConnect();
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    public void initMember(){
+        if(lc.getId() !=null) {
+            LoginInfo.getInstance().rmConnectId(lc.getId());
+        }
+        uc = new UMLController(controller);
+        ac = new AccountController(controller);
+        lc = new LoginController(controller);
+        controller.getClientModels().remove(memberThread.getClient());
+        memberThread.getClientList().remove(client);
 
+    }
     private void logout() {
         memberThread.sendAck(Ack.logoutAck);
-        System.out.format("%s : %s 접속 종료 \n", socket.getInetAddress(), lc.getId());
-        LoginInfo.getInstance().rmConnectId(lc.getMyLoginModel().getId());
-        controller.getClientModels().remove(memberThread.getClient());
+        System.out.format("%s : %s 로그아웃\n", socket.getInetAddress(), lc.getId());
+
     }
 
     private boolean checkDataType() {
@@ -82,13 +88,14 @@ public class ReceivedThread implements Runnable {
                     if (ack == Ack.lAck) {
                         memberThread.sendStr(lc.getLoginModelStr());
                         memberThread.sendStr(lc.getSearchModel());
-                        memberThread.sendStr(ac.getFriends());
-//                        memberThread.sendStr(jc.getEventsStr(SharedData.getInstance().getEvents(lc.getId())));
+                        memberThread.sendStr(ac.getMyFriends());
+                        memberThread.sendStr(jc.getEventsStr(SharedData.getInstance().getEvents(lc.getId())));
                         client.setId(lc.getId());
                     }
                     break;
                 case "logout":
                     logout();
+                    rt=false;
                     break;
                 case "signup":
                     memberThread.sendAck(lc.signup(data));
@@ -123,12 +130,12 @@ public class ReceivedThread implements Runnable {
                         memberThread.sendStr(uc.getSearchModels());
                     }
                     break;
-                case "addFriend":
-                    memberThread.sendAck(ac.addFriend(data));
-                    break;
                 case "searchId":
-                    memberThread.sendAck(ac.searchId(data));
-                    ac.reqFriend();
+                    ack = ac.searchId(data);
+                    memberThread.sendAck(ack);
+                    if(ack == Ack.searchIdAck) {
+                        ac.reqFriend();
+                    }
                     break;
                 case "repoPacket":
                     ack = uc.isExistRepo(data);
@@ -146,6 +153,20 @@ public class ReceivedThread implements Runnable {
                         memberThread.sendStr(uc.getRepoStr(data));
                     }
                     break;
+                case "friendRes":
+                    ack = ac.resFriend(data);
+                    if(Ack.acceptFriend == ack) {
+                        memberThread.sendAck(ack);
+                        memberThread.sendStr(ac.getMyFriends());
+                    }
+                    break;
+                case "memberManage":
+                    ack = ac.memberManage(data);
+                    memberThread.sendAck(ack);
+                    if(Ack.updateAuthoAck == ack){
+
+                    }
+                default: break;
             }
         } catch (IOException e) {
             rt = false;

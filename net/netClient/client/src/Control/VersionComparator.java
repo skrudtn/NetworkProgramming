@@ -11,7 +11,7 @@ public class VersionComparator implements Comparator<VersionModel> {
     @Override
     public int compare(VersionModel o1, VersionModel o2) {
         int i1 = o1.getVer();
-        int i2 = o1.getVer();
+        int i2 = o2.getVer();
 
         if(i1>i2){ // order by asc
             return 1;

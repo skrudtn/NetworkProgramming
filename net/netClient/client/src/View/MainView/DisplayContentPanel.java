@@ -3,10 +3,12 @@ package View.MainView;
 import Control.*;
 import Model.Animation;
 import Model.StaticModel.MyFont;
+import Model.StaticModel.MyImage;
 import Model.StaticModel.Pallate;
 import Model.StaticModel.Size;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -17,10 +19,9 @@ public class DisplayContentPanel extends JPanel {
     private MainFrame f;
     private MainController controller;
     private GUIController gc;
-    private JsonController jc;
-    private NetworkController nc;
 
-    private JPanel headerPanel;
+    private JPanel searchRepoPanel;
+    private JPanel yourRepoPanel;
     private JScrollPane noticeScrollPanel;
     private JScrollPane repoScrollPanel;
 
@@ -32,14 +33,15 @@ public class DisplayContentPanel extends JPanel {
     private JButton newBtn;
     private JButton accountBtn;
     private JButton statusBtn;
+    private JLabel repoNameLabel;
+    private JLabel notiNameLabel;
+
     private Animation animation;
 
     public DisplayContentPanel(MainFrame f){
         this.f = f;
         this.controller = f.getController();
         this.gc = controller.getGUIController();
-        this.jc = controller.getJsonController();
-        this.nc = controller.getNetworkController();
         animation = new Animation();
         initUI();
     }
@@ -47,78 +49,92 @@ public class DisplayContentPanel extends JPanel {
         setBackground(Pallate.a);
         setLayout(null);
         initHeader();
-        initRepo();
         initNotice();
+        initRepo();
         initBtn();
-        initNameLabel();
         setVisible(true);
     }
-
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(MyImage.displayBgImage.getImage(), 0, 0, null);
+    }
     private void initNotice() {
         noticePanel = new NoticePanel(controller);
-        noticePanel.setBackground(new Color(253, 255, 237));
+        noticePanel.setBorder(new EmptyBorder(0,0,0,0));
         noticeScrollPanel= new JScrollPane(noticePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        noticeScrollPanel.setBounds(Size.DISPALYXMARGIN, f.getHeight() - (Size.NOTICEHEIGHT+200), Size.NOTICEWIDTH, Size.NOTICEHEIGHT);
+        noticeScrollPanel.setBounds(searchRepoPanel.getX(), searchRepoPanel.getY()+searchRepoPanel.getHeight(), Size.NOTICE_W, Size.NOTICE_H-(Size.SEARCH_HEADER_H1-Size.SEARCH_HEADER_H2));
+        noticeScrollPanel.setBorder(new EmptyBorder(0,0,0,0));
         add(noticeScrollPanel);
         setVisible(true);
     }
 
     private void initRepo() {
         repoPanel = new NoticePanel(controller);
-        repoPanel.setBackground(new Color(253, 255, 237));
         repoScrollPanel = new JScrollPane(repoPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        repoScrollPanel.setBounds(f.getWidth()-(Size.NOTICEWIDTH+Size.DISPALYXMARGIN), f.getHeight() - (Size.NOTICEHEIGHT+200), Size.NOTICEWIDTH, Size.NOTICEHEIGHT);
+        repoScrollPanel.setBounds(yourRepoPanel.getX(), yourRepoPanel.getY()+yourRepoPanel.getHeight(), Size.NOTICE_W, Size.NOTICE_H);
+        repoScrollPanel.setBorder(new EmptyBorder(0,0,0,0));
         add(repoScrollPanel);
         setVisible(true);
     }
     private void initHeader(){
-        headerPanel = new JPanel();
-        headerPanel.setBackground(Pallate.c);
-        headerPanel.setBounds(0,0,f.getWidth(), Size.HEADERHEIGHET);
-        headerPanel.setLayout(null);
+        searchRepoPanel = new JPanel();
+        yourRepoPanel = new JPanel();
+        searchRepoPanel.setBounds(Size.DISPALY_XMARGIN,Size.DISPALY_YMARGIN,Size.SEARCH_HEADER_W,Size.SEARCH_HEADER_H1);
+        yourRepoPanel.setBounds(searchRepoPanel.getX()+searchRepoPanel.getWidth()+Size.PANEL_BWN,Size.DISPALY_YMARGIN,Size.SEARCH_HEADER_W,Size.SEARCH_HEADER_H2);
+        yourRepoPanel.setOpaque(false);
+        searchRepoPanel.setOpaque(false);
+
+        repoNameLabel = new JLabel(MyImage.btn_yourRepo);
+        repoNameLabel.setBounds(0,0,Size.SEARCH_REPO_W,Size.SEARCH_REPO_H);
+        yourRepoPanel.add(repoNameLabel);
+
+        notiNameLabel = new JLabel(MyImage.btn_searchRepo);
+        notiNameLabel.setBounds(0,0,Size.SEARCH_REPO_W,Size.SEARCH_REPO_H);
+        searchRepoPanel.add(notiNameLabel);
+
 
         searchPanel = new SearchPanel(f);
-        searchPanel.setBackground(Pallate.c);
-        searchPanel.setBounds(Size.DISPALYXMARGIN,20, Size.SEARCHPANEWIDTH,Size.HEADERHEIGHET);
-        headerPanel.add(searchPanel);
+        searchPanel.setBounds(0,100, searchRepoPanel.getWidth(),searchRepoPanel.getHeight()-notiNameLabel.getHeight());
+        searchRepoPanel.add(searchPanel);
 
 
-        add(headerPanel);
+
+        add(searchRepoPanel);
+        add(yourRepoPanel);
     }
 
     private void initBtn() {
-        guideBtn = new JButton("Read the Guide");
-        newBtn = new JButton("New repository");
-        accountBtn = new JButton(getImage("client\\Image\\profileBtn.png",Size.HEADERHEIGHET,Size.HEADERHEIGHET-10));
-        statusBtn = new JButton(getImage("client\\Image\\normalStatus.png", Size.HEADERHEIGHET,Size.HEADERHEIGHET-10));
+        guideBtn = new JButton(MyImage.btn_guidebook);
+        newBtn = new JButton(MyImage.btn_addRepo);
+        accountBtn = new JButton(MyImage.btn_myInfo);
+        statusBtn = new JButton(MyImage.btn_myalert);
 
-        guideBtn.setBounds(f.getWidth()/2-(200+20), headerPanel.getY()+headerPanel.getHeight()+40,Size.MENUBARWIDTH,50);
-        newBtn.setBounds(f.getWidth()/2+20, headerPanel.getY()+headerPanel.getHeight()+40, Size.MENUBARWIDTH,50);
-        accountBtn.setBounds(f.getWidth()-(Size.HEADERHEIGHET+20),5,Size.HEADERHEIGHET,Size.HEADERHEIGHET-10);
-        statusBtn.setBounds(accountBtn.getX()-(Size.HEADERHEIGHET+20),5,Size.HEADERHEIGHET,Size.HEADERHEIGHET-10);
+        newBtn.setBounds(repoNameLabel.getX()+repoNameLabel.getWidth()+30,repoNameLabel.getY()+20,Size.ADDREPO_W,Size.ADDREPO_H);
+        newBtn.setFocusPainted(false);
+        newBtn.setBorderPainted(false);
+        newBtn.setContentAreaFilled(false);
 
-        guideBtn.setBackground(Pallate.e);
-        guideBtn.setForeground(Color.white);
-        guideBtn.setFont(MyFont.serif);
-
-        newBtn.setFont(MyFont.serif);
-        newBtn.setBackground(Pallate.e);
-        newBtn.setForeground(Color.white);
-
-        accountBtn.setBorderPainted(false);
+        accountBtn.setBounds(yourRepoPanel.getX()+yourRepoPanel.getWidth()+Size.BTN_BWN,repoScrollPanel.getY()+20,Size.ACC_BTN_W,Size.ACC_BTN_W);
         accountBtn.setFocusPainted(false);
+        accountBtn.setBorderPainted(false);
         accountBtn.setContentAreaFilled(false);
+
+        statusBtn.setBounds(accountBtn.getX(),accountBtn.getY()+accountBtn.getHeight()+Size.BTN_BWN,Size.ACC_BTN_W,Size.ACC_BTN_H);
         statusBtn.setBorderPainted(false);
         statusBtn.setFocusPainted(false);
         statusBtn.setContentAreaFilled(false);
 
-        headerPanel.add(accountBtn);
-        headerPanel.add(statusBtn);
+        guideBtn.setBounds(accountBtn.getX(),statusBtn.getY()+statusBtn.getHeight()+Size.BTN_BWN,Size.ACC_BTN_W,Size.ACC_BTN_H);
+        guideBtn.setBorderPainted(false);
+        guideBtn.setFocusPainted(false);
+        guideBtn.setContentAreaFilled(false);
+
         add(guideBtn);
-        add(newBtn);
-        System.out.println("쓰레드 시작");
+        add(accountBtn);
+        add(statusBtn);
+        yourRepoPanel.add(newBtn);
         new Thread(new AnimationThread(animation, statusBtn)).start();
-        System.out.println("쓰레드 시작 했나?");
         accountBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -146,21 +162,6 @@ public class DisplayContentPanel extends JPanel {
 
     }
 
-    private void initNameLabel(){
-        JLabel repoNameLabel = new JLabel("Your Repository");
-        repoNameLabel.setBounds(repoScrollPanel.getX(),repoScrollPanel.getY()-Size.LABELHEIGHT,Size.NOTICEWIDTH,Size.LABELHEIGHT);
-        repoNameLabel.setFont(new Font("Serif", Font.BOLD, 20));
-        repoNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        repoNameLabel.setBackground(Pallate.a);
-        add(repoNameLabel);
-
-        JLabel notiNameLabel = new JLabel("Search Result");
-        notiNameLabel.setBounds(noticeScrollPanel.getX(),noticeScrollPanel.getY()-Size.LABELHEIGHT,Size.NOTICEWIDTH,Size.LABELHEIGHT);
-        notiNameLabel.setFont(new Font("Serif", Font.BOLD, 20));
-        notiNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        notiNameLabel.setBackground(Pallate.a);
-        add(notiNameLabel);
-    }
     public NoticePanel getNoticePanel() {
         return noticePanel;
     }
@@ -179,16 +180,13 @@ public class DisplayContentPanel extends JPanel {
     public void statusChange(boolean isNormal){
         if(isNormal){
             animation.setNormal(true);
-            statusBtn.setIcon(getImage("client\\Image\\normalStatus.png", Size.HEADERHEIGHET, Size.HEADERHEIGHET - 10));
         } else {
             animation.setNormal(false);
         }
     }
 
-    private ImageIcon getImage(String path, int w, int h) {
-        ImageIcon icon = new ImageIcon(path);
-        Image image = icon.getImage();
-        Image changeImage = image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
-        return new ImageIcon(changeImage);
+    public Animation getAnimation() {
+        return animation;
     }
+
 }

@@ -46,6 +46,7 @@ public class SharedData {
                 rtEvents.add(event);
             }
         }
+        events.removeAll(rtEvents);
         return rtEvents;
     }
 }

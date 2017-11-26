@@ -1,6 +1,6 @@
 package Model;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Created by skrud on 2017-11-05.
@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public final class LoginInfo {
     private static volatile LoginInfo INSTANCE = null;
 
-    private ArrayList<String> connectedId;
+    private Vector<String> connectedIds;
     private LoginInfo(){
-        connectedId = new ArrayList<>();
+        connectedIds = new Vector<>();
     }
 
     public static LoginInfo getInstance(){
@@ -25,21 +25,32 @@ public final class LoginInfo {
     }
 
     public void addConnectId(String id){
-        connectedId.add(id);
+        connectedIds.add(id);
+        displayIds();
     }
     public void rmConnectId(String id){
-        connectedId.remove(id);
+        connectedIds.remove(id);
+        displayIds();
     }
 
-    public ArrayList<String> getConnectedId() {
-        return connectedId;
+    public Vector<String> getconnectedIds() {
+        return connectedIds;
     }
     public boolean isConnectedId(String id){
-        for(String str: connectedId){
+        displayIds();
+        for(String str: connectedIds){
             if(id.equals(str)){
                 return true;
             }
         }
         return false;
+    }
+    public void displayIds(){
+        System.out.println("---------");
+        System.out.println("접속 유저");
+        for(String s: connectedIds){
+            System.out.println(s);
+        }
+        System.out.println("---------");
     }
 }

@@ -1,6 +1,9 @@
 package View.Profile;
 
+import Model.StaticModel.MyFont;
+import Model.StaticModel.MyImage;
 import Model.StaticModel.Pallate;
+import Model.StaticModel.Size;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +27,7 @@ public class PWChangePanel extends JPanel {
     private JButton pwCheckBtn;
     private JButton backBtn;
 
+    private JLabel idLabel;
     private JLabel pwLabel;
     private JLabel pwLabel2;
 
@@ -47,35 +51,54 @@ public class PWChangePanel extends JPanel {
         initButton();
         initActionListener();
     }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(MyImage.loginBgImage.getImage(), 0, 0, null);
+    }
 
     private void initLabel() {
-        JLabel idLabel = new JLabel("아이디\t: ");
-        pwLabel = new JLabel("비밀번호\t: ");
-        pwLabel2 = new JLabel("재입력\t: ");
-        idLabel.setBounds(XMARGIN, YMARGIN, 80, 40);
-        idLabel.setFont(new Font("Serif", Font.BOLD, 15));
-        pwLabel.setBounds(XMARGIN, YMARGIN + 50, 80, 40);
-        pwLabel.setFont(new Font("Serif", Font.BOLD, 15));
-        pwLabel2.setBounds(XMARGIN, YMARGIN + 100, 80, 40);
-        pwLabel2.setFont(new Font("Serif", Font.BOLD, 15));
+        idLabel = new JLabel("ID ");
+        pwLabel = new JLabel("PW");
+        pwLabel2 = new JLabel("PW2");
+
+        idLabel.setBounds(Size.SIGNUP_XMARGIN, Size.SIGNUP_YMARGIN, Size.SIGNUP_LABEL_W, Size.SIGNUP_LABEL_H);
+        idLabel.setFont(MyFont.serif20);
+        pwLabel.setBounds(idLabel.getX(), idLabel.getY()+idLabel.getHeight()+20, Size.SIGNUP_LABEL_W, Size.SIGNUP_LABEL_H);
+        pwLabel.setFont(MyFont.serif20);
+        pwLabel2.setBounds(pwLabel.getX(), pwLabel.getY()+pwLabel.getHeight()+20, Size.SIGNUP_LABEL_W, Size.SIGNUP_LABEL_H);
+        pwLabel2.setFont(MyFont.serif20);
+
+        idLabel.setForeground(Color.WHITE);
+        pwLabel.setForeground(Color.WHITE);
+        pwLabel2.setForeground(Color.WHITE);
 
         add(idLabel);
         add(pwLabel);
         add(pwLabel2);
+
     }
 
     private void initTextField() {
+
         idTextField = new JTextField(f.getController().getLoginController().getMyAccount().getId());
         pwTextField = new JPasswordField();
         pwTextField2 = new JPasswordField();
 
-        idTextField.setBounds(XMARGIN + pwLabel.getWidth() + 10, YMARGIN, 140, 40);
-        idTextField.setFont(new Font("Serif", Font.BOLD, 15));
+        idTextField.setBounds(pwLabel.getX()+ pwLabel.getWidth() + 10,idLabel.getY(), Size.SIGNUP_TEXT_W, idLabel.getHeight());
+        idTextField.setFont(MyFont.serif18);
+        idTextField.setOpaque(false);
+        idTextField.setForeground(Color.WHITE);
         idTextField.setEnabled(false);
-        pwTextField.setBounds(XMARGIN + pwLabel.getWidth() + 10, YMARGIN + 50, 140, 40);
-        pwTextField.setFont(new Font("Serif", Font.BOLD, 15));
-        pwTextField2.setBounds(XMARGIN + pwLabel.getWidth() + 10, YMARGIN + 100, 140, 40);
-        pwTextField2.setFont(new Font("Serif", Font.BOLD, 15));
+
+        pwTextField.setBounds(idTextField.getX(), pwLabel.getY(), idTextField.getWidth(), idLabel.getHeight());
+        pwTextField.setFont(MyFont.serif18);
+        pwTextField.setOpaque(false);
+        pwTextField.setForeground(Color.WHITE);
+        pwTextField2.setBounds(idTextField.getX(), pwLabel2.getY(), idTextField.getWidth(), idLabel.getHeight());
+        pwTextField2.setFont(MyFont.serif18);
+        pwTextField2.setOpaque(false);
+        pwTextField2.setForeground(Color.WHITE);
 
         add(idTextField);
         add(pwTextField);
@@ -83,19 +106,24 @@ public class PWChangePanel extends JPanel {
     }
 
     private void initButton() {
-        okBtn = new JButton("변경");
-        pwCheckBtn = new JButton("비번확인");
-        backBtn = new JButton("뒤로");
 
-        okBtn.setBounds(XMARGIN + 140, pwLabel2.getY() + 3*pwLabel2.getHeight() + 20, 140, 60);
-        okBtn.setBackground(Pallate.e);
-        okBtn.setForeground(Pallate.a);
-        pwCheckBtn.setBounds(pwTextField2.getX()+pwTextField.getWidth()+20, pwLabel2.getY() , 90, 30);
-        pwCheckBtn.setBackground(Pallate.e);
-        pwCheckBtn.setForeground(Pallate.a);
-        backBtn.setBounds(15, 15, 60, 40);
-        backBtn.setBackground(Pallate.e);
-        backBtn.setForeground(Pallate.a);
+        okBtn = new JButton(MyImage.btn_changepw);
+        pwCheckBtn = new JButton(MyImage.btn_check);
+        backBtn = new JButton(MyImage.btn_cancel_sm);
+
+        okBtn.setBounds(pwLabel2.getX(), pwLabel2.getY() + pwLabel2.getHeight() + 40, Size.SIGNUP_SBTN_W, Size.SIGNUP_SBTN_H);
+        pwCheckBtn.setBounds(idTextField.getX() + idTextField.getWidth() + 20, pwTextField2.getY(), Size.CHECK_BTN, Size.CHECK_BTN);
+        backBtn.setBounds(okBtn.getX()+okBtn.getWidth()+30, okBtn.getY(), okBtn.getWidth(), okBtn.getHeight());
+
+        okBtn.setBorderPainted(false);
+        okBtn.setFocusPainted(false);
+        okBtn.setContentAreaFilled(false);
+        backBtn.setBorderPainted(false);
+        backBtn.setFocusPainted(false);
+        backBtn.setContentAreaFilled(false);
+        pwCheckBtn.setBorderPainted(false);
+        pwCheckBtn.setFocusPainted(false);
+        pwCheckBtn.setContentAreaFilled(false);
 
         add(okBtn);
         add(pwCheckBtn);
@@ -183,7 +211,7 @@ public class PWChangePanel extends JPanel {
         idTextField.setText("");
         pwTextField.setText("");
         pwTextField2.setText("");
-        f.getCards().show(f.getContentPane(),"sp");
+        f.getCards().show(f.getContentPane(),"pp");
     }
 
     private String getSHA256(String str) {

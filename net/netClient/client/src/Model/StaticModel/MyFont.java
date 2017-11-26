@@ -8,8 +8,11 @@ import java.io.InputStream;
  */
 public class MyFont {
     public static final Font serif = new Font("Serif", Font.BOLD, 15);
-    public static final Font serif20 = new Font("Serif", Font.BOLD, 15);
+    public static final Font serif18= new Font("Serif", Font.BOLD, 18);
+    public static final Font serif20 = new Font("Serif", Font.BOLD, 20);
+    public static final Font serif23 = new Font("Serif", Font.BOLD, 23);
     public static final Font serif25 = new Font("Serif", Font.BOLD, 25);
+    public static final Font serif30 = new Font("Serif", Font.BOLD, 30);
 
     public Font getNBG() {
         Font font = null;
