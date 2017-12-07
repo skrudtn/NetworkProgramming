@@ -2,9 +2,15 @@ package Control;
 
 import Model.*;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
@@ -55,6 +61,7 @@ class AccountController {
 
     private Socket getMemberSocket(String id) {
         Socket s = null;
+
         for (ClientModel clientModel : controller.getClientModels()) {
             if (clientModel.getId().equals(id)) {
                 s = clientModel.getSocket();
@@ -66,9 +73,8 @@ class AccountController {
     void reqFriend() {
         Socket s = null;
         if (LoginInfo.getInstance().isConnectedId(searchId)) {
-            System.out.println("머지"+searchId);
             s = getMemberSocket(searchId);
-            sendAck(s, Ack.addFriendAck);
+            sendStr(s,jc.getAckStr(Ack.addFriendAck));
             sendStr(s, jc.getReqFriendStr(new Event(
             id,searchId,"friend")));
         } else {
@@ -87,7 +93,7 @@ class AccountController {
         Socket s = null;
         if(LoginInfo.getInstance().isConnectedId(rfp.getDes())){
             s = getMemberSocket(rfp.getDes());
-            sendAck(s,ack);
+            sendStr(s,jc.getAckStr(ack));
             if(ack == Ack.acceptFriend){
                 sendStr(s,getFriends(rfp.getDes()));
             }
@@ -107,19 +113,40 @@ class AccountController {
         return ack;
     }
 
+    public int removeFriend(String data) {
+        int ack = Ack.rmFriendRej;
+        ArrayList<String> friends = jc.str2friends(data);
+        if(dc.deleteFriends(friends)){
+            ack = Ack.rmFriendAck;
+            for(String str: friends) {
+                if (LoginInfo.getInstance().isConnectedId(str)) {
+                    Socket s = getMemberSocket(str);
+                    sendStr(s, jc.getAckStr(ack));
+                    sendStr(s, getMyFriends());
+                }
+            }
+        }
+        return ack;
+    }
+
     private void sendStr(Socket s, String str){
         try {
             DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+            str = controller.getCryptoController().getAesEncodedText(str);
             dos.writeUTF(str);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-    private void sendAck(Socket s, int ack){
-        try {
-            DataOutputStream dos = new DataOutputStream(s.getOutputStream());
-            dos.writeInt(ack);
-        } catch (IOException e) {
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
         }
     }

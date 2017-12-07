@@ -1,7 +1,9 @@
 package View.MainView;
 
 import Control.MainController;
+import Model.StaticModel.MyFont;
 import Model.StaticModel.MyImage;
+import Model.StaticModel.Pallate;
 import Model.StaticModel.Size;
 
 import javax.swing.*;
@@ -51,6 +53,7 @@ public class MemberManageFrame extends JFrame{
         fVector.removeAll(mVector);
 
         conPanel = new JPanel();
+        conPanel.setBackground(Pallate.a);
         conPanel.setLayout(null);
         setContentPane(conPanel);
         initUI();
@@ -68,6 +71,8 @@ public class MemberManageFrame extends JFrame{
         fLabel = new JLabel("Friends");
         mLabel = new JLabel("Members");
         fLabel.setBounds(Size.SIGNUP_XMARGIN,Size.SIGNUP_XMARGIN,Size.MENUBARWIDTH,Size.SIGNUP_XMARGIN);
+        fLabel.setFont(MyFont.serif);
+        mLabel.setFont(MyFont.serif);
         mLabel.setBounds(getWidth()/2+Size.SIGNUP_XMARGIN,Size.SIGNUP_XMARGIN,Size.MENUBARWIDTH,Size.SIGNUP_XMARGIN);
         conPanel.add(fLabel);
         conPanel.add(mLabel);
@@ -78,10 +83,11 @@ public class MemberManageFrame extends JFrame{
         rBtn = new JButton(MyImage.btn_r);
         lBtn = new JButton(MyImage.btn_l);
         commitBtn = new JButton("Save");
-        rBtn.setBounds(getWidth()/2-Size.RBTNW/2,friScroll.getY()+friScroll.getHeight()/2-Size.RBTNH*2,Size.RBTNW,Size.RBTNH);
+        rBtn.setBounds(getWidth()/2-Size.RBTNW/2+20,friScroll.getY()+friScroll.getHeight()/2-Size.RBTNH*2,Size.RBTNW,Size.RBTNH);
         lBtn.setBounds(rBtn.getX(),rBtn.getY()+Size.RBTNH*3,Size.RBTNW,Size.RBTNH);
         commitBtn.setBounds(getWidth()-Size.BACKBTNWIDTH-20,getHeight()-(Size.BACKBTNHEIGHT+30),Size.BACKBTNWIDTH,Size.BACKBTNHEIGHT-10);
-
+        commitBtn.setFont(MyFont.serif18);
+        commitBtn.setBackground(Pallate.a);
         rBtn.setBorderPainted(false);
         rBtn.setFocusPainted(false);
         rBtn.setContentAreaFilled(false);
@@ -97,8 +103,10 @@ public class MemberManageFrame extends JFrame{
 
     void initList(){
         fList = new JList(fVector);
+        fList.setFont(MyFont.serif20);
         friScroll = new JScrollPane(fList,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         mList = new JList(mVector);
+        mList.setFont(MyFont.serif20);
         memScroll = new JScrollPane(mList,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         friScroll.setBounds(fLabel.getX(),fLabel.getY()+fLabel.getHeight(), getWidth()/2-100,getWidth()/2-100);
         memScroll.setBounds(mLabel.getX(),fLabel.getY()+fLabel.getHeight(), getWidth()/2-100,getWidth()/2-100);

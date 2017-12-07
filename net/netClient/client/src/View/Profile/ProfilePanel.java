@@ -48,9 +48,9 @@ public class ProfilePanel extends JPanel{
         emailLabel.setFont(MyFont.serif20);
         nameLabel.setFont(MyFont.serif20);
 
-        idLabel.setForeground(Color.WHITE);
-        emailLabel.setForeground(Color.WHITE);
-        nameLabel.setForeground(Color.WHITE);
+        idLabel.setForeground(Color.BLACK);
+        emailLabel.setForeground(Color.BLACK);
+        nameLabel.setForeground(Color.BLACK);
 
         idLabel.setBounds(Size.PROFILE_XMARGIN,Size.PROFILE_YMARGIN,Size.PROFILE_LABEL_W,Size.PROFILE_LABEL_H);
         nameLabel.setBounds(Size.PROFILE_XMARGIN,idLabel.getY()+idLabel.getHeight(),Size.PROFILE_LABEL_W,Size.PROFILE_LABEL_H);

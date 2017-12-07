@@ -35,7 +35,10 @@ public class UMLController {
                 CDModel cdm = jc.str2cdm(data);
                 cdm.setJson(data);
                 int verNo = dc.insertVersion(cdm.getCdName(),cdm.getId(),cdm.getRepoNo());
-                if(dc.pushCD(cdm,verNo)) ack = Ack.pushACK;
+                if(dc.pushCD(cdm,verNo)){
+                    ack = Ack.pushACK;
+                    SharedData.getInstance().removeCloneRepo(cdm.getRepoNo());
+                }
                 break;
         }
         return ack;
@@ -45,9 +48,11 @@ public class UMLController {
         int ack =  Ack.cloneREJ;
         CllonePacket cp = jc.str2cp(data);
         cloneStr= dc.cllone(cp);
+        System.out.println(cp.getRepoNo());
 
         if(!cloneStr.equals("")){
             ack = Ack.cloneACK;
+            SharedData.getInstance().addCloneRepo(cp.getRepoNo());
         }
         return ack;
     }
@@ -92,7 +97,6 @@ public class UMLController {
 
     int isExistRepoData(String data) {
         int ack =  Ack.repoREJ;
-        System.out.println(data);
         RepoModel repo = jc.str2repoData(data);
         if(dc.isExistRepo(repo.getName())){
             ack = Ack.repoACK;
@@ -102,5 +106,15 @@ public class UMLController {
     String getRepoStr(String data){
         RepoModel repo = jc.str2repoData(data);
         return jc.rm2str(dc.selectRepoData(repo),controller.getLoginController().getId());
+    }
+
+    public int deleteRepo(String data) {
+        int ack =  Ack.deleteRepoAck;
+        int repoNo = jc.str2repoNo(data);
+//        if(!SharedData.getInstance().isCloneRepo(repoNo)){
+            dc.deleteRepo(repoNo);
+//            ack = Ack.deleteRepoRej;
+//        }
+        return ack;
     }
 }

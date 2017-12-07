@@ -69,9 +69,9 @@ public class PWChangePanel extends JPanel {
         pwLabel2.setBounds(pwLabel.getX(), pwLabel.getY()+pwLabel.getHeight()+20, Size.SIGNUP_LABEL_W, Size.SIGNUP_LABEL_H);
         pwLabel2.setFont(MyFont.serif20);
 
-        idLabel.setForeground(Color.WHITE);
-        pwLabel.setForeground(Color.WHITE);
-        pwLabel2.setForeground(Color.WHITE);
+        idLabel.setForeground(Color.BLACK);
+        pwLabel.setForeground(Color.BLACK);
+        pwLabel2.setForeground(Color.BLACK);
 
         add(idLabel);
         add(pwLabel);
@@ -87,18 +87,18 @@ public class PWChangePanel extends JPanel {
 
         idTextField.setBounds(pwLabel.getX()+ pwLabel.getWidth() + 10,idLabel.getY(), Size.SIGNUP_TEXT_W, idLabel.getHeight());
         idTextField.setFont(MyFont.serif18);
-        idTextField.setOpaque(false);
-        idTextField.setForeground(Color.WHITE);
+//        idTextField.setOpaque(false);
+        idTextField.setForeground(Color.BLACK);
         idTextField.setEnabled(false);
 
         pwTextField.setBounds(idTextField.getX(), pwLabel.getY(), idTextField.getWidth(), idLabel.getHeight());
         pwTextField.setFont(MyFont.serif18);
-        pwTextField.setOpaque(false);
-        pwTextField.setForeground(Color.WHITE);
+//        pwTextField.setOpaque(false);
+        pwTextField.setForeground(Color.BLACK);
         pwTextField2.setBounds(idTextField.getX(), pwLabel2.getY(), idTextField.getWidth(), idLabel.getHeight());
         pwTextField2.setFont(MyFont.serif18);
-        pwTextField2.setOpaque(false);
-        pwTextField2.setForeground(Color.WHITE);
+//        pwTextField2.setOpaque(false);
+        pwTextField2.setForeground(Color.BLACK);
 
         add(idTextField);
         add(pwTextField);
@@ -111,7 +111,7 @@ public class PWChangePanel extends JPanel {
         pwCheckBtn = new JButton(MyImage.btn_check);
         backBtn = new JButton(MyImage.btn_cancel_sm);
 
-        okBtn.setBounds(pwLabel2.getX(), pwLabel2.getY() + pwLabel2.getHeight() + 40, Size.SIGNUP_SBTN_W, Size.SIGNUP_SBTN_H);
+        okBtn.setBounds(pwLabel2.getX(), pwLabel2.getY() + pwLabel2.getHeight() + 40, Size.ADD_FRIEND_BTN_W, Size.ADD_FRIEND_BTN_H);
         pwCheckBtn.setBounds(idTextField.getX() + idTextField.getWidth() + 20, pwTextField2.getY(), Size.CHECK_BTN, Size.CHECK_BTN);
         backBtn.setBounds(okBtn.getX()+okBtn.getWidth()+30, okBtn.getY(), okBtn.getWidth(), okBtn.getHeight());
 

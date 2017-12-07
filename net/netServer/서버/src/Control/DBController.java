@@ -190,16 +190,25 @@ public class DBController {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Boolean rt = true;
-
+        String sql="";
         try {
-
-            String sql = "INSERT INTO CD (CDNO, JSON, VERNO, REG_DATE)" +
-                    "VALUES (CDNO.nextval, ?, ?, SYSDATE)";
+            sql = "SELECT VERNO\n" +
+                    "FROM VERSIONS\n" +
+                    "WHERE VERNO = ?";
             ps = con.prepareStatement(sql);
-            ps.setString(1, cdm.getJson());
-            ps.setInt(2, verNo);
-
+            ps.setInt(1, verNo);
             rs = ps.executeQuery();
+            if(rs.next()) {
+                sql = "INSERT INTO CD (CDNO, JSON, VERNO, REG_DATE)" +
+                        "VALUES (CDNO.nextval, ?, ?, SYSDATE)";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, cdm.getJson());
+                ps.setInt(2, verNo);
+
+                rs = ps.executeQuery();
+            }else{
+                rt = false;
+            }
         } catch (SQLException e) {
             rt = false;
             e.printStackTrace();
@@ -334,8 +343,6 @@ public class DBController {
     }
 
     void insertFriend(String id) {
-        System.out.println("부적합?" + id);
-        System.out.println(memNo);
         ResultSet rs = null;
         PreparedStatement ps = null;
         String sql = "";
@@ -352,19 +359,31 @@ public class DBController {
                 mNo = rs.getInt(1);
             }
 
-            sql = "INSERT INTO Friends (frNo, id, REG_DATE, memNo)\n" +
-                    "VALUES (frNo.nextval,?, SYSDATE, ?)";
-            ps = con.prepareStatement(sql);
-            ps.setString(1, myId);
-            ps.setInt(2, mNo);
-            rs = ps.executeQuery();
 
-            sql = "INSERT INTO Friends (frNo, id, REG_DATE, memNo)\n" +
-                    "VALUES (frNo.nextval,?, SYSDATE, ?)";
+            sql = "SELECT FRNO\n" +
+                    "  FROM FRIENDS\n" +
+                    "WHERE ID= ?\n" +
+                    "AND MEMNO = ?";
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
             ps.setInt(2, memNo);
             rs = ps.executeQuery();
+            if (!rs.next()) {
+
+                sql = "INSERT INTO Friends (frNo, id, REG_DATE, memNo)\n" +
+                        "VALUES (frNo.nextval,?, SYSDATE, ?)";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, myId);
+                ps.setInt(2, mNo);
+                rs = ps.executeQuery();
+
+                sql = "INSERT INTO Friends (frNo, id, REG_DATE, memNo)\n" +
+                        "VALUES (frNo.nextval,?, SYSDATE, ?)";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, id);
+                ps.setInt(2, memNo);
+                rs = ps.executeQuery();
+            }
         } catch (SQLException e) {
             rt = false;
             e.printStackTrace();
@@ -600,39 +619,47 @@ public class DBController {
         String sql = "";
         int verNo = 0;
         try {
-            int ver = 0;
-            sql = "SELECT Max(v.ver)\n" +
-                    "  FROM VERSIONS v\n" +
-                    "WHERE v.repoNo =?";
+
+            sql = "SELECT REPONO\n" +
+                    "FROM REPO\n" +
+                    "WHERE REPONO = ?";
             ps = con.prepareStatement(sql);
             ps.setInt(1, repoNo);
             rs = ps.executeQuery();
-            if (rs.next()) {
-                ver = rs.getInt(1);
-                if (rs.getInt(1) == 0) {
-                    ver = 1;
-                } else {
-                    ver++;
+            if(rs.next()) {
+                int ver = 0;
+                sql = "SELECT Max(v.ver)\n" +
+                        "  FROM VERSIONS v\n" +
+                        "WHERE v.repoNo =?";
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, repoNo);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    ver = rs.getInt(1);
+                    if (rs.getInt(1) == 0) {
+                        ver = 1;
+                    } else {
+                        ver++;
+                    }
+                }
+
+                sql = "INSERT INTO VERSIONS(VERNO, NAME, MODIFIEDBY, VER, REPONO, REG_DATE) " +
+                        "VALUES (VERNO.nextval,?,?, ?, ?, SYSDATE)";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, repo + "_ver" + String.valueOf(ver));
+                ps.setString(2, id);
+                ps.setInt(3, ver);
+                ps.setInt(4, repoNo);
+                rs = ps.executeQuery();
+
+                sql = "SELECT VERNO.currval FROM dual";
+                ps = con.prepareStatement(sql);
+                rs = ps.executeQuery();
+                verNo = 0;
+                if (rs.next()) {
+                    verNo = rs.getInt(1);
                 }
             }
-
-            sql = "INSERT INTO VERSIONS(VERNO, NAME, MODIFIEDBY, VER, REPONO, REG_DATE) " +
-                    "VALUES (VERNO.nextval,?,?, ?, ?, SYSDATE)";
-            ps = con.prepareStatement(sql);
-            ps.setString(1, repo + "_ver" + String.valueOf(ver));
-            ps.setString(2, id);
-            ps.setInt(3, ver);
-            ps.setInt(4, repoNo);
-            rs = ps.executeQuery();
-
-            sql = "SELECT VERNO.currval FROM dual";
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            verNo = 0;
-            if (rs.next()) {
-                verNo = rs.getInt(1);
-            }
-
         } catch (
                 SQLException e)
 
@@ -688,6 +715,103 @@ public class DBController {
                 ps.setInt(1, memNo);
                 ps.setInt(2, repoNo);
                 rs = ps.executeQuery();
+            }
+        } catch (
+                SQLException e)
+
+        {
+            rt = false;
+            e.printStackTrace();
+        } finally
+
+        {
+            try {
+                assert rs != null;
+                rs.close();
+            } catch (Exception rse) {
+            }
+            try {
+                assert ps != null;
+                ps.close();
+            } catch (Exception pse) {
+            }
+        }
+        return rt;
+    }
+
+    public void deleteRepo(int repoNo) {
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        String sql = "";
+        try {
+            sql = "SELECT repoNO\n" +
+                    "FROM REPO\n" +
+                    "WHERE repoNo = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, repoNo);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                sql = "DELETE FROM REPO\n" +
+                        "WHERE repoNo = ?";
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, repoNo);
+                rs = ps.executeQuery();
+            }
+        } catch (
+                SQLException e)
+
+        {
+            e.printStackTrace();
+        } finally
+
+        {
+            try {
+                assert rs != null;
+                rs.close();
+            } catch (Exception rse) {
+            }
+            try {
+                assert ps != null;
+                ps.close();
+            } catch (Exception pse) {
+            }
+        }
+    }
+
+    public boolean deleteFriends(ArrayList<String> friends) {
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        String sql = "";
+        boolean rt = true;
+        try {
+            if (!friends.isEmpty()) {
+                for (String str : friends) {
+                    int tempNo = 0;
+                    sql = "SELECT MEMNO\n" +
+                            " FROM MEMBERS\n" +
+                            "WHERE ID = ?";
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, str);
+                    rs = ps.executeQuery();
+                    if (rs.next()) tempNo = rs.getInt(1);
+
+                    sql = "DELETE FROM FRIENDS\n" +
+                            "WHERE ID= ? \n" +
+                            "AND MEMNO = ?";
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, str);
+                    ps.setInt(2, this.memNo);
+                    rs = ps.executeQuery();
+
+                    sql = "DELETE FROM FRIENDS\n" +
+                            "WHERE ID= ? \n" +
+                            "AND MEMNO = ?";
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, myId);
+                    ps.setInt(2, tempNo);
+                    rs = ps.executeQuery();
+
+                }
             }
         } catch (
                 SQLException e)

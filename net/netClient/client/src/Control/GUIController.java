@@ -17,6 +17,7 @@ public class GUIController {
     private ProfileFrame profileFrame = null;
     private VersionFrame versionFrame = null;
     private StatusFrame statusFrame = null;
+    private RepoDeleteFrame repoDeleteFrame = null;
     private MemberManageFrame memberManageFrame= null;
     private UMLController uc=null;
 
@@ -79,8 +80,8 @@ public class GUIController {
     public void newRepoView(){
         newRepoFrame = new NewRepoFrame(controller);
     }
-    public void disposeNewRepoView(){
-        newRepoFrame.dispose();
+    public void deleteView(String repoNo){
+        repoDeleteFrame = new RepoDeleteFrame(controller,repoNo);
     }
 
     void showMainMessage(String s, int i){
@@ -198,5 +199,17 @@ public class GUIController {
 
     public void memberManageUpdate(String s, int i) {
         JOptionPane.showMessageDialog(memberManageFrame,s,s,i);
+    }
+
+    public void setAddPanelList() {
+        profileFrame.getAfp().setList();
+    }
+
+    public LoginFrame getLoginFrame() {
+        return loginFrame;
+    }
+
+    public void newRepoViewDispose() {
+        newRepoFrame.dispose();
     }
 }

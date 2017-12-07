@@ -6,9 +6,15 @@ import Model.RepoModel;
 import Model.SearchRepoModel;
 import Model.StaticModel.Ack;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
@@ -18,25 +24,29 @@ public class ReceivedThread implements Runnable {
     private MainController controller;
     private GUIController gc;
     private JsonController jc;
+    private CryptoController cc;
     private Socket socket;
     ReceivedThread(MainController controller, Socket socket){
         this.controller = controller;
         this.gc = controller.getGUIController();
         this.jc=  controller.getJsonController();
+        this.cc = controller.getCryptoController();
         this.socket = socket;
     }
     @Override
     public void run() {
-        while(recvAck());
+        while(checkDataType());
         System.out.println("서버 종료");
     }
 
-    private boolean recvAck() {
+    private boolean checkDataType() {
         boolean rt = true;
         try {
-            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-            int ack = dataInputStream.readInt();
-            System.out.println("ack " + ack);
+            DataInputStream dis = new DataInputStream(socket.getInputStream());
+            String data = dis.readUTF();
+            data= cc.getAesDecodedText(data);
+            int ack = jc.str2ack(data);
+            gc.getLoginFrame().getLp().setLoginClicked(0);
             switch (ack) {
                 case Ack.error:
                     break; //에러
@@ -114,12 +124,14 @@ public class ReceivedThread implements Runnable {
                 case Ack.overlapRepoACK: // repo 생성가능
                     recvRepoData();
                     recvSearchData(true);
+                    gc.newRepoViewDispose();
                     break;
                 case Ack.overlapRepoREJ: // repo 중복
                     gc.showRepoMessage(0);
                     break;
                 case Ack.repoACK: // version 선택
                     recvRepoData();
+                    gc.versionView();
                     break;
                 case Ack.repoREJ: // version 선택불가능
                     break;
@@ -135,6 +147,15 @@ public class ReceivedThread implements Runnable {
 
                     gc.memberManageUpdate("Failed Save",0);
                     break;
+                case Ack.rmFriendAck: // 친구 삭제
+                    recvFriends();
+                    gc.setAddPanelList();
+                    break;
+                case Ack.rmFriendRej: // 친구 삭제 실패
+                    break;
+                case Ack.deleteRepoAck:
+                    recvSearchData(true);
+                    break;
 
                 default:
                     break;
@@ -142,6 +163,18 @@ public class ReceivedThread implements Runnable {
 
         } catch (IOException e) {
             rt = false;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
         }
         return rt;
     }
@@ -150,10 +183,23 @@ public class ReceivedThread implements Runnable {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
+            str = cc.getAesDecodedText(str);
             System.out.println(str);
             controller.getEventsController().addEvent(jc.str2friendEvents(str));
             gc.resEvents();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
         }
     }
@@ -162,11 +208,23 @@ public class ReceivedThread implements Runnable {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
-            System.out.println(str);
+            str = cc.getAesDecodedText(str);
             controller.getEventsController().getEvents().addAll((jc.str2Events(str)));
             controller.getEventsController().display();
             gc.resEvents();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
         }
     }
@@ -175,11 +233,22 @@ public class ReceivedThread implements Runnable {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
-            System.out.println(str);
+            str = cc.getAesDecodedText(str);
             RepoModel rm = jc.str2rm(str);
             controller.getUmlController().setRepoModel(rm);
-            gc.versionView();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
         }
     }
@@ -188,10 +257,22 @@ public class ReceivedThread implements Runnable {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
-            System.out.println(str);
+            str = cc.getAesDecodedText(str);
             ArrayList<String> friends = jc.str2friends(str);
             controller.setFriends(friends);
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
         }
     }
@@ -200,6 +281,7 @@ public class ReceivedThread implements Runnable {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
+            str = cc.getAesDecodedText(str);
             ArrayList<SearchRepoModel> smds = jc.str2smds(str);
             if (isMysmds) {
                 controller.setMySdms(smds);
@@ -210,6 +292,18 @@ public class ReceivedThread implements Runnable {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
         }
     }
 
@@ -217,9 +311,22 @@ public class ReceivedThread implements Runnable {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
+            str = cc.getAesDecodedText(str);
             controller.getLoginController().setMyAccount(jc.str2lm(str));
             gc.setMainFrameTitle(controller.getLoginController().getMyAccount().getId());
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
         }
     }
@@ -228,9 +335,22 @@ public class ReceivedThread implements Runnable {
         try {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String str = dataInputStream.readUTF();
+            str = cc.getAesDecodedText(str);
             CDModel cdModel = jc.str2cdm(str);
             controller.getUmlController().setCdModel(cdModel);
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
         }
     }

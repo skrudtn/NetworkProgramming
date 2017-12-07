@@ -23,13 +23,13 @@ public class LoginPanel extends JPanel {
     private JPasswordField pwTextField;
     private JButton loginBtn;
     private JButton signUpBtn;
-    private JButton pwChangeBtn;
 
     private JLabel logoLabel;
     private JLabel idLabel;
     private JLabel pwLabel ;
     private LoginFrame f;
     private GUIController gc;
+    private int loginClicked;
     LoginPanel(LoginFrame f) {
         this.f = f;
         gc = f.getController().getGUIController();
@@ -38,6 +38,7 @@ public class LoginPanel extends JPanel {
 
 
     private void initLogin() {
+        loginClicked = 0;
         initUI();
     }
 
@@ -47,9 +48,9 @@ public class LoginPanel extends JPanel {
         setBackground(Pallate.a);
         initLabel();
         initTextField();
-        initButton();
+        initButton( );
 
-        autoLogin();
+//        autoLogin();
         this.setVisible(true);
     }
 
@@ -60,10 +61,10 @@ public class LoginPanel extends JPanel {
 
         idLabel.setBounds(Size.SIGNIN_XMARGIN, Size.SIGNIN_YMARGIN, Size.SIGNIN_ID_W, Size.SIGNIN_ID_H);
         idLabel.setFont(MyFont.serif20);
-        idLabel.setForeground(Color.WHITE);
+        idLabel.setForeground(Color.BLACK);
         pwLabel.setBounds(Size.SIGNIN_XMARGIN,idLabel.getY()+idLabel.getHeight()+10, Size.SIGNIN_ID_W, Size.SIGNIN_ID_H);
         pwLabel.setFont(MyFont.serif20);
-        pwLabel.setForeground(Color.WHITE);
+        pwLabel.setForeground(Color.BLACK);
         logoLabel.setBounds(Size.LOGO_X,Size.LOGO_Y,Size.LOGO_W,Size.LOGO_H);
 
 //        rememberIDLabel.setBounds(Size.LABELXMARGIN+ 30, Size.LABELYMARGIN+ 130, 100, 30);
@@ -86,10 +87,10 @@ public class LoginPanel extends JPanel {
 
         idTextField.setBounds(idLabel.getX()+idLabel.getWidth()+20, Size.SIGNIN_YMARGIN, Size.SIGNIN_TEXT_W, idLabel.getHeight());
         pwTextField.setBounds(idTextField.getX(), idTextField.getY()+idTextField.getHeight()+10, Size.SIGNIN_TEXT_W, pwLabel.getHeight());
-        idTextField.setOpaque(false);
-        pwTextField.setOpaque(false);
-        idTextField.setForeground(Color.WHITE);
-        pwTextField.setForeground(Color.WHITE);
+//        idTextField.setOpaque(false);
+//        pwTextField.setOpaque(false);
+        idTextField.setForeground(Color.BLACK);
+        pwTextField.setForeground(Color.BLACK);
         idTextField.setFont(MyFont.serif20);
         pwTextField.setFont(MyFont.serif20);
 
@@ -198,12 +199,16 @@ public class LoginPanel extends JPanel {
     }
 
     private void onPressedLoginBtn(){
-        String id = idTextField.getText();
-        String pw = String.valueOf(pwTextField.getPassword());
-        if (!id.equals("") && !pw.equals("")) {
-            pw = getSHA256(pw);
-            f.getController().getLoginController().login(id,pw);
+        loginClicked++;
+        if(loginClicked==1) {
+            String id = idTextField.getText();
+            String pw = String.valueOf(pwTextField.getPassword());
+            if (!id.equals("") && !pw.equals("")) {
+                pw = getSHA256(pw);
+                f.getController().getLoginController().login(id, pw);
+            }
         }
+
     }
     private void onPressedSignUpBtn(){
         idTextField.setText("");
@@ -242,5 +247,9 @@ public class LoginPanel extends JPanel {
         idTextField.setText("ksna");
         pwTextField.setText("1");
 //        onPressedLoginBtn();
+    }
+
+    public void setLoginClicked(int loginClicked) {
+        this.loginClicked = loginClicked;
     }
 }

@@ -5,6 +5,7 @@ import Control.UMLController;
 import Control.VersionComparator;
 import Model.RepoModel;
 import Model.StaticModel.MyFont;
+import Model.StaticModel.MyImage;
 import Model.StaticModel.Pallate;
 import Model.StaticModel.Size;
 import Model.VersionModel;
@@ -49,7 +50,7 @@ public class VersionFrame extends JFrame {
     private void initUI() {
         conPanel = new JPanel();
         conPanel.setLayout(null);
-        conPanel.setBackground(Pallate.e);
+        conPanel.setBackground(Pallate.a);
         setContentPane(conPanel);
         initBtn();
         initTable();
@@ -61,7 +62,12 @@ public class VersionFrame extends JFrame {
         newBtn = new JButton("New");
         addBtn = new JButton("Member Manage");
         newBtn.setBounds(Size.VERFRAMEWIDTH-Size.BACKBTNWIDTH-5,5,Size.BACKBTNWIDTH-10,Size.SIGNUP_XMARGIN-10);
+        newBtn.setFont(MyFont.serif18);
+        newBtn.setBackground(Pallate.a);
         addBtn.setBounds(5,5,Size.CLAZZWIDTH,Size.SIGNUP_XMARGIN-10);
+        addBtn.setFont(MyFont.serif18);
+        addBtn.setBackground(Pallate.a);
+
         conPanel.add(newBtn);
         conPanel.add(addBtn);
     }
@@ -77,7 +83,9 @@ public class VersionFrame extends JFrame {
             private static final long serialVersionUID = 1L;
             public boolean isCellEditable(int row, int column) {return false;};
         };
-
+        table.setRowHeight(30);
+        table.setFont(MyFont.serif20);
+        table.setFillsViewportHeight(true);
         for(VersionModel vm: repoModel.getVersions()) {
             System.out.println(vm.getVer());
         }
@@ -104,7 +112,7 @@ public class VersionFrame extends JFrame {
                     JTable target = (JTable)e.getSource();
                     int row = target.getSelectedRow();
                     String ver = (String) table.getValueAt(row,0);
-                    controller.getNetworkController().sendStr(controller.getJsonController().getCloneStr(ver));
+                    controller.getNetworkController().sendStr(controller.getJsonController().getCloneStr(ver,String.valueOf(controller.getUmlController().getRepoModel().getRepoNo())));
                 }
             }
         });

@@ -1,6 +1,9 @@
 package View.MainView;
 
+import Model.StaticModel.MyFont;
+
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -24,10 +27,11 @@ public class SearchPanel extends JPanel {
     }
 
     private void initTextField() {
-        searchField = new JTextField(30);
-        searchField.setFont(new Font("Serif", Font.BOLD, 15));
-        searchField.setOpaque(false);
-        searchField.setBounds(searchCombo.getX()+searchField.getWidth()+20,searchCombo.getY(),120,searchCombo.getHeight());
+        searchField = new JTextField(20);
+        searchField.setFont(MyFont.serif28);
+        searchField.setForeground(Color.BLACK);
+//        searchField.setOpaque(false);
+//        searchField.setBounds(searchCombo.getX()+searchField.getWidth()+20,searchCombo.getY(),120,searchCombo.getHeight());
         searchField.addKeyListener(new KeyAdapter() {
 
             @Override
@@ -57,6 +61,8 @@ public class SearchPanel extends JPanel {
                 "Title", "UserID"
         };
         searchCombo = new JComboBox<>(category);
+        searchCombo.setFont(MyFont.serif25);
+        searchCombo.setBorder(new EmptyBorder(1,1,1,1));
 //        searchCombo.setBounds(0,0,120,getHeight()-40);
         searchCombo.setAlignmentX(1);
         add(searchCombo);

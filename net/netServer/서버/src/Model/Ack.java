@@ -40,4 +40,8 @@ public class Ack {
     public final static int rejectFriend= 29; // 친구요청 거절
     public final static int updateAuthoAck = 30;
     public final static int updateAuthoRej = 31;
+    public final static int deleteRepoAck= 32;
+    public final static int deleteRepoRej= 33;
+    public final static int rmFriendAck= 34;
+    public final static int rmFriendRej= 35;
 }

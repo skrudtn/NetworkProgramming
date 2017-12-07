@@ -6,9 +6,16 @@ import Model.LoginInfo;
 import Model.RepoModel.RepoModel;
 import Model.SharedData;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.Socket;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by skrud on 2017-11-22.
@@ -20,6 +27,7 @@ public class ReceivedThread implements Runnable {
     private DBController dc;
     private AccountController ac;
     private UMLController uc;
+    private CryptoController cc;
     private MemberThread memberThread;
     private Socket socket;
     private ClientModel client;
@@ -31,7 +39,7 @@ public class ReceivedThread implements Runnable {
         this.dc = controller.getDBController();
         this.uc = controller.getUmlController();
         this.ac = controller.getAccountController();
-
+        this.cc = controller.getCryptoController();
         this.memberThread = memberThread;
         this.socket = socket;
         this.client = memberThread.getClient();
@@ -67,7 +75,7 @@ public class ReceivedThread implements Runnable {
 
     }
     private void logout() {
-        memberThread.sendAck(Ack.logoutAck);
+        memberThread.sendStr(jc.getAckStr(Ack.logoutAck));
         System.out.format("%s : %s 로그아웃\n", socket.getInetAddress(), lc.getId());
 
     }
@@ -77,14 +85,14 @@ public class ReceivedThread implements Runnable {
         try {
             DataInputStream dis = new DataInputStream(socket.getInputStream());
             String data = dis.readUTF();
-            System.out.format("%s\n", data);
+            data= cc.getAesDecodedText(data);
             String type = jc.getJsonType(jc.str2JSONObject(data));
             int ack = 0;
-            System.out.println(type);
+            System.out.format("type : %s\n",type);
             switch (type) {
                 case "login":
                     ack = lc.login(data);
-                    memberThread.sendAck(ack);
+                    memberThread.sendStr(jc.getAckStr(ack));
                     if (ack == Ack.lAck) {
                         memberThread.sendStr(lc.getLoginModelStr());
                         memberThread.sendStr(lc.getSearchModel());
@@ -98,48 +106,48 @@ public class ReceivedThread implements Runnable {
                     rt=false;
                     break;
                 case "signup":
-                    memberThread.sendAck(lc.signup(data));
+                    memberThread.sendStr(jc.getAckStr(lc.signup(data)));
                     break;
                 case "suId":
-                    memberThread.sendAck(lc.suOverlap(data));
+                    memberThread.sendStr(jc.getAckStr(lc.suOverlap(data)));
                     break;
                 case "pwcId":
-                    memberThread.sendAck(lc.pwcOverlap(data));
+                    memberThread.sendStr(jc.getAckStr(lc.pwcOverlap(data)));
                     break;
                 case "pw":
-                    memberThread.sendAck(lc.pwChange(data));
+                    memberThread.sendStr(jc.getAckStr(lc.pwChange(data)));
                     break;
                 case "push":
                     ack = uc.push(data);
-                    memberThread.sendAck(ack);
+                    memberThread.sendStr(jc.getAckStr(ack));
                     if (ack == Ack.pushACK) {
                         memberThread.sendStr(lc.getSearchModel());
                     }
                     break;
                 case "clone":
                     ack = uc.cllone(data);
-                    memberThread.sendAck(ack);
+                    memberThread.sendStr(jc.getAckStr(ack));
                     if (ack == Ack.cloneACK) {
                         memberThread.sendStr(uc.getCloneModel());
                     }
                     break;
                 case "search":
                     ack = uc.search(data);
-                    memberThread.sendAck(ack);
+                    memberThread.sendStr(jc.getAckStr(ack));
                     if (ack == Ack.searchAck) {
                         memberThread.sendStr(uc.getSearchModels());
                     }
                     break;
                 case "searchId":
                     ack = ac.searchId(data);
-                    memberThread.sendAck(ack);
+                    memberThread.sendStr(jc.getAckStr(ack));
                     if(ack == Ack.searchIdAck) {
                         ac.reqFriend();
                     }
                     break;
                 case "repoPacket":
                     ack = uc.isExistRepo(data);
-                    memberThread.sendAck(ack);
+                    memberThread.sendStr(jc.getAckStr(ack));
                     if (ack == Ack.overlapRepoACK) {
                         RepoModel repoModel = uc.createRepo(data);
                         memberThread.sendStr(jc.rm2str(repoModel, lc.getId()));
@@ -148,7 +156,7 @@ public class ReceivedThread implements Runnable {
                     break;
                 case "repoModel":
                     ack = uc.isExistRepoData(data);
-                    memberThread.sendAck(ack);
+                    memberThread.sendStr(jc.getAckStr(ack));
                     if (ack == Ack.repoACK) {
                         memberThread.sendStr(uc.getRepoStr(data));
                     }
@@ -156,20 +164,44 @@ public class ReceivedThread implements Runnable {
                 case "friendRes":
                     ack = ac.resFriend(data);
                     if(Ack.acceptFriend == ack) {
-                        memberThread.sendAck(ack);
+                        memberThread.sendStr(jc.getAckStr(ack));
                         memberThread.sendStr(ac.getMyFriends());
                     }
                     break;
                 case "memberManage":
                     ack = ac.memberManage(data);
-                    memberThread.sendAck(ack);
-                    if(Ack.updateAuthoAck == ack){
-
+                    memberThread.sendStr(jc.getAckStr(ack));
+                    break;
+                case "deleteRepo":
+                    ack = uc.deleteRepo(data);
+                    memberThread.sendStr(jc.getAckStr(ack));
+                    if(ack==Ack.deleteRepoAck){
+                        memberThread.sendStr(lc.getSearchModel());
                     }
+                    break;
+                case "removeFriend":
+                    ack = ac.removeFriend(data);
+                    memberThread.sendStr(jc.getAckStr(ack));
+                    if(ack == Ack.rmFriendAck){
+                        memberThread.sendStr(ac.getMyFriends());
+                    }
+                    break;
                 default: break;
             }
         } catch (IOException e) {
             rt = false;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
         }
         return rt;
     }

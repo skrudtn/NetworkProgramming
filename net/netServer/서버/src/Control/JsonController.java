@@ -383,6 +383,7 @@ class JsonController {
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
         String name = "";
+        String repoNo = "";
 
         try {
             obj = jsonParser.parse(str);
@@ -396,10 +397,12 @@ class JsonController {
                 Object value = jsonObject.get(key);
                 if (key.equals("name")) {
                     name = (String) value;
+                } else if (key.equals("repoNo")) {
+                    repoNo = (String) value;
                 }
             }
         }
-        return new CllonePacket(name);
+        return new CllonePacket(name, Integer.parseInt(repoNo));
     }
 
     String str2si(String data) {
@@ -483,14 +486,14 @@ class JsonController {
 
     public String rm2str(RepoModel rm, String myId) {
         JSONObject obj = new JSONObject();
-        boolean isCreator= false;
+        boolean isCreator = false;
         boolean isMember = false;
         obj.put("type", "repoData");
         obj.put("id", rm.getId());
         obj.put("name", rm.getName());
         obj.put("repoNo", String.valueOf(rm.getRepoNo()));
         obj.put("members", rm.getAuthorizations());
-        if(rm.getId().equals(myId)) {
+        if (rm.getId().equals(myId)) {
             isCreator = true;
             isMember = true;
         }
@@ -505,7 +508,7 @@ class JsonController {
         } else {
             obj.put("isMember", "false");
         }
-        if(isCreator){
+        if (isCreator) {
             obj.put("isCreator", "true");
         } else {
             obj.put("isCreator", "false");
@@ -526,6 +529,7 @@ class JsonController {
         obj.put("versions", jsonArray);
         return obj.toJSONString();
     }
+
     public RepoModel str2repoData(String data) {
         Object obj = null;
         JSONParser jsonParser = new JSONParser();
@@ -557,26 +561,26 @@ class JsonController {
     public String getEventsStr(ArrayList<Event> events) {
         JSONObject obj = new JSONObject();
         JSONArray array = new JSONArray();
-        obj.put("type","events");
-        for(Event e: events){
+        obj.put("type", "events");
+        for (Event e : events) {
             JSONObject inObj = new JSONObject();
-            inObj.put("src",e.getSrc());
-            inObj.put("des",e.getDes());
-            inObj.put("date",e.getDate());
-            inObj.put("data",e.getData());
-            inObj.put("eventType",e.getType());
+            inObj.put("src", e.getSrc());
+            inObj.put("des", e.getDes());
+            inObj.put("date", e.getDate());
+            inObj.put("data", e.getData());
+            inObj.put("eventType", e.getType());
             array.add(inObj);
         }
-        obj.put("events",array);
+        obj.put("events", array);
         return obj.toJSONString();
     }
 
     public String getReqFriendStr(Event event) {
         JSONObject obj = new JSONObject();
         obj.put("type", "reqFriends");
-        obj.put("src",event.getSrc());
-        obj.put("des",event.getDes());
-        obj.put("date",event.getDate());
+        obj.put("src", event.getSrc());
+        obj.put("des", event.getDes());
+        obj.put("date", event.getDate());
         return obj.toJSONString();
     }
 
@@ -604,8 +608,8 @@ class JsonController {
                 }
             }
         }
-        if(ok.equals("ok")) isOk = true;
-        return new ResFriendPacket(des,isOk);
+        if (ok.equals("ok")) isOk = true;
+        return new ResFriendPacket(des, isOk);
     }
 
     public MemManagePacket str2memManage(String data) {
@@ -630,6 +634,58 @@ class JsonController {
                 }
             }
         }
-        return new MemManagePacket(members,Integer.parseInt(repoNo));
+        return new MemManagePacket(members, Integer.parseInt(repoNo));
+    }
+
+    public int str2repoNo(String data) {
+        Object obj = null;
+        JSONParser jsonParser = new JSONParser();
+        String repoNo = "";
+        try {
+            obj = jsonParser.parse(data);
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        if (obj instanceof JSONObject) {
+            JSONObject jsonObject = (JSONObject) obj;
+            Set keySet = jsonObject.keySet();
+            for (Object key : keySet) {
+                Object value = jsonObject.get(key);
+                if (key.equals("repoNo")) {
+                    repoNo = (String) value;
+                }
+            }
+        }
+        return Integer.parseInt(repoNo);
+    }
+
+    public ArrayList<String> str2friends(String data) {
+        Object obj = null;
+        JSONParser jsonParser = new JSONParser();
+        ArrayList<String> friends = new ArrayList<>();
+        try {
+            obj = jsonParser.parse(data);
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        if (obj instanceof JSONObject) {
+            JSONObject jsonObject = (JSONObject) obj;
+            Set keySet = jsonObject.keySet();
+            for (Object key : keySet) {
+                Object value = jsonObject.get(key);
+                if (key.equals("list")) {
+                    friends = (ArrayList<String>) value;
+                }
+            }
+        }
+        return friends;
+    }
+
+    public String getAckStr(int ack) {
+        JSONObject obj = new JSONObject();
+        String a = String.valueOf(ack);
+        obj.put("type", "ack");
+        obj.put("ack", a);
+        return obj.toJSONString();
     }
 }

@@ -6,6 +6,7 @@ import Model.ClassDiagramModel.Association;
 import Model.ClassDiagramModel.CDModel;
 import Model.ClassDiagramModel.ClazzModel;
 import Model.RepoModel;
+import Model.StaticModel.MyFont;
 import Model.StaticModel.MyImage;
 import Model.StaticModel.Pallate;
 import Model.StaticModel.Size;
@@ -31,16 +32,21 @@ public class DrawContentPanel extends JPanel {
     private JPanel sideBarPanel;
     private JPanel toolBoxPanel;
     private DrawPanel drawPanel;
+    private ArrayList<JComboBox> comboBoxes;
+    private JComboBox<String> modeComboBox;
     private JComboBox<String> classComboBox;
+    private JComboBox<String> sequenceComboBox;
     private MainController controller;
     private GUIController gc;
     private JButton backBtn;
     private JButton pushBtn;
+    private JButton modeBtn;
+
     public DrawContentPanel(MainFrame f) {
         this.f = f;
         this.controller = f.getController();
         gc = controller.getGUIController();
-
+        comboBoxes = new ArrayList<>();
         initUI();
     }
 
@@ -57,12 +63,12 @@ public class DrawContentPanel extends JPanel {
 
 
     private void initDrawPanel() {
-        drawPanel = new DrawPanel(controller , this);
+        drawPanel = new DrawPanel(controller, this);
         drawPanel.setLayout(null);
         drawPanel.setBackground(Color.WHITE);
         drawPanel.setPreferredSize(new Dimension(Size.DRAWPANELSIZE, Size.DRAWPANELSIZE));
         jScrollPane = new JScrollPane(drawPanel);
-        jScrollPane.setBounds(Size.MENUBARWIDTH, 0, f.getWidth() - (Size.MENUBARWIDTH+ Size.TOOLBOXWIDTH), f.getHeight());
+        jScrollPane.setBounds(Size.MENUBARWIDTH, 0, f.getWidth() - (Size.MENUBARWIDTH + Size.TOOLBOXWIDTH), f.getHeight());
         jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         add(jScrollPane);
@@ -83,17 +89,29 @@ public class DrawContentPanel extends JPanel {
         toolBoxPanel.setBounds(0, f.getHeight() - Size.TOOLBOXHEIGHT, Size.TOOLBOXWIDTH, Size.TOOLBOXHEIGHT);
         sideBarPanel.add(toolBoxPanel);
 
-        sideBarPanel.add(toolBoxPanel);
-
+        String modeString[] = {"ClassDiagram", "SequenceDiagram"};
+        modeComboBox = new JComboBox<>(modeString);
+        modeComboBox.setAlignmentX(1);
+        modeComboBox.setFont(MyFont.serif20);
         String classString[] = {"Class", "Interface", "Association", "Directed Association", "Generalization",
                 "Realization", "Dependency", "Aggregation", "Composition"};
 
         classComboBox = new JComboBox<>(classString);
-//        classComboBox.setUI();
         classComboBox.setAlignmentX(1);
+        classComboBox.setFont(MyFont.serif18);
 
+        String seqString[] = {"Lifeline", "Message", "Self-Message", "Async-Message", "Reply-Message"};
 
+        sequenceComboBox = new JComboBox<>(seqString);
+        sequenceComboBox.setAlignmentX(1);
+        sequenceComboBox.setFont(MyFont.serif18);
+        comboBoxes.add(classComboBox);
+        comboBoxes.add(sequenceComboBox);
+
+        toolBoxPanel.add(modeComboBox);
+        toolBoxPanel.add(sequenceComboBox);
         toolBoxPanel.add(classComboBox);
+        setDiagramMode();
     }
 
     private void initSideBarPanel() {
@@ -160,6 +178,22 @@ public class DrawContentPanel extends JPanel {
 
             }
         });
+        modeComboBox.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+                int i = modeComboBox.getSelectedIndex();
+                setDiagramMode();
+            }
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+
+            }
+        });
         classComboBox.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -187,13 +221,13 @@ public class DrawContentPanel extends JPanel {
                     c.getX(), c.getY(), c.getWidth(), c.getHeight(), c.getAcList(), c.getPointInClazzes()));
         }
         CDModel cd = new CDModel(controller.getLoginController().getMyAccount().getId(), controller.getUmlController().getRepoModel().getRepoName(), cmList, acList);
-        String str= controller.getJsonController().cdm2str(cd,controller.getUmlController().getRepoModel().getRepoNo());
+        String str = controller.getJsonController().cdm2str(cd, controller.getUmlController().getRepoModel().getRepoNo());
         controller.getNetworkController().sendStr(str);
     }
 
 
     void resizePanel() {
-        jScrollPane.setBounds(Size.MENUBARWIDTH, 0, f.getWidth() - (Size.MENUBARWIDTH + Size.TOOLBOXWIDTH), f.getHeight()-34);
+        jScrollPane.setBounds(Size.MENUBARWIDTH, 0, f.getWidth() - (Size.MENUBARWIDTH + Size.TOOLBOXWIDTH), f.getHeight() - 34);
         toolBoxPanel.setBounds(0, f.getHeight() - Size.TOOLBOXHEIGHT, Size.TOOLBOXWIDTH, Size.TOOLBOXHEIGHT);
         sideBarPanel.setBounds(0, 0, Size.MENUBARWIDTH, f.getHeight());
         menuPanel.setBounds(f.getWidth() - Size.MENUBARWIDTH, 0, Size.MENUBARWIDTH, f.getHeight());
@@ -205,5 +239,15 @@ public class DrawContentPanel extends JPanel {
 
     public JButton getPushBtn() {
         return pushBtn;
+    }
+
+    public void setDiagramMode() {
+        if (modeComboBox.getSelectedIndex() ==0) {
+            classComboBox.setVisible(true);
+            sequenceComboBox.setVisible(false);
+        } else if (modeComboBox.getSelectedIndex()== 1) {
+            classComboBox.setVisible(false);
+            sequenceComboBox.setVisible(true);
+        }
     }
 }

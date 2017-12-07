@@ -9,6 +9,7 @@ import Model.StaticModel.Size;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ScrollBarUI;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -62,9 +63,11 @@ public class DisplayContentPanel extends JPanel {
     private void initNotice() {
         noticePanel = new NoticePanel(controller);
         noticePanel.setBorder(new EmptyBorder(0,0,0,0));
+
         noticeScrollPanel= new JScrollPane(noticePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         noticeScrollPanel.setBounds(searchRepoPanel.getX(), searchRepoPanel.getY()+searchRepoPanel.getHeight(), Size.NOTICE_W, Size.NOTICE_H-(Size.SEARCH_HEADER_H1-Size.SEARCH_HEADER_H2));
         noticeScrollPanel.setBorder(new EmptyBorder(0,0,0,0));
+        noticeScrollPanel.setWheelScrollingEnabled(true);
         add(noticeScrollPanel);
         setVisible(true);
     }
@@ -74,6 +77,7 @@ public class DisplayContentPanel extends JPanel {
         repoScrollPanel = new JScrollPane(repoPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         repoScrollPanel.setBounds(yourRepoPanel.getX(), yourRepoPanel.getY()+yourRepoPanel.getHeight(), Size.NOTICE_W, Size.NOTICE_H);
         repoScrollPanel.setBorder(new EmptyBorder(0,0,0,0));
+        repoScrollPanel.setWheelScrollingEnabled(true);
         add(repoScrollPanel);
         setVisible(true);
     }
@@ -130,7 +134,6 @@ public class DisplayContentPanel extends JPanel {
         guideBtn.setFocusPainted(false);
         guideBtn.setContentAreaFilled(false);
 
-        add(guideBtn);
         add(accountBtn);
         add(statusBtn);
         yourRepoPanel.add(newBtn);

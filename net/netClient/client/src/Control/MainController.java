@@ -3,6 +3,13 @@ package Control;
 import Model.SearchRepoModel;
 import Model.StaticModel.MyImage;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +26,7 @@ public class MainController {
     private JsonController jsonController = null;
     private LoginController loginController = null;
     private UMLController umlController = null;
+    private CryptoController cryptoController =null;
     private EventsController eventsController= null;
     private ArrayList<SearchRepoModel> sdms=null;
     private ArrayList<SearchRepoModel> mySdms=null;
@@ -41,6 +49,23 @@ public class MainController {
     private void initController(){
         jsonController = new JsonController();
         umlController = new UMLController();
+        try {
+            cryptoController = new CryptoController();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
         eventsController = new EventsController(this);
         GUIController = new GUIController(this);
         networkController = new NetworkController(this);
@@ -118,5 +143,9 @@ public class MainController {
 
     public void setEventsController(EventsController eventsController) {
         this.eventsController = eventsController;
+    }
+
+    public CryptoController getCryptoController() {
+        return cryptoController;
     }
 }

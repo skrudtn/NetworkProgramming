@@ -1,8 +1,6 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by skrud on 2017-11-22.
@@ -10,9 +8,11 @@ import java.util.Queue;
 public class SharedData {
     private static volatile SharedData INSTANCE = null;
 
-    private ArrayList<Event> events;
+    private Vector<Event> events;
+    private Vector<Integer> repoNos;
     private SharedData(){
-        events = new ArrayList<>();
+        events = new Vector<>();
+        repoNos = new Vector<>();
     }
 
     public static SharedData getInstance(){
@@ -27,10 +27,6 @@ public class SharedData {
     }
 
     public void addEvent(Event event){
-        System.out.println("addEvents");
-        System.out.println(event.getType());
-        System.out.println(event.getSrc());
-        System.out.println(event.getDes());
         events.add(event);
     }
     public void removeEvent(Event event){
@@ -38,8 +34,6 @@ public class SharedData {
     }
 
     public ArrayList<Event> getEvents(String id) {
-        System.out.println("getEvents");
-        System.out.println(id);
         ArrayList<Event> rtEvents = new ArrayList<>();
         for(Event event: events){
             if(event.getDes().equals(id)){
@@ -48,5 +42,31 @@ public class SharedData {
         }
         events.removeAll(rtEvents);
         return rtEvents;
+    }
+
+    public boolean isCloneRepo(Integer repoNo) {
+        boolean rt = false;
+        for(Integer i:repoNos){
+            if(i.equals(repoNo)){
+                rt = true;
+            }
+        }
+        return rt;
+    }
+    public void addCloneRepo(Integer repoNo){
+        repoNos.add(repoNo);
+        displayRepoNos();
+    }
+    public void removeCloneRepo(Integer repoNo){
+        repoNos.remove(repoNo);
+        displayRepoNos();
+    }
+
+    void displayRepoNos(){
+        System.out.println("Repos ---");
+        for(Integer i:repoNos){
+            System.out.println(i);
+        }
+        System.out.println("---");
     }
 }

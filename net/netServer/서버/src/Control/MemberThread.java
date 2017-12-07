@@ -2,31 +2,40 @@ package Control;
 
 import Model.*;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.Socket;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
  * Created by skrud on 2017-10-01.
  */
 public class MemberThread implements Runnable {
-
     private MainController controller;
     private ClientModel client;
     private Socket socket;
     private ArrayList<ClientModel> clientList;
+    private CryptoController cc;
 
-    public MemberThread(ClientModel clientModel, ArrayList<ClientModel> clientList) {
+    public MemberThread(ClientModel clientModel, ArrayList<ClientModel> clientList) throws NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException {
         this.client = clientModel;
         this.socket = clientModel.getSocket();
         this.clientList = clientList;
         memberInit();
     }
 
-    private void memberInit() {
+    private void memberInit() throws NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         controller = new MainController();
+        cc=controller.getCryptoController();
         controller.setClientModel(clientList);
+
     }
 
     @Override
@@ -42,22 +51,24 @@ public class MemberThread implements Runnable {
 
     }
 
-    void sendAck(int ack) {
-        try {
-            System.out.println(ack);
-            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-            dos.writeInt(ack);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     void sendStr(String str) {
-        System.out.format("%s",str);
         try {
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+            str = cc.getAesEncodedText(str);
             dos.writeUTF(str);
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
         }
     }

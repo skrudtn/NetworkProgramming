@@ -3,9 +3,16 @@ package Control;
 import Model.ClientModel;
 import Model.SharedData;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,7 +26,7 @@ public class ServerMain {
     private ServerSocket serverSocket;
     private ArrayList<ClientModel> clientList;
     private ServerMain() {
-        executorService = Executors.newFixedThreadPool(3); // create thread pool
+        executorService = Executors.newFixedThreadPool(10); // create thread pool
         clientList = new ArrayList<ClientModel>(0);
         try {
             serverSocket = new ServerSocket(PORT);
@@ -40,7 +47,23 @@ public class ServerMain {
 
             ClientModel client = new ClientModel(socket);
             clientList.add(client);
-            executorService.execute(new MemberThread(client,clientList));
+            try {
+                executorService.execute(new MemberThread(client,clientList));
+            } catch (NoSuchPaddingException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (InvalidAlgorithmParameterException e) {
+                e.printStackTrace();
+            }
 
         }
     }

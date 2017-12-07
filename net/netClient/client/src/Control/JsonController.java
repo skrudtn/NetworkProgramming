@@ -424,10 +424,11 @@ public class JsonController {
 
         return obj.toJSONString();
     }
-    public String getCloneStr(String name) {
+    public String getCloneStr(String name,String repoNo) {
         JSONObject obj = new JSONObject();
         obj.put("type", "clone");
         obj.put("name", name);
+        obj.put("repoNo",repoNo);
 
         return obj.toJSONString();
     }
@@ -739,5 +740,41 @@ public class JsonController {
         obj.put("members",selectList);
         obj.put("repoNo",repoNo);
         return obj.toJSONString();
+    }
+
+    public String getDeleteStr(String repoNo) {
+        JSONObject obj = new JSONObject();
+        obj.put("type", "deleteRepo");
+        obj.put("repoNo",repoNo);
+        return obj.toJSONString();
+    }
+
+    public String getRemoveFriendStr(ArrayList<String> selectList) {
+        JSONObject obj = new JSONObject();
+        obj.put("type", "removeFriend");
+        obj.put("list",selectList);
+        return obj.toJSONString();
+    }
+
+    public int str2ack(String str) {
+        Object obj = null;
+        JSONParser jsonParser = new JSONParser();
+        String ack="";
+        try {
+            obj = jsonParser.parse(str);
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        if (obj instanceof JSONObject) {
+            JSONObject jsonObject = (JSONObject) obj;
+            Set keySet = jsonObject.keySet();
+            for (Object key : keySet) {
+                Object value = jsonObject.get(key);
+                if (key.equals("ack")) {
+                    ack= (String) value;
+                }
+            }
+        }
+        return Integer.parseInt(ack);
     }
 }

@@ -2,6 +2,14 @@ package Control;
 
 import Model.ClientModel;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.UnsupportedEncodingException;
+import java.security.CryptoPrimitive;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
@@ -13,11 +21,13 @@ public class MainController {
     private AccountController accountController = null;
     private LoginController loginController = null;
     private UMLController umlController = null;
+    private CryptoController cryptoController= null;
     private ArrayList<ClientModel> clientModels = null;
 
-    MainController(){
+    MainController() throws NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException {
         jsonController = new JsonController();
         DBController = new DBController();
+        cryptoController = new CryptoController();
         umlController = new UMLController(this);
         loginController = new LoginController(this);
         accountController = new AccountController(this);
@@ -74,5 +84,9 @@ public class MainController {
 
     public void setClientModels(ArrayList<ClientModel> clientModels) {
         this.clientModels = clientModels;
+    }
+
+    public CryptoController getCryptoController() {
+        return cryptoController;
     }
 }

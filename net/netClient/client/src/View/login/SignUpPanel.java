@@ -81,11 +81,11 @@ public class SignUpPanel extends JPanel {
         emailLabel.setBounds(nameLabel.getX(), nameLabel.getY()+nameLabel.getHeight()+10, Size.SIGNUP_LABEL_W, Size.SIGNUP_LABEL_H);
         emailLabel.setFont(MyFont.serif20);
 
-        idLabel.setForeground(Color.WHITE);
-        pwLabel.setForeground(Color.WHITE);
-        pwLabel2.setForeground(Color.WHITE);
-        nameLabel.setForeground(Color.WHITE);
-        emailLabel.setForeground(Color.WHITE);
+        idLabel.setForeground(Color.BLACK);
+        pwLabel.setForeground(Color.BLACK);
+        pwLabel2.setForeground(Color.BLACK);
+        nameLabel.setForeground(Color.BLACK);
+        emailLabel.setForeground(Color.BLACK);
 
         add(idLabel);
         add(pwLabel);
@@ -103,24 +103,24 @@ public class SignUpPanel extends JPanel {
 
         idTextField.setBounds(pwLabel.getX()+ pwLabel.getWidth() + 10,idLabel.getY(), Size.SIGNUP_TEXT_W, idLabel.getHeight());
         idTextField.setFont(MyFont.serif18);
-        idTextField.setOpaque(false);
-        idTextField.setForeground(Color.WHITE);
+//        idTextField.setOpaque(false);
+        idTextField.setForeground(Color.BLACK);
         pwTextField.setBounds(idTextField.getX(), pwLabel.getY(), idTextField.getWidth(), idLabel.getHeight());
         pwTextField.setFont(MyFont.serif18);
-        pwTextField.setOpaque(false);
-        pwTextField.setForeground(Color.WHITE);
+//        pwTextField.setOpaque(false);
+        pwTextField.setForeground(Color.BLACK);
         pwTextField2.setBounds(idTextField.getX(), pwLabel2.getY(), idTextField.getWidth(), idLabel.getHeight());
         pwTextField2.setFont(MyFont.serif18);
-        pwTextField2.setOpaque(false);
-        pwTextField2.setForeground(Color.WHITE);
+//        pwTextField2.setOpaque(false);
+        pwTextField2.setForeground(Color.BLACK);
         nameTextField.setBounds(idTextField.getX(), nameLabel.getY(), idTextField.getWidth(), idLabel.getHeight());
         nameTextField.setFont(MyFont.serif18);
-        nameTextField.setOpaque(false);
-        nameTextField.setForeground(Color.WHITE);
+//        nameTextField.setOpaque(false);
+        nameTextField.setForeground(Color.BLACK);
         emailTextField.setBounds(idTextField.getX(), emailLabel.getY(), idTextField.getWidth(), idLabel.getHeight());
         emailTextField.setFont(MyFont.serif18);
-        emailTextField.setOpaque(false);
-        emailTextField.setForeground(Color.WHITE);
+//        emailTextField.setOpaque(false);
+        emailTextField.setForeground(Color.BLACK);
         add(idTextField);
         add(pwTextField);
         add(pwTextField2);

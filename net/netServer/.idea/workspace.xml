@@ -80,102 +80,85 @@
       <file leaf-file-name="DBController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/서버/src/Control/DBController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="303" column="24" lean-forward="false" selection-start-line="303" selection-start-column="24" selection-end-line="303" selection-end-column="24" />
+            <state relative-caret-position="18648">
+              <caret line="673" column="14" lean-forward="false" selection-start-line="673" selection-start-column="14" selection-end-line="673" selection-end-column="14" />
               <folding>
-                <element signature="method#getConn#0;class#DBController#0" expanded="false" />
-                <element signature="method#closeConnect#0;class#DBController#0" expanded="false" />
-                <element signature="method#signup#0;class#DBController#0" expanded="false" />
-                <element signature="method#pwDB#0;class#DBController#0" expanded="false" />
-                <element signature="method#pushCD#0;class#DBController#0" expanded="false" />
-                <element signature="method#search#0;class#DBController#0" expanded="false" />
-                <element signature="method#isExistRepo#0;class#DBController#0" expanded="false" />
-                <marker date="1511699290130" expanded="true" signature="1383:1494" ph="INSERT INTO MEMBERS... " />
-                <marker date="1511699290130" expanded="true" signature="1383:1514" ph="INSERT INTO MEMBERS... " />
-                <marker date="1511699290130" expanded="true" signature="2344:2378" ph="SELECT * FRO... MEMBERS" />
-                <marker date="1511699290130" expanded="true" signature="3484:3528" ph="UPDATE MEMBE... " />
-                <marker date="1511699290130" expanded="true" signature="4238:4273" ph="SELECT id FR... MEMBERS" />
-                <marker date="1511699290130" expanded="true" signature="5014:5058" ph="INSERT INTO CD... " />
-                <marker date="1511699290130" expanded="true" signature="5014:5119" ph="INSERT INTO CD... " />
-                <marker date="1511699290130" expanded="true" signature="6207:6224" ph="SELECT CDNAM... CD" />
-                <marker date="1511699290130" expanded="true" signature="6207:6409" ph="SELECT CDNAM... CD" />
-                <marker date="1511699290130" expanded="true" signature="6207:6463" ph="SELECT CDNAM... CD" />
-                <marker date="1511699290130" expanded="true" signature="6207:6464" ph="SELECT CDNAM... CD" />
-                <marker date="1511699290130" expanded="true" signature="6637:6644" ph="SELECT REPO.... " />
-                <marker date="1511699290130" expanded="true" signature="6637:6878" ph="SELECT CDNAM... CD" />
-                <marker date="1511699290130" expanded="true" signature="6637:6879" ph="SELECT CDNAM... CD" />
-                <marker date="1511699290130" expanded="true" signature="7770:7924" ph="SELECT cd.js... CD" />
-                <marker date="1511699290130" expanded="true" signature="7770:7925" ph="SELECT cd.js... CD" />
-                <marker date="1511699290130" expanded="true" signature="8637:8724" ph="SELECT id\nF... MEMBERS" />
-                <marker date="1511699290130" expanded="true" signature="9569:9576" ph="SELECT \nFRO... MEMBER" />
-                <marker date="1511699290130" expanded="true" signature="9569:9666" ph="SELECT m.mem... MEMBERS" />
-                <marker date="1511699290130" expanded="true" signature="9569:9667" ph="SELECT m.mem... MEMBERS" />
-                <marker date="1511699290130" expanded="true" signature="9907:10016" ph="UPDATE MEMBE... " />
-                <marker date="1511699290130" expanded="true" signature="10185:10294" ph="INSERT INTO Friends... " />
-                <marker date="1511699290130" expanded="true" signature="11021:11064" ph="SELECT *FROM... FRIENDS" />
-                <marker date="1511699290130" expanded="true" signature="11021:11088" ph="SELECT *FROM... FRIENDS" />
-                <marker date="1511699290130" expanded="true" signature="11021:11115" ph="SELECT *FROM... FRIENDSWHER" />
-                <marker date="1511699290130" expanded="true" signature="11021:11116" ph="SELECT *FROM... FRIENDS" />
-                <marker date="1511699290130" expanded="true" signature="11021:11165" ph="SELECT *\nFR... FRIENDS" />
-                <marker date="1511699290130" expanded="true" signature="11021:11173" ph="SELECT f.ID\... FRIENDS" />
-                <marker date="1511699290130" expanded="true" signature="12091:12181" ph="SELECT ID\nF... FRIENDS" />
-                <marker date="1511699290130" expanded="true" signature="13003:13098" ph="SELECT FOLDE... FOLDERS" />
-                <marker date="1511699290130" expanded="true" signature="13919:14000" ph="SELECT v.ver... " />
-                <marker date="1511699290130" expanded="true" signature="13919:14021" ph="SELECT v.ver... " />
-                <marker date="1511699290130" expanded="true" signature="13919:14025" ph="SELECT v.ver... " />
-                <marker date="1511699290130" expanded="true" signature="13919:14165" ph="SELECT NAME\... VERSIONS" />
-                <marker date="1511699290130" expanded="true" signature="13919:14166" ph="SELECT v.ver... REPO" />
-                <marker date="1511699290130" expanded="true" signature="14903:15080" ph="SELECT m.id\... AUTHO" />
-                <marker date="1511699290130" expanded="true" signature="14903:15116" ph="SELECT m.id\... AUTHO" />
-                <marker date="1511699290130" expanded="true" signature="15961:16076" ph="INSERT INTO REPO... " />
-                <marker date="1511699290130" expanded="true" signature="16296:16327" ph="SELECT REPON... dual" />
-                <marker date="1511699290130" expanded="true" signature="16562:16668" ph="SELECT MEMNO... MEMBERS" />
-                <marker date="1511699290130" expanded="true" signature="16925:17032" ph="INSERT INTO AUTHO... " />
-                <marker date="1511699290130" expanded="true" signature="17916:17924" ph="INSERT INTO VERSIONS... " />
-                <marker date="1511699290130" expanded="true" signature="17916:18020" ph="SELECT MAX(v... VERSIONS" />
-                <marker date="1511699290130" expanded="true" signature="17916:18021" ph="SELECT Max(v... VERSIONS" />
-                <marker date="1511699290130" expanded="true" signature="18377:18512" ph="INSERT INTO VERSIONS... " />
-                <marker date="1511699290130" expanded="true" signature="18779:18809" ph="INSERT INTO VERSIONS... " />
-                <marker date="1511699290130" expanded="true" signature="19731:19789" ph="DELETE FROM " />
-                <marker date="1511699290130" expanded="true" signature="19731:19791" ph="DELETE FROM " />
-                <marker date="1511699290130" expanded="true" signature="20004:20104" ph="SELECT memNo... MEMBERS" />
-                <marker date="1511699290130" expanded="true" signature="20310:20415" ph="INSERT INTO VERSIONS... " />
+                <element signature="imports" expanded="false" />
+                <marker date="1511915784301" expanded="true" signature="1383:1514" ph="INSERT INTO MEMBERS... " />
+                <marker date="1511915784301" expanded="true" signature="2344:2378" ph="SELECT * FRO... MEMBERS" />
+                <marker date="1511915784301" expanded="true" signature="3484:3528" ph="UPDATE MEMBE... " />
+                <marker date="1511915784301" expanded="true" signature="4238:4273" ph="SELECT id FR... MEMBERS" />
+                <marker date="1511915784301" expanded="true" signature="5028:5071" ph="SELECT VERNO... " />
+                <marker date="1511915784301" expanded="true" signature="5028:5080" ph="SELECT VERNO... VERSIONS" />
+                <marker date="1511915784301" expanded="true" signature="5028:5122" ph="SELECT VERNO... VERSIONS" />
+                <marker date="1511915784301" expanded="true" signature="5289:5398" ph="INSERT INTO CD... " />
+                <marker date="1511915784301" expanded="true" signature="6563:6820" ph="SELECT REPO.... REPO" />
+                <marker date="1511915784301" expanded="true" signature="6993:7235" ph="SELECT REPO.... REPO" />
+                <marker date="1511915784301" expanded="true" signature="8126:8281" ph="SELECT cd.js... CD" />
+                <marker date="1511915784301" expanded="true" signature="8993:9080" ph="SELECT id\nF... MEMBERS" />
+                <marker date="1511915784301" expanded="true" signature="9849:9947" ph="SELECT m.mem... MEMBERS" />
+                <marker date="1511915784301" expanded="true" signature="10188:10318" ph="SELECT FRNO\... FRIENDS" />
+                <marker date="1511915784301" expanded="true" signature="10521:10634" ph="INSERT INTO Friends... " />
+                <marker date="1511915784301" expanded="true" signature="10823:10936" ph="INSERT INTO Friends... " />
+                <marker date="1511915784301" expanded="true" signature="11693:11845" ph="SELECT f.ID\... FRIENDS" />
+                <marker date="1511915784301" expanded="true" signature="12763:12853" ph="SELECT ID\nF... FRIENDS" />
+                <marker date="1511915784301" expanded="true" signature="13675:13770" ph="SELECT REPON... REPO" />
+                <marker date="1511915784301" expanded="true" signature="14591:14838" ph="SELECT v.ver... REPO" />
+                <marker date="1511915784301" expanded="true" signature="15575:15788" ph="SELECT m.id\... AUTHO" />
+                <marker date="1511915784301" expanded="true" signature="16633:16748" ph="INSERT INTO REPO... " />
+                <marker date="1511915784301" expanded="true" signature="16968:16999" ph="SELECT REPON... dual" />
+                <marker date="1511915784301" expanded="true" signature="17234:17340" ph="SELECT MEMNO... MEMBERS" />
+                <marker date="1511915784301" expanded="true" signature="17597:17704" ph="INSERT INTO AUTHO... " />
+                <marker date="1511915784301" expanded="true" signature="18564:18656" ph="SELECT REPON... REPO" />
+                <marker date="1511915784301" expanded="true" signature="18853:18966" ph="SELECT Max(v... VERSIONS" />
+                <marker date="1511915784301" expanded="true" signature="19370:19509" ph="INSERT INTO VERSIONS... " />
+                <marker date="1511915784301" expanded="true" signature="19804:19834" ph="SELECT VERNO... dual" />
+                <marker date="1511915784301" expanded="true" signature="20793:20853" ph="DELETE FROM " />
+                <marker date="1511915784301" expanded="true" signature="21066:21166" ph="SELECT memNo... MEMBERS" />
+                <marker date="1511915784301" expanded="true" signature="21372:21477" ph="INSERT INTO AUTHO... " />
+                <marker date="1511915784301" expanded="true" signature="22358:22450" ph="SELECT repoN... REPO" />
+                <marker date="1511915784301" expanded="true" signature="22619:22682" ph="DELETE FROM " />
+                <marker date="1511915784301" expanded="true" signature="23571:23678" ph="SELECT MEMNO... MEMBERS" />
+                <marker date="1511915784301" expanded="true" signature="23905:24019" ph="DELETE FROM " />
+                <marker date="1511915784301" expanded="true" signature="24234:24348" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KSNA.MEMBERS" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.MEMBERS">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
+      <file leaf-file-name="ServerMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/서버/src/Control/ServerMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="28" column="55" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2304#2305#0" expanded="false" />
+                <element signature="e#2345#2346#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JsonController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/서버/src/Control/JsonController.java">
+      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/서버/src/Control/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="404" column="15" lean-forward="false" selection-start-line="404" selection-start-column="15" selection-end-line="404" selection-end-column="15" />
+            <state relative-caret-position="1512">
+              <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#getJsonType#0;class#JsonController#0" expanded="false" />
-                <element signature="method#str2JSONObject#0;class#JsonController#0" expanded="false" />
-                <element signature="method#str2lm#0;class#JsonController#0" expanded="false" />
-                <element signature="method#lm2str#0;class#JsonController#0" expanded="false" />
-                <element signature="method#str2sp#0;class#JsonController#0" expanded="false" />
-                <element signature="method#friends2str#0;class#JsonController#0" expanded="false" />
-                <element signature="method#getPushType#0;class#JsonController#0" expanded="false" />
-                <element signature="method#str2repoPacket#0;class#JsonController#0" expanded="false" />
-                <element signature="method#str2resFriend#0;class#JsonController#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#2521#2522#0" expanded="false" />
+                <element signature="e#2567#2568#0" expanded="false" />
+                <element signature="e#2603#2604#0" expanded="false" />
+                <element signature="e#2696#2697#0" expanded="false" />
+                <element signature="e#3053#3054#0" expanded="false" />
+                <element signature="e#3088#3089#0" expanded="false" />
+                <element signature="e#3148#3149#0" expanded="false" />
+                <element signature="e#3196#3197#0" expanded="false" />
+                <element signature="e#3225#3226#0" expanded="false" />
+                <element signature="e#3250#3251#0" expanded="false" />
+                <element signature="e#3286#3287#0" expanded="false" />
+                <element signature="e#3314#3315#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -184,31 +167,54 @@
       <file leaf-file-name="MemberThread.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/서버/src/Control/MemberThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="44" column="14" lean-forward="false" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
+            <state relative-caret-position="1176">
+              <caret line="54" column="13" lean-forward="false" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2741#2742#0" expanded="false" />
+                <element signature="e#2770#2771#0" expanded="false" />
+                <element signature="e#2823#2824#0" expanded="false" />
+                <element signature="e#2856#2857#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KSNA.MEMBERS" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.MEMBERS">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ack.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/서버/src/Model/Ack.java">
+      <file leaf-file-name="CryptoController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/서버/src/Control/CryptoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="40" column="48" lean-forward="true" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
-              <folding />
+            <state relative-caret-position="672">
+              <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#888#889#0" expanded="false" />
+                <element signature="e#917#918#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReceivedThread.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ReceivedThread.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/서버/src/Control/ReceivedThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="134" column="46" lean-forward="false" selection-start-line="134" selection-start-column="46" selection-end-line="134" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="406">
+              <caret line="109" column="26" lean-forward="true" selection-start-line="109" selection-start-column="26" selection-end-line="109" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -216,41 +222,45 @@
       <file leaf-file-name="LoginInfo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/서버/src/Model/LoginInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="868">
-              <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerMain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/서버/src/Control/ServerMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="42" column="44" lean-forward="false" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SharedData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/서버/src/Model/SharedData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="42" column="54" lean-forward="true" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
+            <state relative-caret-position="924">
+              <caret line="35" column="38" lean-forward="false" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#236#237#0" expanded="false" />
+                <element signature="e#281#282#0" expanded="false" />
+                <element signature="e#804#805#0" expanded="false" />
+                <element signature="e#839#840#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/서버/src/Control/AccountController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="34" column="12" lean-forward="true" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+      <file leaf-file-name="KSNA.CD" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UMLController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/서버/src/Control/UMLController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="896">
+              <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1638#1639#0" expanded="false" />
+                <element signature="e#1669#1670#0" expanded="false" />
+                <element signature="e#1986#1987#0" expanded="false" />
+                <element signature="e#2024#2025#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -266,18 +276,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>repoAck</find>
-      <find>acList</find>
-      <find>clone</find>
-      <find>cllone</find>
-      <find>version</find>
-      <find>Insertversion</find>
-      <find>repoData</find>
-      <find>Y</find>
-      <find>id</find>
-      <find>sendStr</find>
-      <find>sendAck</find>
-      <find>dc</find>
       <find>con</find>
       <find>lc</find>
       <find>contorller</find>
@@ -296,6 +294,18 @@
       <find>repo</find>
       <find>insert</find>
       <find>even</find>
+      <find>cllo</find>
+      <find>push</find>
+      <find>System.out.format</find>
+      <find>cc</find>
+      <find>get</find>
+      <find>deleteRepo</find>
+      <find>dele</find>
+      <find>send</find>
+      <find>insertF</find>
+      <find>dupe</find>
+      <find>중복</find>
+      <find>중복로그인??</find>
     </findStrings>
     <replaceStrings>
       <replace>sendAck</replace>
@@ -319,11 +329,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/서버/src/Model/SearchDataModel.java" />
-        <option value="$PROJECT_DIR$/서버/src/Model/ClonePacket.java" />
-        <option value="$PROJECT_DIR$/서버/src/Model/ClloneModel.java" />
-        <option value="$PROJECT_DIR$/서버/src/DB/booklist.java" />
-        <option value="$PROJECT_DIR$/서버/src/Model/Association.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/ClazzModel.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/SearchIdPacket.java" />
         <option value="$PROJECT_DIR$/서버/src/Control/NetworkController.java" />
@@ -351,24 +356,29 @@
         <option value="$PROJECT_DIR$/서버/src/Model/RepoModel/ClloneModel.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/ClientModel.java" />
         <option value="$PROJECT_DIR$/서버/src/Control/UMLContorller.java" />
-        <option value="$PROJECT_DIR$/서버/src/Control/MainController.java" />
-        <option value="$PROJECT_DIR$/서버/src/Control/ServerMain.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/ResFriendPacket.java" />
         <option value="$PROJECT_DIR$/서버/src/Control/LoginController.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a5a3a54c-281a-4421-b380-66ed430583bf/console.sql" />
         <option value="$PROJECT_DIR$/서버/src/Model/Event.java" />
-        <option value="$PROJECT_DIR$/서버/src/Model/SharedData.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/RepoModel/VersionModel.java" />
         <option value="$PROJECT_DIR$/서버/src/Control/VersionComparator.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/RepoModel/RepoModel.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/console.sql" />
-        <option value="$PROJECT_DIR$/서버/src/Control/JsonController.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/MemManagePacket.java" />
-        <option value="$PROJECT_DIR$/서버/src/Model/Ack.java" />
         <option value="$PROJECT_DIR$/서버/src/Model/LoginInfo.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/RepoModel/CllonePacket.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/Ack.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/Crypto/TestRSA.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/MainController.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/Crypto/AES256Util.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/JsonController.java" />
+        <option value="$PROJECT_DIR$/서버/src/Model/SharedData.java" />
         <option value="$PROJECT_DIR$/서버/src/Control/MemberThread.java" />
-        <option value="$PROJECT_DIR$/서버/src/Control/DBController.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/UMLController.java" />
         <option value="$PROJECT_DIR$/서버/src/Control/AccountController.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/DBController.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/ServerMain.java" />
+        <option value="$PROJECT_DIR$/서버/src/Control/CryptoController.java" />
         <option value="$PROJECT_DIR$/서버/src/Control/ReceivedThread.java" />
       </list>
     </option>
@@ -425,8 +435,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -454,6 +465,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="RepoModel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="netServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="서버" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Crypto" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -509,13 +538,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../netClient" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15546875" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -523,15 +551,18 @@
     <property name="settings.editor.selected.configurable" value="database.main" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="AIDL" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/SQL Dialects" value="Oracle&#10;GenericSQL" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.VERSIONS" />
+    <property name="SearchEverywhereHistoryKey" value="평문&#9;null&#9;null&#10;System.out.format&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\net\netServer\서버\src\Model" />
       <recent name="D:\netServer\서버\src\Model\ClassDiagramModel" />
       <recent name="D:\netServer\서버\src\Model\DrawModel" />
       <recent name="D:\네프서버\서버\src" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Model.Crypto" />
+      <recent name="Control" />
       <recent name="Model" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
@@ -1060,12 +1091,16 @@
       <workItem from="1510633060038" duration="11000" />
       <workItem from="1510634576405" duration="27681000" />
       <workItem from="1511080031276" duration="63288000" />
-      <workItem from="1511411828176" duration="30236000" />
+      <workItem from="1511411828176" duration="50017000" />
+      <workItem from="1511857730194" duration="7973000" />
+      <workItem from="1511928696069" duration="34000" />
+      <workItem from="1511928763798" duration="1968000" />
+      <workItem from="1511951691009" duration="133000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="339800000" />
+    <option name="totallyTimeSpent" value="369689000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1077,38 +1112,39 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39179954" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2949886" sideWeight="0.60833335" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15260416" sideWeight="0.49403748" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22395833" sideWeight="0.47020933" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39749432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33029613" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2949886" sideWeight="0.60833335" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23541667" sideWeight="0.52979064" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39066058" sideWeight="0.49791667" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15260416" sideWeight="0.49403748" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.111979164" sideWeight="0.50596255" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39749432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33029613" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23541667" sideWeight="0.52979064" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39066058" sideWeight="0.49791667" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1121,46 +1157,26 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/서버/src/Model/SharedData.java</url>
-          <line>39</line>
-          <properties class="Model.SharedData" method="getEvents">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="246" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/서버/src/Control/ReceivedThread.java</url>
-          <line>49</line>
+          <line>57</line>
           <properties />
           <option name="timeStamp" value="249" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/서버/src/Control/ReceivedThread.java</url>
-          <line>43</line>
+          <line>102</line>
           <properties />
-          <option name="timeStamp" value="251" />
+          <option name="timeStamp" value="256" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/서버/src/Control/DBController.java</url>
-          <line>342</line>
+          <url>file://$PROJECT_DIR$/서버/src/Control/AccountController.java</url>
+          <line>96</line>
           <properties />
-          <option name="timeStamp" value="252" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/서버/src/Control/DBController.java</url>
-          <line>350</line>
-          <properties />
-          <option name="timeStamp" value="253" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/서버/src/Control/DBController.java</url>
-          <line>358</line>
-          <properties />
-          <option name="timeStamp" value="254" />
+          <option name="timeStamp" value="258" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="255" />
+      <option name="time" value="259" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1174,15 +1190,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD" />
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD" />
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD" />
-    <entry file="dbDummy://dbtable:/ce5d6f5a/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD" />
     <entry file="file://$PROJECT_DIR$/서버/src/Model/ClassDiagramModel/ClazzModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
           <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1190,16 +1201,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding>
-            <element signature="e#733#734#0" expanded="false" />
-            <element signature="e#762#763#0" expanded="false" />
-            <element signature="e#806#807#0" expanded="false" />
-            <element signature="e#842#843#0" expanded="false" />
-            <element signature="e#1850#1851#0" expanded="false" />
-            <element signature="e#1879#1880#0" expanded="false" />
-            <element signature="e#1920#1921#0" expanded="false" />
-            <element signature="e#1956#1957#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1207,7 +1208,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="60" column="17" lean-forward="false" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1227,7 +1227,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1236,20 +1235,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="e#417#418#0" expanded="false" />
-            <element signature="e#444#445#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#516#517#0" expanded="false" />
-            <element signature="e#545#546#0" expanded="false" />
-            <element signature="e#570#571#0" expanded="false" />
-            <element signature="e#606#607#0" expanded="false" />
-            <element signature="e#634#635#0" expanded="false" />
-            <element signature="e#683#684#0" expanded="false" />
-            <element signature="e#717#718#0" expanded="false" />
-            <element signature="e#782#783#0" expanded="false" />
-            <element signature="e#828#829#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1257,24 +1242,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="e#224#225#0" expanded="false" />
-            <element signature="e#252#253#0" expanded="false" />
-            <element signature="e#294#295#0" expanded="false" />
-            <element signature="e#328#329#0" expanded="false" />
-            <element signature="e#357#358#0" expanded="false" />
-            <element signature="e#382#383#0" expanded="false" />
-            <element signature="e#418#419#0" expanded="false" />
-            <element signature="e#446#447#0" expanded="false" />
-            <element signature="e#477#478#0" expanded="false" />
-            <element signature="e#504#505#0" expanded="false" />
-            <element signature="e#544#545#0" expanded="false" />
-            <element signature="e#576#577#0" expanded="false" />
-            <element signature="e#920#921#0" expanded="false" />
-            <element signature="e#949#950#0" expanded="false" />
-            <element signature="e#987#988#0" expanded="false" />
-            <element signature="e#1021#1022#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1282,26 +1249,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/ClientModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding>
-            <element signature="e#198#199#0" expanded="false" />
-            <element signature="e#234#235#0" expanded="false" />
-            <element signature="e#267#268#0" expanded="false" />
-            <element signature="e#296#297#0" expanded="false" />
-            <element signature="e#340#341#0" expanded="false" />
-            <element signature="e#376#377#0" expanded="false" />
-            <element signature="e#405#406#0" expanded="false" />
-            <element signature="e#430#431#0" expanded="false" />
-            <element signature="e#466#467#0" expanded="false" />
-            <element signature="e#494#495#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1318,26 +1265,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="e#248#249#0" expanded="false" />
-            <element signature="e#275#276#0" expanded="false" />
-            <element signature="e#315#316#0" expanded="false" />
-            <element signature="e#347#348#0" expanded="false" />
-            <element signature="e#382#383#0" expanded="false" />
-            <element signature="e#409#410#0" expanded="false" />
-            <element signature="e#457#458#0" expanded="false" />
-            <element signature="e#493#494#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="15" column="39" lean-forward="false" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1353,7 +1280,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1361,7 +1287,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1369,7 +1294,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
           <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1377,18 +1301,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-          <folding>
-            <element signature="e#1121#1122#0" expanded="false" />
-            <element signature="e#1148#1149#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/RepoModel/CllonePacket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1396,126 +1308,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="492">
           <caret line="91" column="0" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.FRIENDS">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.REPO">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.VERSIONS">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/UMLController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="103" column="22" lean-forward="false" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1409#1410#0" expanded="false" />
-            <element signature="e#1440#1441#0" expanded="false" />
-            <element signature="e#1757#1758#0" expanded="false" />
-            <element signature="e#1795#1796#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/VersionComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/RepoModel/RepoModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#686#687#0" expanded="false" />
-            <element signature="e#715#716#0" expanded="false" />
-            <element signature="e#756#757#0" expanded="false" />
-            <element signature="e#792#793#0" expanded="false" />
-            <element signature="e#823#824#0" expanded="false" />
-            <element signature="e#850#851#0" expanded="false" />
-            <element signature="e#890#891#0" expanded="false" />
-            <element signature="e#922#923#0" expanded="false" />
-            <element signature="e#974#975#0" expanded="false" />
-            <element signature="e#1005#1006#0" expanded="false" />
-            <element signature="e#1070#1071#0" expanded="false" />
-            <element signature="e#1110#1111#0" expanded="false" />
-            <element signature="e#1162#1163#0" expanded="false" />
-            <element signature="e#1199#1200#0" expanded="false" />
-            <element signature="e#1270#1271#0" expanded="false" />
-            <element signature="e#1322#1323#0" expanded="false" />
-            <element signature="e#1357#1358#0" expanded="false" />
-            <element signature="e#1388#1389#0" expanded="false" />
-            <element signature="e#1436#1437#0" expanded="false" />
-            <element signature="e#1476#1477#0" expanded="false" />
-            <element signature="e#1505#1506#0" expanded="false" />
-            <element signature="e#1530#1531#0" expanded="false" />
-            <element signature="e#1566#1567#0" expanded="false" />
-            <element signature="e#1594#1595#0" expanded="false" />
-            <element signature="e#1639#1640#0" expanded="false" />
-            <element signature="e#1681#1682#0" expanded="false" />
-            <element signature="e#1728#1729#0" expanded="false" />
-            <element signature="e#1773#1774#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1010">
-          <caret line="61" column="17" lean-forward="false" selection-start-line="61" selection-start-column="17" selection-end-line="61" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1523,7 +1315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="221" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1531,187 +1322,316 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="12" column="67" lean-forward="false" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/ClientModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/RepoModel/RepoModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="13" column="45" lean-forward="true" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/RepoModel/CllonePacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/Crypto/TestRSA.java" />
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/Crypto/AES256Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="41" column="40" lean-forward="true" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/VersionComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-756">
+          <caret line="19" column="49" lean-forward="false" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/SharedData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="64" column="26" lean-forward="true" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Model/Ack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19376">
+          <caret line="747" column="0" lean-forward="false" selection-start-line="747" selection-start-column="0" selection-end-line="747" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/JsonController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15204">
+          <caret line="661" column="35" lean-forward="false" selection-start-line="661" selection-start-column="35" selection-end-line="661" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/AccountController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="122" column="49" lean-forward="false" selection-start-line="122" selection-start-column="49" selection-end-line="122" selection-end-column="49" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#371#372#0" expanded="true" />
-            <element signature="e#401#402#0" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#496#497#0" expanded="true" />
-            <element signature="e#526#527#0" expanded="true" />
-            <element signature="e#555#556#0" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#632#633#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#948#949#0" expanded="false" />
+            <element signature="e#980#981#0" expanded="false" />
+            <element signature="e#1012#1013#0" expanded="false" />
+            <element signature="e#1047#1048#0" expanded="false" />
+            <element signature="e#1315#1316#0" expanded="false" />
+            <element signature="e#1371#1372#0" expanded="false" />
+            <element signature="e#1407#1408#0" expanded="false" />
+            <element signature="e#1461#1462#0" expanded="false" />
+            <element signature="e#1517#1518#0" expanded="false" />
+            <element signature="e#1555#1556#0" expanded="false" />
+            <element signature="e#4501#4502#0" expanded="false" />
+            <element signature="e#4529#4530#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.VERSIONS">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.AUTHO">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.FRIENDS">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.REPO">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.CD">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/UMLController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="896">
+          <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1638#1639#0" expanded="false" />
+            <element signature="e#1669#1670#0" expanded="false" />
+            <element signature="e#1986#1987#0" expanded="false" />
+            <element signature="e#2024#2025#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/DBController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18648">
+          <caret line="673" column="14" lean-forward="false" selection-start-line="673" selection-start-column="14" selection-end-line="673" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <marker date="1511915784301" expanded="true" signature="1383:1514" ph="INSERT INTO MEMBERS... " />
+            <marker date="1511915784301" expanded="true" signature="2344:2378" ph="SELECT * FRO... MEMBERS" />
+            <marker date="1511915784301" expanded="true" signature="3484:3528" ph="UPDATE MEMBE... " />
+            <marker date="1511915784301" expanded="true" signature="4238:4273" ph="SELECT id FR... MEMBERS" />
+            <marker date="1511915784301" expanded="true" signature="5028:5071" ph="SELECT VERNO... " />
+            <marker date="1511915784301" expanded="true" signature="5028:5080" ph="SELECT VERNO... VERSIONS" />
+            <marker date="1511915784301" expanded="true" signature="5028:5122" ph="SELECT VERNO... VERSIONS" />
+            <marker date="1511915784301" expanded="true" signature="5289:5398" ph="INSERT INTO CD... " />
+            <marker date="1511915784301" expanded="true" signature="6563:6820" ph="SELECT REPO.... REPO" />
+            <marker date="1511915784301" expanded="true" signature="6993:7235" ph="SELECT REPO.... REPO" />
+            <marker date="1511915784301" expanded="true" signature="8126:8281" ph="SELECT cd.js... CD" />
+            <marker date="1511915784301" expanded="true" signature="8993:9080" ph="SELECT id\nF... MEMBERS" />
+            <marker date="1511915784301" expanded="true" signature="9849:9947" ph="SELECT m.mem... MEMBERS" />
+            <marker date="1511915784301" expanded="true" signature="10188:10318" ph="SELECT FRNO\... FRIENDS" />
+            <marker date="1511915784301" expanded="true" signature="10521:10634" ph="INSERT INTO Friends... " />
+            <marker date="1511915784301" expanded="true" signature="10823:10936" ph="INSERT INTO Friends... " />
+            <marker date="1511915784301" expanded="true" signature="11693:11845" ph="SELECT f.ID\... FRIENDS" />
+            <marker date="1511915784301" expanded="true" signature="12763:12853" ph="SELECT ID\nF... FRIENDS" />
+            <marker date="1511915784301" expanded="true" signature="13675:13770" ph="SELECT REPON... REPO" />
+            <marker date="1511915784301" expanded="true" signature="14591:14838" ph="SELECT v.ver... REPO" />
+            <marker date="1511915784301" expanded="true" signature="15575:15788" ph="SELECT m.id\... AUTHO" />
+            <marker date="1511915784301" expanded="true" signature="16633:16748" ph="INSERT INTO REPO... " />
+            <marker date="1511915784301" expanded="true" signature="16968:16999" ph="SELECT REPON... dual" />
+            <marker date="1511915784301" expanded="true" signature="17234:17340" ph="SELECT MEMNO... MEMBERS" />
+            <marker date="1511915784301" expanded="true" signature="17597:17704" ph="INSERT INTO AUTHO... " />
+            <marker date="1511915784301" expanded="true" signature="18564:18656" ph="SELECT REPON... REPO" />
+            <marker date="1511915784301" expanded="true" signature="18853:18966" ph="SELECT Max(v... VERSIONS" />
+            <marker date="1511915784301" expanded="true" signature="19370:19509" ph="INSERT INTO VERSIONS... " />
+            <marker date="1511915784301" expanded="true" signature="19804:19834" ph="SELECT VERNO... dual" />
+            <marker date="1511915784301" expanded="true" signature="20793:20853" ph="DELETE FROM " />
+            <marker date="1511915784301" expanded="true" signature="21066:21166" ph="SELECT memNo... MEMBERS" />
+            <marker date="1511915784301" expanded="true" signature="21372:21477" ph="INSERT INTO AUTHO... " />
+            <marker date="1511915784301" expanded="true" signature="22358:22450" ph="SELECT repoN... REPO" />
+            <marker date="1511915784301" expanded="true" signature="22619:22682" ph="DELETE FROM " />
+            <marker date="1511915784301" expanded="true" signature="23571:23678" ph="SELECT MEMNO... MEMBERS" />
+            <marker date="1511915784301" expanded="true" signature="23905:24019" ph="DELETE FROM " />
+            <marker date="1511915784301" expanded="true" signature="24234:24348" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/ServerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="28" column="55" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2304#2305#0" expanded="false" />
+            <element signature="e#2345#2346#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.MEMBERS">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/SharedData.java">
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/CryptoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="42" column="54" lean-forward="true" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
+        <state relative-caret-position="672">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#888#889#0" expanded="false" />
+            <element signature="e#917#918#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Model/LoginInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="868">
-          <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="924">
+          <caret line="35" column="38" lean-forward="false" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+          <folding>
+            <element signature="e#236#237#0" expanded="false" />
+            <element signature="e#281#282#0" expanded="false" />
+            <element signature="e#804#805#0" expanded="false" />
+            <element signature="e#839#840#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/ServerMain.java">
+    <entry file="file://$PROJECT_DIR$/서버/src/Control/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="42" column="44" lean-forward="false" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
-          <folding />
+        <state relative-caret-position="1512">
+          <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2521#2522#0" expanded="false" />
+            <element signature="e#2567#2568#0" expanded="false" />
+            <element signature="e#2603#2604#0" expanded="false" />
+            <element signature="e#2696#2697#0" expanded="false" />
+            <element signature="e#3053#3054#0" expanded="false" />
+            <element signature="e#3088#3089#0" expanded="false" />
+            <element signature="e#3148#3149#0" expanded="false" />
+            <element signature="e#3196#3197#0" expanded="false" />
+            <element signature="e#3225#3226#0" expanded="false" />
+            <element signature="e#3250#3251#0" expanded="false" />
+            <element signature="e#3286#3287#0" expanded="false" />
+            <element signature="e#3314#3315#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Control/MemberThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="44" column="14" lean-forward="false" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/JsonController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="404" column="15" lean-forward="false" selection-start-line="404" selection-start-column="15" selection-end-line="404" selection-end-column="15" />
+        <state relative-caret-position="1176">
+          <caret line="54" column="13" lean-forward="false" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getJsonType#0;class#JsonController#0" expanded="false" />
-            <element signature="method#str2JSONObject#0;class#JsonController#0" expanded="false" />
-            <element signature="method#str2lm#0;class#JsonController#0" expanded="false" />
-            <element signature="method#lm2str#0;class#JsonController#0" expanded="false" />
-            <element signature="method#str2sp#0;class#JsonController#0" expanded="false" />
-            <element signature="method#friends2str#0;class#JsonController#0" expanded="false" />
-            <element signature="method#getPushType#0;class#JsonController#0" expanded="false" />
-            <element signature="method#str2repoPacket#0;class#JsonController#0" expanded="false" />
-            <element signature="method#str2resFriend#0;class#JsonController#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2741#2742#0" expanded="false" />
+            <element signature="e#2770#2771#0" expanded="false" />
+            <element signature="e#2823#2824#0" expanded="false" />
+            <element signature="e#2856#2857#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/768a82db/7fcf3ca6-43f3-4406-a4e7-d69611b77e5c/KSNA.MEMBERS">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/DBController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="303" column="24" lean-forward="false" selection-start-line="303" selection-start-column="24" selection-end-line="303" selection-end-column="24" />
-          <folding>
-            <element signature="method#getConn#0;class#DBController#0" expanded="false" />
-            <element signature="method#closeConnect#0;class#DBController#0" expanded="false" />
-            <element signature="method#signup#0;class#DBController#0" expanded="false" />
-            <element signature="method#pwDB#0;class#DBController#0" expanded="false" />
-            <element signature="method#pushCD#0;class#DBController#0" expanded="false" />
-            <element signature="method#search#0;class#DBController#0" expanded="false" />
-            <element signature="method#isExistRepo#0;class#DBController#0" expanded="false" />
-            <marker date="1511699290130" expanded="true" signature="1383:1494" ph="INSERT INTO MEMBERS... " />
-            <marker date="1511699290130" expanded="true" signature="1383:1514" ph="INSERT INTO MEMBERS... " />
-            <marker date="1511699290130" expanded="true" signature="2344:2378" ph="SELECT * FRO... MEMBERS" />
-            <marker date="1511699290130" expanded="true" signature="3484:3528" ph="UPDATE MEMBE... " />
-            <marker date="1511699290130" expanded="true" signature="4238:4273" ph="SELECT id FR... MEMBERS" />
-            <marker date="1511699290130" expanded="true" signature="5014:5058" ph="INSERT INTO CD... " />
-            <marker date="1511699290130" expanded="true" signature="5014:5119" ph="INSERT INTO CD... " />
-            <marker date="1511699290130" expanded="true" signature="6207:6224" ph="SELECT CDNAM... CD" />
-            <marker date="1511699290130" expanded="true" signature="6207:6409" ph="SELECT CDNAM... CD" />
-            <marker date="1511699290130" expanded="true" signature="6207:6463" ph="SELECT CDNAM... CD" />
-            <marker date="1511699290130" expanded="true" signature="6207:6464" ph="SELECT CDNAM... CD" />
-            <marker date="1511699290130" expanded="true" signature="6637:6644" ph="SELECT REPO.... " />
-            <marker date="1511699290130" expanded="true" signature="6637:6878" ph="SELECT CDNAM... CD" />
-            <marker date="1511699290130" expanded="true" signature="6637:6879" ph="SELECT CDNAM... CD" />
-            <marker date="1511699290130" expanded="true" signature="7770:7924" ph="SELECT cd.js... CD" />
-            <marker date="1511699290130" expanded="true" signature="7770:7925" ph="SELECT cd.js... CD" />
-            <marker date="1511699290130" expanded="true" signature="8637:8724" ph="SELECT id\nF... MEMBERS" />
-            <marker date="1511699290130" expanded="true" signature="9569:9576" ph="SELECT \nFRO... MEMBER" />
-            <marker date="1511699290130" expanded="true" signature="9569:9666" ph="SELECT m.mem... MEMBERS" />
-            <marker date="1511699290130" expanded="true" signature="9569:9667" ph="SELECT m.mem... MEMBERS" />
-            <marker date="1511699290130" expanded="true" signature="9907:10016" ph="UPDATE MEMBE... " />
-            <marker date="1511699290130" expanded="true" signature="10185:10294" ph="INSERT INTO Friends... " />
-            <marker date="1511699290130" expanded="true" signature="11021:11064" ph="SELECT *FROM... FRIENDS" />
-            <marker date="1511699290130" expanded="true" signature="11021:11088" ph="SELECT *FROM... FRIENDS" />
-            <marker date="1511699290130" expanded="true" signature="11021:11115" ph="SELECT *FROM... FRIENDSWHER" />
-            <marker date="1511699290130" expanded="true" signature="11021:11116" ph="SELECT *FROM... FRIENDS" />
-            <marker date="1511699290130" expanded="true" signature="11021:11165" ph="SELECT *\nFR... FRIENDS" />
-            <marker date="1511699290130" expanded="true" signature="11021:11173" ph="SELECT f.ID\... FRIENDS" />
-            <marker date="1511699290130" expanded="true" signature="12091:12181" ph="SELECT ID\nF... FRIENDS" />
-            <marker date="1511699290130" expanded="true" signature="13003:13098" ph="SELECT FOLDE... FOLDERS" />
-            <marker date="1511699290130" expanded="true" signature="13919:14000" ph="SELECT v.ver... " />
-            <marker date="1511699290130" expanded="true" signature="13919:14021" ph="SELECT v.ver... " />
-            <marker date="1511699290130" expanded="true" signature="13919:14025" ph="SELECT v.ver... " />
-            <marker date="1511699290130" expanded="true" signature="13919:14165" ph="SELECT NAME\... VERSIONS" />
-            <marker date="1511699290130" expanded="true" signature="13919:14166" ph="SELECT v.ver... REPO" />
-            <marker date="1511699290130" expanded="true" signature="14903:15080" ph="SELECT m.id\... AUTHO" />
-            <marker date="1511699290130" expanded="true" signature="14903:15116" ph="SELECT m.id\... AUTHO" />
-            <marker date="1511699290130" expanded="true" signature="15961:16076" ph="INSERT INTO REPO... " />
-            <marker date="1511699290130" expanded="true" signature="16296:16327" ph="SELECT REPON... dual" />
-            <marker date="1511699290130" expanded="true" signature="16562:16668" ph="SELECT MEMNO... MEMBERS" />
-            <marker date="1511699290130" expanded="true" signature="16925:17032" ph="INSERT INTO AUTHO... " />
-            <marker date="1511699290130" expanded="true" signature="17916:17924" ph="INSERT INTO VERSIONS... " />
-            <marker date="1511699290130" expanded="true" signature="17916:18020" ph="SELECT MAX(v... VERSIONS" />
-            <marker date="1511699290130" expanded="true" signature="17916:18021" ph="SELECT Max(v... VERSIONS" />
-            <marker date="1511699290130" expanded="true" signature="18377:18512" ph="INSERT INTO VERSIONS... " />
-            <marker date="1511699290130" expanded="true" signature="18779:18809" ph="INSERT INTO VERSIONS... " />
-            <marker date="1511699290130" expanded="true" signature="19731:19789" ph="DELETE FROM " />
-            <marker date="1511699290130" expanded="true" signature="19731:19791" ph="DELETE FROM " />
-            <marker date="1511699290130" expanded="true" signature="20004:20104" ph="SELECT memNo... MEMBERS" />
-            <marker date="1511699290130" expanded="true" signature="20310:20415" ph="INSERT INTO VERSIONS... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Control/AccountController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="34" column="12" lean-forward="true" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/서버/src/Control/ReceivedThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="134" column="46" lean-forward="false" selection-start-line="134" selection-start-column="46" selection-end-line="134" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/서버/src/Model/Ack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="40" column="48" lean-forward="true" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
+        <state relative-caret-position="406">
+          <caret line="109" column="26" lean-forward="true" selection-start-line="109" selection-start-column="26" selection-end-line="109" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1782,7 +1702,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>ojdbc6-12.1.0.2</last-edited>
+          <last-edited>commons-codec-1.9</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

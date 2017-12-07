@@ -3,6 +3,7 @@ package View.MainView;
 import Control.MainController;
 import Model.SearchRepoModel;
 import Model.StaticModel.MyImage;
+import Model.StaticModel.Pallate;
 import Model.StaticModel.Size;
 
 import javax.swing.*;
@@ -22,13 +23,11 @@ public class NoticePanel extends JPanel{
         setLayout(null);
         y=0;
     }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(MyImage.notice_bgImage.getImage(), 0, 0, null);
-    }
-
+//    @Override
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        g.drawImage(MyImage.notice_bgImage.getImage(), 0, 0, null);
+//    }
 
     public void addResultPanel(ArrayList<SearchRepoModel> sdms){
         if(sdms !=null) {

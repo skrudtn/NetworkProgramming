@@ -5,9 +5,11 @@ package Model.RepoModel;
  */
 public class CllonePacket {
     private String name;
+    private int repoNo;
 
-    public CllonePacket(String name) {
+    public CllonePacket(String name, int repoNo) {
         this.name = name;
+        this.repoNo = repoNo;
     }
 
     public String getName() {
@@ -16,5 +18,13 @@ public class CllonePacket {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getRepoNo() {
+        return repoNo;
+    }
+
+    public void setRepoNo(int repoNo) {
+        this.repoNo = repoNo;
     }
 }

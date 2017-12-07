@@ -45,6 +45,12 @@ public class Size {
     public static final int LOGIN_FRAME_W = 400;
     public static final int LOGIN_FRAME_H= 480;
 
+    public static final int DELETE_REPO_W= 200;
+    public static final int DELETE_REPO_H= 140;
+
+    public static final int DELETE_OK_W= 60;
+    public static final int DELETE_OK_H= 40;
+
 
     public final static int SIGNUP_SBTN_W= 120;
     public final static int SIGNUP_SBTN_H= 35;
@@ -94,7 +100,8 @@ public class Size {
     public final static int OK_H= 30;
     public final static int TEXT_H= 30;
 
-    public final static int BTN_REPO_W= 100;
-    public final static int BTN_REPO_H= 100;
+    public final static int BTN_REPO_W= 80;
+    public final static int BTN_REPO_H= 80;
+    public final static int BTN_DELETE= 45;
 
 }
